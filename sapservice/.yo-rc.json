@@ -1,0 +1,52 @@
+{
+  "generator-jhipster-nuvem-java": {
+    "promptValues": {
+      "packageName": "br.com.basis.sap.sapservice"
+    },
+    "jhipsterVersion": "6.4.1",
+    "applicationType": "microservice",
+    "baseName": "sapservice",
+    "packageName": "br.com.basis.sap.sapservice",
+    "packageFolder": "br/com/basis/sap/sapservice",
+    "serverPort": "8081",
+    "authenticationType": "jwt",
+    "cacheProvider": "hazelcast",
+    "enableHibernateCache": true,
+    "websocket": false,
+    "databaseType": "sql",
+    "devDatabaseType": "postgresql",
+    "prodDatabaseType": "postgresql",
+    "searchEngine": false,
+    "messageBroker": false,
+    "serviceDiscoveryType": "eureka",
+    "buildTool": "maven",
+    "enableSwaggerCodegen": false,
+    "jwtSecretKey": "ODk2YzM4M2MxMzQzNmJmNWUyMjA3MzVjYjEyMWY5OWZkNzk5ODY3NzJiMTYwMzZiYTM0NmFjZTZmMDAzYmI5NDlkOWRhNTgwN2M0OGI4MzY5MWU1MTk0ZGJjN2M4ZWY5Y2UzMmVmMTlhNzc4MzA3MDkxODU0NWMxYWViZGQxNmI=",
+    "embeddableLaunchScript": false
+  },
+  "generator-jhipster": {
+    "jhipsterVersion": "6.4.1",
+    "applicationType": "microservice",
+    "baseName": "sapservice",
+    "testFrameworks": [],
+    "jhiPrefix": "jhi",
+    "entitySuffix": "",
+    "dtoSuffix": "DTO",
+    "otherModules": [
+      {
+        "name": "generator-jhipster-nuvem-java",
+        "version": "6.5.0"
+      }
+    ],
+    "enableTranslation": false,
+    "clientPackageManager": "npm",
+    "blueprints": [
+      {
+        "name": "generator-jhipster-nuvem-java",
+        "version": "6.5.0"
+      }
+    ],
+    "skipClient": true,
+    "skipUserManagement": true
+  }
+}

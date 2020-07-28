@@ -1,0 +1,17 @@
+version: '2'
+services:
+  sap-registry:
+    extends:
+      file: jhipster-registry.yml
+      service: jhipster-registry
+    container_name: sap-jhipster-registry
+  sap-redis:
+    extends:
+      file: redis.yml
+      service: redis
+    container_name: sap-redis
+  sap-postgresql:
+    extends:
+      file: postgresql.yml
+      service: postgresql
+    container_name: sap-postgresql

@@ -1,0 +1,11 @@
+version: '2'
+services:
+  postgresql:
+    image: postgres:11.5
+    # volumes:
+    #     - ~/volumes/jhipster/sapservice/postgresql/:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_USER=sap
+      - POSTGRES_PASSWORD=sap
+    ports:
+      - 5432:5432

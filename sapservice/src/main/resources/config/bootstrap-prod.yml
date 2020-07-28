@@ -1,0 +1,7 @@
+spring:
+  cloud:
+    kubernetes:
+      config:
+        name: sapservice
+        sources:
+          - name: sap-parent-sapservice
