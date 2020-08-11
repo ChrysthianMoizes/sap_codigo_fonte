@@ -1,7 +1,7 @@
 package br.gov.basis.sap.sapservice.web.rest;
 
-import br.gov.basis.sap.sapservice.service.LiderServico;
-import br.gov.basis.sap.sapservice.service.dto.LiderDTO;
+import br.gov.basis.sap.sapservice.service.SprintServico;
+import br.gov.basis.sap.sapservice.service.dto.SprintDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -18,39 +18,39 @@ import java.net.URISyntaxException;
 import java.util.List;
 
 @RestController
-@RequestMapping("/lideres")
+@RequestMapping("/sprints")
 @RequiredArgsConstructor
-public class LiderRecurso {
+public class SprintRecurso {
 
-    private final LiderServico liderServico;
+    private final SprintServico sprintServico;
 
     @GetMapping
-    public ResponseEntity<List<LiderDTO>> obterTodos() {
-        List<LiderDTO> lideres = liderServico.obterTodos();
-        return ResponseEntity.ok().body(lideres);
+    public ResponseEntity<List<SprintDTO>> obterTodos() {
+        List<SprintDTO> sprints = sprintServico.obterTodos();
+        return ResponseEntity.ok().body(sprints);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<LiderDTO> obterPorId(@PathVariable Integer id) {
-        LiderDTO lider = liderServico.obterPorId(id);
-        return ResponseEntity.ok().body(lider);
+    public ResponseEntity<SprintDTO> obterPorId(@PathVariable Integer id) {
+        SprintDTO sprint = sprintServico.obterPorId(id);
+        return ResponseEntity.ok().body(sprint);
     }
 
     @PostMapping
-    public ResponseEntity<LiderDTO> salvar(@RequestBody LiderDTO lider) throws URISyntaxException {
-        LiderDTO liderSalvo = liderServico.salvar(lider);
-        return ResponseEntity.created(new URI("/lideres/")).body(liderSalvo);
+    public ResponseEntity<SprintDTO> salvar(@RequestBody SprintDTO sprintDTO) throws URISyntaxException {
+        SprintDTO sprint = sprintServico.salvar(sprintDTO);
+        return ResponseEntity.created(new URI("/sprints/")).body(sprint);
     }
 
     @PutMapping
-    public ResponseEntity<Void> atualizar(@RequestBody LiderDTO lider) {
-        liderServico.salvar(lider);
+    public ResponseEntity<Void> atualizar(@RequestBody SprintDTO sprintDTO) {
+        sprintServico.salvar(sprintDTO);
         return ResponseEntity.ok().build();
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deletarPorId(@PathVariable Integer id) {
-        liderServico.removerPorId(id);
+        sprintServico.removerPorId(id);
         return ResponseEntity.ok().build();
     }
 }
