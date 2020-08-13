@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
@@ -28,6 +29,12 @@ public class LiderRecurso {
     @GetMapping
     public ResponseEntity<List<LiderDTO>> obterTodos() {
         List<LiderDTO> lideres = liderServico.obterTodos();
+        return ResponseEntity.ok().body(lideres);
+    }
+
+    @GetMapping("/nome")
+    public ResponseEntity<List<LiderDTO>> obterTodosPorNome(@RequestParam("nome") String nome) {
+        List<LiderDTO> lideres = liderServico.obterTodosPorNome(nome);
         return ResponseEntity.ok().body(lideres);
     }
 

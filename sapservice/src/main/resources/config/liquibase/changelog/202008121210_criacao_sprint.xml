@@ -26,7 +26,7 @@
             <column  name="qtd_pontos_funcao"  type="number(10,2)" remarks="Quantidade de pontos de função agregada na Sprint">
                 <constraints nullable="true" />
             </column>
-            <column  name="status"  type="varchar(80)" remarks="Status da Sprint">
+            <column  name="id_status"  type="number" remarks="Status da Sprint">
                 <constraints nullable="true" />
             </column>
             <column  name="id_ordem_servico" type="number" remarks="Chave de refência tabela ordem_servico">

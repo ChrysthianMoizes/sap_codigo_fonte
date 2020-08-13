@@ -25,6 +25,14 @@
                           startWith="1"
                           tableName="tipo_situacao"/>
     </changeSet>
+
+    <changeSet  author="maxson.zucolotto"  id="7">
+        <addForeignKeyConstraint   baseTableName="ordem_servico"
+                                   baseColumnNames="id_tipo_situacao "
+                                   constraintName="fk_os_tp_situcao"
+                                   referencedTableName="tipo_situacao"
+                                   referencedColumnNames="id"/>
+    </changeSet>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
 </databaseChangeLog>

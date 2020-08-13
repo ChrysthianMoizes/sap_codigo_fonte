@@ -25,6 +25,14 @@
                           startWith="1"
                           tableName="tipo_status"/>
     </changeSet>
+
+    <changeSet  author="maxson.zucolotto"  id="7">
+        <addForeignKeyConstraint   baseTableName="sprint"
+                                   baseColumnNames="id_status "
+                                   constraintName="fk_os_tp_status"
+                                   referencedTableName="tipo_status"
+                                   referencedColumnNames="id"/>
+    </changeSet>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
 </databaseChangeLog>

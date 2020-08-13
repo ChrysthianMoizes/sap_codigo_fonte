@@ -35,7 +35,7 @@
             <column  name="id_projeto"  type="number" remarks="Chave de refência tabela projeto">
                 <constraints nullable="false" />
             </column>
-            <column  name="id_situacao"  type="number" remarks="Chave de refência tabela situacao">
+            <column  name="id_tipo_situacao"  type="number" remarks="Chave de refência tabela situacao">
                 <constraints nullable="true" />
             </column>
         </createTable>

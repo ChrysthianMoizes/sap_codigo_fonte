@@ -37,9 +37,6 @@ public class OrdemServico {
     @JoinColumn(name = "id_tipo_situacao")
     private TipoSituacao situacao;
 
-    @Column(name = "contato")
-    private String contato;
-
     @Column(name = "dt_proxima_entrega")
     private LocalDate dataProximaEntrega;
 
@@ -49,13 +46,13 @@ public class OrdemServico {
     @Column(name = "qtd_defeito_interno")
     private Integer qtdDefeitosInterno;
 
-    @Column(name = "prazo")
+    @Column(name = "prazo_entrega")
     private LocalDate prazo;
 
     @Column(name = "qtd_pontos_funcao")
     private Double pontosFuncao;
 
-    @Column(name = "fabricas")
-    private String fabricas;
+    @Column(name = "fabrica")
+    private String fabrica;
 
 }

@@ -22,6 +22,10 @@ public class LiderServico {
         return liderMapper.toDto(liderRepository.findAll());
     }
 
+    public List<LiderDTO> obterTodosPorNome(String nome) {
+        return liderMapper.toDto(liderRepository.buscarTodosPorNome(nome));
+    }
+
     public LiderDTO obterPorId(Integer id) {
         return liderMapper.toDto(liderRepository.findById(id).get());
     }

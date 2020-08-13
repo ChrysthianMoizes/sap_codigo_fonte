@@ -6,8 +6,10 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public interface LiderRepository extends JpaRepository<Lider, Integer> {
-    @Query("SELECT l FROM Lider l WHERE l.nome = :nome")
-    Lider buscarPorNome(@Param("nome") String nome);
+    @Query("SELECT l FROM Lider l WHERE LOWER(l.nome) like LOWER(CONCAT(CONCAT('%', :nome), '%'))")
+    List<Lider> buscarTodosPorNome(@Param("nome") String nome);
 }
