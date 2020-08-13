@@ -25,7 +25,7 @@ public class ProjetoServico {
     }
 
     public ProjetoDTO obterPorId(Integer id) {
-        return new ProjetoDTO();
+        return projetoMapper.toDto(projetoRepository.findById(id).get());
     }
 
     public ProjetoDTO salvar(ProjetoDTO projetoDTO) {
@@ -33,7 +33,7 @@ public class ProjetoServico {
     }
 
     public void removerPorId(Integer id) {
-
+        projetoRepository.deleteById(id);
     }
 
 }

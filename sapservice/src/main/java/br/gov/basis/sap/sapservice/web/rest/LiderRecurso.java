@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
@@ -37,7 +38,7 @@ public class LiderRecurso {
     }
 
     @PostMapping
-    public ResponseEntity<LiderDTO> salvar(@RequestBody LiderDTO lider) throws URISyntaxException {
+    public ResponseEntity<LiderDTO> salvar(@Valid @RequestBody LiderDTO lider) throws URISyntaxException {
         LiderDTO liderSalvo = liderServico.salvar(lider);
         return ResponseEntity.created(new URI("/lideres/")).body(liderSalvo);
     }

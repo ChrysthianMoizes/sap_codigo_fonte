@@ -1,6 +1,5 @@
 package br.gov.basis.sap.sapservice.service;
 
-import br.gov.basis.sap.sapservice.domain.Lider;
 import br.gov.basis.sap.sapservice.repository.LiderRepository;
 import br.gov.basis.sap.sapservice.service.dto.LiderDTO;
 import br.gov.basis.sap.sapservice.service.mapper.LiderMapper;
@@ -20,13 +19,11 @@ public class LiderServico {
     private  final LiderRepository liderRepository;
 
     public List<LiderDTO> obterTodos() {
-        Lider lider =   liderRepository.buscarPorNome("Maria");
-
         return liderMapper.toDto(liderRepository.findAll());
     }
 
     public LiderDTO obterPorId(Integer id) {
-        return new LiderDTO();
+        return liderMapper.toDto(liderRepository.findById(id).get());
     }
 
     public LiderDTO salvar(LiderDTO liderDTO) {
@@ -34,7 +31,7 @@ public class LiderServico {
     }
 
     public void removerPorId(Integer id) {
-
+        liderRepository.deleteById(id);
     }
 
 }

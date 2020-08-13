@@ -1,13 +1,12 @@
 package br.gov.basis.sap.sapservice.service;
 
-import br.gov.basis.sap.sapservice.domain.OrdemServico;
+import br.gov.basis.sap.sapservice.repository.OrdemServicoRepository;
 import br.gov.basis.sap.sapservice.service.dto.OrdemServicoDTO;
 import br.gov.basis.sap.sapservice.service.mapper.OrdemServicoMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -17,20 +16,22 @@ public class OrdemServicoServico {
 
     private final OrdemServicoMapper ordemServicoMapper;
 
+    private final OrdemServicoRepository ordemServicoRepository;
+
     public List<OrdemServicoDTO> obterTodos() {
-        return Collections.singletonList(ordemServicoMapper.toDto(new OrdemServico()));
+        return ordemServicoMapper.toDto(ordemServicoRepository.findAll());
     }
 
     public OrdemServicoDTO obterPorId(Integer id) {
-        return new OrdemServicoDTO();
+        return ordemServicoMapper.toDto(ordemServicoRepository.findById(id).get());
     }
 
     public OrdemServicoDTO salvar(OrdemServicoDTO ordemServicoDTO) {
-        return new OrdemServicoDTO();
+        return ordemServicoMapper.toDto(ordemServicoRepository.save(ordemServicoMapper.toEntity(ordemServicoDTO)));
     }
 
     public void removerPorId(Integer id) {
-
+        ordemServicoRepository.deleteById(id);
     }
 
 }
