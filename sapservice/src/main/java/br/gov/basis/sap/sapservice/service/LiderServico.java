@@ -29,8 +29,8 @@ public class LiderServico {
         return new LiderDTO();
     }
 
-    public LiderDTO salvar(LiderDTO lider) {
-        return new LiderDTO();
+    public LiderDTO salvar(LiderDTO liderDTO) {
+        return liderMapper.toDto(liderRepository.save(liderMapper.toEntity(liderDTO)));
     }
 
     public void removerPorId(Integer id) {

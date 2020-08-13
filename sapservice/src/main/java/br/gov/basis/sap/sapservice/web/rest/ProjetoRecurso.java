@@ -1,5 +1,6 @@
 package br.gov.basis.sap.sapservice.web.rest;
 
+import br.gov.basis.sap.sapservice.repository.ProjetoRepository;
 import br.gov.basis.sap.sapservice.service.ProjetoServico;
 import br.gov.basis.sap.sapservice.service.dto.ProjetoDTO;
 import lombok.RequiredArgsConstructor;
