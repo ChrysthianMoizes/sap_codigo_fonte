@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+
+    <changeSet  author="maxson.zucolotto"  id="12">
+        <createTable  remarks="Tabela de sprint"
+                      schemaName="public"
+                      tableName="sprint">
+            <column  name="id"  type="number" remarks="Chave primaria tabela sprint">
+                <constraints primaryKey="true" primaryKeyName="pk_sprint" nullable="false" />
+            </column>
+            <column  name="impedimento" defaultValueBoolean="false" type="boolean" remarks="Indica se ha impedimento na sprint">
+                <constraints nullable="false" />
+            </column>
+            <column  name="no_prazo" defaultValueBoolean="false" type="boolean" remarks="Indica se a sprint está no prazo">
+                <constraints nullable="false" />
+            </column>
+            <column  name="data_inicio"  type="date" remarks="Data da inicio sprint">
+                <constraints nullable="true" />
+            </column>
+            <column  name="data_termino"  type="date" remarks="Data fim da sprint">
+                <constraints nullable="true" />
+            </column>
+            <column  name="qtd_pontos_funcao"  type="number(10,2)" remarks="Quantidade de pontos de função agregada na Sprint">
+                <constraints nullable="true" />
+            </column>
+            <column  name="id_status"  type="number" remarks="Status da Sprint">
+                <constraints nullable="true" />
+            </column>
+            <column  name="id_ordem_servico" type="number" remarks="Chave de refência tabela ordem_servico">
+                <constraints nullable="true" />
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet  author="maxson.zucolotto"  id="13">
+        <addForeignKeyConstraint   baseTableName="sprint"
+                                   baseColumnNames="id_ordem_servico"
+                                   constraintName="fk_sprint_os"
+                                   referencedTableName="ordem_servico"
+                                   referencedColumnNames="id"/>
+    </changeSet>
+
+    <changeSet author="maxson.zucolotto" id="14">
+        <addAutoIncrement columnDataType="number"
+                          columnName="id"
+                          incrementBy="1"
+                          schemaName="public"
+                          startWith="1"
+                          tableName="sprint"/>
+    </changeSet>
+    <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
+    <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
+</databaseChangeLog>

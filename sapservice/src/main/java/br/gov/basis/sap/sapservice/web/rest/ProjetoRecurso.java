@@ -2,6 +2,7 @@ package br.gov.basis.sap.sapservice.web.rest;
 
 import br.gov.basis.sap.sapservice.service.ProjetoServico;
 import br.gov.basis.sap.sapservice.service.dto.ProjetoDTO;
+import br.gov.basis.sap.sapservice.service.dto.ProjetoDetalheDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -27,6 +28,12 @@ public class ProjetoRecurso {
     @GetMapping
     public ResponseEntity<List<ProjetoDTO>> obterTodos() {
         List<ProjetoDTO> dto = projetoServico.obterTodos();
+        return ResponseEntity.ok().body(dto);
+    }
+
+    @GetMapping("/detalhe")
+    public ResponseEntity<List<ProjetoDetalheDTO>> obterDetalhe() {
+        List<ProjetoDetalheDTO> dto = projetoServico.obterTodosDetalhe();
         return ResponseEntity.ok().body(dto);
     }
 

@@ -1,8 +1,8 @@
 package br.gov.basis.sap.sapservice.service;
 
-import br.gov.basis.sap.sapservice.domain.Cliente;
-import br.gov.basis.sap.sapservice.domain.TipoSituacao;
-import br.gov.basis.sap.sapservice.domain.TipoStatus;
+import br.gov.basis.sap.sapservice.repository.ClienteRepository;
+import br.gov.basis.sap.sapservice.repository.StatusRepository;
+import br.gov.basis.sap.sapservice.repository.TipoSituacaoRepository;
 import br.gov.basis.sap.sapservice.service.dto.DominioFixoDTO;
 import br.gov.basis.sap.sapservice.service.mapper.ClienteMapper;
 import br.gov.basis.sap.sapservice.service.mapper.TipoSituacaoMapper;
@@ -11,7 +11,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -20,19 +19,24 @@ import java.util.List;
 public class DominioFixoServico {
 
     private final ClienteMapper clienteMapper;
+    private final ClienteRepository clienteRepository;
+
+    private final TipoStatusMapper tipoStatusMapper;;
+    private final StatusRepository tipoStatusRepository;
+
     private final TipoSituacaoMapper tipoSituacaoMapper;
-    private final TipoStatusMapper tipoStatusMapper;
+    private final TipoSituacaoRepository tipoSituacaoRepository;
 
     public List<DominioFixoDTO> obterClientes() {
-        return Collections.singletonList(clienteMapper.toDto(new Cliente()));
+        return clienteMapper.toDto(clienteRepository.findAll());
     }
 
     public List<DominioFixoDTO> obterSituacoes() {
-        return Collections.singletonList(tipoSituacaoMapper.toDto(new TipoSituacao()));
+        return tipoSituacaoMapper.toDto(tipoSituacaoRepository.findAll());
     }
 
     public List<DominioFixoDTO> obterStatus() {
-        return Collections.singletonList(tipoStatusMapper.toDto(new TipoStatus()));
+        return tipoStatusMapper.toDto(tipoStatusRepository.findAll());
     }
 
 }

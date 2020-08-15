@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+
+    <changeSet  author="maxson.zucolotto"  id="15">
+        <createTable  remarks="Tabela de tipo_situacao"
+                      schemaName="public"
+                      tableName="tipo_situacao">
+            <column  name="id"  type="number">
+                <constraints primaryKey="true" primaryKeyName="pk_tipo_situacao" nullable="false" />
+            </column>
+            <column  name="descricao"  type="varchar(80)">
+                <constraints nullable="false" />
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="maxson.zucolotto" id="16">
+        <addAutoIncrement columnDataType="number"
+                          columnName="id"
+                          incrementBy="1"
+                          schemaName="public"
+                          startWith="1"
+                          tableName="tipo_situacao"/>
+    </changeSet>
+
+    <changeSet  author="maxson.zucolotto"  id="7">
+        <addForeignKeyConstraint   baseTableName="ordem_servico"
+                                   baseColumnNames="id_tipo_situacao "
+                                   constraintName="fk_os_tp_situcao"
+                                   referencedTableName="tipo_situacao"
+                                   referencedColumnNames="id"/>
+    </changeSet>
+    <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
+    <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
+</databaseChangeLog>

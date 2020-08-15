@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+
+    <changeSet  author="maxson.zucolotto"  id="3">
+        <createTable  remarks="Tabela de lideres"
+                      schemaName="public"
+                      tableName="lider">
+            <column  name="id"  type="number" remarks="Chave primaria tabela lider">
+                <constraints primaryKey="true" primaryKeyName="pk_lider" nullable="false" />
+            </column>
+            <column  name="nome"  type="varchar(80)">
+                <constraints nullable="false" />
+            </column>
+            <column  name="contato"  type="varchar(500)">
+                <constraints nullable="true" />
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="maxson.zucolotto" id="4">
+        <addAutoIncrement columnDataType="number"
+                          columnName="id"
+                          incrementBy="1"
+                          schemaName="public"
+                          startWith="1"
+                          tableName="lider"/>
+    </changeSet>
+    <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
+    <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
+</databaseChangeLog>

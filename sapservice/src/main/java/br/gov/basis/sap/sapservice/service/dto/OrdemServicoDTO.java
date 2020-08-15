@@ -17,8 +17,6 @@ public class OrdemServicoDTO {
 
     private Integer idSituacao;
 
-    private String contato;
-
     private LocalDate dataProximaEntrega;
 
     private Integer qtdDefeitosCliente;
@@ -29,6 +27,6 @@ public class OrdemServicoDTO {
 
     private Double pontosFuncao;
 
-    private String fabricas;
+    private String fabrica;
 
 }

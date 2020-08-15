@@ -4,7 +4,13 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
 
-    
+    <include file="config/liquibase/changelog/202008121000_criacao_cliente.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/202008121110_criacao_lider.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/202008121120_criacao_projeto.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/202008121150_criacao_ordem_servico.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/202008121210_criacao_sprint.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/202008121530_criacao_tipo_situacao.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/202008121535_criacao_tipo_status.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
 </databaseChangeLog>

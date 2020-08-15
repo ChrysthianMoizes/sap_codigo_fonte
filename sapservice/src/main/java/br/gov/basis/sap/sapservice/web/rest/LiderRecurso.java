@@ -11,8 +11,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
@@ -30,6 +32,12 @@ public class LiderRecurso {
         return ResponseEntity.ok().body(lideres);
     }
 
+    @GetMapping("/nome")
+    public ResponseEntity<List<LiderDTO>> obterTodosPorNome(@RequestParam("nome") String nome) {
+        List<LiderDTO> lideres = liderServico.obterTodosPorNome(nome);
+        return ResponseEntity.ok().body(lideres);
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<LiderDTO> obterPorId(@PathVariable Integer id) {
         LiderDTO lider = liderServico.obterPorId(id);
@@ -37,7 +45,7 @@ public class LiderRecurso {
     }
 
     @PostMapping
-    public ResponseEntity<LiderDTO> salvar(@RequestBody LiderDTO lider) throws URISyntaxException {
+    public ResponseEntity<LiderDTO> salvar(@Valid @RequestBody LiderDTO lider) throws URISyntaxException {
         LiderDTO liderSalvo = liderServico.salvar(lider);
         return ResponseEntity.created(new URI("/lideres/")).body(liderSalvo);
     }

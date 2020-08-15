@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+
+    <changeSet  author="maxson.zucolotto"  id="9">
+        <createTable  remarks="Tabela de Ordem serviço"
+                      schemaName="public"
+                      tableName="ordem_servico">
+            <column  name="id"  type="number" remarks="Chave primaria tabela ordem_servico">
+                <constraints primaryKey="true" primaryKeyName="pk_ordem_servico" nullable="false" />
+            </column>
+            <column  name="nome"  type="varchar(80)" remarks="Nome/descrção da OS">
+                <constraints nullable="false" />
+            </column>
+            <column  name="dt_proxima_entrega"  type="date" remarks="Data da entrega">
+                <constraints nullable="true" />
+            </column>
+            <column  name="prazo_entrega"  type="date" remarks="Prazo de entrega">
+                <constraints nullable="true" />
+            </column>
+            <column  name="qtd_defeito_cliente"  type="number" remarks="Quantidade de defeitos encontrados pelo cliente">
+                <constraints nullable="true" />
+            </column>
+            <column  name="qtd_defeito_interno"  type="number" remarks="Quantidade de defeitos encontrados pela equipe de teste">
+                <constraints nullable="true" />
+            </column>
+            <column  name="qtd_pontos_funcao"  type="number(10,2)" remarks="Quantidade de pontos de função agregada na OS">
+                <constraints nullable="true" />
+            </column>
+            <column  name="fabrica"  type="varchar(100)" remarks="Nome ou sigla da fabrica responsável">
+                <constraints nullable="true" />
+            </column>
+            <column  name="id_projeto"  type="number" remarks="Chave de refência tabela projeto">
+                <constraints nullable="false" />
+            </column>
+            <column  name="id_tipo_situacao"  type="number" remarks="Chave de refência tabela situacao">
+                <constraints nullable="true" />
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet  author="maxson.zucolotto"  id="10">
+        <addForeignKeyConstraint   baseTableName="ordem_servico"
+                                   baseColumnNames="id_projeto"
+                                   constraintName="fk_os_projeto"
+                                   referencedTableName="projeto"
+                                   referencedColumnNames="id"/>
+    </changeSet>
+
+    <changeSet author="maxson.zucolotto" id="11">
+        <addAutoIncrement columnDataType="number"
+                          columnName="id"
+                          incrementBy="1"
+                          schemaName="public"
+                          startWith="1"
+                          tableName="ordem_servico"/>
+    </changeSet>
+    <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
+    <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
+</databaseChangeLog>
