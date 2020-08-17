@@ -1,6 +1,5 @@
 package br.gov.basis.sap.sapservice.service.dto;
 
-import br.gov.basis.sap.sapservice.domain.Sprint;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -32,5 +31,6 @@ public class OrdemServicoDTO {
 
     private String fabrica;
 
-    private List<Sprint> sprint = new ArrayList<>();
+    private List<SprintDTO> sprints = new ArrayList<>();
+
 }

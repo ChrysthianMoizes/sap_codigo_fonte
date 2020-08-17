@@ -21,7 +21,7 @@ public class SprintDTO {
 
     private Boolean impedimento;
 
-    private Integer prazo;
+    private Boolean prazo;
 
     private Integer idStatus;
 

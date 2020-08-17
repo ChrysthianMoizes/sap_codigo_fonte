@@ -8,13 +8,15 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class ProjetoDetalheDTO {
+    private Integer id;
     private String descricao;
     private Long qtdOsExecucao; //soma dos pontos de função de todas as OS dentro do projeto
     private Double qtdPtsFuncaoExec; //pontos de função na OS
     private Boolean  defeitosCliente; //
     private Boolean impedimento; // se possui sprint com impedimento
 
-    public ProjetoDetalheDTO(String descricao, Long qtdOsExecucao, Double qtdPtsFuncaoExec, Boolean defeitosCliente, Boolean impedimento) {
+    public ProjetoDetalheDTO(Integer id, String descricao, Long qtdOsExecucao, Double qtdPtsFuncaoExec, Boolean defeitosCliente, Boolean impedimento) {
+        this.id = id;
         this.descricao = descricao;
         this.qtdOsExecucao = qtdOsExecucao;
         this.qtdPtsFuncaoExec = qtdPtsFuncaoExec;

@@ -12,4 +12,6 @@ import java.util.List;
 public interface ProjetoRepository extends JpaRepository<Projeto,Integer> {
     @Query("SELECT new br.gov.basis.sap.sapservice.service.dto.ProjetoDetalheDTO(o.projeto.nome, COUNT(o.id), SUM(o.pontosFuncao)) FROM OrdemServico o GROUP BY o.projeto.nome ")
     List<ProjetoDetalheDTO> buscarTodosDetalhes();
+
+    List<Projeto> findByClienteId(Integer id);
 }

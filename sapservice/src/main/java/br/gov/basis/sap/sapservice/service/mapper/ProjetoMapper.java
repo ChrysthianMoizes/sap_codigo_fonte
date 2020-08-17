@@ -6,7 +6,9 @@ import br.gov.basis.sap.sapservice.service.dto.ProjetoDTO;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
-@Mapper(componentModel = "spring",uses = {})
+@Mapper(componentModel = "spring",uses = {
+
+})
 public interface ProjetoMapper extends EntityMapper<ProjetoDTO, Projeto> {
     @Mapping(source = "idLider", target = "lider.id" )
     @Mapping(source = "idCliente", target = "cliente.id" )
