@@ -1,5 +1,6 @@
 package br.gov.basis.sap.sapservice.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -37,7 +38,7 @@ public class Sprint {
     private Double pontosFuncao;
 
     @Column(name = "impedimento")
-    private String impedimento;
+    private Boolean impedimento;
 
     @Column(name = "no_prazo")
     private Integer prazo;
@@ -48,6 +49,7 @@ public class Sprint {
 
     @ManyToOne()
     @JoinColumn(name = "id_ordem_servico")
+    @JsonBackReference
     private OrdemServico ordemServico;
 
 }
