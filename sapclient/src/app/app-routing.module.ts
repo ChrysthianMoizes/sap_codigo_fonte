@@ -9,7 +9,8 @@ const routes: Routes = [
 
     { path: 'lideres', loadChildren: './pages/lideres/lideres.module#LideresModule'},
     { path: 'ordens-servico', loadChildren: './pages/ordens-servico/ordens-servico.module#OrdensServicoModule'},
-    { path: 'projeto', loadChildren: './pages/projetos/projetos-routing.module#ProjetosModule'}
+    { path: 'projeto', loadChildren: './pages/projetos/projetos.module#ProjetosModule'},
+    { path: 'sprints', loadChildren: './pages/sprints/sprints.module#SprintsModule'}
 ];
 
 @NgModule({
