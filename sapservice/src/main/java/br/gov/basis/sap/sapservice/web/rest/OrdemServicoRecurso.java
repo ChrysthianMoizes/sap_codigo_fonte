@@ -4,14 +4,7 @@ import br.gov.basis.sap.sapservice.service.OrdemServicoServico;
 import br.gov.basis.sap.sapservice.service.dto.OrdemServicoDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -33,6 +26,12 @@ public class OrdemServicoRecurso {
     @GetMapping("/{id}")
     public ResponseEntity<OrdemServicoDTO> obterPorId(@PathVariable Integer id) {
         OrdemServicoDTO ordemServicoDTO = ordemServicoServico.obterPorId(id);
+        return ResponseEntity.ok().body(ordemServicoDTO);
+    }
+
+    @GetMapping("/projetos")
+    public ResponseEntity<List<OrdemServicoDTO>> obterOSProjetoId(@RequestParam("id") Integer id){
+        List<OrdemServicoDTO> ordemServicoDTO = ordemServicoServico.obterOSProjetoID(id);
         return ResponseEntity.ok().body(ordemServicoDTO);
     }
 

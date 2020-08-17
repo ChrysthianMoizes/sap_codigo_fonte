@@ -1,12 +1,11 @@
 package br.gov.basis.sap.sapservice.service.mapper;
 
-
 import br.gov.basis.sap.sapservice.domain.OrdemServico;
-import br.gov.basis.sap.sapservice.domain.Projeto;
 import br.gov.basis.sap.sapservice.service.dto.OrdemServicoDTO;
-import br.gov.basis.sap.sapservice.service.dto.ProjetoDTO;
+import org.mapstruct.AfterMapping;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
+import org.mapstruct.MappingTarget;
 
 @Mapper(componentModel = "spring",uses = {})
 public interface OrdemServicoMapper extends EntityMapper<OrdemServicoDTO, OrdemServico> {
@@ -17,4 +16,9 @@ public interface OrdemServicoMapper extends EntityMapper<OrdemServicoDTO, OrdemS
     @Mapping(source = "situacao.id", target = "idSituacao" )
     @Mapping(source = "projeto.id", target = "idProjeto" )
     OrdemServicoDTO toDto(OrdemServico ordemServico);
+
+    @AfterMapping
+    default  void atualizarRelacionamentos(@MappingTarget OrdemServico ordemServico) {
+        ordemServico.getSprint().forEach(sprint -> sprint.setOrdemServico((ordemServico)));
+    }
 }
