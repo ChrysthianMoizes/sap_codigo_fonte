@@ -1,6 +1,5 @@
 package br.gov.basis.sap.sapservice.service;
 
-import br.gov.basis.sap.sapservice.domain.Projeto;
 import br.gov.basis.sap.sapservice.repository.ProjetoRepository;
 import br.gov.basis.sap.sapservice.service.dto.ProjetoDTO;
 import br.gov.basis.sap.sapservice.service.dto.ProjetoDetalheDTO;
@@ -40,5 +39,4 @@ public class ProjetoServico {
     public List<ProjetoDetalheDTO> obterTodosDetalhe() {
         return projetoRepository.buscarTodosDetalhes();
     }
-
 }

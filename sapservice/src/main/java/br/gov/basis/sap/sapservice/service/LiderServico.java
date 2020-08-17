@@ -16,7 +16,7 @@ public class LiderServico {
 
     private final LiderMapper liderMapper;
 
-    private  final LiderRepository liderRepository;
+    private final LiderRepository liderRepository;
 
     public List<LiderDTO> obterTodos() {
         return liderMapper.toDto(liderRepository.findAll());

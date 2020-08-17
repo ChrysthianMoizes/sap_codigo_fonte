@@ -33,5 +33,8 @@ public class OrdemServicoServico {
     public void removerPorId(Integer id) {
         ordemServicoRepository.deleteById(id);
     }
+    public List<OrdemServicoDTO> obterTodasOsPorProjeto(Integer id) {
+        return ordemServicoMapper.toDto(ordemServicoRepository.findByProjetoId(id));
+    }
 
 }

@@ -53,4 +53,10 @@ public class OrdemServicoRecurso {
         ordemServicoServico.removerPorId(id);
         return ResponseEntity.ok().build();
     }
+
+    @GetMapping("/projeto/{id}")
+    public ResponseEntity<List<OrdemServicoDTO>> obterTodasOsPorProjeto(@PathVariable Integer id) {
+        List<OrdemServicoDTO> ordemServicoDTOS = ordemServicoServico.obterTodasOsPorProjeto(id);
+        return ResponseEntity.ok().body(ordemServicoDTOS);
+    }
 }
