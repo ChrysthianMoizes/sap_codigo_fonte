@@ -41,7 +41,7 @@ public class Sprint {
     private Boolean impedimento;
 
     @Column(name = "no_prazo")
-    private Integer prazo;
+    private Boolean prazo;
 
     @ManyToOne()
     @JoinColumn(name = "id_status")
