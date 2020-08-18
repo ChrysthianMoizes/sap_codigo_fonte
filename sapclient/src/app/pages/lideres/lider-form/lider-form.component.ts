@@ -2,7 +2,7 @@ import { BlockUI, NgBlockUI } from 'ng-block-ui';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { finalize } from 'rxjs/operators';
+import { finalize, switchMap } from 'rxjs/operators';
 
 import { LiderService } from './../../../services/lider.service';
 import { Lider } from './../../../models/lider.model';
@@ -30,6 +30,7 @@ export class LiderFormComponent implements OnInit {
   ngOnInit(): void {
       this.setAcaoAtual();
       this.iniciarForm();
+      this.carregarLider();
   }
 
   private setAcaoAtual() {
@@ -60,9 +61,31 @@ export class LiderFormComponent implements OnInit {
       const recurso = Object.assign(new Lider(), this.form.value);
       this.liderService.salvar(recurso).pipe(
           finalize(() => this.blockUI.stop())
-      ).subscribe(
-          recurso => console.log(recurso)
-      )
+      ).subscribe(() => {
+          const path: string = this.route.snapshot.parent.url[0].path;
+          this.router.navigate([path]); 
+      })
+  }
+
+  deletar(id: number){
+        this.blockUI.start();
+        this.liderService.deletar(id).pipe(
+           // finalize()
+        ).subscribe(
+            () => this.blockUI.stop()
+        );
+  }
+
+  carregarLider(){
+    if(this.route.snapshot.url[0].path != "novo"){
+        this.blockUI.start();
+        this.route.paramMap.pipe(
+            switchMap(params => this.liderService.obterPorId(+params.get('id')))
+            ).subscribe(lider => {
+                this.form.patchValue(lider);
+                this.blockUI.stop();
+            })
+    }
   }
 
 }
