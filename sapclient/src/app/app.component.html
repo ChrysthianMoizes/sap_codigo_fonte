@@ -1,12 +1,13 @@
-<div class="layout-wrapper"
-    [ngClass]="{ 'layout-compact': layoutCompact }"
-    (click)="onLayoutClick()">
-    <div #layoutContainer
-        class="layout-container"
-        [ngClass]="{
-            'menu-layout-static': !menuService.isOverlay(),
-            'menu-layout-overlay': menuService.isOverlay(),
-            'layout-menu-overlay-active': menuService.overlayMenuActive,
+<block-ui>
+    <div class="layout-wrapper"
+        [ngClass]="{ 'layout-compact': layoutCompact }"
+        (click)="onLayoutClick()">
+        <div #layoutContainer
+            class="layout-container"
+            [ngClass]="{
+                'menu-layout-static': !menuService.isOverlay(),
+                'menu-layout-overlay': menuService.isOverlay(),
+                'layout-menu-overlay-active': menuService.overlayMenuActive,
             'menu-layout-horizontal': menuService.isHorizontal(),
             'menu-layout-slim': menuService.isSlim(),
             'layout-menu-static-inactive': menuService.staticMenuDesktopInactive,
@@ -31,3 +32,4 @@
         <div class="layout-mask"></div>
     </div>
 </div>
+</block-ui>

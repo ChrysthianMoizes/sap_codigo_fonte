@@ -13,6 +13,7 @@ import { PageNotificationModule, BreadcrumbModule, MenuModule, ErrorStackModule 
 import { SecurityModule, VersionTagModule } from '@nuvem/angular-base';
 import { DiarioErrosComponent } from './components/diario-erros/diario-erros.component';
 import { PaginaInicialComponent } from './view/pagina-inicial/pagina-inicial.component';
+import { BlockUIModule } from 'ng-module-ui';
 
 @NgModule({
     declarations: [
@@ -23,6 +24,9 @@ import { PaginaInicialComponent } from './view/pagina-inicial/pagina-inicial.com
         PaginaInicialComponent
     ],
     imports: [
+        BlockUIModule.forRoot([
+            message: 'Carregando...'
+        ]),
         BrowserModule,
         BrowserAnimationsModule,
         AppRoutingModule,
