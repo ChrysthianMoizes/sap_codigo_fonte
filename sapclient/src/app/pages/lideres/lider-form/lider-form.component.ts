@@ -2,7 +2,7 @@ import { BlockUI, NgBlockUI } from 'ng-block-ui';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { finalize } from 'rxjs/operators';
+import { finalize, switchMap } from 'rxjs/operators';
 
 import { LiderService } from './../../../services/lider.service';
 import { Lider } from './../../../models/lider.model';
@@ -27,10 +27,18 @@ export class LiderFormComponent implements OnInit {
         private liderService: LiderService
     ) { }
 
+<<<<<<< HEAD
     ngOnInit(): void {
         this.setAcaoAtual();
         this.iniciarForm();
     }
+=======
+  ngOnInit(): void {
+      this.setAcaoAtual();
+      this.iniciarForm();
+      this.carregarLider();
+  }
+>>>>>>> 14d2bc2d710fddb02c1eb16f6e25a39f62c33747
 
     private setAcaoAtual() {
     if(this.route.snapshot.url[0].path == 'novo')  {
@@ -40,6 +48,7 @@ export class LiderFormComponent implements OnInit {
     this.titulo = 'Editando líder';
     }
 
+<<<<<<< HEAD
     iniciarForm() {
         this.form = this.formBuilder.group({
             id: [null],
@@ -47,6 +56,19 @@ export class LiderFormComponent implements OnInit {
             contato: [null]
         })
     }
+=======
+  iniciarForm() {
+      this.form = this.formBuilder.group({
+          id: [null],
+          nome: [null, [
+              Validators.required,
+              Validators.minLength(3)
+            ]
+            ],
+          contato: [null]
+      })
+  }
+>>>>>>> 14d2bc2d710fddb02c1eb16f6e25a39f62c33747
 
     enviarForm() {
         this.formSubmetido = true;
@@ -55,6 +77,7 @@ export class LiderFormComponent implements OnInit {
         }
     }
 
+<<<<<<< HEAD
     salvar() {
         this.blockUI.start();
         const recurso = Object.assign(new Lider(), this.form.value);
@@ -64,5 +87,29 @@ export class LiderFormComponent implements OnInit {
             recurso => console.log(recurso)
         )
     }
+=======
+  salvar() {
+      this.blockUI.start();
+      const recurso = Object.assign(new Lider(), this.form.value);
+      this.liderService.salvar(recurso).pipe(
+          finalize(() => this.blockUI.stop())
+      ).subscribe(() => {
+          const path: string = this.route.snapshot.parent.url[0].path;
+          this.router.navigate([path]);
+      })
+  }
+
+  carregarLider() {
+    if (this.route.snapshot.url[0].path != "novo") {
+        this.blockUI.start();
+        this.route.paramMap.pipe(
+            switchMap(params => this.liderService.obterPorId(+params.get('id')))
+        ).subscribe(lider => {
+            this.form.patchValue(lider);
+            this.blockUI.stop();
+        })
+    }
+  }
+>>>>>>> 14d2bc2d710fddb02c1eb16f6e25a39f62c33747
 
 }

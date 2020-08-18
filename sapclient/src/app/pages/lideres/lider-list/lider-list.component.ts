@@ -24,13 +24,6 @@ export class LiderListComponent implements OnInit {
         { header: 'Ações' },
     ];
 
-    // lideres:Lider[] = [
-    //     new Lider(1, 'Fulano', '27 99911-2210'),
-    //     new Lider(2, 'Cliclano', '27 99911-2210'),
-    //     new Lider(3, 'Beltrano', '27 99911-2210'),
-    //     new Lider(4, 'John Doe', '27 99911-2210')
-    // ];
-
   constructor(
       private liderService: LiderService
   ) { }
@@ -44,6 +37,15 @@ export class LiderListComponent implements OnInit {
     this.listaLideres$ = this.liderService.obterTodos().pipe(
         finalize(() => this.blockUI.stop())
     )
+  }
+
+  deletar(id: number) {
+    this.blockUI.start();
+    this.liderService.deletar(id).pipe(
+        finalize(() => this.blockUI.stop())
+    ).subscribe(
+        () => this.obterTodos()
+    );
   }
 
 }
