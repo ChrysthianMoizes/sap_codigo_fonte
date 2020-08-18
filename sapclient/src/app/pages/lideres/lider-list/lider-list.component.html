@@ -1,0 +1,39 @@
+<p-card header="Lista de líderes">
+<p-header>
+<div class ="ui-lg-2 ui-md-3 ui-sm-6 float-right">
+    <button routerLink="novo" pButton icon="pi pi-check" icon>
+</div>
+
+</p-header>
+<ng-container *ngIf=
+
+
+    <p-table [columns]="colunas" [value]="lideres">
+        <ng-template let-columns pTemplate="header">
+            <tr>
+                <th [class.action]="coluna.header== 'Ações'" *ngFor="let coluna of columns">
+{{coluna.header}}
+
+                </th>
+               
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-lider>
+            <tr>
+                <td>{{lider.nome}}</td>
+                <td>{{lider.contato}}</td>
+                <td class="action-buttons">
+                    <button [router Link]="[lider.id]" pButton icon="ui-icon-mode-edit"></button>
+                    <button pButton icon="pi pi-times"></button>
+
+
+
+                </td>
+            
+            </tr>
+        </ng-template>
+    </p-table>
+
+
+
+</p-card>
