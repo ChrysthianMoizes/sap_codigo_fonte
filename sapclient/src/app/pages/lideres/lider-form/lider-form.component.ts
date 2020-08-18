@@ -44,7 +44,11 @@ export class LiderFormComponent implements OnInit {
   iniciarForm() {
       this.form = this.formBuilder.group({
           id: [null],
-          nome: [null, [Validators.required, Validators.minLength(3)]],
+          nome: [null, [
+              Validators.required,
+              Validators.minLength(3)
+            ]
+            ],
           contato: [null]
       })
   }
@@ -63,28 +67,19 @@ export class LiderFormComponent implements OnInit {
           finalize(() => this.blockUI.stop())
       ).subscribe(() => {
           const path: string = this.route.snapshot.parent.url[0].path;
-          this.router.navigate([path]); 
+          this.router.navigate([path]);
       })
   }
 
-  deletar(id: number){
-        this.blockUI.start();
-        this.liderService.deletar(id).pipe(
-           // finalize()
-        ).subscribe(
-            () => this.blockUI.stop()
-        );
-  }
-
-  carregarLider(){
-    if(this.route.snapshot.url[0].path != "novo"){
+  carregarLider() {
+    if (this.route.snapshot.url[0].path != "novo") {
         this.blockUI.start();
         this.route.paramMap.pipe(
             switchMap(params => this.liderService.obterPorId(+params.get('id')))
-            ).subscribe(lider => {
-                this.form.patchValue(lider);
-                this.blockUI.stop();
-            })
+        ).subscribe(lider => {
+            this.form.patchValue(lider);
+            this.blockUI.stop();
+        })
     }
   }
 

@@ -30,10 +30,14 @@ export class LiderService {
       return this.cadastrar(recurso);
   }
 
-  obterPorId(id: number): Observable<Lider>{
+  obterPorId(id: number): Observable<Lider> {
       return this.http.get(`${this.api}/${id}`).pipe(
-          map(recurso => Object.assign(new Lider(), recurso))
+        map(recurso => Object.assign(new Lider(), recurso))
       )
+  }
+
+  deletar(id: number) {
+      return this.http.delete(`${this.api}/${id}`);
   }
 
   private cadastrar(recurso: Lider): Observable<Lider> {
@@ -48,7 +52,4 @@ export class LiderService {
       );
   }
 
-  deletar(id: number){
-    return this.http.delete(`${this.api}/${id}`);
-  }
 }
