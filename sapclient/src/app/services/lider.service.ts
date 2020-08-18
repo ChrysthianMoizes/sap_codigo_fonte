@@ -33,6 +33,7 @@ export class LiderService {
   private cadastrar(recurso: Lider): Observable<Lider> {
       return this.http.post(`${this.api}`, recurso).pipe(
           map(recurso => Object.assign(new Lider(), recurso))
+
       );
   }
 
@@ -41,4 +42,10 @@ export class LiderService {
           map(recurso => Object.assign(new Lider(), recurso))
       );
   }
+
+  deletar (id: number):void {
+      return this.http.delete(`${this.api}/${id}`);
+
+  }
+
 }

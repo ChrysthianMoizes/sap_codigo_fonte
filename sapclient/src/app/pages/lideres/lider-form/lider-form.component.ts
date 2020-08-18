@@ -60,9 +60,31 @@ export class LiderFormComponent implements OnInit {
       const recurso = Object.assign(new Lider(), this.form.value);
       this.liderService.salvar(recurso).pipe(
           finalize(() => this.blockUI.stop())
-      ).subscribe(
-          recurso => console.log(recurso)
-      )
-  }
+      ).subscribe(()=>{
+        //   recurso => console.log(recurso)
+        const path:string=this.route.snapshot.parent.url[0].path;
+        this.router.navigate([path]);
+      })
+
+
+    }
+
+    deletar(id: number){
+        this.blockUI.start();
+        this.liderService.deletar(id).subscribe(
+            ()=>this.blockUI.stop()
+        );
+    }
+
+
+    obterPorId(){}
+
+    carregarLider(){
+        if(this.route.snapshot.url[0].path!="novo"){
+this.blockUI.start();
+this
+
+        }
+    }
 
 }
