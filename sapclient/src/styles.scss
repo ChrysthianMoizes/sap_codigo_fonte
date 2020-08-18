@@ -1,1 +1,23 @@
 /* You can add global styles to this file, and also import other style files */
+
+body .ui-table .ui-table-thead>tr>th,
+body .ui-table .ui-table-tfoot>tr>td {
+  font-weight: 800;
+  color: #fff;
+  background-color: #3e464c;
+  font-size: 16px;
+  border: 1px solid #cacaca;
+}
+
+.action {
+  width: 10vw;
+}
+
+.action-buttons {
+  display: flex;
+  justify-content: center;
+}
+
+.float-right {
+  float: right;
+}
