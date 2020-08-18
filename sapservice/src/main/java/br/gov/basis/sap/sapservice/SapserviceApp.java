@@ -32,4 +32,3 @@ public class SapserviceApp implements InitializingBean {
         AppUtil.startup(args, SapserviceApp.class, log);
     }
 }
-
