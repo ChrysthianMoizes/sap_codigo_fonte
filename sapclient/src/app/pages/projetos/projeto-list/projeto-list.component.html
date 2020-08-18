@@ -1,1 +1,51 @@
-<p>projeto-list works!</p>
+<p-card header="{{ titulo }}">
+  <p-header>
+    <div class="ui-lg-2 ui-md-3 ui-sm-6 float-right">
+      <button routerLink="novo" pButton icon="pi pi-check" iconPost="left" label="Novo"></button>
+    </div>
+  </p-header>
+
+  <ng-container *ngIf="listaProjetos$ | async as listaProjetos; else loading">
+    <p-table [columns]="colunas" [value]="listaProjetos">
+      <ng-template let-columns pTemplate="header">
+        <tr>
+          <th [class.action]="coluna.header == 'Ações'" *ngFor="let coluna of columns">
+            {{ coluna.header }}
+          </th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-projeto>
+        <tr>
+          <td>{{ projeto.nome }}</td>
+          <td>{{ projeto.cliente }}</td>
+          <td>{{ projeto.lider }}</td>
+          <td>{{ projeto.testador }}</td>
+          <td>{{ projeto.revisor }}</td>
+          <td>{{ projeto.gerente }}</td>
+          <td class="action-buttons">
+            <button [routerLink]="[projeto.id]" pButton icon="ui-icon-mode-edit"></button>
+            <button pButton icon="pi pi-times" (click)="deletar(projeto.id)"></button>
+          </td>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="emptymessage" let-columns>
+        <tr>
+          <td [attr.colspan]="columns.length">
+            <div class="text-center">
+              <h3>Nenhum Registro cadastrado!</h3>
+            </div>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </ng-container>
+  <ng-template #loading>
+    <div class="ui-g-12 loading ">
+      <div class="ui-g-2 ui-g-offset-5 ">
+        <p><i class="pi pi-spin pi-spinner " style="font-size: 3em "></i></p>
+        <p>Preprando Dashboard...</p>
+      </div>
+    </div>
+  </ng-template>
+
+</p-card>
