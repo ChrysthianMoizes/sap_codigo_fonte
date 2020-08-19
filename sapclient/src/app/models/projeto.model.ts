@@ -6,7 +6,7 @@ export class Projeto {
     constructor(
         public id?: number,
         public nome?: string,
-        public idCLiente?: number,
+        public idCliente?: number,
         public idLider?: number,
         public testador?: string,
         public revisor?: string,

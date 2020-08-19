@@ -1,8 +1,10 @@
+import { SituacaoService } from './../../../services/situacao.service';
+import { ProjetoService } from './../../../services/projeto.service';
 import { BlockUI, NgBlockUI } from 'ng-block-ui';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { finalize, switchMap } from 'rxjs/operators'
+import { finalize, switchMap, tap } from 'rxjs/operators'
 
 import{OrdemServico} from './../../../models/ordem-servico.model';
 import { OrdemServicoService} from './../../../services/ordem-servico.service';
@@ -19,25 +21,39 @@ export class OsFormComponent implements OnInit {
   acaoAtual: string;
   form: FormGroup;
   formSubmetido: boolean = false;
-  listaProjetos: SelectItem[];  
+  listaProjetos: SelectItem[];
+  situacoes: SelectItem[];
+
+  dataBr = {
+    firstDayOfWeek: 1,
+    dayNames: ["Domingo", "Segunda-Feira", "Terça-Feira", "Quarta-Feira", "Quinta-Feira", "Sexta-Feira", "Sábado"],
+    dayNamesShort: ["Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sáb"],
+    dayNamesMin: ["D", "S", "T", "Q", "Q", "S", "S"],
+    monthNames: ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"],
+    monthNamesShort: ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"],
+    today: 'Hoje',
+    clear: 'Limpar'
+};
 
   @BlockUI() blockUI: NgBlockUI;
 
   constructor(
-
     private router: Router,
     private route: ActivatedRoute,
     private formBuilder: FormBuilder,
-    private ordemService: OrdemServicoService
+    private ordemService: OrdemServicoService,
+    private projetoService: ProjetoService,
+    private situacaoService: SituacaoService
   ) { }
 
   ngOnInit(): void {
     this.setAcaoAtual();
     this.iniciarForm();
-    this.carregarOrdemServico();
     this.carregarDropdownProjetos();
-  } 
-  
+    this.carregarDropdownSituacao();
+    this.carregarOrdemServico();
+  }
+
   private setAcaoAtual() {
     if(this.route.snapshot.url[0].path == 'novo')  {
         this.titulo = 'Cadastro de Ordens de Serviço';
@@ -61,8 +77,10 @@ export class OsFormComponent implements OnInit {
           pontosFuncao: [null],
           fabrica: [null],
           idProjeto: [null],
-          prazo:[null]
-         
+          idSituacao: [null],
+          prazo:[null],
+          sprints:[null],
+
 
       })
   }
@@ -91,6 +109,8 @@ export class OsFormComponent implements OnInit {
         this.route.paramMap.pipe(
             switchMap(params => this.ordemService.obterPorId(+params.get('id')))
         ).subscribe(ordemServico => {
+            ordemServico.dataProximaEntrega = new Date(ordemServico.dataProximaEntrega);
+            ordemServico.prazo = new Date(ordemServico.prazo);
             this.form.patchValue(ordemServico);
             this.blockUI.stop();
         })
@@ -98,16 +118,31 @@ export class OsFormComponent implements OnInit {
   }
 
   carregarDropdownProjetos(){
-    this.listaProjetos = [
-      {
-        label: 'Projeto 1',
-        value: 1
-      },
-      {
-        label: 'Projeto 2',
-        value: 2
-      }
-    ]
+    this.blockUI.start();
+    this.projetoService.obterTodos().pipe(
+        finalize(() => this.blockUI.stop())
+    ).subscribe(res => {
+        this.listaProjetos = res.map(item => {
+            return {
+                label: item.nome,
+                value: item.id
+            }
+        })
+    })
+  }
+
+  carregarDropdownSituacao(){
+    this.blockUI.start();
+    this.situacaoService.obterTodos().pipe(
+        finalize(() => this.blockUI.stop())
+    ).subscribe(res => {
+        this.situacoes = res.map(item => {
+            return {
+                label: item.descricao,
+                value: item.id
+            }
+        })
+    })
   }
 
 }
