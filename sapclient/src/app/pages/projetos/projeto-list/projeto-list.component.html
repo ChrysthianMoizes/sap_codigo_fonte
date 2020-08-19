@@ -5,6 +5,7 @@
     </div>
   </p-header>
   <ng-container *ngIf="listaProjetos$ | async as listaProjetos; else loading">
+
     <p-table [columns]="colunas" [value]="listaProjetos">
       <ng-template let-columns pTemplate="header">
         <tr>
@@ -16,8 +17,8 @@
       <ng-template pTemplate="body" let-projeto>
         <tr>
           <td>{{ projeto.nome }}</td>
-          <td>{{ projeto.cliente }}</td>
-          <td>{{ projeto.lider }}</td>
+          <td>{{ filtrarClientePorId(projeto.idCliente) }}</td>
+          <td>{{ filtrarLiderPorId(projeto.idLider) | uppercase }}</td>
           <td>{{ projeto.testador }}</td>
           <td>{{ projeto.revisor }}</td>
           <td>{{ projeto.gerente }}</td>
@@ -42,7 +43,7 @@
     <div class="ui-g-12 loading ">
       <div class="ui-g-2 ui-g-offset-5 ">
         <p><i class="pi pi-spin pi-spinner " style="font-size: 3em "></i></p>
-        <p>Preprando Dashboard...</p>
+        <p>Preprando Projetos...</p>
       </div>
     </div>
   </ng-template>

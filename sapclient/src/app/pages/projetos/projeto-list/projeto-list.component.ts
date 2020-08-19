@@ -1,3 +1,5 @@
+import { LiderService } from './../../../services/lider.service';
+import { ClienteService } from './../../../services/cliente.service';
 import { Component, OnInit } from '@angular/core';
 
 import { BlockUI, NgBlockUI } from 'ng-block-ui';
@@ -17,6 +19,10 @@ export class ProjetoListComponent implements OnInit {
   @BlockUI() blockUI: NgBlockUI;
   listaProjetos$: Observable<any>;
   listaProjetos: any = [];
+
+  listaClientes: any = [];
+  listaLideres: any = [];
+
   colunas: any = [
     { header: 'Nome' },
     { header: 'Cliente' },
@@ -27,10 +33,14 @@ export class ProjetoListComponent implements OnInit {
     { header: 'Ações' }
   ];
   constructor(
-    private projetoService: ProjetoService
+    private projetoService: ProjetoService,
+    private clienteService: ClienteService,
+    private liderService: LiderService
   ) { }
 
   ngOnInit(): void {
+      this.listarClientes();
+      this.listarLideres();
     this.obterTodos();
   }
 
@@ -49,5 +59,27 @@ export class ProjetoListComponent implements OnInit {
       () => this.obterTodos()
     );
   }
+
+  listarLideres() {
+      this.blockUI.start();
+      this.liderService.obterTodos().pipe(
+          finalize(() => this.blockUI.stop())
+      ).subscribe(lideres => this.listaLideres = lideres);
+  }
+
+  listarClientes() {
+    this.blockUI.start();
+    this.clienteService.obterTodos().pipe(
+        finalize(() => this.blockUI.stop())
+    ).subscribe(clientes => this.listaClientes = clientes);
+    }
+
+    filtrarClientePorId(id: number):string  {
+        return this.listaClientes.find(cliente => cliente.id == id).descricao;
+    }
+
+    filtrarLiderPorId(id: number):string  {
+        return this.listaLideres.find(lider => lider.id == id).nome;
+    }
 
 }
