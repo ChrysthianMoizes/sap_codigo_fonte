@@ -1,3 +1,4 @@
+import { SprintsRoutingModule } from './../../sprints/sprints-routing.module';
 import { SituacaoService } from './../../../services/situacao.service';
 import { ProjetoService } from './../../../services/projeto.service';
 import { BlockUI, NgBlockUI } from 'ng-block-ui';
@@ -86,11 +87,17 @@ export class OsFormComponent implements OnInit {
   }
 
   enviarForm() {
+    // console.log(this.form.value)
+    // return
       this.formSubmetido = true;
       if (!this.form.invalid) {
+        this.form.get('sprints').setValue([])
           this.salvar();
       }
   }
+
+
+
 
   salvar() {
       this.blockUI.start();
@@ -110,7 +117,7 @@ export class OsFormComponent implements OnInit {
             switchMap(params => this.ordemService.obterPorId(+params.get('id')))
         ).subscribe(ordemServico => {
             ordemServico.dataProximaEntrega = new Date(ordemServico.dataProximaEntrega);
-            ordemServico.prazo = new Date(ordemServico.prazo);
+            ordemServico.prazo= new Date(ordemServico.prazo);
             this.form.patchValue(ordemServico);
             this.blockUI.stop();
         })
