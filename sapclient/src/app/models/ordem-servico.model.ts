@@ -7,7 +7,7 @@ export class OrdemServico{
         public idSituacao?: number,
         public dataProximaEntrega?: Date,
         public qtdDefeitosCliente?:number,
-        public qtdDefeitosInternos?: number,
+        public qtdDefeitosInterno?: number,
         public prazo?:Date,
         public pontosFuncao?: number,
         public fabrica?:string,

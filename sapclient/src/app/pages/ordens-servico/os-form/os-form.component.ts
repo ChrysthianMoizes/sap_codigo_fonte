@@ -55,11 +55,11 @@ export class OsFormComponent implements OnInit {
               Validators.minLength(3)
             ]
             ],
-          dataProximaEntrega:[null],
+            dataProximaEntrega:[null],
           qtdDefeitosCliente:[null],
-          qtdDefeitosInternos:[null],
-          pontosFunção: [null],
-          fabricas: [null],
+          qtdDefeitosInterno:[null],
+          pontosFuncao: [null],
+          fabrica: [null],
           idProjeto: [null],
           prazo:[null]
          
@@ -90,8 +90,8 @@ export class OsFormComponent implements OnInit {
         this.blockUI.start();
         this.route.paramMap.pipe(
             switchMap(params => this.ordemService.obterPorId(+params.get('id')))
-        ).subscribe(lider => {
-            this.form.patchValue(lider);
+        ).subscribe(ordemServico => {
+            this.form.patchValue(ordemServico);
             this.blockUI.stop();
         })
     }
