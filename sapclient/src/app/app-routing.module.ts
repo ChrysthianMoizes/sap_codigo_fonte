@@ -8,7 +8,7 @@ const routes: Routes = [
     { path: 'login-success', component: LoginSuccessComponent },
     { path: 'lideres', loadChildren: './pages/lideres/lideres.module#LideresModule' },
     { path: 'projetos', loadChildren: './pages/projetos/projetos.module#ProjetosModule' },
-    { path: 'ordens-servico', loadChildren: './pages/ordens-servico/ordens-servico.module#OrdensServicoModule' }
+    { path: 'ordens-servico', loadChildren: './pages/ordens-servico/ordens-servico.module#OrdensServicoModule' },
     { path: 'sprints', loadChildren: './pages/sprints/sprints.module#SprintsModule' }
 ];
 
