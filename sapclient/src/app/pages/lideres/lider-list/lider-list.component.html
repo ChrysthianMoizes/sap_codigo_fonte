@@ -1,10 +1,9 @@
-<p-card header="{{ titulo }}">
+<<p-card header="{{ titulo }}">
   <p-header>
     <div class="ui-lg-2 ui-md-3 ui-sm-6 float-right">
       <button routerLink="novo" pButton icon="pi pi-check" iconPost="left" label="Novo"></button>
     </div>
   </p-header>
-
   <ng-container *ngIf="listaLideres$ | async as listaLideres; else loading">
     <p-table [columns]="colunas" [value]="listaLideres">
       <ng-template let-columns pTemplate="header">
@@ -35,7 +34,6 @@
       </ng-template>
     </p-table>
   </ng-container>
-
   <ng-template #loading>
     <div class="ui-g-12 loading ">
       <div class="ui-g-2 ui-g-offset-5 ">
@@ -44,5 +42,4 @@
       </div>
     </div>
   </ng-template>
-
 </p-card>

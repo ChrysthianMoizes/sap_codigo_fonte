@@ -31,11 +31,11 @@ public class Projeto {
     private String nome;
 
     @ManyToOne()
-    @JoinColumn(name = "id_lider")
+    @JoinColumn(name = "id_lider"/*, referencedColumnName = "id"*/)
     private Lider lider;
 
     @ManyToOne()
-    @JoinColumn(name = "id_cliente")
+    @JoinColumn(name = "id_cliente"/*, referencedColumnName = "id"*/)
     private Cliente cliente;
 
     @Column(name = "testador")

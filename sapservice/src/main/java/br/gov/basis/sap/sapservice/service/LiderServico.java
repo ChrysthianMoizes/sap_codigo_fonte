@@ -4,11 +4,9 @@ import br.gov.basis.sap.sapservice.repository.LiderRepository;
 import br.gov.basis.sap.sapservice.repository.ProjetoRepository;
 import br.gov.basis.sap.sapservice.service.dto.LiderDTO;
 import br.gov.basis.sap.sapservice.service.mapper.LiderMapper;
-import br.gov.nuvem.comum.microsservico.web.rest.errors.BadRequestAlertException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import java.util.List;
 
 @Service
@@ -17,7 +15,6 @@ import java.util.List;
 public class LiderServico {
 
     private final LiderMapper liderMapper;
-
     private  final LiderRepository liderRepository;
     private final ProjetoRepository projetoRepository;
 

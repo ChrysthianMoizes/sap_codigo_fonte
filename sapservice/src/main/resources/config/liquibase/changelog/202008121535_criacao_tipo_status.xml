@@ -3,7 +3,6 @@
     xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
-
     <changeSet  author="maxson.zucolotto"  id="17">
         <createTable  remarks="Tabela de tipo_status"
                       schemaName="public"
@@ -16,7 +15,6 @@
             </column>
         </createTable>
     </changeSet>
-
     <changeSet author="maxson.zucolotto" id="18">
         <addAutoIncrement columnDataType="number"
                           columnName="id"
@@ -25,7 +23,6 @@
                           startWith="1"
                           tableName="tipo_status"/>
     </changeSet>
-
     <changeSet  author="maxson.zucolotto"  id="7">
         <addForeignKeyConstraint   baseTableName="sprint"
                                    baseColumnNames="id_status "
