@@ -1,5 +1,5 @@
 export class tipoSituacao{
     constructor(
-        public id?: numeric, 
+        public id?: number, 
     ){}
 }
