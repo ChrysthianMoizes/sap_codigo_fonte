@@ -1,4 +1,3 @@
-import { Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 
 import { BlockUI, NgBlockUI } from 'ng-block-ui';
@@ -7,10 +6,6 @@ import { finalize } from 'rxjs/operators';
 import { ProjetoService } from '../../../services/projeto.service';
 
 @Component({
-  selector: 'app-projeto-list',
-  templateUrl: './projeto-list.component.html',
-  styleUrls: ['./projeto-list.component.css']
-})
 export class ProjetoListComponent implements OnInit {
 
   titulo: string = 'Lista de projetos';
