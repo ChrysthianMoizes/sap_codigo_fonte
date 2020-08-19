@@ -4,7 +4,6 @@
       <button routerLink="novo" pButton icon="pi pi-check" iconPost="left" label="Novo"></button>
     </div>
   </p-header>
-
   <ng-container *ngIf="listaProjetos$ | async as listaProjetos; else loading">
     <p-table [columns]="colunas" [value]="listaProjetos">
       <ng-template let-columns pTemplate="header">
