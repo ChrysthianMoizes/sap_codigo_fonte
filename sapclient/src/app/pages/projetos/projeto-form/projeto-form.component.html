@@ -14,8 +14,8 @@
     </div>
 
     <div class="ui-g">
-      <div class="ui-lg-6 ui-md-6 ui-sm-6">
-        <label style="display: block;">Lider:</label>
+      <div class="ui-lg-6 ui-md-6 ui-sm-6" id="labelLider">
+        <label>Lider:</label>
         <p-dropdown [options]="lideres" placeholder="Selecione um líder de projeto" formControlName="idLider"></p-dropdown>
 
       </div>
@@ -26,19 +26,21 @@
       </div>
     </div>
 
-    <div class="ui-fluid p-formgrid p-grid">
-      <div class="p-field p-col-12 p-md-6">
-        <label>Testador:</label>
-        <input type="text" pInputText formControlName="testador">
+      <div class="ui-fluid p-formgrid p-grid">
+        <div class="p-field p-col-12 p-md-6">
+          <label for="testador">Testador:</label>
+          <input id="testador" type="text" pInputText formControlName="testador">
       </div>
-    </div>
+      </div>
 
-    <div class="ui-fluid p-formgrid p-grid">
-      <div class="p-field p-col-12 p-md-6">
-        <label>Revisor:</label>
-        <input type="text" pInputText formControlName="revisor">
+      <div class="ui-fluid p-formgrid p-grid">
+        <div class="p-field p-col-12 p-md-6">
+          <label for="revisor">Revisor:</label>
+          <input for="revisor" type="text" pInputText formControlName="revisor">
+        </div>
       </div>
-    </div>
+
+
     <div class="ui-fluid p-formgrid p-grid">
       <div class="p-field p-col-12 p-md-6">
         <label>Gerente:</label>

@@ -16,9 +16,9 @@ export class OrdemServicoService {
 
   constructor(
     private http: HttpClient
-  ) {}
+  ) { }
 
-  obterTodos(): Observable<any>{
+  obterTodos(): Observable<any> {
     return this.http.get(`${this.api}`)
   }
 
@@ -26,11 +26,11 @@ export class OrdemServicoService {
     return this.http.get(`${this.api}/${id}`).pipe(
       map(recurso => Object.assign(new OrdemServico(), recurso))
     )
-}
+  }
 
-deletar(id: number) {
-  return this.http.delete(`${this.api}/${id}`);
-}
+  deletar(id: number) {
+    return this.http.delete(`${this.api}/${id}`);
+  }
 
-  
+
 }
