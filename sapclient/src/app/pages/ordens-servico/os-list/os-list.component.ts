@@ -49,7 +49,7 @@ export class OsListComponent implements OnInit {
   ngOnInit(): void {
       this.obterSituacoes();
       this.obterProjetos();
-    this.obterTodos();
+      this.obterTodos();
   }
 
   obterTodos(){
