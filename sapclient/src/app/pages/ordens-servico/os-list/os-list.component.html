@@ -6,9 +6,6 @@
   </p-header>
 
   <ng-container *ngIf="listaOrdemServico$ | async as listaOrdemServico; else loading">
-    <pre>
-    
-    </pre>
     <p-table [columns]="colunas" [value]="listaOrdemServico">
       <ng-template let-columns pTemplate="header">
         <tr>
@@ -20,15 +17,14 @@
       <ng-template pTemplate="body" let-ordemservico>
         <tr>
           <td>{{ ordemservico.nome }}</td>
-          <td>{{ ordemservico.dataProximaEntrega }}</td> 
-          <td>{{ ordemservico.prazo }}</td>
-          <td>{{ ordemservico.qtdDefeitosCliente }}</td>
-          <td>{{ ordemservico.qtdDefeitosInterno }}</td>
+          <td>{{ ordemservico.dataProximaEntrega | date:'dd/MM/yyyy' }}</td>
+          <td>{{ ordemservico.prazo | date:'dd/MM/yyyy' }}</td>
+          <td>{{ ordemservico.qtdDefeitosCliente || 0 }}</td>
+          <td>{{ ordemservico.qtdDefeitosInterno || 0 }}</td>
           <td>{{ ordemservico.pontosFuncao }}</td>
           <td>{{ ordemservico.fabrica }}</td>
           <td>{{ obterNomeProjeto(ordemservico.idProjeto) }}</td>
-          <td>{{ obterNomeSituacao(ordemservico.idSituacao) }}</td> 
-          <td>{{ ordemservico.sprints}}</td>         
+          <td>{{ obterNomeSituacao(ordemservico.idSituacao) }}</td>
           <td class="action-buttons">
             <button [routerLink]="[ordemservico.id]" pButton icon="ui-icon-mode-edit"></button>
             <button pButton icon="pi pi-times" (click)="deletar(ordemservico.id)"></button>
