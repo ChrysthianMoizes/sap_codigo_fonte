@@ -11,17 +11,17 @@ import { Projeto } from './../models/projeto.model';
     providedIn: 'root'
   })
   export class ProjetoService {
-  
-      api: string = `${environment.apiUrl}/projeto`;
-  
+
+      api: string = `${environment.apiUrl}/projetos`;
+
     constructor(
         private http: HttpClient
     ) { }
-  
+
     obterTodos(): Observable<any> {
       return this.http.get(`${this.api}`)
     }
-  
+
     salvar(recurso: Projeto): Observable<any> {
         if (recurso.id) {
             return this.atualizar(recurso);
