@@ -1,12 +1,16 @@
 import { SituacaoService } from './../../../services/situacao.service';
 import { ProjetoService } from './../../../services/projeto.service';
 import { Projeto } from './../../../models/projeto.model';
-import { Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+
 
 import { BlockUI, NgBlockUI } from 'ng-block-ui';
+
+import{OrdemServico} from './../../../models/ordem-servico.model';
+import { OrdemServicoService} from './../../../services/ordem-servico.service';
+
 import { finalize, map } from 'rxjs/operators';
-import { OrdemServicoService } from 'src/app/services/ordem-servico.service';
 
 @Component({
   selector: 'app-os-list',
