@@ -55,12 +55,13 @@ export class OsFormComponent implements OnInit {
               Validators.minLength(3)
             ]
             ],
-          dataProximaEntrega:[],
-          qtdDefeitosCliente:[],
-          qtdDefeitosInternos:[],
-          pontosFunção: [],
-          fabricas: [],
-          idProjeto: []
+          dataProximaEntrega:[null],
+          qtdDefeitosCliente:[null],
+          qtdDefeitosInternos:[null],
+          pontosFunção: [null],
+          fabricas: [null],
+          idProjeto: [null],
+          prazo:[null]
          
 
       })
