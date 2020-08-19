@@ -1,1 +1,85 @@
-<p>os-form works!</p>
+<p-card header="{{titulo}}">
+
+    <form [formGroup]="form">
+  
+      <div class="ui-fluid p-formgrid p-grid">
+        <div class="p-field p-col-12 p-md-6">
+          <label>Nome:</label>
+          <input type="text" pInputText formControlName="nome">
+  
+          <div *ngIf="form.get('nome').errors && form.get('nome').errors.required && form.get('nome').invalid && form.get('nome').touched">
+            Campo Obrigatório
+          </div>
+
+  
+          <div *ngIf="form.get('nome').errors && form.get('nome').errors.minlength && form.get('nome').invalid && form.get('nome').touched">
+            Quantidade mínima de caracteres é 3
+          </div>
+        </div>
+      </div>
+  
+  
+  
+      <div class="ui-fluid p-formgrid p-grid">
+        <div class="p-field p-col-12 p-md-6">
+          <label>Data Proxima Entrega:</label>
+          <input type="text" pInputText formControlName="dataProximaEntrega">
+        </div>
+      </div>
+
+      <div class="ui-fluid p-formgrid p-grid">
+        <div class="p-field p-col-12 p-md-6">
+          <label>Quantidades de Defeitos do Cliente:</label>
+          <input type="text" pInputText formControlName="qtdDefeitosCliente">
+        </div>
+      </div>
+
+      <div class="ui-fluid p-formgrid p-grid">
+        <div class="p-field p-col-12 p-md-6">
+          <label>Quantidades de Defeitos Internos:</label>
+          <input type="text" pInputText formControlName="qtdDefeitosInternos">
+        </div>
+      </div>
+
+      <div class="ui-fluid p-formgrid p-grid">
+        <div class="p-field p-col-12 p-md-6">
+          <label>Prazo:</label>
+          <input type="text" pInputText formControlName="prazo">
+        </div>
+      </div>
+
+      <div class="ui-fluid p-formgrid p-grid">
+        <div class="p-field p-col-12 p-md-6">
+          <label>Pontos Função:</label>
+          <input type="text" pInputText formControlName="pontosFuncao">
+        </div>
+      </div>
+
+      <div class="ui-fluid p-formgrid p-grid">
+        <div class="p-field p-col-12 p-md-6">
+          <label>Fabricas:</label>
+          <input type="text" pInputText formControlName="fabrica">
+        </div>
+      </div>
+
+
+      <div class="ui-fluid p-formgrid p-grid">
+        <div class="p-field p-col-3 p-md-3">
+          <label>Projetos:</label>
+      <p-dropdown [options]="listaProjetos" formControlName="idProjeto"></p-dropdown>
+    </div>
+  </div>
+
+  
+      <div class="ui-g text-right">
+        <div class="ui-lg-2 ui-md-3 ui-sm-6">
+          <button pButton icon="ui-icon-check-circle" iconPos="left" label="Salvar" (click)="enviarForm()"></button>
+        </div>
+  
+        <div class="ui-lg-2 ui-md-3 ui-sm-6">
+          <button pButton icon="pi pi-times" iconPos="left" label="Cancelar" routerLink="/ordens-servico"></button>
+        </div>
+      </div>
+  
+    </form>
+  </p-card>

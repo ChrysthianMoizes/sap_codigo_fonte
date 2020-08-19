@@ -7,6 +7,7 @@ import { finalize, switchMap } from 'rxjs/operators';
 import { LiderService } from './../../../services/lider.service';
 import { Lider } from './../../../models/lider.model';
 
+
 @Component({
   selector: 'app-lider-form',
   templateUrl: './lider-form.component.html',
@@ -49,7 +50,8 @@ export class LiderFormComponent implements OnInit {
               Validators.minLength(3)
             ]
             ],
-          contato: [null]
+            contato: [null]
+
       })
   }
 
