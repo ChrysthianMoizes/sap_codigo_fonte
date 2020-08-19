@@ -28,21 +28,25 @@ import { Projeto } from './../models/projeto.model';
         }
         return this.cadastrar(recurso);
     }
+
     obterPorId(id: number): Observable<Projeto> {
         return this.http.get(`${this.api}/${id}`).pipe(
-          map(recurso => Object.assign(new Projeto(), recurso))
+            map(recurso => Object.assign(new Projeto(), recurso))
         )
-        }
-        private cadastrar(recurso: Projeto): Observable<Projeto> {
+    }
+
+    deletar(id: number) {
+        return this.http.delete(`${this.api}/${id}`);
+    }
+
+    private cadastrar(recurso: Projeto): Observable<Projeto> {
         return this.http.post(`${this.api}`, recurso).pipe(
             map(recurso => Object.assign(new Projeto(), recurso))
         );
     }
-  
     private atualizar(recurso: Projeto): Observable<Projeto> {
         return this.http.put(`${this.api}`, recurso).pipe(
             map(recurso => Object.assign(new Projeto(), recurso))
         );
     }
-  }
-  
+}

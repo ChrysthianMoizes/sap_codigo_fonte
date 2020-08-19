@@ -2,7 +2,6 @@ import { Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { BlockUI, NgBlockUI } from 'ng-block-ui';
 import { finalize } from 'rxjs/operators';
-import { Lider } from './../../../models/lider.model';
 import { LiderService } from './../../../services/lider.service';
 @Component({
   selector: 'app-lider-list',
@@ -19,13 +18,6 @@ export class LiderListComponent implements OnInit {
         { header: 'Contato(s)' },
         { header: 'Ações' },
     ];
-
-    // lideres:Lider[] = [
-    //     new Lider(1, 'Fulano', '27 99911-2210'),
-    //     new Lider(2, 'Cliclano', '27 99911-2210'),
-    //     new Lider(3, 'Beltrano', '27 99911-2210'),
-    //     new Lider(4, 'John Doe', '27 99911-2210')
-    // ];
 
   constructor(
       private liderService: LiderService

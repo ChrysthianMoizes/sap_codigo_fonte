@@ -19,7 +19,6 @@
           <td>{{ lider.contato }}</td>
           <td class="action-buttons">
             <button [routerLink]="[lider.id]" pButton icon="ui-icon-mode-edit"></button>
-            <button pButton icon="pi pi-times"></button>
             <button pButton icon="pi pi-times" (click)="deletar(lider.id)"></button>
           </td>
         </tr>

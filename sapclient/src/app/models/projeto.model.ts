@@ -6,10 +6,11 @@ export class Projeto {
     constructor(
         public id?: number,
         public nome?: string,
-        public id_lider?: Lider,
-        public id_cliente?: Cliente,
+        public idCLiente?: number,
+        public idLider?: number,
         public testador?: string,
         public revisor?: string,
-        public gerente?: string,
+        public gerente?: string
     ) { }
+
 }
