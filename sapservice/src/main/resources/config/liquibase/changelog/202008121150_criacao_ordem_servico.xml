@@ -3,7 +3,6 @@
     xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
-
     <changeSet  author="maxson.zucolotto"  id="9">
         <createTable  remarks="Tabela de Ordem serviço"
                       schemaName="public"
@@ -40,7 +39,6 @@
             </column>
         </createTable>
     </changeSet>
-
     <changeSet  author="maxson.zucolotto"  id="10">
         <addForeignKeyConstraint   baseTableName="ordem_servico"
                                    baseColumnNames="id_projeto"
@@ -48,7 +46,6 @@
                                    referencedTableName="projeto"
                                    referencedColumnNames="id"/>
     </changeSet>
-
     <changeSet author="maxson.zucolotto" id="11">
         <addAutoIncrement columnDataType="number"
                           columnName="id"
