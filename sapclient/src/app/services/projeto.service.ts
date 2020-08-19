@@ -5,15 +5,15 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { environment } from './../../environments/environment.prod';
-import { Lider } from './../models/lider.model';
+import { Projeto } from './../models/projeto.model';
 
 @Injectable({
     providedIn: 'root'
 })
-export class LiderService {
+export class ProjetoService {
 
-    // api: string = environment.apiUrl + '/lideres';
-    api: string = `${environment.apiUrl}/lideres`;
+    // api: string = environment.apiUrl + '/projetos';
+    api: string = `${environment.apiUrl}/projetos`;
 
     constructor(
         private http: HttpClient
@@ -23,16 +23,16 @@ export class LiderService {
         return this.http.get(`${this.api}`)
     }
 
-    salvar(recurso: Lider): Observable<any> {
+    salvar(recurso: Projeto): Observable<any> {
         if (recurso.id) {
             return this.atualizar(recurso);
         }
         return this.cadastrar(recurso);
     }
 
-    obterPorId(id: number): Observable<Lider> {
+    obterPorId(id: number): Observable<Projeto> {
         return this.http.get(`${this.api}/${id}`).pipe(
-            map(recurso => Object.assign(new Lider(), recurso))
+            map(recurso => Object.assign(new Projeto(), recurso))
         )
     }
 
@@ -40,15 +40,15 @@ export class LiderService {
         return this.http.delete(`${this.api}/${id}`);
     }
 
-    private cadastrar(recurso: Lider): Observable<Lider> {
+    private cadastrar(recurso: Projeto): Observable<Projeto> {
         return this.http.post(`${this.api}`, recurso).pipe(
-            map(recurso => Object.assign(new Lider(), recurso))
+            map(recurso => Object.assign(new Projeto(), recurso))
         );
     }
 
-    private atualizar(recurso: Lider): Observable<Lider> {
+    private atualizar(recurso: Projeto): Observable<Projeto> {
         return this.http.put(`${this.api}`, recurso).pipe(
-            map(recurso => Object.assign(new Lider(), recurso))
+            map(recurso => Object.assign(new Projeto(), recurso))
         );
     }
 }

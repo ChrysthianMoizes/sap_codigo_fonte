@@ -5,4 +5,5 @@ export class Lider {
         public nome?: string,
         public contato?: string
     ) { }
+    
 }

@@ -4,7 +4,6 @@ import { Component, OnInit } from '@angular/core';
 import { BlockUI, NgBlockUI } from 'ng-block-ui';
 import { finalize } from 'rxjs/operators';
 
-import { Lider } from './../../../models/lider.model';
 import { LiderService } from './../../../services/lider.service';
 
 @Component({
