@@ -1,1 +1,58 @@
-<p>projeto-form works!</p>
+<p-card header="{{titulo}}">
+  <form [formGroup]="form">
+    <div class="ui-fluid p-formgrid p-grid">
+      <div class="p-field p-col-12 p-md-6">
+        <label>Nome:</label>
+        <input type="text" pInputText formControlName="nome">
+        <!-- <div *ngIf="form.get('nome').errors && form.get('nome').errors.required && form.get('nome').invalid && form.get('nome').touched">
+          Campo Obrigatório
+        </div>
+        <div *ngIf="form.get('nome').errors && form.get('nome').errors.minlength && form.get('nome').invalid && form.get('nome').touched">
+          Quantidade mínima de caracteres é 3
+        </div> -->
+      </div>
+    </div>
+
+    <div class="ui-g">
+      <div class="ui-lg-6 ui-md-6 ui-sm-6">
+        <label style="display: block;">Lider:</label>
+        <p-dropdown [options]="lideres" placeholder="Selecione um líder de projeto" formControlName="idLider"></p-dropdown>
+
+      </div>
+
+      <div class="ui-lg-6 ui-md-6 ui-sm-6">
+        <label style="display: block;">Cliente:</label>
+        <p-dropdown [options]="clientes" placeholder="Selecione um cliente" formControlName="idCliente"></p-dropdown>
+      </div>
+    </div>
+
+    <div class="ui-fluid p-formgrid p-grid">
+      <div class="p-field p-col-12 p-md-6">
+        <label>Testador:</label>
+        <input type="text" pInputText formControlName="testador">
+      </div>
+    </div>
+
+    <div class="ui-fluid p-formgrid p-grid">
+      <div class="p-field p-col-12 p-md-6">
+        <label>Revisor:</label>
+        <input type="text" pInputText formControlName="revisor">
+      </div>
+    </div>
+    <div class="ui-fluid p-formgrid p-grid">
+      <div class="p-field p-col-12 p-md-6">
+        <label>Gerente:</label>
+        <input type="text" pInputText formControlName="gerente">
+      </div>
+    </div>
+    <div class="ui-g text-right">
+      <div class="ui-lg-2 ui-md-3 ui-sm-6">
+        <button pButton icon="ui-icon-check-circle" iconPos="left" label="Salvar" (click)="enviarForm()"></button>
+      </div>
+
+      <div class="ui-lg-2 ui-md-3 ui-sm-6">
+        <button pButton icon="pi pi-times" iconPos="left" label="Cancelar" routerLink="/projetos"></button>
+      </div>
+    </div>
+  </form>
+</p-card>
