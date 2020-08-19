@@ -1,15 +1,13 @@
 import { NgModule } from '@angular/core';
-import { Routes } from '@angular/router';
-
 import { SharedModule } from './../../shared/shared.module';
-import { OrdensServicoRoutingModule } from './ordens-servico-routing.module';
-import { OsFormComponent } from './os-form/os-form.component';
-import { OsListComponent } from './os-list/os-list.component';
 
-const routes: Routes = [];
+import { OrdensServicoRoutingModule } from './ordens-servico-routing.module';
+import { OsListComponent } from './os-list/os-list.component';
+import { OsFormComponent } from './os-form/os-form.component';
+
 
 @NgModule({
-  declarations: [OsFormComponent, OsListComponent],
+  declarations: [OsListComponent, OsFormComponent],
   imports: [
     SharedModule,
     OrdensServicoRoutingModule

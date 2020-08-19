@@ -1,13 +1,13 @@
-import { Routes, RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
 
-import { ProjetoFormComponent } from './projeto-form/projeto-form.component';
 import { ProjetoListComponent } from './projeto-list/projeto-list.component';
+import { ProjetoFormComponent } from './projeto-form/projeto-form.component';
 
 const routes: Routes = [
-  { path: '', component: ProjetoListComponent },
-  { path: 'novo', component: ProjetoFormComponent },
-  { path: ':id', component: ProjetoFormComponent}
+    { path: '', component: ProjetoListComponent },
+    { path: 'novo', component: ProjetoFormComponent },
+    { path: ':id', component: ProjetoFormComponent },
 ];
 
 @NgModule({

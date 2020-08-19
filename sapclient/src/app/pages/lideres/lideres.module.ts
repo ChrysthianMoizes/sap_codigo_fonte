@@ -1,15 +1,16 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
+import { SharedModule } from './../../shared/shared.module';
 
 import { LideresRoutingModule } from './lideres-routing.module';
-import { LiderFormComponent } from './lider-form/lider-form.component';
 import { LiderListComponent } from './lider-list/lider-list.component';
+import { LiderFormComponent } from './lider-form/lider-form.component';
 
 
 @NgModule({
-  declarations: [LiderFormComponent, LiderListComponent],
+  declarations: [LiderListComponent, LiderFormComponent],
   imports: [
-    CommonModule,
+    SharedModule,
     LideresRoutingModule
   ]
 })

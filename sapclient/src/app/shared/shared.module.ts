@@ -1,8 +1,8 @@
-import { NgModule } from '@angular/core';
-
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
+
 import { PRIMENG_IMPORTS } from './primeng-imports';
 
 @NgModule({
@@ -15,9 +15,9 @@ import { PRIMENG_IMPORTS } from './primeng-imports';
     providers: [],
     exports: [
         PRIMENG_IMPORTS,
-        RouterModule,
         CommonModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        RouterModule
     ]
 })
 export class SharedModule { }

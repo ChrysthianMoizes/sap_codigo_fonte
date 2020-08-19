@@ -14,6 +14,8 @@ import { SecurityModule, VersionTagModule } from '@nuvem/angular-base';
 import { DiarioErrosComponent } from './components/diario-erros/diario-erros.component';
 import { PaginaInicialComponent } from './view/pagina-inicial/pagina-inicial.component';
 
+import { BlockUIModule } from 'ng-block-ui';
+
 @NgModule({
     declarations: [
         AppComponent,
@@ -23,6 +25,9 @@ import { PaginaInicialComponent } from './view/pagina-inicial/pagina-inicial.com
         PaginaInicialComponent
     ],
     imports: [
+        BlockUIModule.forRoot({
+            message: 'Carregando...'
+        }),
         BrowserModule,
         BrowserAnimationsModule,
         AppRoutingModule,
