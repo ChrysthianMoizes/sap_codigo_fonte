@@ -6,14 +6,12 @@ import { finalize, switchMap } from 'rxjs/operators';
 
 import { LiderService } from './../../../services/lider.service';
 import { Lider } from './../../../models/lider.model';
-
 @Component({
     selector: 'app-lider-form',
     templateUrl: './lider-form.component.html',
     styleUrls: ['./lider-form.component.css']
 })
 export class LiderFormComponent implements OnInit {
-
     titulo: string = 'Cadastro de líder';
     acaoAtual: string;
     form: FormGroup;

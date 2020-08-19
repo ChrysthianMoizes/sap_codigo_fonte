@@ -9,20 +9,19 @@ import { Projeto } from './../models/projeto.model';
 
 @Injectable({
     providedIn: 'root'
-})
-export class ProjetoService {
-
-    // api: string = environment.apiUrl + '/projetos';
-    api: string = `${environment.apiUrl}/projetos`;
-
+  })
+  export class ProjetoService {
+  
+      api: string = `${environment.apiUrl}/projeto`;
+  
     constructor(
         private http: HttpClient
     ) { }
-
+  
     obterTodos(): Observable<any> {
-        return this.http.get(`${this.api}`)
+      return this.http.get(`${this.api}`)
     }
-
+  
     salvar(recurso: Projeto): Observable<any> {
         if (recurso.id) {
             return this.atualizar(recurso);
@@ -45,7 +44,6 @@ export class ProjetoService {
             map(recurso => Object.assign(new Projeto(), recurso))
         );
     }
-
     private atualizar(recurso: Projeto): Observable<Projeto> {
         return this.http.put(`${this.api}`, recurso).pipe(
             map(recurso => Object.assign(new Projeto(), recurso))
