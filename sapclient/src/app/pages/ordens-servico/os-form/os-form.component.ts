@@ -87,8 +87,6 @@ export class OsFormComponent implements OnInit {
   }
 
   enviarForm() {
-    // console.log(this.form.value)
-    // return
       this.formSubmetido = true;
       if (!this.form.invalid) {
         this.form.get('sprints').setValue([])

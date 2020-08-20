@@ -41,6 +41,9 @@
         </tr>
       </ng-template>
     </p-table>
+    <button type="button" (click)="showDialog()" icon="pi pi-info-circle"
+    pButton
+    label="Sprints"></button>
   </ng-container>
 
   <ng-template #loading>
@@ -52,4 +55,10 @@
     </div>
   </ng-template>
 
+
+
 </p-card>
+
+<p-dialog header="Edição Sprint" [(visible)]="display" [style]="{width: '70vw'}">
+  <app-sprint-form></app-sprint-form>
+</p-dialog>
