@@ -3,6 +3,8 @@ import { ProjetoService } from './../../../services/projeto.service';
 import { Projeto } from './../../../models/projeto.model';
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
+import {OverlayPanelModule} from 'primeng/overlaypanel';
+
 
 
 import { BlockUI, NgBlockUI } from 'ng-block-ui';
@@ -19,13 +21,14 @@ import { finalize, map } from 'rxjs/operators';
 })
 export class OsListComponent implements OnInit {
 
-  titulo: string = 'Lista de Ordens de Serviço'
   @BlockUI() blockUI: NgBlockUI;
+  
+  titulo: string = 'Lista de Ordens de Serviço'
   listaOrdemServico$: Observable<any>;
-  listaOrdemServico:any = [];
+  listaOrdemServico: any = [];
   situacoes: any = [];
-    projetos: any = [];
-
+  projetos: any = [];
+  display: boolean = false;
   colunas: any = [
       { header: 'Nome' },
       { header: 'Data Próxima Entrega' },
@@ -47,12 +50,12 @@ export class OsListComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-      this.obterSituacoes();
-      this.obterProjetos();
+    this.obterSituacoes();
+    this.obterProjetos();
     this.obterTodos();
   }
 
-  obterTodos(){
+  obterTodos() {
     this.blockUI.start();
     this.listaOrdemServico$ = this.ordemServicoService.obterTodos().pipe(
         map(res => {
@@ -91,7 +94,7 @@ export class OsListComponent implements OnInit {
     ).subscribe(
       projetos => this.projetos = projetos
     );
-}
+  }
 
     obterNomeSituacao(id: number) {
     return this.situacoes.find(situacao => situacao.id == id).descricao
@@ -99,6 +102,10 @@ export class OsListComponent implements OnInit {
 
   obterNomeProjeto(id: number){
     return this.projetos.find(projeto => projeto.id == id).nome
+  }
+
+  showDialog() {
+    this.display = true;
   }
 
 }

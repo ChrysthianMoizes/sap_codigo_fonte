@@ -31,13 +31,6 @@
       </div>
     </div>
 
-    <!-- <div class="ui-fluid p-formgrid p-grid">
-      <div class="p-field p-col-12 p-md-6">
-        <label>Prazo <span>*</span>:</label>
-        <p-calendar formControlName="prazo" showButtonBar="true" [readonlyInput]="true" [locale]="dataBr" dateFormat="dd/mm/yy" [yearNavigator]="true" [monthNavigator]="true" yearRange="1950:2060"></p-calendar>
-        <p-message severity="error" text="É necessário uma data de prazo"  *ngIf="form.get('prazo').errors && form.get('prazo').errors.required && form.get('prazo').touched"></p-message>
-      </div>
-    </div> -->
 
     <div class="ui-fluid p-formgrid p-grid">
       <div class="p-field p-col-12 p-md-6">
@@ -93,9 +86,7 @@
       </div>
     </div>
 
-    <p-fieldset>
-      <app-sprint-list></app-sprint-list>
-    </p-fieldset>
+  
 
   </form>
 </p-card>
