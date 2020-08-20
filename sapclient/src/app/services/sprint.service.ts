@@ -15,7 +15,7 @@ import { OrdemServico } from './../models/ordem-servico.model';
   })
   export class SprintService {
 
-      api: string = `${environment.apiUrl}/sprint`;
+      api: string = `${environment.apiUrl}/sprints`;
 
     constructor(
         private http: HttpClient
@@ -47,6 +47,7 @@ import { OrdemServico } from './../models/ordem-servico.model';
             map(recurso => Object.assign(new Sprint(), recurso))
         );
     }
+
     private atualizar(recurso: Sprint): Observable<Sprint> {
         return this.http.put(`${this.api}`, recurso).pipe(
             map(recurso => Object.assign(new Sprint(), recurso))
