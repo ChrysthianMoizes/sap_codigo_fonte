@@ -1,0 +1,15 @@
+div{
+    padding: 10px
+}
+
+span{
+    color: red;
+}
+
+#info{
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 8px;
+    margin-left: 22rem;
+    height: 35px;
+}
