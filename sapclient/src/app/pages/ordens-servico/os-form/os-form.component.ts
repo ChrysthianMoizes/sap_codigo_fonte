@@ -8,7 +8,7 @@ import { finalize, switchMap, tap } from 'rxjs/operators'
 
 import{OrdemServico} from './../../../models/ordem-servico.model';
 import { OrdemServicoService} from './../../../services/ordem-servico.service';
-import { SelectItem } from 'primeng';
+import { SelectItem, MessageService } from 'primeng';
 
 @Component({
   selector: 'app-os-form',
@@ -43,7 +43,8 @@ export class OsFormComponent implements OnInit {
     private formBuilder: FormBuilder,
     private ordemService: OrdemServicoService,
     private projetoService: ProjetoService,
-    private situacaoService: SituacaoService
+    private situacaoService: SituacaoService,
+    private messageService: MessageService
   ) { }
 
   ngOnInit(): void {
@@ -71,14 +72,34 @@ export class OsFormComponent implements OnInit {
               Validators.minLength(3)
             ]
             ],
-            dataProximaEntrega:[null],
+            dataProximaEntrega:[null
+            ,[
+              Validators.required,
+            ]
+            ],
           qtdDefeitosCliente:[null],
           qtdDefeitosInterno:[null],
-          pontosFuncao: [null],
-          fabrica: [null],
-          idProjeto: [null],
-          idSituacao: [null],
-          prazo:[null],
+          pontosFuncao: [null
+          ,[
+            Validators.required,
+          ]],
+          fabrica: [null
+          ,[
+            Validators.required,
+            Validators.minLength(2)
+          ]],
+          idProjeto: [null
+          ,[
+            Validators.required
+          ]],
+          idSituacao: [null
+          ,[
+            Validators.required
+          ]],
+          prazo:[null
+          ,[
+            Validators.required
+          ]],
           sprints:[null],
 
 
@@ -89,6 +110,7 @@ export class OsFormComponent implements OnInit {
       this.formSubmetido = true;
       if (!this.form.invalid) {
           this.salvar();
+          this.messageService.add({severity: 'info', summary:'Cadastrado com sucesso'})
       }
   }
 

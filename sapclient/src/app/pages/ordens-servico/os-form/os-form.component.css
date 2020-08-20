@@ -1,0 +1,32 @@
+#formQtdDefeitos{
+    display: flex;
+    justify-content: space-between;
+}
+
+div {
+    padding: 10px ;
+}
+
+label{
+    font-size: 15px;
+}
+
+span{
+    color: red;
+}
+
+#dropdown{
+    display: flex;
+    justify-content: space-between;
+}
+
+#info {
+    float: right;
+    margin-top: 1rem;
+}
+
+#containerButton{
+    display: block;
+    justify-content: space-between;
+}
+
