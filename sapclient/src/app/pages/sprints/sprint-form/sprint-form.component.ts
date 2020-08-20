@@ -1,14 +1,15 @@
-import { OrdemServicoService } from './../../../services/ordem-servico.service';
-import { Component, OnInit } from '@angular/core';
-import { BlockUI, NgBlockUI } from 'ng-block-ui';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, Output, EventEmitter, OnInit } from '@angular/core';
+
+import { BlockUI, NgBlockUI } from 'ng-block-ui';
 import { finalize, switchMap } from 'rxjs/operators';
-import { Sprint } from './../../../models/sprint.model';
-import { SprintService } from './../../../services/sprint.service';
-import { from } from 'rxjs';
 import { CheckboxModule } from 'primeng/checkbox';
 import { SelectItem } from 'primeng';
+
+import { OrdemServicoService } from './../../../services/ordem-servico.service';
+import { Sprint } from './../../../models/sprint.model';
+import { SprintService } from './../../../services/sprint.service';
 import { StatusService } from 'src/app/services/status.service';
 
 
@@ -23,8 +24,10 @@ export class SprintFormComponent implements OnInit {
   form: FormGroup;
   formSubmetido: boolean = false;
   status: SelectItem[];
-  os: SelectItem[];
-
+  exibir: boolean = false;
+  sprint: Sprint = new Sprint();
+  @BlockUI() blockUI: NgBlockUI;
+  @Output() salvarSprint = new EventEmitter();
 
   dataBr = {
     firstDayOfWeek: 1,
@@ -36,9 +39,6 @@ export class SprintFormComponent implements OnInit {
     today: 'Hoje',
     clear: 'Limpar'
   };
-
-
-  @BlockUI() blockUI: NgBlockUI;
 
   constructor(
     private router: Router,
@@ -54,12 +54,13 @@ export class SprintFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.carregarDropdownStatus();
-    this.carregarDropdownOS();
     this.iniciarForm();
     this.carregarSprint();
     this.setAcaoAtual();
+  }
 
-
+  mostrarDialog() {
+      this.exibir = true;
   }
 
   private setAcaoAtual() {
@@ -69,6 +70,8 @@ export class SprintFormComponent implements OnInit {
     }
     this.titulo = 'Editando projeto';
   }
+
+
   iniciarForm() {
     this.form = this.formBuilder.group({
       id: [null],
@@ -79,27 +82,23 @@ export class SprintFormComponent implements OnInit {
       pontosFuncao: [null],
       impedimento: [null],
       prazo: [null],
-      idStatus: [null],
-      idOrdemServico: [null],
+      idStatus: [null]
     })
   }
   enviarForm() {
     this.formSubmetido = true;
     if (!this.form.invalid) {
-      this.salvar();
+        const recurso = Object.assign(new Sprint(), this.form.value);
+      this.salvarSprint.emit(recurso);
+      this.fecharModal();
     }
   }
 
-  salvar() {
-    this.blockUI.start();
-    const recurso = Object.assign(new Sprint(), this.form.value);
-    this.sprintService.salvar(recurso).pipe(
-      finalize(() => this.blockUI.stop())
-    ).subscribe(() => {
-      const path: string = this.route.snapshot.parent.url[0].path;
-      this.router.navigate([path]);
-    })
+  fecharModal() {
+    this.form.reset();
+    this.exibir = false;
   }
+
 
   carregarSprint() {
     if (this.route.snapshot.url[0].path != "novo") {
@@ -127,19 +126,6 @@ export class SprintFormComponent implements OnInit {
     })
   }
 
-  carregarDropdownOS() {
-    this.blockUI.start();
-    this.ordemServico.obterTodos().pipe(
-      finalize(() => this.blockUI.stop())
-    ).subscribe(res => {
-      this.os = res.map(item => {
-        return {
-          label: item.nome,
-          value: item.id
-        }
-      })
-    })
-  }
 }
 
 

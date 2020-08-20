@@ -10,9 +10,9 @@ export class Sprint {
         public dataTermino?: Date,
         public pontosFuncao?: number,
         public impedimento?: boolean,
-        public noPrazo?: boolean,
-        public status?: TipoStatus,
-        public ordemServico?: OrdemServico,
+        public prazo?: boolean,
+        public idStatus?: TipoStatus,
+        public idOrdemServico?: OrdemServico,
     ) { }
-    
+
 }

@@ -1,9 +1,11 @@
+import { Sprint } from './../../../models/sprint.model';
+import { SprintFormComponent } from './../../sprints/sprint-form/sprint-form.component';
 import { SprintsRoutingModule } from './../../sprints/sprints-routing.module';
 import { SituacaoService } from './../../../services/situacao.service';
 import { ProjetoService } from './../../../services/projeto.service';
 import { BlockUI, NgBlockUI } from 'ng-block-ui';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Component, OnInit } from '@angular/core';
+import { Component, ViewChild, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { finalize, switchMap, tap } from 'rxjs/operators'
 
@@ -24,7 +26,18 @@ export class OsFormComponent implements OnInit {
   formSubmetido: boolean = false;
   listaProjetos: SelectItem[];
   situacoes: SelectItem[];
-  
+  sprints: Sprint[] = [];
+  @ViewChild('sprintDialog') sprintDialog: SprintFormComponent;
+
+  colunas = [
+      { header: 'Nome' },
+      { header: 'Ínicio' },
+      { header: 'Término' },
+      { header: 'PF' },
+      { header: 'Status' },
+      { header: 'Ações' },
+  ]
+
   dataBr = {
     firstDayOfWeek: 1,
     dayNames: ["Domingo", "Segunda-Feira", "Terça-Feira", "Quarta-Feira", "Quinta-Feira", "Sexta-Feira", "Sábado"],
@@ -67,12 +80,7 @@ export class OsFormComponent implements OnInit {
   iniciarForm() {
       this.form = this.formBuilder.group({
           id: [null],
-          nome: [null
-            ,[
-              Validators.required,
-              Validators.minLength(3)
-            ]
-            ],
+          nome: [null ,[Validators.required, Validators.minLength(3)]],
             dataProximaEntrega:[null
             ,[
               Validators.required,
@@ -101,10 +109,8 @@ export class OsFormComponent implements OnInit {
           ,[
             Validators.required
           ]],
-          sprints:[null],
-
-
-      })
+          sprints:[null]
+      });
   }
 
   enviarForm() {
@@ -112,16 +118,14 @@ export class OsFormComponent implements OnInit {
       if (!this.form.invalid) {
         this.form.get('sprints').setValue([])
           this.salvar();
-         
       }
   }
-
-
-
 
   salvar() {
       this.blockUI.start();
       const recurso = Object.assign(new OrdemServico(), this.form.value);
+      recurso.sprints = this.sprints;
+      console.log(recurso);
       this.ordemService.salvar(recurso).pipe(
           finalize(() => {
             this.blockUI.stop()
@@ -141,9 +145,11 @@ export class OsFormComponent implements OnInit {
         this.route.paramMap.pipe(
             switchMap(params => this.ordemService.obterPorId(+params.get('id')))
         ).subscribe(ordemServico => {
-            ordemServico.dataProximaEntrega = new Date(ordemServico.dataProximaEntrega);
-            ordemServico.prazo= new Date(ordemServico.prazo);
+            console.log(ordemServico);
+            // ordemServico.dataProximaEntrega = new Date(ordemServico.dataProximaEntrega);
+            // ordemServico.prazo= new Date(ordemServico.prazo);
             this.form.patchValue(ordemServico);
+            // this.sprints = this.form.get('sprints').value;
             this.blockUI.stop();
         })
     }
@@ -175,5 +181,17 @@ export class OsFormComponent implements OnInit {
             }
         })
     })
+  }
+
+  adicionarEditarSprint(event) {
+      if (!event.id) {
+          this.sprints.push(event);
+          return;
+      }
+      this.sprints = this.sprints.filter(sprint => sprint.id !== event.id).concat(event);
+  }
+
+  showDialogSprint() {
+    this.sprintDialog.mostrarDialog();
   }
 }

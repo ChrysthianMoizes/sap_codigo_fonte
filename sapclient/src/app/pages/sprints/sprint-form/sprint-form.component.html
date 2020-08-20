@@ -1,4 +1,6 @@
-<p-card header="{{titulo}}">
+<p-dialog header="Gerenciamento de Sprints" [(visible)]="exibir" [style]="{ 'width': '80vw' }">
+
+  <p-card [header]="titulo">
     <form [formGroup]="form">
       <div class="ui-fluid p-formgrid p-grid">
         <div class="p-field p-col-12 p-md-6">
@@ -19,15 +21,15 @@
           <p-calendar formControlName="dataInicio" showButtonBar="true" [readonlyInput]="true" [locale]="dataBr" dateFormat="dd/mm/yy" [yearNavigator]="true" [monthNavigator]="true" yearRange="1950:2060"></p-calendar>
         </div>
       </div>
-  
+
       <!-- <div class="ui-g">
         <div class="ui-lg-6 ui-md-6 ui-sm-6">
           <label style="display: block;">Lider:</label>
           <p-dropdown [options]="lideres" placeholder="Selecione um líder de projeto" formControlName="idLider"></p-dropdown>
-  
+
         </div> -->
-  
-        <!-- <div class="ui-lg-6 ui-md-6 ui-sm-6">
+
+      <!-- <div class="ui-lg-6 ui-md-6 ui-sm-6">
           <label style="display: block;">Cliente:</label>
           <p-dropdown [options]="clientes" placeholder="Selecione um cliente" formControlName="idCliente"></p-dropdown>
         </div>
@@ -40,31 +42,27 @@
         </div>
       </div>
 
-  
+
       <div class="ui-fluid p-formgrid p-grid">
         <div class="p-field p-col-12 p-md-6">
           <label>Pontos Função:</label>
           <input type="text" pInputText formControlName="pontosFuncao">
         </div>
       </div>
-  
+
       <div class="ui-fluid p-formgrid p-grid">
         <div class="p-field p-col-12 p-md-6">
           <label>Impedimentos:</label>
-          <label>Sim:</label>
-          <p-checkbox name="Sim" binary="true" formControlName="impedimento"></p-checkbox>
-          <label>Não:</label>
-          <p-checkbox name="Não" binary="false" formControlName="impedimento"></p-checkbox>
+          <p-radioButton name="impedimento" value="true" formControlName="impedimento" label="Sim"></p-radioButton>
+          <p-radioButton name="impedimento" value="false" formControlName="impedimento" label="Não"></p-radioButton>
         </div>
       </div>
 
       <div class="ui-fluid p-formgrid p-grid">
         <div class="p-field p-col-12 p-md-6">
           <label>Dentro Do Prazo:</label>
-          <label>Sim:</label>
-          <p-checkbox name="Sim" binary="true" formControlName="prazo"></p-checkbox>
-          <label>Não:</label>
-          <p-checkbox name="Não" binary="false" formControlName="prazo"></p-checkbox>
+          <p-radioButton name="prazo" value="true" formControlName="prazo" label="Sim"></p-radioButton>
+          <p-radioButton name="prazo" value="false" formControlName="prazo" label="Não"></p-radioButton>
         </div>
       </div>
 
@@ -72,20 +70,20 @@
       <div class="ui-fluid p-formgrid p-grid">
         <div class="p-field p-col-12 p-md-6">
           <label>Status:</label>
-      <p-dropdown [options]="status" placeholder="Indique um Status" formControlName="idStatus"></p-dropdown>
-    </div>
-</div>
+          <p-dropdown [options]="status" placeholder="Indique um Status" formControlName="idStatus"></p-dropdown>
+        </div>
+      </div>
 
-<div class="ui-fluid p-formgrid p-grid">
-    <div class="p-field p-col-12 p-md-6">
-      <label>Ordem Serviço:</label>
-  <p-dropdown [options]="os" placeholder="Ordem de Servico Relacionada" formControlName="idOrdemServico"></p-dropdown>
-</div>
-</div>
-<!-- 
+      <!-- <div class="ui-fluid p-formgrid p-grid">
+        <div class="p-field p-col-12 p-md-6">
+          <label>Ordem Serviço:</label>
+          <p-dropdown [options]="os" placeholder="Ordem de Servico Relacionada" formControlName="idOrdemServico"></p-dropdown>
+        </div>
+      </div> -->
+      <!--
       <div class="ui-fluid p-formgrid p-grid">
         <div class="p-field p-col-12 p-md-6">
-          <label>Dentro Do Prazo:</label> 
+          <label>Dentro Do Prazo:</label>
           <p-checkbox name="Sim" value="0" formControlName="noPrazo"></p-checkbox>
           <label>Não:</label>
           <p-checkbox name="Não" value="1" formControlName="noPrazo"></p-checkbox>
@@ -98,10 +96,11 @@
         <div class="ui-lg-2 ui-md-3 ui-sm-6">
           <button pButton icon="ui-icon-check-circle" iconPos="left" label="Salvar" (click)="enviarForm()"></button>
         </div>
-  
+
         <div class="ui-lg-2 ui-md-3 ui-sm-6">
           <button pButton icon="pi pi-times" iconPos="left" label="Cancelar" routerLink="/"></button>
         </div>
       </div>
     </form>
   </p-card>
+</p-dialog>
