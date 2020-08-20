@@ -1,3 +1,4 @@
+import { SprintsRoutingModule } from './../../sprints/sprints-routing.module';
 import { SituacaoService } from './../../../services/situacao.service';
 import { ProjetoService } from './../../../services/projeto.service';
 import { BlockUI, NgBlockUI } from 'ng-block-ui';
@@ -23,7 +24,7 @@ export class OsFormComponent implements OnInit {
   formSubmetido: boolean = false;
   listaProjetos: SelectItem[];
   situacoes: SelectItem[];
-
+  
   dataBr = {
     firstDayOfWeek: 1,
     dayNames: ["Domingo", "Segunda-Feira", "Terça-Feira", "Quarta-Feira", "Quinta-Feira", "Sexta-Feira", "Sábado"],
@@ -115,6 +116,9 @@ export class OsFormComponent implements OnInit {
       }
   }
 
+
+
+
   salvar() {
       this.blockUI.start();
       const recurso = Object.assign(new OrdemServico(), this.form.value);
@@ -138,7 +142,7 @@ export class OsFormComponent implements OnInit {
             switchMap(params => this.ordemService.obterPorId(+params.get('id')))
         ).subscribe(ordemServico => {
             ordemServico.dataProximaEntrega = new Date(ordemServico.dataProximaEntrega);
-            ordemServico.prazo = new Date(ordemServico.prazo);
+            ordemServico.prazo= new Date(ordemServico.prazo);
             this.form.patchValue(ordemServico);
             this.blockUI.stop();
         })
@@ -172,5 +176,4 @@ export class OsFormComponent implements OnInit {
         })
     })
   }
-
 }
