@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { BlockUI, NgBlockUI } from 'ng-block-ui';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-sprint-list',
@@ -7,9 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SprintListComponent implements OnInit {
 
+  @BlockUI() blockUI:NgBlockUI;
+
+  titulo: string='Lista de Sprint'
+  listaSprint:Observable<any>;
+  
+
   constructor() { }
 
   ngOnInit(): void {
   }
 
 }
+

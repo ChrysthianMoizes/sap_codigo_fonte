@@ -24,7 +24,7 @@ export class OsFormComponent implements OnInit {
   formSubmetido: boolean = false;
   listaProjetos: SelectItem[];
   situacoes: SelectItem[];
-
+  
   dataBr = {
     firstDayOfWeek: 1,
     dayNames: ["Domingo", "Segunda-Feira", "Terça-Feira", "Quarta-Feira", "Quinta-Feira", "Sexta-Feira", "Sábado"],
@@ -149,5 +149,4 @@ export class OsFormComponent implements OnInit {
         })
     })
   }
-
 }
