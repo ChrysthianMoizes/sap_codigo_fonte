@@ -7,7 +7,7 @@
         <label>Nome <span>*</span>:</label>
         <input type="text" pInputText formControlName="nome">
         <p-message severity="error" text="O nome é obrigatório" *ngIf="form.get('nome').errors && form.get('nome').errors.required && form.get('nome').invalid && form.get('nome').touched"></p-message>
-        <p-message severity="error" text="Quantidade mínima de 3 caracteres"*ngIf="form.get('nome').errors && form.get('nome').errors.minlength && form.get('nome').invalid && form.get('nome').touched"></p-message>
+        <p-message severity="error" text="Quantidade mínima de 3 caracteres" *ngIf="form.get('nome').errors && form.get('nome').errors.minlength && form.get('nome').invalid && form.get('nome').touched"></p-message>
       </div>
     </div>
 
@@ -19,7 +19,7 @@
       </div>
     </div>
 
-    <div  id="formQtdDefeitos" class="p-fluid p-formgrid p-grid">
+    <div id="formQtdDefeitos" class="p-fluid p-formgrid p-grid">
       <div id="formQtdDefeitosCliente" class="p-field p-col-6">
         <label>Quantidades de Defeitos do Cliente:</label>
         <p-inputMask pInputText slotChar="" unmask="true" mask="9?99999999999" formControlName="qtdDefeitosCliente"></p-inputMask>
@@ -64,46 +64,35 @@
         <p-message severity="error" text="É necessário selecionar um projeto" *ngIf="form.get('idProjeto').errors && form.get('idProjeto').errors.required && form.get('idProjeto').touched"></p-message>
       </div>
 
-      <div id="dropdownSituacao"class="p-field p-col-3 p-md-3">
+      <div id="dropdownSituacao" class="p-field p-col-3 p-md-3">
         <label>Situação <span>*</span>:</label>
         <p-dropdown [options]="situacoes" placeholder="Selecione uma situação" formControlName="idSituacao"></p-dropdown>
-        <p-message severity="error" text="É necessário selecionar uma situação" **ngIf="form.get('idSituacao').errors && form.get('idSituacao').errors.required && form.get('idSituacao').touched"></p-message>
+        <p-message severity="error" text="É necessário selecionar uma situação" *ngIf="form.get('idSituacao').errors && form.get('idSituacao').errors.required && form.get('idSituacao').touched"></p-message>
       </div>
 
       <div class="p-field p-col-12 p-md-6">
         <label>Prazo <span>*</span>:</label>
         <p-calendar formControlName="prazo" showButtonBar="true" [readonlyInput]="true" [locale]="dataBr" dateFormat="dd/mm/yy" [yearNavigator]="true" [monthNavigator]="true" yearRange="1950:2060"></p-calendar>
-        <p-message severity="error" text="É necessário uma data de prazo"  *ngIf="form.get('prazo').errors && form.get('prazo').errors.required && form.get('prazo').touched"></p-message>
+        <p-message severity="error" text="É necessário uma data de prazo" *ngIf="form.get('prazo').errors && form.get('prazo').errors.required && form.get('prazo').touched"></p-message>
       </div>
     </div>
 
     <div id="containerButton">
-      <p-message id="info" severity="info" text="Todos os campos com * são obrigatórios" ></p-message>
+      <p-message id="info" severity="info" text="Todos os campos com * são obrigatórios"></p-message>
 
       <div class="ui-g text-right">
         <div class="ui-lg-2 ui-md-3 ui-sm-6">
-          <button 
-            pButton 
-            icon="ui-icon-check-circle" 
-            iconPos="left" 
-            label="Salvar" 
-            (click)="enviarForm()"
-            [disabled]="this.form.invalid">
+          <button pButton icon="ui-icon-check-circle" iconPos="left" label="Salvar" (click)="enviarForm()" [disabled]="this.form.invalid">
         </button>
         </div>
-  
+
         <div class="ui-lg-2 ui-md-3 ui-sm-6">
-          <button 
-            pButton 
-            icon="pi pi-times" 
-            iconPos="left" 
-            label="Cancelar" 
-            routerLink="/ordens-servico">
+          <button pButton icon="pi pi-times" iconPos="left" label="Cancelar" routerLink="/ordens-servico">
           </button>
         </div>
       </div>
     </div>
-   
+
     <p-fieldset>
       <app-sprint-list></app-sprint-list>
     </p-fieldset>

@@ -21,3 +21,14 @@ body .ui-table .ui-table-tfoot>tr>td {
 .float-right {
   float: right;
 }
+
+body .ui-message.ui-message-error {
+  background-color: #e62a10;
+  border-color: #e62a10;
+  color: #ffffff;
+  margin-top: 5px;
+}
+
+body .ui-message .ui-message-icon.pi-times {
+  margin-right: 5px;
+}
