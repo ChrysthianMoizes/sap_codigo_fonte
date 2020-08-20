@@ -1,3 +1,30 @@
-#labelLider{
+div {
+    padding: 10px;
+}
+
+#labelNome{
+    margin-bottom: 100px;
+}
+
+span{
+    color: red;
+}
+
+#info{
+        float: right;
+        margin-top: 1rem;
+}
+
+#containerButton{
     display: block;
+    justify-content: space-between;
+}
+
+#buttonCancelar{
+    display: flex;
+}
+
+#containerDropdowns{
+    display: flex;
+    justify-content: space-around;
 }

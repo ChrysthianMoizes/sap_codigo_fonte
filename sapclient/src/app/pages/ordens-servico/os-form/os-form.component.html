@@ -82,13 +82,24 @@
 
       <div class="ui-g text-right">
         <div class="ui-lg-2 ui-md-3 ui-sm-6">
-          <button pButton icon="ui-icon-check-circle" iconPos="left" label="Salvar" 
-          (click)="enviarForm()"
-          [disabled]="this.form.invalid"></button>
+          <button 
+            pButton 
+            icon="ui-icon-check-circle" 
+            iconPos="left" 
+            label="Salvar" 
+            (click)="enviarForm()"
+            [disabled]="this.form.invalid">
+        </button>
         </div>
   
         <div class="ui-lg-2 ui-md-3 ui-sm-6">
-          <button pButton icon="pi pi-times" iconPos="left" label="Cancelar" routerLink="/ordens-servico"></button>
+          <button 
+            pButton 
+            icon="pi pi-times" 
+            iconPos="left" 
+            label="Cancelar" 
+            routerLink="/ordens-servico">
+          </button>
         </div>
       </div>
     </div>

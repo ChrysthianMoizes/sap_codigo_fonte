@@ -59,8 +59,8 @@ export class ProjetoFormComponent implements OnInit {
           testador: [null, [Validators.required,Validators.minLength(3)]],
           revisor: [null, [Validators.required,Validators.minLength(3)]],
           gerente: [null, [Validators.required,Validators.minLength(3)]],
-          idLider: [null],
-          idCliente: [null],
+          idLider: [null, [Validators.required,Validators.minLength(3)]  ],
+          idCliente: [null, [Validators.required,Validators.minLength(3)]],
       })
   }
   enviarForm() {

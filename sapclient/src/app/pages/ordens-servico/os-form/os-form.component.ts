@@ -109,8 +109,9 @@ export class OsFormComponent implements OnInit {
   enviarForm() {
       this.formSubmetido = true;
       if (!this.form.invalid) {
+        this.form.get('sprints').setValue([])
           this.salvar();
-          this.messageService.add({severity: 'info', summary:'Cadastrado com sucesso'})
+         
       }
   }
 
@@ -118,10 +119,15 @@ export class OsFormComponent implements OnInit {
       this.blockUI.start();
       const recurso = Object.assign(new OrdemServico(), this.form.value);
       this.ordemService.salvar(recurso).pipe(
-          finalize(() => this.blockUI.stop())
+          finalize(() => {
+            this.blockUI.stop()
+          } )
       ).subscribe(() => {
           const path: string = this.route.snapshot.parent.url[0].path;
           this.router.navigate([path]);
+          this.messageService.add({severity: 'info', summary:'Cadastrado com sucesso'})
+      }, error => {
+        this.messageService.add({severity: 'error', summary:'Erro ao cadastrar'})
       })
   }
 
