@@ -1,21 +1,24 @@
 <p-card header="{{ titulo }}">
   <p-header>
-    <div class="ui-lg-2 ui-md-3 ui-sm-6 float-right">
+    <div id="botaoNovo" class="ui-lg-2 ui-md-3 ui-sm-6 float-right">
       <button routerLink="novo" pButton icon="pi pi-check" iconPost="left" label="Novo"></button>
     </div>
   </p-header>
 
-  <ng-container *ngIf="listaOrdemServico$ | async as listaOrdemServico; else loading">
+  <ng-container *ngIf="listaOrdemServico$ | async as listaOrdemServico; else loading ">
     <p-table [columns]="colunas" [value]="listaOrdemServico">
       <ng-template let-columns pTemplate="header">
         <tr>
-          <th [class.action]="coluna.header == 'Ações'" *ngFor="let coluna of columns">
+          <th 
+            [class.action]="coluna.header == 'Ações'" 
+            *ngFor="let coluna of columns">
             {{ coluna.header }}
           </th>
         </tr>
       </ng-template>
-      <ng-template pTemplate="body" let-ordemservico>
+      <ng-template pTemplate="body" let-ordemservico >
         <tr>
+          <td>{{i}}</td>
           <td>{{ ordemservico.nome }}</td>
           <td>{{ ordemservico.dataProximaEntrega | date:'dd/MM/yyyy' }}</td>
           <td>{{ ordemservico.prazo | date:'dd/MM/yyyy' }}</td>
@@ -41,8 +44,10 @@
         </tr>
       </ng-template>
     </p-table>
+    <pagination-controls (pageChange)="paginaAtual = $event" previousLabel="Anterior" nextLabel="Próximo"></pagination-controls>
   </ng-container>
-
+ 
+  
   <ng-template #loading>
     <div class="ui-g-12 loading ">
       <div class="ui-g-2 ui-g-offset-5 ">

@@ -36,6 +36,8 @@ export class AppComponent implements AfterViewInit, OnDestroy, OnInit {
 
     viewMinWidth = 640;
 
+    paginaAtual = 1;
+
     @ViewChild('layoutContainer', { static: true }) layourContainerViewChild: ElementRef;
 
     @ViewChild('scrollPanel', { static: true }) layoutMenuScrollerViewChild: ScrollPanel;
