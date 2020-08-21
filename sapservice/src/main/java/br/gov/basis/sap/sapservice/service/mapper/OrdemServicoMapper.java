@@ -10,16 +10,17 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingTarget;
 
-@Mapper(componentModel = "spring",uses = {
+@Mapper(componentModel = "spring", uses = {
     SprintMapper.class
 })
 public interface OrdemServicoMapper extends EntityMapper<OrdemServicoDTO, OrdemServico> {
-    @Mapping(source = "idSituacao", target = "situacao.id" )
-    @Mapping(source = "idProjeto", target = "projeto.id" )
+    @Mapping(source = "idSituacao", target = "situacao.id")
+    @Mapping(source = "idProjeto", target = "projeto.id")
     OrdemServico toEntity(OrdemServicoDTO ordemServicoDTO);
 
-    @Mapping(source = "situacao.id", target = "idSituacao" )
-    @Mapping(source = "projeto.id", target = "idProjeto" )
+    @Mapping(source = "situacao.id", target = "idSituacao")
+    @Mapping(source = "projeto.id", target = "idProjeto")
+//
     OrdemServicoDTO toDto(OrdemServico ordemServico);
 
     @AfterMapping

@@ -4,12 +4,12 @@ import { Component, Output, EventEmitter, OnInit } from '@angular/core';
 
 import { BlockUI, NgBlockUI } from 'ng-block-ui';
 import { finalize, switchMap } from 'rxjs/operators';
-import { CheckboxModule } from 'primeng/checkbox';
 import { SelectItem } from 'primeng';
 
 import { OrdemServicoService } from './../../../services/ordem-servico.service';
 import { Sprint } from './../../../models/sprint.model';
 import { SprintService } from './../../../services/sprint.service';
+
 import { StatusService } from 'src/app/services/status.service';
 
 
@@ -60,7 +60,7 @@ export class SprintFormComponent implements OnInit {
   }
 
   mostrarDialog() {
-      this.exibir = true;
+    this.exibir = true;
   }
 
   private setAcaoAtual() {
@@ -88,7 +88,7 @@ export class SprintFormComponent implements OnInit {
   enviarForm() {
     this.formSubmetido = true;
     if (!this.form.invalid) {
-        const recurso = Object.assign(new Sprint(), this.form.value);
+      const recurso = Object.assign(new Sprint(), this.form.value);
       this.salvarSprint.emit(recurso);
       this.fecharModal();
     }
