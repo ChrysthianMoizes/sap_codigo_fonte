@@ -27,6 +27,7 @@ export class OsFormComponent implements OnInit {
   listaProjetos: SelectItem[];
   situacoes: SelectItem[];
   sprints: Sprint[] = [];
+  dataFormatada = new Date();
   @ViewChild('sprintDialog') sprintDialog: SprintFormComponent;
 
   colunas = [
@@ -141,18 +142,26 @@ export class OsFormComponent implements OnInit {
 
   carregarOrdemServico() {
     if (this.route.snapshot.url[0].path != "novo") {
-        this.blockUI.start();
+        // this.blockUI.start();
         this.route.paramMap.pipe(
             switchMap(params => this.ordemService.obterPorId(+params.get('id')))
         ).subscribe(ordemServico => {
-            console.log(ordemServico);
-            // ordemServico.dataProximaEntrega = new Date(ordemServico.dataProximaEntrega);
-            // ordemServico.prazo= new Date(ordemServico.prazo);
+            // console.log(ordemServico);
+            ordemServico.dataProximaEntrega = new Date(ordemServico.dataProximaEntrega);
+            ordemServico.prazo = new Date(ordemServico.prazo);
+
+            // this.formatarData(ordemServico);
+
             this.form.patchValue(ordemServico);
-            // this.sprints = this.form.get('sprints').value;
+            this.sprints = this.form.get('sprints').value;
             this.blockUI.stop();
         })
     }
+  
+
+  // formatarData(ordemServico: OrdemServico){
+  //   ordemServico.dataProximaEntrega.setDate(ordemServico.dataProximaEntrega.getDate() + 1);
+  //   ordemServico.prazo.setDate(ordemServico.prazo.getDate() + 1);
   }
 
   carregarDropdownProjetos(){
