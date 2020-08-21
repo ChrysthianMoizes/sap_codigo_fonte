@@ -1,5 +1,3 @@
-import { Projeto } from './projeto.model';
-import { TipoSituacao } from './tipo-situacao.model';
 import { Sprint } from './sprint.model';
 
 export class OrdemServico {

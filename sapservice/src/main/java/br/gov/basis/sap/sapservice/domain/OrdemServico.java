@@ -44,13 +44,13 @@ public class OrdemServico {
     private TipoSituacao situacao;
 
     @Column(name = "dt_proxima_entrega")
-    private LocalDate dtProximaEntrega;
+    private LocalDate dataProximaEntrega;
 
     @Column(name = "qtd_defeito_cliente")
-    private Integer qtdDefeitosClientes;
+    private Integer qtdDefeitosCliente;
 
     @Column(name = "qtd_defeito_interno")
-    private Integer qtdDefeitosInternos;
+    private Integer qtdDefeitosInterno;
 
     @Column(name = "prazo_entrega")
     private LocalDate prazo;

@@ -148,8 +148,8 @@ export class OsFormComponent implements OnInit {
       this.route.paramMap.pipe(
         switchMap(params => this.ordemService.obterPorId(+params.get('id')))
       ).subscribe(ordemServico => {
-        ordemServico.prazo =new Date(`${ordemServico.prazo}T00:00:00`);
-        ordemServico.dataProximaEntrega =  new Date(`${ordemServico.dataProximaEntrega}T00:00:00`);
+        ordemServico.prazo = new Date(`${ordemServico.prazo}T00:00:00`);
+        ordemServico.dataProximaEntrega = new Date(`${ordemServico.dataProximaEntrega}T00:00:00`);
         this.form.patchValue(ordemServico);
         this.sprints = this.form.get('sprints').value;
         this.blockUI.stop();

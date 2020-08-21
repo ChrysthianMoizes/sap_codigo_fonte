@@ -1,5 +1,3 @@
-import { Lider } from "./lider.model";
-import { Cliente } from "./cliente.model";
 
 export class Projeto {
 
