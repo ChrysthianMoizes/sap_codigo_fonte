@@ -14,7 +14,7 @@
     <div class="ui-fluid p-formgrid p-grid">
       <div class="p-field p-col-12 p-md-6">
         <label>Data Proxima Entrega <span>*</span>:</label>
-        <p-calendar formControlName="dataProximaEntrega" showButtonBar="true" [readonlyInput]="true" [locale]="dataBr" dateFormat="dd/mm/yy" [yearNavigator]="true" [monthNavigator]="true" yearRange="1950:2060"></p-calendar>
+        <p-calendar formControlName="dataProximaEntrega" [showIcon]="true" showButtonBar="true" [readonlyInput]="true" [locale]="dataBr" dateFormat="dd/mm/yy" [yearNavigator]="true" [monthNavigator]="true" yearRange="1950:2060"></p-calendar>
         <p-message severity="error" text="É necessário uma data para a próxima entrega" *ngIf="form.get('dataProximaEntrega').errors && form.get('dataProximaEntrega').errors.required && form.get('dataProximaEntrega').touched"></p-message>
       </div>
     </div>
@@ -65,7 +65,7 @@
 
       <div class="p-field p-col-12 p-md-6">
         <label>Prazo <span>*</span>:</label>
-        <p-calendar formControlName="prazo" showButtonBar="true" [readonlyInput]="true" [locale]="dataBr" dateFormat="dd/mm/yy" [yearNavigator]="true" [monthNavigator]="true" yearRange="1950:2060"></p-calendar>
+        <p-calendar formControlName="prazo" showButtonBar="true" [readonlyInput]="true" [showIcon]="true" [locale]="dataBr" dateFormat="dd/mm/yy" [yearNavigator]="true" [monthNavigator]="true" yearRange="1950:2060"></p-calendar>
         <p-message severity="error" text="É necessário uma data de prazo" *ngIf="form.get('prazo').errors && form.get('prazo').errors.required && form.get('prazo').touched"></p-message>
       </div>
 

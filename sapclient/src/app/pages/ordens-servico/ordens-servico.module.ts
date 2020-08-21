@@ -5,8 +5,9 @@ import { SprintsModule } from './../sprints/sprints.module';
 import { OrdensServicoRoutingModule } from './ordens-servico-routing.module';
 import { OsListComponent } from './os-list/os-list.component';
 import { OsFormComponent } from './os-form/os-form.component';
-import {DropdownModule} from 'primeng/dropdown';
-import {DialogModule} from 'primeng/dialog';
+
+import { DropdownModule } from 'primeng/dropdown';
+import { DialogModule } from 'primeng/dialog';
 
 
 
