@@ -55,7 +55,7 @@ export class AppComponent implements AfterViewInit, OnDestroy, OnInit {
             {
                 label: 'Dashboard',
                 icon: 'dashboard',
-                routerLink: ['/']
+                routerLink: ['/dashboard']
             },
             {
                 label: 'Líderes',

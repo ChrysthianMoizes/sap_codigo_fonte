@@ -23,6 +23,7 @@ export class OsListComponent implements OnInit {
   situacoes: any = [];
   projetos: any = [];
   display: boolean = false;
+  
   colunas: any = [
     { header: 'Nome' },
     { header: 'Data Próxima Entrega' },

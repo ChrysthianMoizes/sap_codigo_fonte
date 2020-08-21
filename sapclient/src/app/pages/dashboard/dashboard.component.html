@@ -1,1 +1,31 @@
-<p>dashboard works!</p>
+<p-card header='{{ titulo }}' styleClass="ui-card-shadow">
+        <p-table [value]="dashboard" [paginator]="true"  [rows]="4" [rowsPerPageOptions]="[2, 4, 8, 10]" [response]="true" [columns]="colunas"  [resizableColumns]="true">
+            <ng-template let-columns pTemplate="header">
+                <tr>
+                    <th  *ngFor="let coluna of columns" pResizableColumn>
+                        {{ coluna.header }}
+                    </th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-teste>
+              <tr>
+                <td>{{ teste.os }}</td>
+                <td>{{ teste.status }}</td>
+                <td>{{ teste.pf }}</td>
+                <td>{{ teste.proxEntrega }}</td>
+                <td>{{ teste.prazo }} </td>
+                <td>{{ teste.defeitoCliente }}</td>
+                <td>{{ teste.defeitoInterno }}</td>
+                <td>{{ teste.impedimento }}</td>
+                <td>{{ teste.revisor }} </td>
+                <td>{{ teste.testador }}</td>
+                <td>{{ teste.gerente }}</td>
+                <td class="action-buttons">
+                  <button pButton icon="ui-icon-mode-edit"></button>
+                  <button pButton icon="pi pi-times" (click)="deletar(lider.id)"></button>
+                </td>
+              </tr>
+            </ng-template>
+        </p-table>
+</p-card>
+
