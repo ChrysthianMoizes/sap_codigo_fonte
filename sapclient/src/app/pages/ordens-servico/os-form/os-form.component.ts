@@ -1,16 +1,17 @@
 import { Sprint } from './../../../models/sprint.model';
 import { SprintFormComponent } from './../../sprints/sprint-form/sprint-form.component';
-import { SprintsRoutingModule } from './../../sprints/sprints-routing.module';
 import { SituacaoService } from './../../../services/situacao.service';
+
 import { ProjetoService } from './../../../services/projeto.service';
 import { BlockUI, NgBlockUI } from 'ng-block-ui';
 import { Router, ActivatedRoute } from '@angular/router';
+
 import { Component, ViewChild, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { finalize, switchMap, tap } from 'rxjs/operators'
 
-import{OrdemServico} from './../../../models/ordem-servico.model';
-import { OrdemServicoService} from './../../../services/ordem-servico.service';
+import { OrdemServico } from './../../../models/ordem-servico.model';
+import { OrdemServicoService } from './../../../services/ordem-servico.service';
 import { SelectItem, MessageService } from 'primeng';
 
 @Component({
@@ -27,16 +28,15 @@ export class OsFormComponent implements OnInit {
   listaProjetos: SelectItem[];
   situacoes: SelectItem[];
   sprints: Sprint[] = [];
-  dataFormatada = new Date();
   @ViewChild('sprintDialog') sprintDialog: SprintFormComponent;
 
   colunas = [
-      { header: 'Nome' },
-      { header: 'Ínicio' },
-      { header: 'Término' },
-      { header: 'PF' },
-      { header: 'Status' },
-      { header: 'Ações' },
+    { header: 'Nome' },
+    { header: 'Ínicio' },
+    { header: 'Término' },
+    { header: 'PF' },
+    { header: 'Status' },
+    { header: 'Ações' },
   ]
 
   dataBr = {
@@ -48,7 +48,7 @@ export class OsFormComponent implements OnInit {
     monthNamesShort: ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"],
     today: 'Hoje',
     clear: 'Limpar'
-};
+  };
 
   @BlockUI() blockUI: NgBlockUI;
 
@@ -68,136 +68,130 @@ export class OsFormComponent implements OnInit {
     this.carregarDropdownProjetos();
     this.carregarDropdownSituacao();
     this.carregarOrdemServico();
+
   }
 
   private setAcaoAtual() {
-    if(this.route.snapshot.url[0].path == 'novo')  {
-        this.titulo = 'Cadastro de Ordens de Serviço';
-        return;
+    if (this.route.snapshot.url[0].path == 'novo') {
+      this.titulo = 'Cadastro de Ordens de Serviço';
+      return;
     }
     this.titulo = 'Editando OS';
   }
 
   iniciarForm() {
-      this.form = this.formBuilder.group({
-          id: [null],
-          nome: [null ,[Validators.required, Validators.minLength(3)]],
-            dataProximaEntrega:[null
-            ,[
-              Validators.required,
-            ]
-            ],
-          qtdDefeitosCliente:[null],
-          qtdDefeitosInterno:[null],
-          pontosFuncao: [null
-          ,[
-            Validators.required,
-          ]],
-          fabrica: [null
-          ,[
-            Validators.required,
-            Validators.minLength(2)
-          ]],
-          idProjeto: [null
-          ,[
-            Validators.required
-          ]],
-          idSituacao: [null
-          ,[
-            Validators.required
-          ]],
-          prazo:[null
-          ,[
-            Validators.required
-          ]],
-          sprints:[null]
-      });
+    this.form = this.formBuilder.group({
+      id: [null],
+      nome: [null, [Validators.required, Validators.minLength(3)]],
+      dataProximaEntrega: [null
+        , [
+          Validators.required,
+        ]
+      ],
+      qtdDefeitosCliente: [null],
+      qtdDefeitosInterno: [null],
+      pontosFuncao: [null
+        , [
+          Validators.required,
+        ]],
+      fabrica: [null
+        , [
+          Validators.required,
+          Validators.minLength(2)
+        ]],
+      idProjeto: [null
+        , [
+          Validators.required
+        ]],
+      idSituacao: [null
+        , [
+          Validators.required
+        ]],
+      prazo: [null
+        , [
+          Validators.required
+        ]],
+      sprints: [null]
+    });
   }
 
   enviarForm() {
-      this.formSubmetido = true;
-      if (!this.form.invalid) {
-        this.form.get('sprints').setValue([])
-          this.salvar();
-      }
+    this.formSubmetido = true;
+    if (!this.form.invalid) {
+      this.form.get('sprints').setValue([])
+      this.salvar();
+    }
   }
 
+
+
   salvar() {
-      this.blockUI.start();
-      const recurso = Object.assign(new OrdemServico(), this.form.value);
-      recurso.sprints = this.sprints;
-      console.log(recurso);
-      this.ordemService.salvar(recurso).pipe(
-          finalize(() => {
-            this.blockUI.stop()
-          } )
-      ).subscribe(() => {
-          const path: string = this.route.snapshot.parent.url[0].path;
-          this.router.navigate([path]);
-          this.messageService.add({severity: 'info', summary:'Cadastrado com sucesso'})
-      }, error => {
-        this.messageService.add({severity: 'error', summary:'Erro ao cadastrar'})
+    this.blockUI.start();
+    const recurso = Object.assign(new OrdemServico(), this.form.value);
+    recurso.sprints = this.sprints;
+    console.log(recurso);
+    this.ordemService.salvar(recurso).pipe(
+      finalize(() => {
+        this.blockUI.stop()
       })
+    ).subscribe(() => {
+      const path: string = this.route.snapshot.parent.url[0].path;
+      this.router.navigate([path]);
+      this.messageService.add({ severity: 'info', summary: 'Cadastrado com sucesso' })
+    }, error => {
+      this.messageService.add({ severity: 'error', summary: 'Erro ao cadastrar' })
+    })
   }
 
   carregarOrdemServico() {
     if (this.route.snapshot.url[0].path != "novo") {
-        // this.blockUI.start();
-        this.route.paramMap.pipe(
-            switchMap(params => this.ordemService.obterPorId(+params.get('id')))
-        ).subscribe(ordemServico => {
-            // console.log(ordemServico);
-            ordemServico.dataProximaEntrega = new Date(ordemServico.dataProximaEntrega);
-            ordemServico.prazo = new Date(ordemServico.prazo);
-
-            // this.formatarData(ordemServico);
-
-            this.form.patchValue(ordemServico);
-            this.sprints = this.form.get('sprints').value;
-            this.blockUI.stop();
-        })
+      this.route.paramMap.pipe(
+        switchMap(params => this.ordemService.obterPorId(+params.get('id')))
+      ).subscribe(ordemServico => {
+        ordemServico.prazo =new Date(`${ordemServico.prazo}T00:00:00`);
+        ordemServico.dataProximaEntrega =  new Date(`${ordemServico.dataProximaEntrega}T00:00:00`);
+        this.form.patchValue(ordemServico);
+        this.sprints = this.form.get('sprints').value;
+        this.blockUI.stop();
+      })
     }
-  
-
-  // formatarData(ordemServico: OrdemServico){
-  //   ordemServico.dataProximaEntrega.setDate(ordemServico.dataProximaEntrega.getDate() + 1);
-  //   ordemServico.prazo.setDate(ordemServico.prazo.getDate() + 1);
   }
 
-  carregarDropdownProjetos(){
+
+  carregarDropdownProjetos() {
     this.blockUI.start();
     this.projetoService.obterTodos().pipe(
-        finalize(() => this.blockUI.stop())
+      finalize(() => this.blockUI.stop())
     ).subscribe(res => {
-        this.listaProjetos = res.map(item => {
-            return {
-                label: item.nome,
-                value: item.id
-            }
-        })
+      this.listaProjetos = res.map(item => {
+        return {
+          label: item.nome,
+          value: item.id
+        }
+      })
     })
   }
 
-  carregarDropdownSituacao(){
+  carregarDropdownSituacao() {
     this.blockUI.start();
     this.situacaoService.obterTodos().pipe(
-        finalize(() => this.blockUI.stop())
+      finalize(() => this.blockUI.stop())
     ).subscribe(res => {
-        this.situacoes = res.map(item => {
-            return {
-                label: item.descricao,
-                value: item.id
-            }
-        })
+      this.situacoes = res.map(item => {
+        return {
+          label: item.descricao,
+          value: item.id
+        }
+      })
     })
   }
 
   adicionarEditarSprint(event) {
-      if (!event.id) {
-          this.sprints.push(event);
-          return;
-      }
-      this.sprints = this.sprints.filter(sprint => sprint.id !== event.id).concat(event);
+    if (!event.id) {
+      this.sprints.push(event);
+      return;
+    }
+    this.sprints = this.sprints.filter(sprint => sprint.id !== event.id).concat(event);
   }
 
   showDialogSprint() {

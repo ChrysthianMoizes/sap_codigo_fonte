@@ -1,6 +1,7 @@
 import { SituacaoService } from './../../../services/situacao.service';
 import { ProjetoService } from './../../../services/projeto.service';
 import { Projeto } from './../../../models/projeto.model';
+
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import {OverlayPanelModule} from 'primeng/overlaypanel';
@@ -8,7 +9,6 @@ import {OverlayPanelModule} from 'primeng/overlaypanel';
 
 
 import { BlockUI, NgBlockUI } from 'ng-block-ui';
-
 import{OrdemServico} from './../../../models/ordem-servico.model';
 import { OrdemServicoService} from './../../../services/ordem-servico.service';
 
@@ -60,8 +60,8 @@ export class OsListComponent implements OnInit {
     this.listaOrdemServico$ = this.ordemServicoService.obterTodos().pipe(
         map(res => {
             res.forEach(item => {
-                item.dataProximaEntrega = new Date(item.dataProximaEntrega);
-                item.prazo = new Date(item.prazo);
+                item.dataProximaEntrega = new Date(`${item.dataProximaEntrega}T00:00:00`);
+                item.prazo = new Date(`${item.prazo}T00:00:00`);
             })
             return res;
         }),
