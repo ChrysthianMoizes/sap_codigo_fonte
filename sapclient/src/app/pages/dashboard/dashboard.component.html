@@ -32,7 +32,7 @@
 <h1 style="text-align:center;">Painel de controle de projetos</h1>
 
 <p-fieldset legend="EXERCITO-SGVM" [toggleable]="true">
-  <button id="botao" routerLink="/ordens-servico/novo" pButton icon="pi pi-check" iconPost="left" label="Novo"></button>
+  <button class="botao" routerLink="/ordens-servico/novo" pButton icon="pi pi-check" iconPost="left" label="Novo"></button>
   <p-table [value]="dashboard" [paginator]="true"  [rows]="4" [rowsPerPageOptions]="[2, 4, 8, 10]" [response]="true" [columns]="colunas"  [resizableColumns]="true">
     <ng-template let-columns pTemplate="header">
         <tr>
@@ -64,6 +64,7 @@
 </p-fieldset>
 
 <p-fieldset legend="IBAMA-CADE" [toggleable]="true">
+  <button class="botao" routerLink="/ordens-servico/novo" pButton icon="pi pi-check" iconPost="left" label="Novo"></button>
   <p-table [value]="dashboard" [paginator]="true"  [rows]="4" [rowsPerPageOptions]="[2, 4, 8, 10]" [response]="true" [columns]="colunas"  [resizableColumns]="true">
     <ng-template let-columns pTemplate="header">
         <tr>
@@ -95,7 +96,7 @@
 </p-fieldset>
 
 <p-fieldset legend="IBAMA-SEI" [toggleable]="true">
-  <p-table [value]="dashboard" [paginator]="true"  [rows]="4" [rowsPerPageOptions]="[2, 4, 8, 10]" [response]="true" [columns]="colunas"  [resizableColumns]="true">
+  <p-table class="botao" [value]="dashboard" [paginator]="true"  [rows]="4" [rowsPerPageOptions]="[2, 4, 8, 10]" [response]="true" [columns]="colunas"  [resizableColumns]="true">
     <ng-template let-columns pTemplate="header">
         <tr>
             <th  *ngFor="let coluna of columns" pResizableColumn>
