@@ -1,4 +1,4 @@
-body .ui-table .ui-table-thead > tr > th, body .ui-table .ui-table-tfoot > tr > td {
-    text-align: center;
-    color: blue;
+#botao {
+    float: right;
+    margin-top: -38px;
 }
