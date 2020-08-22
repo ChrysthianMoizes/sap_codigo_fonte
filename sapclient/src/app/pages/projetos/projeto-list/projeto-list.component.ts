@@ -41,7 +41,7 @@ export class ProjetoListComponent implements OnInit {
   ngOnInit(): void {
       this.listarClientes();
       this.listarLideres();
-    this.obterTodos();
+      this.obterTodos();
   }
 
   obterTodos() {

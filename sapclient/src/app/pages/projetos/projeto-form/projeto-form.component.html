@@ -69,7 +69,7 @@
       </div>
 
       <div class="p-field p-col-6">
-        <label>Cliente <span>*</span> :</label>
+        <label>Cliente <span>*</span>:</label>
         <p-dropdown [options]="clientes" placeholder="Selecione um cliente" formControlName="idCliente"></p-dropdown>
         <p-message severity="error" text="O cliente é obrigatório"
           *ngIf="form.get('idCliente').errors && form.get('idCliente').errors.required && form.get('idCliente').invalid && form.get('idCliente').touched">

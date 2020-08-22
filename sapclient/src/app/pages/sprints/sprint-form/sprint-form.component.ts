@@ -48,8 +48,6 @@ export class SprintFormComponent implements OnInit {
     private statusService: StatusService,
     private ordemServico: OrdemServicoService
 
-
-
   ) { }
 
   ngOnInit(): void {
@@ -65,24 +63,23 @@ export class SprintFormComponent implements OnInit {
 
   private setAcaoAtual() {
     if (this.route.snapshot.url[0].path == 'novo') {
-      this.titulo = 'Cadastro de Projeto';
+      this.titulo = 'Cadastro de Sprints';
       return;
     }
-    this.titulo = 'Editando projeto';
+    this.titulo = 'Editando Sprint';
   }
 
 
   iniciarForm() {
     this.form = this.formBuilder.group({
       id: [null],
-      nome: [null,
-        [Validators.required, Validators.minLength(3)]],
-      dataInicio: [null],
-      dataTermino: [null],
-      pontosFuncao: [null],
-      impedimento: [null],
-      prazo: [null],
-      idStatus: [null]
+      nome: [null, [Validators.required, Validators.minLength(3)]],
+      dataInicio: [null, [Validators.required]],
+      dataTermino: [null, [Validators.required]],
+      pontosFuncao: [null, [Validators.required]],
+      impedimento: [null, [Validators.required]],
+      prazo: [null, [Validators.required]],
+      idStatus: [null, [Validators.required]]
     })
   }
   enviarForm() {
