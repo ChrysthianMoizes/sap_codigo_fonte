@@ -1,3 +1,4 @@
+import { ClienteService } from './../../services/cliente.service';
 import { LiderService } from './../../services/lider.service';
 import { SprintService } from './../../services/sprint.service';
 import { ProjetoService } from './../../services/projeto.service';
@@ -27,8 +28,7 @@ export class DashboardComponent implements OnInit {
   projetos: any = [];
   sprints: any = [];
   lideres: any = [];
-
-
+  clientes: any = [];
 
   // dashboard = [
   //   { os: 'site2', status: 'Em andamento', pf: '20', proxEntrega: '20/05', prazo: 'não', defeitoCliente: '1', defeitoInterno: '10', impedimento: 'não', revisor: 'Diego', testador: 'Ana', gerente: 'Chrys' },
@@ -58,27 +58,25 @@ export class DashboardComponent implements OnInit {
     private projetoService: ProjetoService,
     private situacaoService: SituacaoService,
     private liderService: LiderService,
-    private sprintService: SprintService
+    private sprintService: SprintService,
+    private clienteService: ClienteService
   ) { }
 
   ngOnInit(): void {
-
     this.obterSituacoes();
     this.obterProjetos();
     this.obterTodos();
     this.obterSprint();
     this.obterLideres();
-
-
+    this.obterClientes();
   }
-  obterTodos() {
 
+  obterTodos() {
     this.listaOrdemServico$ = this.ordemServicoService.obterTodos().pipe(
       map(res => {
         res.forEach(item => {
           item.dataProximaEntrega = new Date(`${item.dataProximaEntrega}T00:00:00`);
           item.prazo = new Date(`${item.prazo}T00:00:00`);
-          console.log(item.prazo);
         })
         return res;
       }),
@@ -95,8 +93,6 @@ export class DashboardComponent implements OnInit {
     );
   }
 
-
-
   obterProjetos() {
     this.blockUI.start();
     this.projetoService.obterTodos().pipe(
@@ -109,13 +105,13 @@ export class DashboardComponent implements OnInit {
 
   obterLideres() {
     this.blockUI.start();
-
     this.liderService.obterTodos().pipe(
       finalize(() => this.blockUI.stop())
     ).subscribe(
       lideres => this.lideres = lideres
     );
   }
+
   obterNomeLider(id: number) {
     return this.lideres.find(lider => lider.id == id).nome
   }
@@ -128,6 +124,7 @@ export class DashboardComponent implements OnInit {
       sprints => this.sprints = sprints
     );
   }
+
   obterSituacoes() {
     this.blockUI.start();
     this.situacaoService.obterTodos().pipe(
@@ -136,6 +133,15 @@ export class DashboardComponent implements OnInit {
       situacoes => this.situacoes = situacoes
     );
   }
+  obterClientes() {
+    this.blockUI.start();
+    this.clienteService.obterTodos().pipe(
+      finalize(() => this.blockUI.stop())
+    ).subscribe(
+      clientes => this.clientes = clientes
+    );
+  }
+
   obterSituacaoSprint(id: number) {
     return this.sprints.find(sprint => sprint.idOrdemServico == id).prazo
   }
@@ -155,12 +161,17 @@ export class DashboardComponent implements OnInit {
   obterNomeGerente(id: number) {
     return this.projetos.find(projeto => projeto.id == id).gerente
   }
+
   obterNomeTestador(id: number) {
     return this.projetos.find(projeto => projeto.id == id).testador
   }
+
   obterNomeRevisor(id: number) {
     return this.projetos.find(projeto => projeto.id == id).revisor
+  }
 
+  obterCliente(id: number) {
+    return this.projetos.find(projeto => projeto.id == id).idCliente
   }
 
 }
