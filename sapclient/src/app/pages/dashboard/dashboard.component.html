@@ -1,77 +1,99 @@
-<!-- <p-card header='{{ titulo }}' styleClass="ui-card-shadow">
-        <p-table [value]="dashboard" [paginator]="true"  [rows]="4" [rowsPerPageOptions]="[2, 4, 8, 10]" [response]="true" [columns]="colunas"  [resizableColumns]="true">
-            <ng-template let-columns pTemplate="header">
-                <tr>
-                    <th  *ngFor="let coluna of columns" pResizableColumn>
-                        {{ coluna.header }}
-                    </th>
-                </tr>
-            </ng-template>
-            <ng-template pTemplate="body" let-teste>
-              <tr>
-                <td>{{ teste.os }}</td>
-                <td>{{ teste.status }}</td>
-                <td>{{ teste.pf }}</td>
-                <td>{{ teste.proxEntrega }}</td>
-                <td>{{ teste.prazo }} </td>
-                <td>{{ teste.defeitoCliente }}</td>
-                <td>{{ teste.defeitoInterno }}</td>
-                <td>{{ teste.impedimento }}</td>
-                <td>{{ teste.revisor }} </td>
-                <td>{{ teste.testador }}</td>
-                <td>{{ teste.gerente }}</td>
-                <td class="action-buttons">
-                  <button pButton icon="ui-icon-mode-edit"></button>
-                  <button pButton icon="pi pi-times" (click)="deletar(lider.id)"></button>
-                </td>
-              </tr>
-            </ng-template>
-        </p-table>
-</p-card> -->
+<ng-container *ngIf="listaOrdemServico$ | async as listaOrdemServico; else loading ">
+  <p-fieldset legend="GP3" [toggleable]="true">
+  <p-table [paginator]="true" [rows]="2" [responsive]="true" [rowsPerPageOptions]="[2, 4, 8, 10]" [columns]="colunas" [value]="listaOrdemServico">
+    <ng-template let-columns pTemplate="header">
+      <tr>
+        <th [class.action]="coluna.header == 'Ações'" *ngFor="let coluna of columns">
+          {{ coluna.header }}
+        </th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-ordemservico>
+      <tr>
+        
+        <td>{{ ordemservico.nome }}</td>
+        <td>{{ obterNomeSituacao(ordemservico.idSituacao)}}</td>
+        <td>{{ ordemservico.pontosFuncao }}</td>
+        <td>{{ ordemservico.dataProximaEntrega | date:'dd/MM/yyyy'  }}</td>
+        <td>{{ obterSituacaoSprint(ordemservico.id) }}</td>
+        <td>{{ ordemservico.qtdDefeitosInterno || 0 }}</td>
+        <td>{{  ordemservico.qtdDefeitosCliente || 0}}</td>
+        <td>{{ obterImpedimentoSprint(ordemservico.id) }}</td>
+        <td>{{ obterNomeRevisor(ordemservico.idProjeto) }}</td>
+        <td>{{ obterNomeGerente(ordemservico.idProjeto) }}</td>
+        <td>{{ obterNomeTestador(ordemservico.idProjeto) }}</td>
+        <td class="action-buttons">
+          <button [routerLink]="[ordemservico.id]" pButton icon="ui-icon-mode-edit"></button>
+          <button pButton icon="pi pi-times" (click)="deletar(ordemservico.id)"></button>
+        </td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="emptymessage" let-columns>
+      <tr>
+        <td [attr.colspan]="columns.length">
+          <div class="text-center">
+            <h3>Nenhum Registro cadastrado!</h3>
+          </div>
+        </td>
+      </tr>
+    </ng-template>
+    
+  </p-table>
+</p-fieldset>
+</ng-container>
+
 
 <h1 style="text-align:center;">Painel de controle de projetos</h1>
 
 <p-fieldset legend="EXERCITO-SGVM" [toggleable]="true">
-  <button class="botao" routerLink="/ordens-servico/novo" pButton icon="pi pi-check" iconPost="left" label="Novo"></button>
-  <p-table [value]="dashboard" [paginator]="true"  [rows]="4" [rowsPerPageOptions]="[2, 4, 8, 10]" [response]="true" [columns]="colunas"  [resizableColumns]="true">
+
+  <button class="botao" routerLink="/ordens-servico/novo" pButton icon="pi pi-check" iconPost="left"
+    label="Novo"></button>
+
+  <p-table [value]="listaOrdemServico" [paginator]="true" [rows]="4" [rowsPerPageOptions]="[2, 4, 8, 10]"
+    [response]="true" [columns]="colunas" [resizableColumns]="true">
     <ng-template let-columns pTemplate="header">
-        <tr>
-            <th  *ngFor="let coluna of columns" pResizableColumn>
-                {{ coluna.header }}
-            </th>
-        </tr>
+      <tr>
+        <th [class.action]="coluna.header == 'Ações'" *ngFor="let coluna of columns" pResizableColumn>
+          {{ coluna.header }}
+        </th>
+      </tr>
     </ng-template>
     <ng-template pTemplate="body" let-teste>
       <tr>
-        <td>{{ teste.os }}</td>
-        <td>{{ teste.status }}</td>
-        <td>{{ teste.pf }}</td>
-        <td>{{ teste.proxEntrega }}</td>
-        <td>{{ teste.prazo }} </td>
-        <td>{{ teste.defeitoCliente }}</td>
-        <td>{{ teste.defeitoInterno }}</td>
-        <td>{{ teste.impedimento }}</td>
-        <td>{{ teste.revisor }} </td>
-        <td>{{ teste.testador }}</td>
-        <td>{{ teste.gerente }}</td>
+        <td>{{ teste.nome || 0}}</td>
+        <td>{{ ordemservico.pontosFuncao || 0}}</td>
+        <td>{{ teste.pf || 0}}</td>
+        <td>{{  ordemservico.dataProximaEntrega | date:'dd/MM/yyyy' || 0}}</td>
+        <td>{{ teste.prazo || 0}} </td>
+        <td>{{ ordemservico.qtdDefeitosCliente || 0 }}</td>
+        <td>{{ ordemservico.qtdDefeitosInterno || 0  }}</td>
+        <td>{{ teste.impedimento || 0}}</td>
+        <td>{{ teste.revisor || 0}} </td>
+        <td>{{ teste.testador || 0}}</td>
+        <td>{{ teste.gerente || 0}}</td>
         <td class="action-buttons">
           <button pButton icon="ui-icon-mode-edit"></button>
           <button pButton icon="pi pi-times" (click)="deletar(lider.id)"></button>
         </td>
       </tr>
     </ng-template>
-</p-table>
+  </p-table>
 </p-fieldset>
 
+
+
 <p-fieldset legend="IBAMA-CADE" [toggleable]="true">
-  <button class="botao" routerLink="/ordens-servico/novo" pButton icon="pi pi-check" iconPost="left" label="Novo"></button>
-  <p-table [value]="dashboard" [paginator]="true"  [rows]="4" [rowsPerPageOptions]="[2, 4, 8, 10]" [response]="true" [columns]="colunas"  [resizableColumns]="true">
+  <button class="botao" routerLink="/ordens-servico/novo" pButton icon="pi pi-check" iconPost="left"
+    label="Novo"></button>
+  <p-table [value]="dashboard" [paginator]="true" [rows]="4" [rowsPerPageOptions]="[2, 4, 8, 10]" [response]="true"
+    [columns]="colunas" [resizableColumns]="true">
     <ng-template let-columns pTemplate="header">
-        <tr>
-            <th  *ngFor="let coluna of columns" pResizableColumn>
-                {{ coluna.header }}
-            </th>
-        </tr>
+      <tr>
+        <th *ngFor="let coluna of columns" pResizableColumn>
+          {{ coluna.header }}
+        </th>
+      </tr>
     </ng-template>
     <ng-template pTemplate="body" let-teste>
       <tr>
@@ -92,17 +114,18 @@
         </td>
       </tr>
     </ng-template>
-</p-table>
+  </p-table>
 </p-fieldset>
 
 <p-fieldset legend="IBAMA-SEI" [toggleable]="true">
-  <p-table class="botao" [value]="dashboard" [paginator]="true"  [rows]="4" [rowsPerPageOptions]="[2, 4, 8, 10]" [response]="true" [columns]="colunas"  [resizableColumns]="true">
+  <p-table class="botao" [value]="dashboard" [paginator]="true" [rows]="4" [rowsPerPageOptions]="[2, 4, 8, 10]"
+    [response]="true" [columns]="colunas" [resizableColumns]="true">
     <ng-template let-columns pTemplate="header">
-        <tr>
-            <th  *ngFor="let coluna of columns" pResizableColumn>
-                {{ coluna.header }}
-            </th>
-        </tr>
+      <tr>
+        <th *ngFor="let coluna of columns" pResizableColumn>
+          {{ coluna.header }}
+        </th>
+      </tr>
     </ng-template>
     <ng-template pTemplate="body" let-teste>
       <tr>
@@ -123,5 +146,5 @@
         </td>
       </tr>
     </ng-template>
-</p-table>
+  </p-table>
 </p-fieldset>
