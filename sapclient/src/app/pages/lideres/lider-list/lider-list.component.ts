@@ -27,6 +27,7 @@ export class LiderListComponent implements OnInit {
   ngOnInit(): void {
       this.obterTodos();
   }
+  
   obterTodos() {
     this.blockUI.start();
     this.listaLideres$ = this.liderService.obterTodos().pipe(

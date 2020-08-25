@@ -36,3 +36,11 @@ body .ui-message .ui-message-icon.pi-times {
 input {
   text-transform: uppercase !important;
 }
+
+body .ui-tabview {
+  padding: 0;
+  margin-bottom: 5px;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}

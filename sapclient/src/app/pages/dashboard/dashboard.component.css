@@ -1,3 +1,11 @@
 .botao {
     float: right;
 }
+
+body .ui-tabview {
+    padding: 0;
+    margin-bottom: 5px;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}

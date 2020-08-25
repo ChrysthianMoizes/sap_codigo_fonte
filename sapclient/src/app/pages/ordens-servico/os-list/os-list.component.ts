@@ -91,6 +91,7 @@ export class OsListComponent implements OnInit {
     );
   }
 
+
   obterNomeSituacao(id: number) {
     return this.situacoes.find(situacao => situacao.id == id).descricao
   }
