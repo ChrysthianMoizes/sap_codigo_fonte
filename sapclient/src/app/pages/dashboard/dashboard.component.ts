@@ -1,14 +1,15 @@
 import { ClienteService } from './../../services/cliente.service';
 import { LiderService } from './../../services/lider.service';
 import { SprintService } from './../../services/sprint.service';
-import { ProjetoService } from './../../services/projeto.service';
 
+import { ProjetoService } from './../../services/projeto.service';
 import { OrdemServicoService } from './../../services/ordem-servico.service';
 import { SituacaoService } from './../../services/situacao.service';
-import { Observable } from 'rxjs';
 
+import { Observable } from 'rxjs';
 import { finalize, map } from 'rxjs/operators';
 import { Component, OnInit } from '@angular/core';
+
 import { BlockUI, NgBlockUI } from 'ng-block-ui';
 
 @Component({
@@ -16,6 +17,8 @@ import { BlockUI, NgBlockUI } from 'ng-block-ui';
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css']
 })
+
+
 
 export class DashboardComponent implements OnInit {
 
@@ -30,13 +33,13 @@ export class DashboardComponent implements OnInit {
   lideres: any = [];
   clientes: any = [];
 
-  // dashboard = [
-  //   { os: 'site2', status: 'Em andamento', pf: '20', proxEntrega: '20/05', prazo: 'não', defeitoCliente: '1', defeitoInterno: '10', impedimento: 'não', revisor: 'Diego', testador: 'Ana', gerente: 'Chrys' },
-  //   { os: 'site', status: 'Pausado', pf: '20', proxEntrega: '20/05', prazo: 'não', defeitoCliente: '1', defeitoInterno: '10', impedimento: 'não', revisor: 'Diego', testador: 'Ana', gerente: 'Chrys' },
-  //   { os: 'site3', status: 'Pausado', pf: '20', proxEntrega: '20/05', prazo: 'não', defeitoCliente: '1', defeitoInterno: '10', impedimento: 'não', revisor: 'Diego', testador: 'Ana', gerente: 'Chrys' },
-  //   { os: 'site4', status: 'Pausado', pf: '20', proxEntrega: '20/05', prazo: 'não', defeitoCliente: '1', defeitoInterno: '10', impedimento: 'não', revisor: 'Diego', testador: 'Ana', gerente: 'Chrys' },
-  //   { os: 'site5', status: 'Pausado', pf: '20', proxEntrega: '20/05', prazo: 'não', defeitoCliente: '1', defeitoInterno: '10', impedimento: 'não', revisor: 'Diego', testador: 'Ana', gerente: 'Chrys' }
-  // ]
+  dashboard = [
+    { os: 'site2', status: 'Em andamento', pf: '20', proxEntrega: '20/05', prazo: 'não', defeitoCliente: '1', defeitoInterno: '10', impedimento: 'não', revisor: 'Diego', testador: 'Ana', gerente: 'Chrys' },
+    { os: 'site', status: 'Pausado', pf: '20', proxEntrega: '20/05', prazo: 'não', defeitoCliente: '1', defeitoInterno: '10', impedimento: 'não', revisor: 'Diego', testador: 'Ana', gerente: 'Chrys' },
+    { os: 'site3', status: 'Pausado', pf: '20', proxEntrega: '20/05', prazo: 'não', defeitoCliente: '1', defeitoInterno: '10', impedimento: 'não', revisor: 'Diego', testador: 'Ana', gerente: 'Chrys' },
+    { os: 'site4', status: 'Pausado', pf: '20', proxEntrega: '20/05', prazo: 'não', defeitoCliente: '1', defeitoInterno: '10', impedimento: 'não', revisor: 'Diego', testador: 'Ana', gerente: 'Chrys' },
+    { os: 'site5', status: 'Pausado', pf: '20', proxEntrega: '20/05', prazo: 'não', defeitoCliente: '1', defeitoInterno: '10', impedimento: 'não', revisor: 'Diego', testador: 'Ana', gerente: 'Chrys' }
+  ]
 
   colunas: any[] = [
     { header: 'OS' },
@@ -69,6 +72,9 @@ export class DashboardComponent implements OnInit {
     this.obterSprint();
     this.obterLideres();
     this.obterClientes();
+
+
+   
   }
 
   obterTodos() {
@@ -171,7 +177,8 @@ export class DashboardComponent implements OnInit {
   }
 
   obterCliente(id: number) {
-    return this.projetos.find(projeto => projeto.id == id).idCliente
+    return this.projetos.find(projeto => projeto.id== id).idCliente
   }
+
 
 }
