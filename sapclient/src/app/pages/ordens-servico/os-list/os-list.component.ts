@@ -22,6 +22,7 @@ export class OsListComponent implements OnInit {
   listaOrdemServico: any = [];
   situacoes: any = [];
   projetos: any = [];
+  status: any = [];
   display: boolean = false;
   
   colunas: any = [

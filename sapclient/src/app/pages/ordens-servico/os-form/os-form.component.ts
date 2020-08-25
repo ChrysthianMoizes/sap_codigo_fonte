@@ -123,8 +123,6 @@ export class OsFormComponent implements OnInit {
     }
   }
 
-
-
   salvar() {
     this.blockUI.start();
     const recurso = Object.assign(new OrdemServico(), this.form.value);

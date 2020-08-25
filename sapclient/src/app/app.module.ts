@@ -16,7 +16,6 @@ import { PaginaInicialComponent } from './view/pagina-inicial/pagina-inicial.com
 import { BlockUIModule } from 'ng-block-ui';
 import {PaginatorModule} from 'primeng/paginator';
 import {TableModule} from 'primeng/table';
-// import {NgxPaginationModule} from 'ngx-pagination';
 import { from } from 'rxjs';
 
 @NgModule({
@@ -44,7 +43,6 @@ import { from } from 'rxjs';
         MenuModule,
         PaginatorModule,
         TableModule,
-        // NgxPaginationModule
     ],
     providers: [
         { provide: LocationStrategy, useClass: HashLocationStrategy }
