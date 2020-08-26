@@ -1,3 +1,4 @@
+import { SprintService } from './../../../services/sprint.service';
 import { Sprint } from './../../../models/sprint.model';
 import { SprintFormComponent } from './../../sprints/sprint-form/sprint-form.component';
 import { SituacaoService } from './../../../services/situacao.service';
@@ -59,7 +60,8 @@ export class OsFormComponent implements OnInit {
     private ordemService: OrdemServicoService,
     private projetoService: ProjetoService,
     private situacaoService: SituacaoService,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private sprintService: SprintService
   ) { }
 
   ngOnInit(): void {
@@ -194,5 +196,12 @@ export class OsFormComponent implements OnInit {
 
   showDialogSprint() {
     this.sprintDialog.mostrarDialog();
+  }
+
+  deletar(id: number) {
+    this.blockUI.start();
+    this.sprintService.deletar(id).pipe(
+      finalize(() => this.blockUI.stop())
+    )
   }
 }
