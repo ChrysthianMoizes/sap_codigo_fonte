@@ -82,11 +82,79 @@
         </ng-template>
         <ng-template pTemplate="body" let-sprint>
           <tr>
-            <td>{{ sprint.nome | uppercase }}</td>
-            <td>{{ sprint.dataInicio | date:'dd/MM/yyyy' }}</td>
-            <td>{{ sprint.dataTermino | date:'dd/MM/yyyy' }}</td>
-            <td>{{ sprint.pontosFuncao }}</td>
-            <td>{{ sprint.idStatus }}</td>
+            <h3>Edição de sprint</h3>
+<p-table [value]="sprint" dataKey="id" editMode="row">
+    <ng-template pTemplate="header">
+        <tr>
+            <th>Nome</th>
+            <th>dataInicio</th>
+            <th>dataTermino</th>
+            <th>pontosFuncao</th>
+            <th>idStatus</th>
+            <th style="width:8em"></th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-sprint let-editing="editing" let-ri="rowIndex">
+        <tr [pEditableRow]="sprint">
+            <td>{{ sprint.nome | uppercase }}
+              <td>
+                <p-cellEditor>
+                    <ng-template pTemplate="input">
+                        <input pInputText type="text" [(ngModel)]="sprint.nome" [ngStyle]="{'width':'100%'}">
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                        {{sprint.nome}}
+                    </ng-template>
+                </p-cellEditor>
+            </td>
+            <td>{{ sprint.dataInicio | date:'dd/MM/yyyy' }}
+              <td>
+                <p-cellEditor>
+                    <ng-template pTemplate="input">
+                        <input pInputText type="text" [(ngModel)]="sprint.dataInicio" required[ngStyle]=>
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                        {{sprint.dataInicio}}
+                    </ng-template>
+                </p-cellEditor>
+            </td>
+            <td>{{ sprint.dataTermino | date:'dd/MM/yyyy' }}
+              <td>
+                <p-cellEditor>
+                    <ng-template pTemplate="input">
+                        <input pInputText type="text" [(ngModel)]="sprint.dataTermino" required[ngStyle]=>
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                        {{sprint.dataTermino}}
+                    </ng-template>
+                </p-cellEditor>
+            </td>
+            <td>{{ sprint.pontosFuncao }}
+              <td>
+                <p-cellEditor>
+                    <ng-template pTemplate="input">
+                        <input pInputText type="text" [(ngModel)]="sprint.pontosFuncao" required>
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                        {{sprint.pontosFuncao}}
+                    </ng-template>
+                </p-cellEditor>
+            </td>
+            <td>{{ sprint.idStatus }}
+              <p-cellEditor>
+                <ng-template pTemplate="input">
+                    <p-dropdown [options]="status" [(ngModel)]="sprint.idStatus" [style]="{'width':'100%'}"></p-dropdown>
+                </ng-template>
+                <ng-template pTemplate="output">
+                    {{sprint.idStatus}}
+                </ng-template>
+            </p-cellEditor>
+            </td>
+            <td style="text-align:center">
+              <button *ngIf="!editing" pButton type="button" pInitEditableRow icon="pi pi-pencil" class="ui-button-info" (click)="onRowEditInit(sprint)"></button>
+              <button *ngIf="editing" pButton type="button" pSaveEditableRow icon="pi pi-check" class="ui-button-success" style="margin-right: .5em" (click)="onRowEditSave(sprint)"></button>
+              <button *ngIf="editing" pButton type="button" pCancelEditableRow icon="pi pi-times" class="ui-button-danger" (click)="onRowEditCancel(sprint, ri)"></button>
+          </td>
             <td class="action-buttons">
               <button [routerLink]="[sprint.id]" pButton icon="ui-icon-mode-edit"></button>
               <button pButton icon="pi pi-times"></button>
