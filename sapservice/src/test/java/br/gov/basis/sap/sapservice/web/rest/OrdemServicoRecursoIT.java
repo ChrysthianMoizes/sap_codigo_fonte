@@ -1,10 +1,10 @@
 package br.gov.basis.sap.sapservice.web.rest;
 
+import br.gov.basis.sap.sapservice.builder.OrdemServicoBuilder;
 import br.gov.basis.sap.sapservice.builder.ProjetoBuilder;
-import br.gov.basis.sap.sapservice.domain.Lider;
+import br.gov.basis.sap.sapservice.domain.OrdemServico;
 import br.gov.basis.sap.sapservice.domain.Projeto;
 import br.gov.basis.sap.sapservice.util.IntTestComum;
-
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,12 +16,12 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @RunWith(SpringRunner.class )
 @Transactional
-public class ProjetoRecursoIT extends IntTestComum {
+public class OrdemServicoRecursoIT extends IntTestComum {
 
     @Autowired
-    private ProjetoBuilder projetoBuilder;
+    private OrdemServicoBuilder ordemServicoBuilder;
 
-    private static String RECURSO = "/projetos/";
+    private static String RECURSO = "/ordens-servico/";
 
     @Test
     public void obterTodosTest() throws Exception {
@@ -31,39 +31,40 @@ public class ProjetoRecursoIT extends IntTestComum {
 
     @Test
     public void obterPorIdTest() throws Exception {
-        Projeto projeto = projetoBuilder.construir();
-        getMockMvc().perform(get(RECURSO + projeto.getId())).
+        OrdemServico ordemServico  = ordemServicoBuilder.construir();
+        getMockMvc().perform(get(RECURSO + ordemServico.getId())).
             andExpect(status().isOk());
     }
 
     @Test
-    public void obterPorIdInexistenteTest() throws Exception {
-        getMockMvc().perform(get(RECURSO + "0"))
-            .andExpect(status().isBadRequest());
+    public  void obterPorProjeto() throws Exception{
+        OrdemServico ordemServico  = ordemServicoBuilder.construirEntidade();
+        getMockMvc().perform(get(RECURSO + ordemServico.getProjeto().getId()+"/projeto"))
+            .andExpect(status().isOk());
     }
 
     @Test
     public void removerTest() throws Exception {
-        Projeto projeto = projetoBuilder.construir();
-        getMockMvc().perform(delete(RECURSO + projeto.getId()))
+        OrdemServico ordemServico = ordemServicoBuilder.construir();
+        getMockMvc().perform(delete(RECURSO + ordemServico.getId()))
             .andExpect(status().isOk());
     }
 
     @Test
     public void salvarTest() throws Exception {
-        Projeto projeto = projetoBuilder.construir();
+        OrdemServico ordemServico = ordemServicoBuilder.construir();
         getMockMvc().perform(post(RECURSO)
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(projeto)))
+            .content(TestUtil.convertObjectToJsonBytes(ordemServico)))
             .andExpect(status().isCreated());
     }
 
     @Test
     public void atualizarTest() throws Exception {
-        Projeto projeto = projetoBuilder.construir();
+        OrdemServico ordemServico = ordemServicoBuilder.construir();
         getMockMvc().perform(put(RECURSO)
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(projeto)))
+            .content(TestUtil.convertObjectToJsonBytes(ordemServico)))
             .andExpect(status().isOk());
     }
 }

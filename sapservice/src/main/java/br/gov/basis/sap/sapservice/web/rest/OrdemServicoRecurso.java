@@ -1,5 +1,6 @@
 package br.gov.basis.sap.sapservice.web.rest;
 
+import br.gov.basis.sap.sapservice.domain.OrdemServico;
 import br.gov.basis.sap.sapservice.service.OrdemServicoServico;
 import br.gov.basis.sap.sapservice.service.dto.OrdemServicoDTO;
 import lombok.RequiredArgsConstructor;
@@ -34,6 +35,12 @@ public class OrdemServicoRecurso {
     public ResponseEntity<OrdemServicoDTO> obterPorId(@PathVariable Integer id) {
         OrdemServicoDTO ordemServicoDTO = ordemServicoServico.obterPorId(id);
         return ResponseEntity.ok().body(ordemServicoDTO);
+    }
+
+    @GetMapping("/{id}/projeto")
+    public ResponseEntity<List<OrdemServicoDTO>> obterPorProjeto(@PathVariable Integer id){
+        List<OrdemServicoDTO> ordemServicoDTOS = ordemServicoServico.obterPorProjeto(id);
+        return ResponseEntity.ok().body(ordemServicoDTOS);
     }
 
     @PostMapping
