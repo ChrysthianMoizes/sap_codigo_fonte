@@ -21,6 +21,7 @@ public class LiderBuilder extends ConstrutorDeEntidade<Lider>{
     @Override
     public Lider construirEntidade() throws ParseException {
         Lider lider = new Lider();
+
         lider.setNome("Lider 1");
         lider.setContato("lider@basis.com.br");
         return lider;
