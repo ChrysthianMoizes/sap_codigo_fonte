@@ -23,7 +23,7 @@ export class ProjetoListComponent implements OnInit {
   listaClientes: any = [];
   listaLideres: any = [];
 
-  colunas: any = [
+  colunas:any = [
     { header: 'Nome' },
     { header: 'Cliente' },
     { header: 'Lider' },
@@ -41,7 +41,7 @@ export class ProjetoListComponent implements OnInit {
   ngOnInit(): void {
       this.listarClientes();
       this.listarLideres();
-    this.obterTodos();
+      this.obterTodos();
   }
 
   obterTodos() {

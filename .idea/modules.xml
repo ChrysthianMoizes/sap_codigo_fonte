@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/sap-parent.iml" filepath="$PROJECT_DIR$/sap-parent.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/sap_codigo_fonte.iml" filepath="$PROJECT_DIR$/.idea/sap_codigo_fonte.iml" />
       <module fileurl="file://$PROJECT_DIR$/sapservice/sapservice.iml" filepath="$PROJECT_DIR$/sapservice/sapservice.iml" />
     </modules>
   </component>

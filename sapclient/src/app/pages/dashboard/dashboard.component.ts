@@ -1,21 +1,39 @@
+import { StatusService } from './../../services/status.service';
+import { Sprint } from './../../models/sprint.model';
 import { ClienteService } from './../../services/cliente.service';
+import { trigger, state, style, transition, animate } from '@angular/animations';
+
 import { LiderService } from './../../services/lider.service';
 import { SprintService } from './../../services/sprint.service';
 
 import { ProjetoService } from './../../services/projeto.service';
 import { OrdemServicoService } from './../../services/ordem-servico.service';
 import { SituacaoService } from './../../services/situacao.service';
+import { Observable, forkJoin } from 'rxjs';
 
-import { Observable } from 'rxjs';
-import { finalize, map } from 'rxjs/operators';
+import { finalize, map, tap } from 'rxjs/operators';
 import { Component, OnInit } from '@angular/core';
 
 import { BlockUI, NgBlockUI } from 'ng-block-ui';
+import { SelectItem } from 'primeng';
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.css']
+  styleUrls: ['./dashboard.component.css'],
+  animations: [
+    trigger('rowExpansionTrigger', [
+      state('void', style({
+        transform: 'translateX(-10%)',
+        opacity: 0
+      })),
+      state('active', style({
+        transform: 'translateX(0)',
+        opacity: 1
+      })),
+      transition('* <=> *', animate('600ms cubic-bezier(0.86, 0, 0.07, 1)'))
+    ])
+  ]
 })
 
 
@@ -27,34 +45,43 @@ export class DashboardComponent implements OnInit {
   titulo: string = 'Dashboard'
   listaOrdemServico$: Observable<any>;
   listaOrdemServico: any = [];
+  listaProjeto$: Observable<any>;
+  listaProjeto: any = [];
+  listaOsProjeto: SelectItem[] = [];
   situacoes: any = [];
   projetos: any = [];
   sprints: any = [];
   lideres: any = [];
-  clientes: any = [];
+  status: any=[];
 
-  dashboard = [
-    { os: 'site2', status: 'Em andamento', pf: '20', proxEntrega: '20/05', prazo: 'não', defeitoCliente: '1', defeitoInterno: '10', impedimento: 'não', revisor: 'Diego', testador: 'Ana', gerente: 'Chrys' },
-    { os: 'site', status: 'Pausado', pf: '20', proxEntrega: '20/05', prazo: 'não', defeitoCliente: '1', defeitoInterno: '10', impedimento: 'não', revisor: 'Diego', testador: 'Ana', gerente: 'Chrys' },
-    { os: 'site3', status: 'Pausado', pf: '20', proxEntrega: '20/05', prazo: 'não', defeitoCliente: '1', defeitoInterno: '10', impedimento: 'não', revisor: 'Diego', testador: 'Ana', gerente: 'Chrys' },
-    { os: 'site4', status: 'Pausado', pf: '20', proxEntrega: '20/05', prazo: 'não', defeitoCliente: '1', defeitoInterno: '10', impedimento: 'não', revisor: 'Diego', testador: 'Ana', gerente: 'Chrys' },
-    { os: 'site5', status: 'Pausado', pf: '20', proxEntrega: '20/05', prazo: 'não', defeitoCliente: '1', defeitoInterno: '10', impedimento: 'não', revisor: 'Diego', testador: 'Ana', gerente: 'Chrys' }
-  ]
 
   colunas: any[] = [
     { header: 'OS' },
     { header: 'Status da OS' },
-    { header: 'PF em execução' },
     { header: 'Próxima Entrega' },
-    { header: 'A OS/Sprint está no prazo?' },
-    { header: 'Defeito do Cliente' },
-    { header: 'Defeito interno' },
-    { header: 'Impedimento' },
-    { header: 'Revisor de Código' },
-    { header: 'Gerente' },
-    { header: 'Testador' },
-    { header: 'Ações' },
+    { header: 'No prazo?' },
+    { header: 'PF' },
+    { header: 'Fábrica(s)' },
   ];
+
+  colunaSprint: any[] = [
+    { header: 'Sprint' },
+    { header: 'Início' },
+    { header: 'Término' },
+    { header: 'PF' },
+    { header: 'Impedimento?' },
+    { header: 'No Prazo?' },
+    { header: 'Status' },
+  ];
+
+  teste = [
+    { nome: 'site', status: 'Em andamento', proxEntrega: '10-10-20', prazo: 'não', pf: '50', fabrica: 'SRC' },
+    { nome: 'site', status: 'Em andamento', proxEntrega: '10-10-20', prazo: 'não', pf: '50', fabrica: 'SRC' }
+  ];
+
+  testeSprint = [
+    { nome: 'dados', inicio: '10-10-20', termino: '15-10-20', pf: '20', impedimento: 'não', prazo: 'Sim', status: 'em andamento' }
+  ]
 
   constructor(
     private ordemServicoService: OrdemServicoService,
@@ -62,22 +89,22 @@ export class DashboardComponent implements OnInit {
     private situacaoService: SituacaoService,
     private liderService: LiderService,
     private sprintService: SprintService,
-    private clienteService: ClienteService
+    private clienteService: ClienteService,
+    private statusService: StatusService
   ) { }
 
   ngOnInit(): void {
+
     this.obterSituacoes();
     this.obterProjetos();
     this.obterTodos();
     this.obterSprint();
     this.obterLideres();
-    this.obterClientes();
-
-
-   
+    this.obterStatus();
   }
 
   obterTodos() {
+    // this.blockUI.start();
     this.listaOrdemServico$ = this.ordemServicoService.obterTodos().pipe(
       map(res => {
         res.forEach(item => {
@@ -90,15 +117,6 @@ export class DashboardComponent implements OnInit {
     )
   }
 
-  deletar(id: number) {
-    this.blockUI.start();
-    this.ordemServicoService.deletar(id).pipe(
-      finalize(() => this.blockUI.stop())
-    ).subscribe(
-      () => this.obterTodos()
-    );
-  }
-
   obterProjetos() {
     this.blockUI.start();
     this.projetoService.obterTodos().pipe(
@@ -106,6 +124,34 @@ export class DashboardComponent implements OnInit {
     ).subscribe(
       projetos => this.projetos = projetos
     );
+  }
+
+  obterOrdemServico() {
+    this.blockUI.start();
+    this.ordemServicoService.obterTodos().pipe(
+      finalize(() => this.blockUI.stop())
+    ).subscribe(
+      ordemServico => this.listaOrdemServico = ordemServico
+    );
+  }
+
+
+  obterSprint() {
+    this.blockUI.start();
+    this.sprintService.obterTodos().pipe(
+      finalize(() => this.blockUI.stop())
+    ).subscribe(
+      sprints => this.sprints = sprints
+    );
+  }
+
+  obterOsPorProjeto(id) {
+    this.blockUI.start();
+    this.ordemServicoService.obterPorIdProjeto(id)
+      .pipe(
+        finalize(() => this.blockUI.stop()),
+        tap(console.log)
+      ).subscribe(osProjeto => this.listaOsProjeto = osProjeto)
   }
 
 
@@ -118,19 +164,6 @@ export class DashboardComponent implements OnInit {
     );
   }
 
-  obterNomeLider(id: number) {
-    return this.lideres.find(lider => lider.id == id).nome
-  }
-
-  obterSprint() {
-    this.blockUI.start();
-    this.sprintService.obterTodos().pipe(
-      finalize(() => this.blockUI.stop())
-    ).subscribe(
-      sprints => this.sprints = sprints
-    );
-  }
-
   obterSituacoes() {
     this.blockUI.start();
     this.situacaoService.obterTodos().pipe(
@@ -138,14 +171,25 @@ export class DashboardComponent implements OnInit {
     ).subscribe(
       situacoes => this.situacoes = situacoes
     );
+
   }
-  obterClientes() {
+  obterStatus() {
     this.blockUI.start();
-    this.clienteService.obterTodos().pipe(
+    this.statusService.obterTodos().pipe(
       finalize(() => this.blockUI.stop())
     ).subscribe(
-      clientes => this.clientes = clientes
+      status => this.status = status
     );
+
+
+  }
+
+  obterNomeStatus(id: number) {
+    return this.status.find(status => status.id == id).descricao
+  }
+
+  obterNomeLider(id: number) {
+    return this.lideres.find(lider => lider.id == id).nome
   }
 
   obterSituacaoSprint(id: number) {
@@ -176,9 +220,21 @@ export class DashboardComponent implements OnInit {
     return this.projetos.find(projeto => projeto.id == id).revisor
   }
 
-  obterCliente(id: number) {
-    return this.projetos.find(projeto => projeto.id== id).idCliente
+  private mapearOsProjeto(array) {
+    return array[0].map(os => {
+      os.nome = array[1].find(projeto => projeto.id === os.idOrdemServico).nome + ' - ' + os.nome;
+    })
   }
 
-
+  private mapearLiderProjeto(array) {
+    return array[0].map(lider => {
+      lider.nome = array[1].find(projeto => projeto.id === lider.idLider).nome;
+    })
+  }
+  obterCliente(id: number) {
+    return this.projetos.find(projeto => projeto.id == id).idCliente
+  }
+  obterSprints(id: number) {
+    return this.sprints.find(sprints => sprints.idOrdemServico == id).nome
+  }
 }

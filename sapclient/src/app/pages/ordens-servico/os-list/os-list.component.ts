@@ -22,6 +22,7 @@ export class OsListComponent implements OnInit {
   listaOrdemServico: any = [];
   situacoes: any = [];
   projetos: any = [];
+  status: any = [];
   display: boolean = false;
   
   colunas: any = [
@@ -90,6 +91,7 @@ export class OsListComponent implements OnInit {
       projetos => this.projetos = projetos
     );
   }
+
 
   obterNomeSituacao(id: number) {
     return this.situacoes.find(situacao => situacao.id == id).descricao
