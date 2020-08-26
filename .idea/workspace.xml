@@ -3,45 +3,51 @@
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="BRANCH:origin/basis-carlos" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </select>
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="8cb862e7-64b8-431b-9a1b-22958a899c91" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/sap_codigo_fonte.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/sapclient/teste.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" beforeDir="false" />
+    <list default="true" id="276d3e17-78be-4335-9b87-601090f9cfff" name="Default Changelist" comment="Merge branch 'develop' of https://github.com/ChrysthianMoizes/sap_codigo_fonte into frontCarlos&#10;&#10;# Conflicts:&#10;#&#9;sapservice/src/test/java/br/gov/basis/sap/sapservice/web/rest/LiderRecursoIT.java">
       <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dbnavigator.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sap-parent.iml" beforeDir="false" afterPath="$PROJECT_DIR$/sap-parent.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sapclient/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/sapclient/src/app/app.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sapclient/src/app/pages/dashboard/dashboard.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/sapclient/src/app/pages/dashboard/dashboard.component.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sapclient/src/app/pages/dashboard/dashboard.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/sapclient/src/app/pages/dashboard/dashboard.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sapclient/src/app/pages/dashboard/dashboard.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/sapclient/src/app/pages/dashboard/dashboard.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sapclient/src/app/pages/lideres/lider-form/lider-form.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/sapclient/src/app/pages/lideres/lider-form/lider-form.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sapclient/src/app/pages/lideres/lider-list/lider-list.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/sapclient/src/app/pages/lideres/lider-list/lider-list.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sapclient/src/app/pages/ordens-servico/os-form/os-form.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/sapclient/src/app/pages/ordens-servico/os-form/os-form.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sapclient/src/app/pages/ordens-servico/os-list/os-list.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/sapclient/src/app/pages/ordens-servico/os-list/os-list.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sapclient/src/app/pages/projetos/projeto-form/projeto-form.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/sapclient/src/app/pages/projetos/projeto-form/projeto-form.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sapclient/src/app/pages/projetos/projeto-list/projeto-list.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/sapclient/src/app/pages/projetos/projeto-list/projeto-list.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sapclient/src/app/pages/sprints/sprint-form/sprint-form.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/sapclient/src/app/pages/sprints/sprint-form/sprint-form.component.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sapclient/src/app/pages/sprints/sprint-form/sprint-form.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/sapclient/src/app/pages/sprints/sprint-form/sprint-form.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sapclient/src/app/pages/sprints/sprint-form/sprint-form.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/sapclient/src/app/pages/sprints/sprint-form/sprint-form.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sapclient/src/app/services/ordem-servico.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/sapclient/src/app/services/ordem-servico.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sapclient/src/assets/layout/images/logo.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/sapclient/src/assets/layout/images/basis.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sapclient/src/styles.scss" beforeDir="false" afterPath="$PROJECT_DIR$/sapclient/src/styles.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sapservice/src/main/java/br/gov/basis/sap/sapservice/repository/OrdemServicoRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/sapservice/src/main/java/br/gov/basis/sap/sapservice/repository/OrdemServicoRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sapservice/src/main/java/br/gov/basis/sap/sapservice/service/OrdemServicoServico.java" beforeDir="false" afterPath="$PROJECT_DIR$/sapservice/src/main/java/br/gov/basis/sap/sapservice/service/OrdemServicoServico.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sapservice/src/main/java/br/gov/basis/sap/sapservice/web/rest/OrdemServicoRecurso.java" beforeDir="false" afterPath="$PROJECT_DIR$/sapservice/src/main/java/br/gov/basis/sap/sapservice/web/rest/OrdemServicoRecurso.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sapservice/src/test/java/br/gov/basis/sap/sapservice/web/rest/TipoStatusRecursoIT.java" beforeDir="false" afterPath="$PROJECT_DIR$/sapservice/src/test/java/br/gov/basis/sap/sapservice/web/rest/TipoStatusRecursoIT.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
+    <branch-grouping />
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="basis-carlos" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="MavenImportPreferences">
@@ -51,7 +57,7 @@
       </MavenGeneralSettings>
     </option>
   </component>
-  <component name="ProjectId" id="1ge41MrE1rvSn4sbomwRVD27HpT" />
+  <component name="ProjectId" id="1fjR9c2ARS9tSGaEQQ4ol1ocAFV" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
@@ -60,12 +66,36 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/sapservice/src/main/resources/config/liquibase/changelog" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="settings.editor.selected.configurable" value="configurable.group.tools" />
   </component>
-  <component name="RunManager">
-    <configuration name="SapserviceApp" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+  <component name="RecentsManager">
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="br.gov.basis.sap.sapservice.web.rest" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="br.gov.basis.sap.sapservice.web.rest" />
+      <recent name="br.gov.basis.sap.sapservice.builder" />
+      <recent name="br.gov.basis.sap.sapservice.repository" />
+      <recent name="br.gov.basis.sap.sapservice.service" />
+      <recent name="br.gov.basis.sap.sapservice.service.mapper" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/sapservice/src/main/resources/config/liquibase/changelog" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.SapserviceApp">
+    <configuration name="SapserviceApp" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="br.gov.basis.sap.sapservice.SapserviceApp" />
       <module name="sapservice" />
+      <option name="VM_PARAMETERS" value="-Xmx256m" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="br.gov.basis.sap.sapservice.*" />
@@ -76,108 +106,241 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="JetRunConfigurationType">
+    <configuration name="LiderRecursoIT" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="sapservice" />
-      <option name="VM_PARAMETERS" />
-      <option name="PROGRAM_PARAMETERS" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="WORKING_DIRECTORY" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="br.gov.basis.sap.sapservice.web.rest.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="br.gov.basis.sap.sapservice.web.rest" />
+      <option name="MAIN_CLASS_NAME" value="br.gov.basis.sap.sapservice.web.rest.LiderRecursoIT" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+    <configuration name="OrdemServicoRecursoIT" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="sapservice" />
-      <option name="filePath" />
-      <option name="vmParameters" />
-      <option name="alternativeJrePath" />
-      <option name="programParameters" />
-      <option name="passParentEnvs" value="true" />
-      <option name="workingDirectory" />
-      <option name="isAlternativeJrePathEnabled" value="false" />
-      <option name="VM_PARAMETERS" />
-      <option name="PROGRAM_PARAMETERS" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="WORKING_DIRECTORY" />
-      <option name="filePath" />
-      <option name="vmParameters" />
-      <option name="alternativeJrePath" />
-      <option name="programParameters" />
-      <option name="passParentEnvs" value="true" />
-      <option name="workingDirectory" />
-      <option name="isAlternativeJrePathEnabled" value="false" />
-      <option name="VM_PARAMETERS" />
-      <option name="PROGRAM_PARAMETERS" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="WORKING_DIRECTORY" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="br.gov.basis.sap.sapservice.web.rest.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="br.gov.basis.sap.sapservice.web.rest" />
+      <option name="MAIN_CLASS_NAME" value="br.gov.basis.sap.sapservice.web.rest.OrdemServicoRecursoIT" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ProjetoRecursoIT" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="sapservice" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="br.gov.basis.sap.sapservice.web.rest.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="br.gov.basis.sap.sapservice.web.rest" />
+      <option name="MAIN_CLASS_NAME" value="br.gov.basis.sap.sapservice.web.rest.ProjetoRecursoIT" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ProjetoRecursoIT.atualizarTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="sapservice" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="br.gov.basis.sap.sapservice.web.rest.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="br.gov.basis.sap.sapservice.web.rest" />
+      <option name="MAIN_CLASS_NAME" value="br.gov.basis.sap.sapservice.web.rest.ProjetoRecursoIT" />
+      <option name="METHOD_NAME" value="atualizarTest" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SprintRecursoIT" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="sapservice" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="br.gov.basis.sap.sapservice.web.rest.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="br.gov.basis.sap.sapservice.web.rest" />
+      <option name="MAIN_CLASS_NAME" value="br.gov.basis.sap.sapservice.web.rest.SprintRecursoIT" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.SapserviceApp" />
+        <item itemvalue="JUnit.SprintRecursoIT" />
+        <item itemvalue="JUnit.ProjetoRecursoIT.atualizarTest" />
+        <item itemvalue="JUnit.ProjetoRecursoIT" />
+        <item itemvalue="JUnit.OrdemServicoRecursoIT" />
+        <item itemvalue="JUnit.LiderRecursoIT" />
       </list>
     </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="8cb862e7-64b8-431b-9a1b-22958a899c91" name="Default Changelist" comment="" />
-      <created>1598461536341</created>
+      <changelist id="276d3e17-78be-4335-9b87-601090f9cfff" name="Default Changelist" comment="" />
+      <created>1596729364978</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1598461536341</updated>
+      <updated>1596729364978</updated>
     </task>
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="origin/basis-carlos" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="RECENT_FILTERS">
+      <map>
+        <entry key="Branch">
+          <value>
+            <list>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="basis-carlos" />
+                </option>
+              </RecentGroup>
+            </list>
+          </value>
+        </entry>
+      </map>
+    </option>
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+  </component>
   <component name="WindowStateProjectService">
-    <state width="1320" height="198" key="GridCell.Tab.0.bottom" timestamp="1598462285630">
-      <screen x="0" y="27" width="1366" height="690" />
+    <state x="174" y="54" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1597771976110">
+      <screen x="67" y="27" width="1299" height="741" />
     </state>
-    <state width="1320" height="198" key="GridCell.Tab.0.bottom/0.27.1366.690@0.27.1366.690" timestamp="1598462285630" />
-    <state width="1320" height="198" key="GridCell.Tab.0.center" timestamp="1598462285628">
-      <screen x="0" y="27" width="1366" height="690" />
+    <state x="174" y="54" key="#com.intellij.execution.impl.EditConfigurationsDialog/67.27.1299.741@67.27.1299.741" timestamp="1597771976110" />
+    <state x="524" y="104" width="374" height="585" key="#com.intellij.ide.util.MemberChooser" timestamp="1598409068180">
+      <screen x="67" y="27" width="1299" height="741" />
     </state>
-    <state width="1320" height="198" key="GridCell.Tab.0.center/0.27.1366.690@0.27.1366.690" timestamp="1598462285628" />
-    <state width="1320" height="198" key="GridCell.Tab.0.left" timestamp="1598462285628">
-      <screen x="0" y="27" width="1366" height="690" />
+    <state x="524" y="104" width="374" height="585" key="#com.intellij.ide.util.MemberChooser/67.27.1299.741@67.27.1299.741" timestamp="1598409068180" />
+    <state x="448" y="265" width="526" height="272" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1596740054686">
+      <screen x="67" y="27" width="1299" height="741" />
     </state>
-    <state width="1320" height="198" key="GridCell.Tab.0.left/0.27.1366.690@0.27.1366.690" timestamp="1598462285628" />
-    <state width="1320" height="198" key="GridCell.Tab.0.right" timestamp="1598462285629">
-      <screen x="0" y="27" width="1366" height="690" />
+    <state x="448" y="265" width="526" height="272" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/67.27.1299.741@67.27.1299.741" timestamp="1596740054686" />
+    <state x="264" y="27" width="894" height="741" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1597161880916">
+      <screen x="67" y="27" width="1299" height="741" />
     </state>
-    <state width="1320" height="198" key="GridCell.Tab.0.right/0.27.1366.690@0.27.1366.690" timestamp="1598462285629" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/sapservice/src/main/java/br/gov/basis/sap/sapservice/web/rest/OrdemServicoRecurso.java</url>
-          <line>32</line>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/sapservice/src/main/java/br/gov/basis/sap/sapservice/web/rest/ProjetoRecurso.java</url>
-          <line>40</line>
-          <option name="timeStamp" value="5" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
-  </component>
-  <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/sap_parent$All_in_sapservice.ic" NAME="All in sapservice Coverage Results" MODIFIED="1598455372365" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <state x="264" y="27" width="894" height="741" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/67.27.1299.741@67.27.1299.741" timestamp="1597161880916" />
+    <state x="474" y="141" key="#xdebugger.evaluate" timestamp="1597797988827">
+      <screen x="67" y="27" width="1299" height="741" />
+    </state>
+    <state x="474" y="141" key="#xdebugger.evaluate/67.27.1299.741@67.27.1299.741" timestamp="1597797988827" />
+    <state x="388" y="292" width="646" height="210" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1" timestamp="1596730703132">
+      <screen x="67" y="27" width="1299" height="741" />
+    </state>
+    <state x="388" y="292" width="646" height="210" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/67.27.1299.741@67.27.1299.741" timestamp="1596730703132" />
+    <state x="461" y="140" width="501" height="513" key="FileChooserDialogImpl" timestamp="1597668923547">
+      <screen x="67" y="27" width="1299" height="741" />
+    </state>
+    <state x="461" y="140" width="501" height="513" key="FileChooserDialogImpl/67.27.1299.741@67.27.1299.741" timestamp="1597668923547" />
+    <state width="1253" height="196" key="GridCell.Tab.0.bottom" timestamp="1598468780521">
+      <screen x="67" y="27" width="1299" height="741" />
+    </state>
+    <state width="1253" height="196" key="GridCell.Tab.0.bottom/67.27.1299.741@67.27.1299.741" timestamp="1598468780521" />
+    <state width="1253" height="196" key="GridCell.Tab.0.center" timestamp="1598468780520">
+      <screen x="67" y="27" width="1299" height="741" />
+    </state>
+    <state width="1253" height="196" key="GridCell.Tab.0.center/67.27.1299.741@67.27.1299.741" timestamp="1598468780520" />
+    <state width="1253" height="196" key="GridCell.Tab.0.left" timestamp="1598468780519">
+      <screen x="67" y="27" width="1299" height="741" />
+    </state>
+    <state width="1253" height="196" key="GridCell.Tab.0.left/67.27.1299.741@67.27.1299.741" timestamp="1598468780519" />
+    <state width="1253" height="196" key="GridCell.Tab.0.right" timestamp="1598468780521">
+      <screen x="67" y="27" width="1299" height="741" />
+    </state>
+    <state width="1253" height="196" key="GridCell.Tab.0.right/67.27.1299.741@67.27.1299.741" timestamp="1598468780521" />
+    <state width="1253" height="346" key="GridCell.Tab.1.bottom" timestamp="1597838198411">
+      <screen x="67" y="27" width="1299" height="741" />
+    </state>
+    <state width="1253" height="346" key="GridCell.Tab.1.bottom/67.27.1299.741@67.27.1299.741" timestamp="1597838198411" />
+    <state width="1253" height="346" key="GridCell.Tab.1.center" timestamp="1597838198411">
+      <screen x="67" y="27" width="1299" height="741" />
+    </state>
+    <state width="1253" height="346" key="GridCell.Tab.1.center/67.27.1299.741@67.27.1299.741" timestamp="1597838198411" />
+    <state width="1253" height="346" key="GridCell.Tab.1.left" timestamp="1597838198411">
+      <screen x="67" y="27" width="1299" height="741" />
+    </state>
+    <state width="1253" height="346" key="GridCell.Tab.1.left/67.27.1299.741@67.27.1299.741" timestamp="1597838198411" />
+    <state width="1253" height="346" key="GridCell.Tab.1.right" timestamp="1597838198411">
+      <screen x="67" y="27" width="1299" height="741" />
+    </state>
+    <state width="1253" height="346" key="GridCell.Tab.1.right/67.27.1299.741@67.27.1299.741" timestamp="1597838198411" />
+    <state x="192" y="85" width="1039" height="622" key="MergeDialog" timestamp="1597670508066">
+      <screen x="67" y="27" width="1299" height="741" />
+    </state>
+    <state x="192" y="85" width="1039" height="622" key="MergeDialog/67.27.1299.741@67.27.1299.741" timestamp="1597670508066" />
+    <state x="347" y="159" width="728" height="475" key="MultipleFileMergeDialog" timestamp="1598380061244">
+      <screen x="67" y="27" width="1299" height="741" />
+    </state>
+    <state x="347" y="159" width="728" height="475" key="MultipleFileMergeDialog/67.27.1299.741@67.27.1299.741" timestamp="1598380061244" />
+    <state x="199" y="27" width="1024" height="741" key="SettingsEditor" timestamp="1597668953676">
+      <screen x="67" y="27" width="1299" height="741" />
+    </state>
+    <state x="199" y="27" width="1024" height="741" key="SettingsEditor/67.27.1299.741@67.27.1299.741" timestamp="1597668953676" />
+    <state x="497" y="311" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1597675424040">
+      <screen x="67" y="27" width="1299" height="741" />
+    </state>
+    <state x="497" y="311" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/67.27.1299.741@67.27.1299.741" timestamp="1597675424040" />
+    <state x="298" y="27" width="665" height="741" key="find.popup" timestamp="1597796758818">
+      <screen x="67" y="27" width="1299" height="741" />
+    </state>
+    <state x="298" y="27" width="665" height="741" key="find.popup/67.27.1299.741@67.27.1299.741" timestamp="1597796758818" />
+    <state x="438" y="90" width="546" height="612" key="git4idea.branch.GitSmartOperationDialog" timestamp="1597681069734">
+      <screen x="67" y="27" width="1299" height="741" />
+    </state>
+    <state x="438" y="90" width="546" height="612" key="git4idea.branch.GitSmartOperationDialog/67.27.1299.741@67.27.1299.741" timestamp="1597681069734" />
+    <state x="406" y="154" width="610" height="485" key="refactoring.ChangeSignatureDialog" timestamp="1597155904840">
+      <screen x="67" y="27" width="1299" height="741" />
+    </state>
+    <state x="406" y="154" width="610" height="485" key="refactoring.ChangeSignatureDialog/67.27.1299.741@67.27.1299.741" timestamp="1597155904840" />
+    <state x="380" y="175" key="run.anything.popup" timestamp="1596734438783">
+      <screen x="67" y="27" width="1299" height="741" />
+    </state>
+    <state x="380" y="175" key="run.anything.popup/67.27.1299.741@67.27.1299.741" timestamp="1596734438783" />
+    <state x="379" y="89" width="672" height="678" key="search.everywhere.popup" timestamp="1597276345539">
+      <screen x="67" y="27" width="1299" height="741" />
+    </state>
+    <state x="379" y="89" width="672" height="678" key="search.everywhere.popup/67.27.1299.741@67.27.1299.741" timestamp="1597276345539" />
   </component>
 </project>
