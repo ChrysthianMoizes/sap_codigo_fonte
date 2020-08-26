@@ -1,17 +1,23 @@
 package br.gov.basis.sap.sapservice.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Getter;
 import lombok.Setter;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
@@ -38,13 +44,13 @@ public class OrdemServico {
     private TipoSituacao situacao;
 
     @Column(name = "dt_proxima_entrega")
-    private LocalDate dataProximaEntrega;
+    private LocalDate dtProximaEntrega;
 
     @Column(name = "qtd_defeito_cliente")
-    private Integer qtdDefeitosCliente;
+    private Integer qtdDefeitosClientes;
 
     @Column(name = "qtd_defeito_interno")
-    private Integer qtdDefeitosInterno;
+    private Integer qtdDefeitosInternos;
 
     @Column(name = "prazo_entrega")
     private LocalDate prazo;
@@ -54,5 +60,8 @@ public class OrdemServico {
 
     @Column(name = "fabrica")
     private String fabrica;
+
+    @OneToMany(mappedBy = "ordemServico", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Sprint> sprints = new ArrayList<>();
 
 }

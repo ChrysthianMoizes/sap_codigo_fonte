@@ -1,0 +1,348 @@
+<p-card header="Dashboard - Projetos" styleClass="ui-card-shadow">
+  <p-toast></p-toast>
+
+  <p-fieldset [collapsed]="true" [toggleable]="true" legend="Filtros" [style]="{ 'margin-bottom': '10px'}">
+    <div class="ui-g">
+      <div class="ui-g-4 ui-md-4 ui-sm-12 dashboardFiltro">
+        <span class="ui-float-label">
+              <p-multiSelect class="filtro" maxSelectedLabels="4"
+                  [options]="listaLideres" defaultLabel="&nbsp;"
+                  selectedItemsLabel="{0} itens selecionados"
+                  [(ngModel)]="filtroLider">
+              </p-multiSelect>
+              <label>Líder</label>
+            </span>
+      </div>
+
+      <div class="ui-g-4 ui-md-4 ui-sm-12 dashboardFiltro">
+        <span class="ui-float-label">
+              <p-multiSelect class="filtro" maxSelectedLabels="4"
+                  [options]="listaProjetos" defaultLabel="&nbsp;"
+                  selectedItemsLabel="{0} itens selecionados"
+                  [(ngModel)]="filtroProjeto">
+              </p-multiSelect>
+              <label>Projeto</label>
+          </span>
+      </div>
+
+      <div class="ui-g-4 ui-md-4 ui-sm-12 dashboardFiltro">
+        <span class="ui-float-label">
+              <p-multiSelect class="filtro" maxSelectedLabels="4"
+                  [options]="listaClientes" defaultLabel="&nbsp;"
+                  selectedItemsLabel="{0} itens selecionados"
+                  [(ngModel)]="filtroCliente">
+              </p-multiSelect>
+              <label>Cliente</label>
+            </span>
+      </div>
+
+    </div>
+
+    <div class="ui-g">
+      <div class="ui-g-2 ui-md-4 ui-sm-6">
+        <a (click)="preencherFiltros()" pButton label="Filtrar"></a>
+      </div>
+    </div>
+
+  </p-fieldset>
+
+  <p-table [columns]="colunas" [paginator]="true" [rows]="5" [rowsPerPageOptions]="[5, 10, 15, 20]" [value]="listaFiltrada" dataKey="nome" (onRowExpand)="carregarOsProjeto($event)">
+    <ng-template pTemplate="header" let-columns>
+      <tr>
+        <th style="width: 3em"></th>
+        <th *ngFor="let col of columns">
+          {{col.header}}
+        </th>
+        <th style="width: 3em"></th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-rowData let-expanded="expanded" let-columns="columns">
+      <tr>
+        <td>
+          <a href="#" [pRowToggler]="rowData">
+            <i [ngClass]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"></i>
+          </a>
+        </td>
+        <td>{{ rowData.descricao }}</td>
+        <td>{{ rowData.qtdOsExecucao || 0 }}</td>
+        <td>{{ rowData.qtdPtsFuncaoExec || 0 }}</td>
+        <td>{{ rowData.defeitosCliente || 0 }}</td>
+        <td pEditableColumn>
+          <p-cellEditor>
+            <ng-template pTemplate="input">
+              <p-dropdown (onChange)="habilitarBotao($event, rowData)" [options]="listaLideres" [(ngModel)]="rowData.idLider"></p-dropdown>
+            </ng-template>
+            <ng-template pTemplate="output">
+              {{ obterLiderNome(rowData.idLider) | uppercase }}
+            </ng-template>
+          </p-cellEditor>
+        </td>
+        <td pEditableColumn>
+          <p-cellEditor>
+            <ng-template pTemplate="input">
+              <input type="text" (change)="habilitarBotao($event, rowData)" pInputText [(ngModel)]="rowData.testador " />
+            </ng-template>
+            <ng-template pTemplate="output">
+              {{ rowData.testador | uppercase }}
+            </ng-template>
+          </p-cellEditor>
+        </td>
+        <td pEditableColumn>
+          <p-cellEditor>
+            <ng-template pTemplate="input">
+              <input type="text" (change)="habilitarBotao($event, rowData)" pInputText [(ngModel)]="rowData.revisor " />
+            </ng-template>
+            <ng-template pTemplate="output">
+              {{ rowData.revisor | uppercase }}
+            </ng-template>
+          </p-cellEditor>
+        </td>
+        <td pEditableColumn>
+          <p-cellEditor>
+            <ng-template pTemplate="input">
+              <input type="text" (change)="habilitarBotao($event, rowData)" pInputText [(ngModel)]="rowData.gerente " />
+            </ng-template>
+            <ng-template pTemplate="output">
+              {{ rowData.gerente | uppercase }}
+            </ng-template>
+          </p-cellEditor>
+        </td>
+        <td>
+          <a class="editableIcon" *ngIf="rowData.edit" pButton icon="pi pi-check" (click)="editarProjeto(rowData)"></a>
+        </td>
+      </tr>
+    </ng-template>
+
+    <ng-template pTemplate="emptymessage" let-columns>
+      <tr>
+        <td [attr.colspan]="columns.length + 2">
+          <div class="text-center">
+            <h3>Nenhum projeto cadastrado!</h3>
+          </div>
+        </td>
+      </tr>
+    </ng-template>
+
+    <!-- OS -->
+    <ng-template pTemplate="rowexpansion" let-rowData let-columns="columns">
+      <tr>
+        <td [attr.colspan]="columns.length + 2">
+          <div class="p-grid -fluid" style="font-size:16px;padding:5px 5px 20px 5px;">
+
+            <p-table [paginator]="true" [rows]="5" [rowsPerPageOptions]="[5, 10, 15, 20]" [columns]="colunasOS" [value]="rowData.os" dataKey="nome">
+              <ng-template pTemplate="header" let-subcolumns>
+                <tr>
+                  <th style="width: 3em"></th>
+                  <th *ngFor="let sub of subcolumns">
+                    {{sub.header}}
+                  </th>
+                  <th style="width: 3em"></th>
+                </tr>
+              </ng-template>
+
+              <ng-template pTemplate="body" let-rowSubData let-expanded="expanded">
+                <tr>
+                  <td>
+                    <a href="#" [pRowToggler]="rowSubData">
+                      <i [ngClass]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"></i>
+                    </a>
+                  </td>
+
+                  <td>
+                    <a target="_blank" href="https://sgo.basis.com.br/browse/{{ rowSubData.nome }}">{{ rowSubData.nome }}</a>
+                  </td>
+
+                  <td pEditableColumn>
+                    <p-cellEditor>
+                      <ng-template pTemplate="input">
+                        <p-dropdown (onChange)="habilitarBotao($event, rowSubData)" [options]="listaSituacoes" [(ngModel)]="rowSubData.idSituacao"></p-dropdown>
+                      </ng-template>
+                      <ng-template pTemplate="output">
+                        {{ obterSituacao(rowSubData.idSituacao) | uppercase }}
+                      </ng-template>
+                    </p-cellEditor>
+                  </td>
+
+                  <td pEditableColumn>
+                    <p-cellEditor>
+                      <ng-template pTemplate="input">
+                        <p-calendar (onSelect)="habilitarBotao($event, rowSubData)" [(ngModel)]="rowSubData.dataProximaEntrega"></p-calendar>
+                      </ng-template>
+                      <ng-template pTemplate="output">
+                        {{ rowSubData.dataProximaEntrega | date:'dd/MM/yyyy' }}
+                      </ng-template>
+                    </p-cellEditor>
+                  </td>
+
+                  <td pEditableColumn>
+                    <p-cellEditor>
+                      <ng-template pTemplate="input">
+                        <p-calendar class="calendarTable" (onSelect)="habilitarBotao($event, rowSubData)" [(ngModel)]="rowSubData.prazo"></p-calendar>
+                      </ng-template>
+                      <ng-template pTemplate="output">
+                        {{ rowSubData.prazo | date:'dd/MM/yyyy' }}
+                      </ng-template>
+                    </p-cellEditor>
+                  </td>
+
+                  <td pEditableColumn>
+                    <p-cellEditor>
+                      <ng-template pTemplate="input">
+                        <input currencyMask [options]="{ align: 'left', precision: 1, prefix: ''}" (change)="habilitarBotao($event, rowSubData)" pInputText type="text" [(ngModel)]="rowSubData.pontosFuncao" />
+                      </ng-template>
+                      <ng-template pTemplate="output">
+                        {{ rowSubData.pontosFuncao || 0 }}
+                      </ng-template>
+                    </p-cellEditor>
+                  </td>
+
+                  <td pEditableColumn>
+                    <p-cellEditor>
+                      <ng-template pTemplate="input">
+                        <input (change)="habilitarBotao($event, rowSubData)" pInputText type="text" [(ngModel)]="rowSubData.fabrica" />
+                      </ng-template>
+                      <ng-template pTemplate="output">
+                        {{ rowSubData.fabrica }}
+                      </ng-template>
+                    </p-cellEditor>
+                  </td>
+
+                  <td>
+                    <a class="editableIcon" *ngIf="rowSubData.edit" pButton icon="pi pi-check" (click)="editarOs(rowSubData)"></a>
+                  </td>
+                </tr>
+              </ng-template>
+
+              <ng-template pTemplate="emptymessage" let-columns>
+                <tr>
+                  <td [attr.colspan]="columns.length">
+                    <div class="text-center">
+                      <h3>Nenhuma OS cadastrada!</h3>
+                    </div>
+                  </td>
+                </tr>
+              </ng-template>
+
+              <!-- SPRINTS -->
+              <ng-template pTemplate="rowexpansion" let-rowSubData let-columns="columns">
+                <tr>
+                  <td [attr.colspan]="columns.length + 2">
+                    <div class="p-grid -fluid" style="font-size:16px;padding:5px 5px 20px 5px;">
+                      <p-table [paginator]="true" [rows]="5" [rowsPerPageOptions]="[5, 10, 15, 20]" [columns]="colunasSprints" [value]="rowSubData.sprints" dataKey="nome">
+                        <ng-template pTemplate="header" let-sprintcolumns>
+                          <tr>
+                            <th *ngFor="let sprint of sprintcolumns">
+                              {{sprint.header}}
+                            </th>
+                            <th style="width: 3em"></th>
+                          </tr>
+                        </ng-template>
+
+                        <ng-template pTemplate="body" let-rowSprintData let-expanded="expanded">
+                          <tr>
+                            <td pEditableColumn>
+                              <p-cellEditor>
+                                <ng-template pTemplate="input">
+                                  <input (change)="habilitarBotao($event, rowSprintData)" pInputText type="text" [(ngModel)]="rowSprintData.nome" />
+                                </ng-template>
+                                <ng-template pTemplate="output">
+                                  {{ rowSprintData.nome }}
+                                </ng-template>
+                              </p-cellEditor>
+                            </td>
+
+                            <td pEditableColumn>
+                              <p-cellEditor>
+                                <ng-template pTemplate="input">
+                                  <p-calendar class="calendarTable" (onSelect)="habilitarBotao($event, rowSprintData)" [(ngModel)]="rowSprintData.dataInicio"></p-calendar>
+                                </ng-template>
+                                <ng-template pTemplate="output">
+                                  {{ rowSprintData.dataInicio | date:'dd/MM/yyyy' }}
+                                </ng-template>
+                              </p-cellEditor>
+                            </td>
+
+                            <td pEditableColumn>
+                              <p-cellEditor>
+                                <ng-template pTemplate="input">
+                                  <p-calendar class="calendarTable" (onSelect)="habilitarBotao($event, rowSprintData)" [(ngModel)]="rowSprintData.dataTermino"></p-calendar>
+                                </ng-template>
+                                <ng-template pTemplate="output">
+                                  {{ rowSprintData.dataTermino | date:'dd/MM/yyyy' }}
+                                </ng-template>
+                              </p-cellEditor>
+                            </td>
+
+                            <td pEditableColumn>
+                              <p-cellEditor>
+                                <ng-template pTemplate="input">
+                                  <input currencyMask [options]="{ align: 'left', precision: 1, prefix: ''}" (change)="habilitarBotao($event, rowSprintData)" pInputText type="text" [(ngModel)]="rowSprintData.pontosFuncao" />
+                                </ng-template>
+                                <ng-template pTemplate="output">
+                                  {{ rowSprintData.pontosFuncao || 0 }}
+                                </ng-template>
+                              </p-cellEditor>
+                            </td>
+
+                            <td pEditableColumn>
+                              <p-cellEditor>
+                                <ng-template pTemplate="input">
+                                  <p-dropdown (onChange)="habilitarBotao($event, rowSprintData)" [options]="simNaoDropDown" [(ngModel)]="rowSprintData.impedimento"></p-dropdown>
+                                </ng-template>
+                                <ng-template pTemplate="output">
+                                  {{ obterSimNao(rowSprintData.impedimento) }}
+                                </ng-template>
+                              </p-cellEditor>
+                            </td>
+
+                            <td pEditableColumn>
+                              <p-cellEditor>
+                                <ng-template pTemplate="input">
+                                  <p-dropdown (onChange)="habilitarBotao($event, rowSprintData)" [options]="simNaoDropDown" [(ngModel)]="rowSprintData.prazo"></p-dropdown>
+                                </ng-template>
+                                <ng-template pTemplate="output">
+                                  {{ obterSimNao(rowSprintData.prazo) }}
+                                </ng-template>
+                              </p-cellEditor>
+                            </td>
+
+                            <td pEditableColumn>
+                              <p-cellEditor>
+                                <ng-template pTemplate="input">
+                                  <p-dropdown (onChange)="habilitarBotao($event, rowSprintData)" [options]="listaStatus" [(ngModel)]="rowSprintData.idStatus"></p-dropdown>
+                                </ng-template>
+                                <ng-template pTemplate="output">
+                                  {{ obterStatus(rowSprintData.idStatus) }}
+                                </ng-template>
+                              </p-cellEditor>
+                            </td>
+
+                            <td>
+                              <a class="editableIcon" *ngIf="rowSprintData.edit" pButton icon="pi pi-check" (click)="editarSprint(rowSprintData)"></a>
+                            </td>
+                          </tr>
+                        </ng-template>
+
+                        <ng-template pTemplate="emptymessage" let-columns>
+                          <tr>
+                            <td [attr.colspan]="columns.length">
+                              <div class="text-center">
+                                <h3>Nenhuma Sprint cadastrada!</h3>
+                              </div>
+                            </td>
+                          </tr>
+                        </ng-template>
+                      </p-table>
+                    </div>
+                  </td>
+                </tr>
+              </ng-template>
+            </p-table>
+          </div>
+        </td>
+      </tr>
+    </ng-template>
+
+  </p-table>
+
+</p-card>

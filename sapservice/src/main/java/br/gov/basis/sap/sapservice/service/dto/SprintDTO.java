@@ -19,9 +19,9 @@ public class SprintDTO {
 
     private Double pontosFuncao;
 
-    private String impedimento;
+    private Boolean impedimento;
 
-    private Integer prazo;
+    private Boolean prazo;
 
     private Integer idStatus;
 

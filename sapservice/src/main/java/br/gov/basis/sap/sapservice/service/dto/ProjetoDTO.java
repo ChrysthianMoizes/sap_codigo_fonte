@@ -1,7 +1,11 @@
 package br.gov.basis.sap.sapservice.service.dto;
 
+import br.gov.basis.sap.sapservice.domain.OrdemServico;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter

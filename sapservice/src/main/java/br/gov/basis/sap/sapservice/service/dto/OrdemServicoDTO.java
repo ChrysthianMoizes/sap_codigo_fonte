@@ -4,6 +4,8 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
@@ -28,5 +30,7 @@ public class OrdemServicoDTO {
     private Double pontosFuncao;
 
     private String fabrica;
+
+    private List<SprintDTO> sprints = new ArrayList<>();
 
 }

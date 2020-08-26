@@ -1,9 +1,7 @@
 package br.gov.basis.sap.sapservice.service.mapper;
 
 
-import br.gov.basis.sap.sapservice.domain.Projeto;
 import br.gov.basis.sap.sapservice.domain.Sprint;
-import br.gov.basis.sap.sapservice.service.dto.ProjetoDTO;
 import br.gov.basis.sap.sapservice.service.dto.SprintDTO;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
