@@ -3,6 +3,9 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 
+import { CurrencyMaskModule } from "ng2-currency-mask";
+import {ConfirmationService, MessageService} from 'primeng/api';
+
 import { PRIMENG_IMPORTS } from './primeng-imports';
 
 @NgModule({
@@ -10,14 +13,19 @@ import { PRIMENG_IMPORTS } from './primeng-imports';
         PRIMENG_IMPORTS,
         RouterModule,
         CommonModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        CurrencyMaskModule
     ],
-    providers: [],
+    providers: [
+        ConfirmationService,
+        MessageService
+    ],
     exports: [
         PRIMENG_IMPORTS,
         CommonModule,
         ReactiveFormsModule,
-        RouterModule
+        RouterModule,
+        CurrencyMaskModule
     ]
 })
 export class SharedModule { }

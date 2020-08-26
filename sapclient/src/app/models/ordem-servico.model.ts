@@ -18,6 +18,8 @@ export class OrdemServico {
         public sprints?: Sprint[]
     ) {
         this.sprints = [];
+        this.qtdDefeitosCliente = 0;
+        this.qtdDefeitosInterno = 0;
     }
 
 }

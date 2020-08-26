@@ -12,9 +12,6 @@ import{OrdemServico} from './../models/ordem-servico.model';
 })
 export class OrdemServicoService {
 
-
-
-    // api: string = environment.apiUrl + '/ordem_servico';
     api: string = `${environment.apiUrl}/ordens-servico`;
 
   constructor(
@@ -37,6 +34,10 @@ export class OrdemServicoService {
         map(recurso => Object.assign(new OrdemServico(), recurso))
       )
   }
+
+  obterPorProjeto(idProjeto: number): Observable<any> {
+    return this.http.get(`${this.api}/${idProjeto}/projeto`);
+}
 
   deletar(id: number) {
       return this.http.delete(`${this.api}/${id}`);

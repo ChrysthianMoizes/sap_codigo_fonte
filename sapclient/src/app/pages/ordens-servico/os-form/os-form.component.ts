@@ -125,7 +125,6 @@ export class OsFormComponent implements OnInit {
       this.blockUI.start();
       const recurso = Object.assign(new OrdemServico(), this.form.value);
       recurso.sprints = this.sprints;
-      console.log(recurso);
       this.ordemService.salvar(recurso).pipe(
           finalize(() => {
             this.blockUI.stop()
@@ -145,11 +144,7 @@ export class OsFormComponent implements OnInit {
         this.route.paramMap.pipe(
             switchMap(params => this.ordemService.obterPorId(+params.get('id')))
         ).subscribe(ordemServico => {
-            console.log(ordemServico);
-            // ordemServico.dataProximaEntrega = new Date(ordemServico.dataProximaEntrega);
-            // ordemServico.prazo= new Date(ordemServico.prazo);
             this.form.patchValue(ordemServico);
-            // this.sprints = this.form.get('sprints').value;
             this.blockUI.stop();
         })
     }

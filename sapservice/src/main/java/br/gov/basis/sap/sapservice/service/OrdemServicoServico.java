@@ -26,6 +26,10 @@ public class OrdemServicoServico {
         return ordemServicoMapper.toDto(ordemServicoRepository.findById(id).get());
     }
 
+    public List<OrdemServicoDTO> obterPorProjeto(Integer id) {
+        return ordemServicoMapper.toDto(ordemServicoRepository.findByProjetoId(id));
+    }
+
     public OrdemServicoDTO salvar(OrdemServicoDTO ordemServicoDTO) {
         return ordemServicoMapper.toDto(ordemServicoRepository.save(ordemServicoMapper.toEntity(ordemServicoDTO)));
     }
