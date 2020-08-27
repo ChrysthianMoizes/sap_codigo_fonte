@@ -5,7 +5,7 @@
     xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
     <changeSet  author="carlos.padua"  id="20">
             <insert  tableName="cliente" >
-                <column name="nome" value="Raihardt-senpai"/>
+                <column name="nome" value="Cliente teste"/>
             </insert>
     </changeSet>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->

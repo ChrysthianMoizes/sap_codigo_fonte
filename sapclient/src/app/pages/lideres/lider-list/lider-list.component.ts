@@ -1,7 +1,9 @@
-import { Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { BlockUI, NgBlockUI } from 'ng-block-ui';
+
+import { Observable } from 'rxjs';
 import { finalize } from 'rxjs/operators';
+
 import { LiderService } from './../../../services/lider.service';
 
 @Component({
