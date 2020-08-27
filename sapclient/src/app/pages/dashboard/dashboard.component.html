@@ -2,7 +2,7 @@
 <!-- <pre>{{this.projetos | json }}</pre> -->
 
 <p-fieldset (onBeforeToggle)="obterOsPorProjeto(projeto.id)" *ngFor="let projeto of projetos" [toggleable]="true"
-  [collapsed]="true">
+[collapsed]="true">
 
   <p-header>{{projeto.nome}}</p-header>
   <div>
@@ -10,7 +10,6 @@
       <p-tabPanel [header]="item.header" *ngFor="let item of items; let i = index" [selected]="i == 0">
         {{item.content}}
       </p-tabPanel>
-
       <p-tabPanel header="Lider" leftIcon="pi pi-user">
         {{obterNomeLider(projeto.idLider)}}
       </p-tabPanel>
@@ -24,13 +23,9 @@
         {{obterNomeGerente(projeto.id)}}
       </p-tabPanel>
     </p-tabView>
-
   </div>
-
-
   <p-table [value]="listaOsProjeto" [paginator]="true" [rows]="4" [response]="true" [columns]="colunas"
-    dataKey="status">
-
+  dataKey="status">
     <ng-template let-columns pTemplate="header">
       <tr>
         <th style="width: 3em"></th>
@@ -73,43 +68,39 @@
           <div class="p-grid -fluid" style="font-size:16px;padding:5px 5px 20px 5px;">
             <p-table paginator="true" [rows]="5" [columns]="colunaSprint" [value]="sprints" dataKey="status">
               <ng-template pTemplate="header" let-subcolumns>
-      <tr>
-        <th *ngFor="let sub of subcolumns">
-          {{sub.header}}
-        </th>
-      </tr>
-    </ng-template>
-
-    <ng-template pTemplate="body" let-sprints let-expanded="expanded">
-      <tr>
-        <td>{{sprints.nome}}</td>
-        <td>{{ sprints.dataInicio }}</td>
-        <td>{{ sprints.dataTermino }}</td>
-        <td>{{ sprints.pontosFuncao }}</td>
-        <td>{{ sprints.impedimento}}</td>
-        <td>{{ sprints.prazo }}</td>
-        <td>{{ obterNomeStatus(sprints.idStatus)}}</td>
-      </tr>
-    </ng-template>
-
-    <ng-template pTemplate="emptymessage" let-subcolumns>
-      <tr>
-        <td [attr.colspan]="columns.length">
-          <div class="text-center">
-            <h3>Nenhuma OS cadastrada!</h3>
-          </div>
-        </td>
-      </tr>
-    </ng-template>
-  </p-table>
-  </div>
-  </td>
-  </tr>
-  </ng-template>
-
-  </p-table>
-
-</p-fieldset>
+                <tr>
+                  <th *ngFor="let sub of subcolumns">
+                    {{sub.header}}
+                  </th>
+                </tr>
+              </ng-template>
+              <ng-template pTemplate="body" let-sprints let-expanded="expanded">
+                <tr>
+                  <td>{{ sprints.nome }}</td>
+                  <td>{{ sprints.dataInicio }}</td>
+                  <td>{{ sprints.dataTermino }}</td>
+                  <td>{{ sprints.pontosFuncao }}</td>
+                  <td>{{ sprints.impedimento}}</td>
+                  <td>{{ sprints.prazo }}</td>
+                  <td>{{ obterNomeStatus(sprints.idStatus) }}</td>
+                </tr>
+              </ng-template>
+              <ng-template pTemplate="emptymessage" let-subcolumns>
+                <tr>
+                  <td [attr.colspan]="columns.length">
+                    <div class="text-center">
+                      <h3>Nenhuma OS cadastrada!</h3>
+                    </div>
+                  </td>
+                </tr>
+              </ng-template>
+              </p-table>
+            </div>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </p-fieldset>
 
 <!-- <ng-container *ngIf="listaOrdemServico$ | async as listaOrdemServico; else loading ">
   <p-fieldset *ngFor="let cliente of clientes" [legend]="cliente.descricao" [toggleable]="true">

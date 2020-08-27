@@ -1,5 +1,4 @@
 import { StatusService } from './../../services/status.service';
-import { Sprint } from './../../models/sprint.model';
 import { ClienteService } from './../../services/cliente.service';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 
@@ -9,7 +8,7 @@ import { SprintService } from './../../services/sprint.service';
 import { ProjetoService } from './../../services/projeto.service';
 import { OrdemServicoService } from './../../services/ordem-servico.service';
 import { SituacaoService } from './../../services/situacao.service';
-import { Observable, forkJoin } from 'rxjs';
+import { Observable } from 'rxjs';
 
 import { finalize, map, tap } from 'rxjs/operators';
 import { Component, OnInit } from '@angular/core';
@@ -122,7 +121,9 @@ export class DashboardComponent implements OnInit {
     this.projetoService.obterTodos().pipe(
       finalize(() => this.blockUI.stop())
     ).subscribe(
-      projetos => this.projetos = projetos
+      projetos => {
+        this.projetos = projetos
+      }
     );
   }
 
