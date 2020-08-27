@@ -24,8 +24,10 @@
       </p-tabPanel>
     </p-tabView>
   </div>
-  <p-table [value]="listaOsProjeto" [paginator]="true" [rows]="4" [response]="true" [columns]="colunas"
-  dataKey="status">
+
+
+  <p-table [value]="listaOsProjeto" [paginator]="true" [rows]="4" [response]="true" [columns]="colunas" dataKey="nome">
+
     <ng-template let-columns pTemplate="header">
       <tr>
         <th style="width: 3em"></th>
@@ -39,9 +41,14 @@
       <tr>
         <!-- Quando clicar nessa seta, chamar uma função que carrega as sprints relacionadas com a os em questão -->
         <td>
+
           <a href="#" [pRowToggler]="ordemservico">
+
             <i [ngClass]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"></i>
+
           </a>
+          <!-- <p-radioButton [pRowToggler]="ordemservico" name="groupname" value="val1" ></p-radioButton> -->
+
         </td>
         <td>{{ ordemservico.nome }}</td>
         <td>{{ obterNomeSituacao(ordemservico.idSituacao) }}</td>
@@ -62,45 +69,50 @@
     </ng-template>
 
     <!-- SPRINT -->
-    <ng-template pTemplate="rowexpansion" let-teste let-columns="columns">
+    <ng-template pTemplate="rowexpansion" let-ordemservico let-columns="columns">
       <tr>
         <td [attr.colspan]="columns.length + 1">
           <div class="p-grid -fluid" style="font-size:16px;padding:5px 5px 20px 5px;">
-            <p-table paginator="true" [rows]="5" [columns]="colunaSprint" [value]="sprints" dataKey="status">
+            <p-table paginator="true" [rows]="10" [columns]="coluna" [value]="sprints" dataKey="nome">
               <ng-template pTemplate="header" let-subcolumns>
-                <tr>
-                  <th *ngFor="let sub of subcolumns">
-                    {{sub.header}}
-                  </th>
-                </tr>
-              </ng-template>
-              <ng-template pTemplate="body" let-sprints let-expanded="expanded">
-                <tr>
-                  <td>{{ sprints.nome }}</td>
-                  <td>{{ sprints.dataInicio }}</td>
-                  <td>{{ sprints.dataTermino }}</td>
-                  <td>{{ sprints.pontosFuncao }}</td>
-                  <td>{{ sprints.impedimento}}</td>
-                  <td>{{ sprints.prazo }}</td>
-                  <td>{{ obterNomeStatus(sprints.idStatus) }}</td>
-                </tr>
-              </ng-template>
-              <ng-template pTemplate="emptymessage" let-subcolumns>
-                <tr>
-                  <td [attr.colspan]="columns.length">
-                    <div class="text-center">
-                      <h3>Nenhuma OS cadastrada!</h3>
-                    </div>
-                  </td>
-                </tr>
-              </ng-template>
-              </p-table>
-            </div>
-          </td>
-        </tr>
-      </ng-template>
-    </p-table>
-  </p-fieldset>
+      <tr>
+        <th [class.action]="coluna.header == 'Ações'" *ngFor="let coluna of colunaSprint" pResizableColumn>
+          {{coluna.header}}
+        </th>
+      </tr>
+    </ng-template>
+
+    <ng-template pTemplate="body" let-sprints let-expanded="expanded">
+      <tr *ngIf="sprints.idOrdemServico == ordemservico.id">
+        <td>{{ sprints.nome }}</td>
+        <td>{{ sprints.dataInicio }}</td>
+        <td>{{ sprints.dataTermino }}</td>
+        <td>{{ sprints.pontosFuncao }}</td>
+        <td>{{ obterBoolean(sprints.impedimento)}}</td>
+        <td>{{ obterBoolean(sprints.prazo) }}</td>
+        <td>{{ obterNomeStatus(sprints.idStatus)}}</td>
+      </tr>
+    </ng-template>
+
+    <ng-template pTemplate="emptymessage" let-subcolumns>
+      <tr>
+        <td [attr.colspan]="columns.length">
+          <div class="text-center">
+            <h3>Nenhuma OS cadastrada!</h3>
+          </div>
+        </td>
+      </tr>
+    </ng-template>
+
+  </p-table>
+  </div>
+  </td>
+  </tr>
+  </ng-template>
+
+  </p-table>
+
+</p-fieldset>
 
 <!-- <ng-container *ngIf="listaOrdemServico$ | async as listaOrdemServico; else loading ">
   <p-fieldset *ngFor="let cliente of clientes" [legend]="cliente.descricao" [toggleable]="true">

@@ -28,6 +28,9 @@
       <change afterPath="$PROJECT_DIR$/sapservice/src/main/resources/config/liquibase/changelog/202008270003_insert_tipo_situacao.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/sapservice/src/main/resources/config/liquibase/changelog/202008270005_insert_tipo_status.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sapclient/src/app/pages/dashboard/dashboard.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/sapclient/src/app/pages/dashboard/dashboard.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sapclient/src/app/pages/dashboard/dashboard.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/sapclient/src/app/pages/dashboard/dashboard.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sapclient/src/app/services/projeto.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/sapclient/src/app/services/projeto.service.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sapservice/src/main/resources/config/liquibase/master.xml" beforeDir="false" afterPath="$PROJECT_DIR$/sapservice/src/main/resources/config/liquibase/master.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sapservice/src/test/java/br/gov/basis/sap/sapservice/web/rest/TipoStatusRecursoIT.java" beforeDir="false" afterPath="$PROJECT_DIR$/sapservice/src/test/java/br/gov/basis/sap/sapservice/web/rest/TipoStatusRecursoIT.java" afterDir="false" />
     </list>
