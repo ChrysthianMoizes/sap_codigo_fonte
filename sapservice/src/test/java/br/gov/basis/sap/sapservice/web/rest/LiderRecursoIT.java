@@ -67,5 +67,4 @@ public class LiderRecursoIT extends IntTestComum {
             .content(TestUtil.convertObjectToJsonBytes(lider)))
             .andExpect(status().isOk());
     }
-
 }

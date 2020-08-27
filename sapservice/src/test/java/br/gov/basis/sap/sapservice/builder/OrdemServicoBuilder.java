@@ -59,7 +59,6 @@ public class OrdemServicoBuilder extends ConstrutorDeEntidade<OrdemServico>{
 
     @Override
     protected Collection<OrdemServico> obterTodos() {
-
         return null;
     }
 }

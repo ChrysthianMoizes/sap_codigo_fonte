@@ -1,10 +1,8 @@
 package br.gov.basis.sap.sapservice.web.rest;
 
 import br.gov.basis.sap.sapservice.builder.ProjetoBuilder;
-import br.gov.basis.sap.sapservice.domain.Lider;
 import br.gov.basis.sap.sapservice.domain.Projeto;
 import br.gov.basis.sap.sapservice.util.IntTestComum;
-
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,9 +10,10 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@RunWith(SpringRunner.class )
+@RunWith(SpringRunner.class)
 @Transactional
 public class ProjetoRecursoIT extends IntTestComum {
 

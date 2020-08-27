@@ -11,6 +11,7 @@ import { Component, ViewChild, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { finalize, switchMap, tap } from 'rxjs/operators'
 
+import { Observable } from 'rxjs';
 import { OrdemServico } from './../../../models/ordem-servico.model';
 import { OrdemServicoService } from './../../../services/ordem-servico.service';
 import { SelectItem, MessageService } from 'primeng';
@@ -28,6 +29,8 @@ export class OsFormComponent implements OnInit {
   formSubmetido: boolean = false;
   listaProjetos: SelectItem[];
   situacoes: SelectItem[];
+  listaSprints$: Observable<any>;
+  listaSprints: any = [];
   sprints: Sprint[] = [];
   @ViewChild('sprintDialog') sprintDialog: SprintFormComponent;
 
@@ -198,10 +201,21 @@ export class OsFormComponent implements OnInit {
     this.sprintDialog.mostrarDialog();
   }
 
+  obterTodos() {
+    this.blockUI.start();
+    this.listaSprints$ = this.sprintService.obterTodos().pipe(
+      finalize(() => this.blockUI.stop())
+    )
+  }
+
   deletar(id: number) {
     this.blockUI.start();
     this.sprintService.deletar(id).pipe(
       finalize(() => this.blockUI.stop())
-    )
+    ).subscribe(
+     () => this.obterTodos()
+    );
   }
+
+
 }
