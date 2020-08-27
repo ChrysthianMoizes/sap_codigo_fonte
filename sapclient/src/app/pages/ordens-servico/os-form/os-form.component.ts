@@ -1,3 +1,4 @@
+import { StatusService } from './../../../services/status.service';
 import { Sprint } from './../../../models/sprint.model';
 import { SprintFormComponent } from './../../sprints/sprint-form/sprint-form.component';
 import { SituacaoService } from './../../../services/situacao.service';
@@ -8,7 +9,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 
 import { Component, ViewChild, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { finalize, switchMap, tap } from 'rxjs/operators'
+import { finalize, switchMap, map, tap } from 'rxjs/operators'
 
 import { OrdemServico } from './../../../models/ordem-servico.model';
 import { OrdemServicoService } from './../../../services/ordem-servico.service';
@@ -26,7 +27,9 @@ export class OsFormComponent implements OnInit {
   form: FormGroup;
   formSubmetido: boolean = false;
   listaProjetos: SelectItem[];
+  listaStatus: SelectItem[] = [];
   situacoes: SelectItem[];
+  status: SelectItem[];
   sprints: Sprint[] = [];
   @ViewChild('sprintDialog') sprintDialog: SprintFormComponent;
 
@@ -59,6 +62,7 @@ export class OsFormComponent implements OnInit {
     private ordemService: OrdemServicoService,
     private projetoService: ProjetoService,
     private situacaoService: SituacaoService,
+    private statusService: StatusService,
     private messageService: MessageService
   ) { }
 
@@ -184,6 +188,21 @@ export class OsFormComponent implements OnInit {
     })
   }
 
+  carregarDropdownStatus() {
+    this.blockUI.start();
+    this.statusService.obterTodos().pipe(
+      finalize(() => this.blockUI.stop()),
+      tap(console.log)
+    ).subscribe(res => {
+      this.status = res.map(item => {
+        return {
+          label: item.descricao,
+          value: item.id
+        }
+      })
+    })
+  }
+
   adicionarEditarSprint(event) {
     if (!event.id) {
       this.sprints.push(event);
@@ -195,4 +214,32 @@ export class OsFormComponent implements OnInit {
   showDialogSprint() {
     this.sprintDialog.mostrarDialog();
   }
+
+  // Código para edição da tabela sprint 
+
+  // Código para configurar o dropdown de status
+
+// carregarStatus() {
+//     this.blockUI.start();
+//     this.statusService.obterTodos().pipe(
+//         finalize(() => this.blockUI.stop()),
+//         // map(this.converterDropDownStatus),
+//         tap(console.log)
+//     ).subscribe(status => this.listaStatus = status);
+// }
+
+obterStatus(idStatus: number): string {
+  return this.listaStatus.find(OrdemServico => OrdemServico.value == idStatus).label;
 }
+
+  private converterDropDownStatus(lista) {
+    return lista.map(item => {
+        return {
+            label: item['descricao'].toUpperCase(),
+            value: item['id']
+        }
+    })
+  }
+
+}
+

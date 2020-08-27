@@ -23,14 +23,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7dd9a0cf-7e5b-4cf4-b853-72629388a471" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/sapservice/src/main/resources/config/liquibase/changelog/202008260949_Insert.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/sapservice/src/test/java/br/gov/basis/sap/sapservice/builder/OrdemServicoBuilder.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/sapservice/src/test/java/br/gov/basis/sap/sapservice/builder/ProjetoBuilder.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/sapservice/src/test/java/br/gov/basis/sap/sapservice/builder/SprintBuilder.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/sapservice/src/test/java/br/gov/basis/sap/sapservice/web/rest/DominioFixoRecursoIT.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/sapservice/src/test/java/br/gov/basis/sap/sapservice/web/rest/OrdemServicoRecursoIT.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/sapservice/src/test/java/br/gov/basis/sap/sapservice/web/rest/ProjetoRecursoIT.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/sapservice/src/test/java/br/gov/basis/sap/sapservice/web/rest/SprintRecursoIT.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
