@@ -51,15 +51,17 @@ export class DashboardComponent implements OnInit {
   situacoes: any = [];
   projetos: any = [];
   sprints: any = [];
+  sprintsFiltradas: any = [];
   lideres: any = [];
-  status: any=[];
+  status: any = [];
+  testeExibe: boolean;
 
 
   colunas: any[] = [
     { header: 'OS' },
     { header: 'Status da OS' },
     { header: 'Próxima Entrega' },
-    { header: 'No prazo?' },
+    { header: 'Prazo' },
     { header: 'PF' },
     { header: 'Fábrica(s)' },
   ];
@@ -234,7 +236,16 @@ export class DashboardComponent implements OnInit {
   obterCliente(id: number) {
     return this.projetos.find(projeto => projeto.id == id).idCliente
   }
+
   obterSprints(id: number) {
-    return this.sprints.find(sprints => sprints.idOrdemServico == id).nome
+    this.sprintsFiltradas = this.sprints.find(sprints => sprints.idOrdemServico == id);
   }
+  obterBoolean(ar: boolean) {
+    if (ar == true) {
+      return "Sim"
+    } else {
+      return "Não"
+    }
+  }
+
 }
