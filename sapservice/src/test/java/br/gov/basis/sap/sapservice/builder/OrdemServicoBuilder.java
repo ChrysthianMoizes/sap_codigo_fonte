@@ -1,6 +1,5 @@
 package br.gov.basis.sap.sapservice.builder;
 
-
 import br.gov.basis.sap.sapservice.domain.OrdemServico;
 import br.gov.basis.sap.sapservice.domain.Sprint;
 
@@ -31,6 +30,7 @@ public class OrdemServicoBuilder extends ConstrutorDeEntidade<OrdemServico> {
 
     @Autowired
     private TipoSituacaoBuilder tipoSituacaoBuilder;
+
     @Autowired
     private ProjetoBuilder projetoBuilder;
 
@@ -71,4 +71,6 @@ public class OrdemServicoBuilder extends ConstrutorDeEntidade<OrdemServico> {
     protected Collection<OrdemServico> obterTodos() {
         return null;
     }
+
+
 }

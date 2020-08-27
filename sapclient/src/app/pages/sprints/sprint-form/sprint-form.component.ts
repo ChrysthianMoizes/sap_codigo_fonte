@@ -11,6 +11,7 @@ import { Sprint } from './../../../models/sprint.model';
 import { SprintService } from './../../../services/sprint.service';
 
 import { StatusService } from 'src/app/services/status.service';
+import { ClassGetter } from '@angular/compiler/src/output/output_ast';
 
 
 @Component({
@@ -22,6 +23,7 @@ export class SprintFormComponent implements OnInit {
   titulo: string = 'Cadastro de Sprint';
   acaoAtual: string;
   form: FormGroup;
+  formEdit: FormGroup;
   formSubmetido: boolean = false;
   status: SelectItem[];
   exibir: boolean = false;
@@ -57,10 +59,18 @@ export class SprintFormComponent implements OnInit {
     this.setAcaoAtual();
   }
 
-  mostrarDialog() {
+  mostrarDialog(sprint = null) {
+    console.log(sprint);
+    this.iniciarForm();
+    if (sprint) {
+      sprint.dataInicio = new Date(sprint.dataInicio);
+      sprint.dataTermino = new Date(sprint.dataTermino);
+      this.form.patchValue(sprint)
+    }
     this.exibir = true;
   }
 
+ 
   private setAcaoAtual() {
     if (this.route.snapshot.url[0].path == 'novo') {
       this.titulo = 'Cadastro de Sprints';
@@ -70,7 +80,7 @@ export class SprintFormComponent implements OnInit {
   }
 
 
-  iniciarForm() {
+  iniciarForm(sprint = null) {
     this.form = this.formBuilder.group({
       id: [null],
       nome: [null, [Validators.required, Validators.minLength(3)]],
@@ -82,6 +92,7 @@ export class SprintFormComponent implements OnInit {
       idStatus: [null, [Validators.required]]
     })
   }
+
   enviarForm() {
     this.formSubmetido = true;
     if (!this.form.invalid) {

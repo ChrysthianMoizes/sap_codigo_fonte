@@ -31,7 +31,7 @@ public class SprintBuilder extends ConstrutorDeEntidade<Sprint> {
     public Sprint construirEntidade() throws ParseException {
         Sprint sprint = new Sprint();
         TipoStatus tipoStatus=new TipoStatus();
-tipoStatus.setDescricao("Pausada");
+        tipoStatus.setDescricao("Pausada");
         Cliente cliente=new Cliente();
         cliente.setId(1);
 
@@ -60,6 +60,5 @@ tipoStatus.setDescricao("Pausada");
     protected Collection<Sprint> obterTodos() {
         return null;
     }
-
 
 }

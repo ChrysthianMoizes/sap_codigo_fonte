@@ -32,7 +32,6 @@ public class ProjetoRecursoIT extends IntTestComum {
     public void obterDetalheTest() throws Exception {
         getMockMvc().perform(get(RECURSO + "/detalhe")).andExpect(status().isOk());
 
-
     }
 
     @Test

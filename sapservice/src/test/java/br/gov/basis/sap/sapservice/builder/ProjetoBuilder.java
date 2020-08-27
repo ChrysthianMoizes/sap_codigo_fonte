@@ -1,3 +1,4 @@
+
 package br.gov.basis.sap.sapservice.builder;
 
 import br.gov.basis.sap.sapservice.domain.Projeto;
@@ -51,4 +52,5 @@ public class ProjetoBuilder extends ConstrutorDeEntidade<Projeto> {
     protected Collection<Projeto> obterTodos() {
         return null;
     }
+
 }
