@@ -4,38 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8cb862e7-64b8-431b-9a1b-22958a899c91" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/sap_codigo_fonte.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/sapclient/teste.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dbnavigator.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sap-parent.iml" beforeDir="false" afterPath="$PROJECT_DIR$/sap-parent.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sapclient/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/sapclient/src/app/app.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sapclient/src/app/pages/dashboard/dashboard.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/sapclient/src/app/pages/dashboard/dashboard.component.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sapclient/src/app/pages/dashboard/dashboard.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/sapclient/src/app/pages/dashboard/dashboard.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sapclient/src/app/pages/dashboard/dashboard.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/sapclient/src/app/pages/dashboard/dashboard.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sapclient/src/app/pages/lideres/lider-form/lider-form.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/sapclient/src/app/pages/lideres/lider-form/lider-form.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sapclient/src/app/pages/lideres/lider-list/lider-list.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/sapclient/src/app/pages/lideres/lider-list/lider-list.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sapclient/src/app/pages/ordens-servico/os-form/os-form.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/sapclient/src/app/pages/ordens-servico/os-form/os-form.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sapclient/src/app/pages/ordens-servico/os-list/os-list.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/sapclient/src/app/pages/ordens-servico/os-list/os-list.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sapclient/src/app/pages/projetos/projeto-form/projeto-form.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/sapclient/src/app/pages/projetos/projeto-form/projeto-form.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sapclient/src/app/pages/projetos/projeto-list/projeto-list.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/sapclient/src/app/pages/projetos/projeto-list/projeto-list.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sapclient/src/app/pages/sprints/sprint-form/sprint-form.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/sapclient/src/app/pages/sprints/sprint-form/sprint-form.component.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sapclient/src/app/pages/sprints/sprint-form/sprint-form.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/sapclient/src/app/pages/sprints/sprint-form/sprint-form.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sapclient/src/app/pages/sprints/sprint-form/sprint-form.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/sapclient/src/app/pages/sprints/sprint-form/sprint-form.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sapclient/src/app/services/ordem-servico.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/sapclient/src/app/services/ordem-servico.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sapclient/src/assets/layout/images/logo.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/sapclient/src/assets/layout/images/basis.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sapclient/src/styles.scss" beforeDir="false" afterPath="$PROJECT_DIR$/sapclient/src/styles.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sapservice/src/main/java/br/gov/basis/sap/sapservice/repository/OrdemServicoRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/sapservice/src/main/java/br/gov/basis/sap/sapservice/repository/OrdemServicoRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sapservice/src/main/java/br/gov/basis/sap/sapservice/service/OrdemServicoServico.java" beforeDir="false" afterPath="$PROJECT_DIR$/sapservice/src/main/java/br/gov/basis/sap/sapservice/service/OrdemServicoServico.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sapservice/src/main/java/br/gov/basis/sap/sapservice/web/rest/OrdemServicoRecurso.java" beforeDir="false" afterPath="$PROJECT_DIR$/sapservice/src/main/java/br/gov/basis/sap/sapservice/web/rest/OrdemServicoRecurso.java" afterDir="false" />
-    </list>
+    <list default="true" id="8cb862e7-64b8-431b-9a1b-22958a899c91" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
