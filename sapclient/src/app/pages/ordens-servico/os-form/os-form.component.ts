@@ -201,21 +201,6 @@ export class OsFormComponent implements OnInit {
     this.sprintDialog.mostrarDialog();
   }
 
-  obterTodos() {
-    this.blockUI.start();
-    this.listaSprints$ = this.sprintService.obterTodos().pipe(
-      finalize(() => this.blockUI.stop())
-    )
-  }
-
-  deletar(id: number) {
-    this.blockUI.start();
-    this.sprintService.deletar(id).pipe(
-      finalize(() => this.blockUI.stop())
-    ).subscribe(
-     () => this.obterTodos()
-    );
-  }
-
+  
 
 }
