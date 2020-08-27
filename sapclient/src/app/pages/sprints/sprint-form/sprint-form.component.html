@@ -39,14 +39,14 @@
       <div id="selection" class="p-fluid p-formgrid p-grid">
           <div class="p-field p-col-3 p-md-3">
             <label>Impedimentos <span>*</span>:</label>
-            <p-radioButton class="espacamento" name="impedimento" value="true" formControlName="impedimento" label="Sim"></p-radioButton>
-            <p-radioButton name="impedimento" value="false" formControlName="impedimento" label="Não"></p-radioButton>
+            <p-radioButton class="espacamento" name="impedimento" [value]="true" [(ngModel)]="sprint.impedimento" formControlName="impedimento" label="Sim"></p-radioButton>
+            <p-radioButton name="impedimento" [value]="false" formControlName="impedimento" [(ngModel)]="sprint.impedimento" label="Não"></p-radioButton>
         </div>
 
           <div class="p-field p-col-3 p-md-3">
             <label>Dentro Do Prazo <span>*</span>:</label>
-            <p-radioButton  class="espacamento" name="prazo" value="true" formControlName="prazo" label="Sim"></p-radioButton>
-            <p-radioButton name="prazo" value="false" formControlName="prazo" label="Não"></p-radioButton>
+            <p-radioButton  class="espacamento" name="prazo" [value]="true" formControlName="prazo" label="Sim"></p-radioButton>
+            <p-radioButton name="prazo" [value]="false" formControlName="prazo" label="Não"></p-radioButton>
         </div>
   
           <div class="p-field p-col-3 p-md-3">

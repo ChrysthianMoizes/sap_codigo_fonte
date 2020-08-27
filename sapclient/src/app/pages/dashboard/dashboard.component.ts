@@ -1,16 +1,19 @@
+import { StatusService } from './../../services/status.service';
+import { Sprint } from './../../models/sprint.model';
 import { ClienteService } from './../../services/cliente.service';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 
 import { LiderService } from './../../services/lider.service';
 import { SprintService } from './../../services/sprint.service';
-import { ProjetoService } from './../../services/projeto.service';
 
+import { ProjetoService } from './../../services/projeto.service';
 import { OrdemServicoService } from './../../services/ordem-servico.service';
 import { SituacaoService } from './../../services/situacao.service';
 import { Observable, forkJoin } from 'rxjs';
 
 import { finalize, map, tap } from 'rxjs/operators';
 import { Component, OnInit } from '@angular/core';
+
 import { BlockUI, NgBlockUI } from 'ng-block-ui';
 import { SelectItem } from 'primeng';
 
@@ -20,18 +23,20 @@ import { SelectItem } from 'primeng';
   styleUrls: ['./dashboard.component.css'],
   animations: [
     trigger('rowExpansionTrigger', [
-        state('void', style({
-            transform: 'translateX(-10%)',
-            opacity: 0
-        })),
-        state('active', style({
-            transform: 'translateX(0)',
-            opacity: 1
-        })),
-        transition('* <=> *', animate('600ms cubic-bezier(0.86, 0, 0.07, 1)'))
+      state('void', style({
+        transform: 'translateX(-10%)',
+        opacity: 0
+      })),
+      state('active', style({
+        transform: 'translateX(0)',
+        opacity: 1
+      })),
+      transition('* <=> *', animate('600ms cubic-bezier(0.86, 0, 0.07, 1)'))
     ])
-]
+  ]
 })
+
+
 
 export class DashboardComponent implements OnInit {
 
@@ -47,10 +52,11 @@ export class DashboardComponent implements OnInit {
   projetos: any = [];
   sprints: any = [];
   lideres: any = [];
+  status: any=[];
 
 
   colunas: any[] = [
-    { header: 'OS'},
+    { header: 'OS' },
     { header: 'Status da OS' },
     { header: 'Próxima Entrega' },
     { header: 'No prazo?' },
@@ -69,13 +75,13 @@ export class DashboardComponent implements OnInit {
   ];
 
   teste = [
-    { nome: 'site', status: 'Em andamento', proxEntrega: '10-10-20', prazo: 'não', pf: '50', fabrica: 'SRC'},
-    { nome: 'site', status: 'Em andamento', proxEntrega: '10-10-20', prazo: 'não', pf: '50', fabrica: 'SRC'}
+    { nome: 'site', status: 'Em andamento', proxEntrega: '10-10-20', prazo: 'não', pf: '50', fabrica: 'SRC' },
+    { nome: 'site', status: 'Em andamento', proxEntrega: '10-10-20', prazo: 'não', pf: '50', fabrica: 'SRC' }
   ];
 
   testeSprint = [
-    { nome: 'dados', inicio: '10-10-20', termino: '15-10-20', pf: '20', impedimento: 'não', prazo: 'Sim', status: 'em andamento'}
-]
+    { nome: 'dados', inicio: '10-10-20', termino: '15-10-20', pf: '20', impedimento: 'não', prazo: 'Sim', status: 'em andamento' }
+  ]
 
   constructor(
     private ordemServicoService: OrdemServicoService,
@@ -83,7 +89,8 @@ export class DashboardComponent implements OnInit {
     private situacaoService: SituacaoService,
     private liderService: LiderService,
     private sprintService: SprintService,
-    private clienteService: ClienteService
+    private clienteService: ClienteService,
+    private statusService: StatusService
   ) { }
 
   ngOnInit(): void {
@@ -93,6 +100,7 @@ export class DashboardComponent implements OnInit {
     this.obterTodos();
     this.obterSprint();
     this.obterLideres();
+    this.obterStatus();
   }
 
   obterTodos() {
@@ -127,7 +135,7 @@ export class DashboardComponent implements OnInit {
     );
   }
 
-  
+
   obterSprint() {
     this.blockUI.start();
     this.sprintService.obterTodos().pipe(
@@ -137,13 +145,13 @@ export class DashboardComponent implements OnInit {
     );
   }
 
-  obterOsPorProjeto(id){
+  obterOsPorProjeto(id) {
     this.blockUI.start();
     this.ordemServicoService.obterPorIdProjeto(id)
-    .pipe(
-      finalize(() => this.blockUI.stop()),
-      tap(console.log)
-    ).subscribe(osProjeto => this.listaOsProjeto = osProjeto)
+      .pipe(
+        finalize(() => this.blockUI.stop()),
+        tap(console.log)
+      ).subscribe(osProjeto => this.listaOsProjeto = osProjeto)
   }
 
 
@@ -155,7 +163,7 @@ export class DashboardComponent implements OnInit {
       lideres => this.lideres = lideres
     );
   }
- 
+
   obterSituacoes() {
     this.blockUI.start();
     this.situacaoService.obterTodos().pipe(
@@ -163,6 +171,21 @@ export class DashboardComponent implements OnInit {
     ).subscribe(
       situacoes => this.situacoes = situacoes
     );
+
+  }
+  obterStatus() {
+    this.blockUI.start();
+    this.statusService.obterTodos().pipe(
+      finalize(() => this.blockUI.stop())
+    ).subscribe(
+      status => this.status = status
+    );
+
+
+  }
+
+  obterNomeStatus(id: number) {
+    return this.status.find(status => status.id == id).descricao
   }
 
   obterNomeLider(id: number) {
@@ -197,15 +220,21 @@ export class DashboardComponent implements OnInit {
     return this.projetos.find(projeto => projeto.id == id).revisor
   }
 
-  private mapearOsProjeto(array){
+  private mapearOsProjeto(array) {
     return array[0].map(os => {
       os.nome = array[1].find(projeto => projeto.id === os.idOrdemServico).nome + ' - ' + os.nome;
     })
   }
 
-  private mapearLiderProjeto(array){
+  private mapearLiderProjeto(array) {
     return array[0].map(lider => {
-      lider.nome = array[1].find(projeto => projeto.id === lider.idLider).nome; 
+      lider.nome = array[1].find(projeto => projeto.id === lider.idLider).nome;
     })
+  }
+  obterCliente(id: number) {
+    return this.projetos.find(projeto => projeto.id == id).idCliente
+  }
+  obterSprints(id: number) {
+    return this.sprints.find(sprints => sprints.idOrdemServico == id).nome
   }
 }

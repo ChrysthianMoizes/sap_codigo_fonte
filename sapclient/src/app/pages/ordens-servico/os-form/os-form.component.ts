@@ -1,3 +1,4 @@
+import { SprintService } from './../../../services/sprint.service';
 import { StatusService } from './../../../services/status.service';
 import { Sprint } from './../../../models/sprint.model';
 import { SprintFormComponent } from './../../sprints/sprint-form/sprint-form.component';
@@ -10,6 +11,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Component, ViewChild, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { finalize, switchMap, map, tap } from 'rxjs/operators'
+import { Observable } from 'rxjs';
 
 import { OrdemServico } from './../../../models/ordem-servico.model';
 import { OrdemServicoService } from './../../../services/ordem-servico.service';
@@ -27,10 +29,14 @@ export class OsFormComponent implements OnInit {
   form: FormGroup;
   formSubmetido: boolean = false;
   listaProjetos: SelectItem[];
-  listaStatus: SelectItem[] = [];
+  listaStatus: any = [];
   situacoes: SelectItem[];
-  status: SelectItem[];
+  status: any = [];
   sprints: Sprint[] = [];
+  listaSprint$: Observable<any>;
+  listaSprint: any = [];
+  ordemService$: Observable<any>;
+
   @ViewChild('sprintDialog') sprintDialog: SprintFormComponent;
 
   colunas = [
@@ -63,6 +69,7 @@ export class OsFormComponent implements OnInit {
     private projetoService: ProjetoService,
     private situacaoService: SituacaoService,
     private statusService: StatusService,
+    private sprintService: SprintService,
     private messageService: MessageService
   ) { }
 
@@ -71,6 +78,7 @@ export class OsFormComponent implements OnInit {
     this.iniciarForm();
     this.carregarDropdownProjetos();
     this.carregarDropdownSituacao();
+    this.carregarStatus();
     this.carregarOrdemServico();
 
   }
@@ -145,6 +153,26 @@ export class OsFormComponent implements OnInit {
     })
   }
 
+  obterTodos() {
+    // this.blockUI.start();
+    this.ordemService$ = this.ordemService.obterTodos().pipe(
+      map(res => {
+        res.forEach(item => {
+          item.dataProximaEntrega = new Date(`${item.dataProximaEntrega}T00:00:00`);
+          item.prazo = new Date(`${item.prazo}T00:00:00`);
+        })
+        return res;
+      }),
+      finalize(() => this.blockUI.stop())
+    )
+  }
+
+  deletar(id: number) {
+      this.sprintService.deletar(id).subscribe(
+          () => this.sprints = this.sprints.filter(res => res.id !== id)
+      )
+  }
+
   carregarOrdemServico() {
     if (this.route.snapshot.url[0].path != "novo") {
       this.route.paramMap.pipe(
@@ -203,43 +231,28 @@ export class OsFormComponent implements OnInit {
     })
   }
 
-  adicionarEditarSprint(event) {
-    if (!event.id) {
-      this.sprints.push(event);
-      return;
-    }
-    this.sprints = this.sprints.filter(sprint => sprint.id !== event.id).concat(event);
-  }
-
-  showDialogSprint() {
-    this.sprintDialog.mostrarDialog();
-  }
-
-  // Código para edição da tabela sprint 
-
-  // Código para configurar o dropdown de status
-
-// carregarStatus() {
-//     this.blockUI.start();
-//     this.statusService.obterTodos().pipe(
-//         finalize(() => this.blockUI.stop()),
-//         // map(this.converterDropDownStatus),
-//         tap(console.log)
-//     ).subscribe(status => this.listaStatus = status);
-// }
-
-obterStatus(idStatus: number): string {
-  return this.listaStatus.find(OrdemServico => OrdemServico.value == idStatus).label;
+  carregarStatus() {
+    this.blockUI.start();
+    this.statusService.obterTodos().pipe(
+      finalize(() => this.blockUI.stop()),
+      ).subscribe(status => this.listaStatus = status);
 }
 
-  private converterDropDownStatus(lista) {
-    return lista.map(item => {
-        return {
-            label: item['descricao'].toUpperCase(),
-            value: item['id']
-        }
-    })
+obterNomeStatus(id: number) {
+  return this.listaStatus.find(status => status.id == id).descricao;
+}
+
+adicionarEditarSprint(event) {
+  if (!event.id) {
+    this.sprints.push(event);
+    return;
   }
+  this.sprints = this.sprints.filter(sprint => sprint.id !== event.id).concat(event);
+}
+
+showDialogSprint(sprint = null) {
+  this.sprintDialog.mostrarDialog(sprint);
+}
 
 }
 

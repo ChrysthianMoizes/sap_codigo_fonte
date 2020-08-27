@@ -31,12 +31,6 @@ public class LiderRecurso {
         return ResponseEntity.ok().body(lideres);
     }
 
-    @GetMapping("/nome")
-    public ResponseEntity<List<LiderDTO>> obterTodosPorNome(@RequestParam("nome") String nome) {
-        List<LiderDTO> lideres = liderServico.obterTodosPorNome(nome);
-        return ResponseEntity.ok().body(lideres);
-    }
-
     @GetMapping("/{id}")
     public ResponseEntity<LiderDTO> obterPorId(@PathVariable Integer id) {
         LiderDTO lider = liderServico.obterPorId(id);

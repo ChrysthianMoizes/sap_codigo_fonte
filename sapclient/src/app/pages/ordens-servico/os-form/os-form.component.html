@@ -1,6 +1,5 @@
 <p-card header="{{titulo}}">
 
-  {{status | json }}
 
   <form [formGroup]="form">
 
@@ -85,78 +84,37 @@
           </tr>
         </ng-template>
     
-    <ng-template pTemplate="body" let-sprint let-editing="editing" let-ri="rowIndex">
-        <tr [pEditableRow]="sprint">
+    <ng-template pTemplate="body" let-sprint>
+        <tr >
       
-              <td pEditableColumn>
-                <p-cellEditor>
-                    <ng-template pTemplate="input">
-                        <input pInputText type="text" [(ngModel)]="sprint.nome" [ngStyle]="{'width':'100%'}">
-                    </ng-template>
-                    <ng-template pTemplate="output">
-                      {{ sprint.nome | uppercase }}
-                    </ng-template>
-                </p-cellEditor>
-              </td>
-
-            <td pEditableColumn>
-                <p-cellEditor>
-                    <ng-template pTemplate="input">
-                        <p-calendar class="calendarTable" [(ngModel)]="sprint.dataInicio" required></p-calendar>
-                    </ng-template>
-                    <ng-template pTemplate="output">
-                      {{ sprint.dataInicio | date:'dd/MM/yyyy' }}
-                    </ng-template>
-                </p-cellEditor>
+            <td >
+              {{ sprint.nome | uppercase }}
             </td>
 
-
-              <td pEditableColumn>
-                <p-cellEditor>
-                    <ng-template pTemplate="input">
-                        <p-calendar class="calendarTable" [(ngModel)]="sprint.dataTermino" required></p-calendar>
-                    </ng-template>
-                    <ng-template pTemplate="output">
-                      {{ sprint.dataTermino | date:'dd/MM/yyyy' }}
-                    </ng-template>
-                </p-cellEditor>
+            <td >
+              {{ sprint.dataInicio | date:'dd/MM/yyyy'}}
             </td>
 
-
-            <td pEditableColumn>
-                <p-cellEditor>
-                    <ng-template pTemplate="input">
-                        <input pInputText type="text" [(ngModel)]="sprint.pontosFuncao" required>
-                    </ng-template>
-                    <ng-template pTemplate="output">
-                      {{ sprint.pontosFuncao }}
-                    </ng-template>
-                </p-cellEditor>
+            <td>
+              {{ sprint.dataTermino | date:'dd/MM/yyyy' }}
             </td>
 
-            <td  pEditableColumn>
-              <p-cellEditor>
-                <ng-template pTemplate="input">
-                    <p-dropdown [options]="status" placeholder="Selecione um status" [(ngModel)]="sprint.idStatus" [style]="{'width':'100%'}"></p-dropdown>
-                </ng-template>
-                <ng-template pTemplate="output">
-                  {{ obterStatus(sprint.descricaoStatus) | uppercase }}
-                </ng-template>
-              </p-cellEditor>
+            <td>
+              {{ sprint.pontosFuncao }}
             </td>
 
-            <td style="text-align:center">
-              <button *ngIf="!editing" pButton type="button" pInitEditableRow icon="pi pi-pencil" class="ui-button-info" (click)="onRowEditInit(sprint)"></button>
-              <button *ngIf="editing" pButton type="button" pSaveEditableRow icon="pi pi-check" class="ui-button-success" style="margin-right: .5em" (click)="onRowEditSave(sprint)"></button>
-              <button *ngIf="editing" pButton type="button" pCancelEditableRow icon="pi pi-times" class="ui-button-danger" (click)="onRowEditCancel(sprint, ri)"></button>
+            <td>
+              {{ obterNomeStatus(sprint.idStatus) | uppercase }}
             </td>
 
-            <!-- <td class="action-buttons">
-              <button [routerLink]="[sprint.id]" pButton icon="ui-icon-mode-edit"></button>
-              <button pButton icon="pi pi-times"></button>
-            </td> -->
+            <td class="action-buttons">
+              <button pButton icon="ui-icon-mode-edit" (click)="showDialogSprint(sprint)" ></button>
+              <button pButton icon="pi pi-times" (click)="deletar(sprint.id)" ></button>
+            </td>   
+
           </tr>
         </ng-template>
+
         <ng-template pTemplate="emptymessage" let-columns>
           <tr>
             <td [attr.colspan]="columns.length">
@@ -175,7 +133,6 @@
 
     <div id="containerButton">
       <p-message id="info" severity="info" text="Todos os campos com * são obrigatórios"></p-message>
-
       <div class="ui-g text-right">
         <div class="ui-lg-2 ui-md-3 ui-sm-6">
           <button pButton icon="ui-icon-check-circle" iconPos="left" label="Salvar" (click)="enviarForm()" [disabled]="this.form.invalid">
