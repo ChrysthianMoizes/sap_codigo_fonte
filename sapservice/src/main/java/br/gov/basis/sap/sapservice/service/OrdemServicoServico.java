@@ -30,6 +30,10 @@ public class OrdemServicoServico {
         return ordemServicoMapper.toDto(ordemServicoRepository.save(ordemServicoMapper.toEntity(ordemServicoDTO)));
     }
 
+    public List<OrdemServicoDTO> obterPorProjeto(Integer id) {
+        return ordemServicoMapper.toDto(ordemServicoRepository.findByProjetoId(id));
+    }
+
     public void removerPorId(Integer id) {
         ordemServicoRepository.deleteById(id);
     }
