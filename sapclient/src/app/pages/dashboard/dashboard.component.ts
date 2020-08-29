@@ -55,7 +55,8 @@ export class DashboardComponent implements OnInit {
   lideres: any = [];
   status: any = [];
   testeExibe: boolean;
-
+  collapsed : boolean=true;
+  itemi: number=1;
 
   colunas: any[] = [
     { header: 'OS' },
@@ -246,6 +247,10 @@ export class DashboardComponent implements OnInit {
     } else {
       return "Não"
     }
+  
+
+
   }
+
 
 }

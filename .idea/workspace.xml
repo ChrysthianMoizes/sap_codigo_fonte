@@ -5,18 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8cb862e7-64b8-431b-9a1b-22958a899c91" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/sapservice/src/main/resources/config/liquibase/changelog/202008260949_Insert.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sapclient/src/app/pages/ordens-servico/os-form/os-form.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/sapclient/src/app/pages/ordens-servico/os-form/os-form.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sapclient/src/app/pages/ordens-servico/os-form/os-form.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/sapclient/src/app/pages/ordens-servico/os-form/os-form.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sapclient/src/app/pages/sprints/sprint-form/sprint-form.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/sapclient/src/app/pages/sprints/sprint-form/sprint-form.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sapclient/src/app/pages/sprints/sprint-form/sprint-form.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/sapclient/src/app/pages/sprints/sprint-form/sprint-form.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sapclient/src/app/services/sprint.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/sapclient/src/app/services/sprint.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sapservice/src/test/java/br/gov/basis/sap/sapservice/builder/OrdemServicoBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/sapservice/src/test/java/br/gov/basis/sap/sapservice/builder/OrdemServicoBuilder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sapservice/src/test/java/br/gov/basis/sap/sapservice/builder/ProjetoBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/sapservice/src/test/java/br/gov/basis/sap/sapservice/builder/ProjetoBuilder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sapservice/src/test/java/br/gov/basis/sap/sapservice/builder/SprintBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/sapservice/src/test/java/br/gov/basis/sap/sapservice/builder/SprintBuilder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sapservice/src/test/java/br/gov/basis/sap/sapservice/web/rest/OrdemServicoRecursoIT.java" beforeDir="false" afterPath="$PROJECT_DIR$/sapservice/src/test/java/br/gov/basis/sap/sapservice/web/rest/OrdemServicoRecursoIT.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sapservice/src/test/java/br/gov/basis/sap/sapservice/web/rest/ProjetoRecursoIT.java" beforeDir="false" afterPath="$PROJECT_DIR$/sapservice/src/test/java/br/gov/basis/sap/sapservice/web/rest/ProjetoRecursoIT.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sapclient/src/app/pages/dashboard/dashboard.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/sapclient/src/app/pages/dashboard/dashboard.component.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -126,22 +116,22 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state width="1320" height="196" key="GridCell.Tab.0.bottom" timestamp="1598548270844">
+    <state width="1320" height="93" key="GridCell.Tab.0.bottom" timestamp="1598717861818">
       <screen x="0" y="27" width="1366" height="690" />
     </state>
-    <state width="1320" height="196" key="GridCell.Tab.0.bottom/0.27.1366.690@0.27.1366.690" timestamp="1598548270844" />
-    <state width="1320" height="196" key="GridCell.Tab.0.center" timestamp="1598548270842">
+    <state width="1320" height="93" key="GridCell.Tab.0.bottom/0.27.1366.690@0.27.1366.690" timestamp="1598717861818" />
+    <state width="1320" height="93" key="GridCell.Tab.0.center" timestamp="1598717861818">
       <screen x="0" y="27" width="1366" height="690" />
     </state>
-    <state width="1320" height="196" key="GridCell.Tab.0.center/0.27.1366.690@0.27.1366.690" timestamp="1598548270842" />
-    <state width="1320" height="196" key="GridCell.Tab.0.left" timestamp="1598548270841">
+    <state width="1320" height="93" key="GridCell.Tab.0.center/0.27.1366.690@0.27.1366.690" timestamp="1598717861818" />
+    <state width="1320" height="93" key="GridCell.Tab.0.left" timestamp="1598717861817">
       <screen x="0" y="27" width="1366" height="690" />
     </state>
-    <state width="1320" height="196" key="GridCell.Tab.0.left/0.27.1366.690@0.27.1366.690" timestamp="1598548270841" />
-    <state width="1320" height="196" key="GridCell.Tab.0.right" timestamp="1598548270843">
+    <state width="1320" height="93" key="GridCell.Tab.0.left/0.27.1366.690@0.27.1366.690" timestamp="1598717861817" />
+    <state width="1320" height="93" key="GridCell.Tab.0.right" timestamp="1598717861818">
       <screen x="0" y="27" width="1366" height="690" />
     </state>
-    <state width="1320" height="196" key="GridCell.Tab.0.right/0.27.1366.690@0.27.1366.690" timestamp="1598548270843" />
+    <state width="1320" height="93" key="GridCell.Tab.0.right/0.27.1366.690@0.27.1366.690" timestamp="1598717861818" />
     <state width="1320" height="24" key="GridCell.Tab.1.bottom" timestamp="1598547941008">
       <screen x="0" y="27" width="1366" height="690" />
     </state>
