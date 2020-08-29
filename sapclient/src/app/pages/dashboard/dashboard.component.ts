@@ -56,6 +56,15 @@ export class DashboardComponent implements OnInit {
   status: any = [];
   testeExibe: boolean;
 
+  lista: any = [];
+  listaFiltrada: any = [];
+  listaLideres: SelectItem[] = [];
+  listaProjetos: SelectItem[] = [];
+  filtroLider: any = [];
+  filtroCliente: any = [];
+  filtroProjeto: any = [];
+  filtroOs: any = [];
+
 
   colunas: any[] = [
     { header: 'OS' },
@@ -147,16 +156,6 @@ export class DashboardComponent implements OnInit {
     );
   }
 
-  obterOsPorProjeto(id) {
-    this.blockUI.start();
-    this.ordemServicoService.obterPorIdProjeto(id)
-      .pipe(
-        finalize(() => this.blockUI.stop()),
-        tap(console.log)
-      ).subscribe(osProjeto => this.listaOsProjeto = osProjeto)
-  }
-
-
   obterLideres() {
     this.blockUI.start();
     this.liderService.obterTodos().pipe(
@@ -183,6 +182,45 @@ export class DashboardComponent implements OnInit {
       status => this.status = status
     );
 
+  }
+
+  obterOsPorProjeto(id) {
+    this.blockUI.start();
+    this.ordemServicoService.obterPorIdProjeto(id)
+      .pipe(
+        finalize(() => this.blockUI.stop()),
+        tap(console.log)
+      ).subscribe(osProjeto => this.listaOsProjeto = osProjeto)
+  }
+
+  obterFiltroProjetos(id) {
+    this.blockUI.start();
+    forkJoin(
+      this.ordemServicoService.obterPorIdProjeto(id)
+    ).pipe(
+        finalize(() => this.blockUI.stop()),
+        map(this.mapearOsProjeto)
+    ).subscribe(res => {
+        this.lista = res;
+        this.listaFiltrada = this.lista;
+        this.listaProjetos = res.map(item => {
+          return {
+              label: item.nome,
+              value: item.id
+          }
+      });
+    })
+  }
+
+  preencherFiltros() {
+    this.listaFiltrada = this.lista.filter(item => {
+        if (!this.filtroOs.length && !this.filtroLider.length && !this.filtroProjeto.length) {
+            return true;
+        }
+        return (this.filtroLider && this.filtroLider.some(sel => sel == item.idLider)) ||
+            (this.filtroOs && this.filtroOs.some(sel => sel == item.idOrdemServico)) ||
+            (this.filtroProjeto && this.filtroProjeto.some(sel => sel == item.id));
+    });
 
   }
 

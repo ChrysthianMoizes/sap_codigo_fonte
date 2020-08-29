@@ -22,7 +22,7 @@
       <div class="ui-fluid p-formgrid p-grid">
         <div class="p-field p-col-12 p-md-6">
           <label>Data Termino <span>*</span>:</label>
-          <p-calendar defaultDate="defaultDate" formControlName="dataTermino" showButtonBar="true" [readonlyInput]="true" [locale]="dataBr" dateFormat="dd/mm/yy" [yearNavigator]="true" [monthNavigator]="true" yearRange="1950:2060"></p-calendar>
+          <p-calendar formControlName="dataTermino" showButtonBar="true" [readonlyInput]="true" [locale]="dataBr" dateFormat="dd/mm/yy" [yearNavigator]="true" [monthNavigator]="true" yearRange="1950:2060"></p-calendar>
             <p-message severity="error" text="É necessário uma data de término" *ngIf="form.get('dataTermino').errors && form.get('dataTermino').errors.required && form.get('dataTermino').touched"></p-message>
           </div>
       </div>

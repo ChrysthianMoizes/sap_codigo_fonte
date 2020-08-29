@@ -1,4 +1,50 @@
 <p-card header="{{ titulo }}">
+
+  <p-fieldset [collapsed]="true" [toggleable]="true" legend="Filtros" [style]="{ 'margin-bottom': '10px'}">
+    <div class="ui-g">
+      <div class="ui-g-4 ui-md-4 ui-sm-12 dashboardFiltro">
+        <span class="ui-float-label">
+            <p-multiSelect class="filtro" maxSelectedLabels="4"
+                [options]="listaLideres" defaultLabel="&nbsp;"
+                selectedItemsLabel="{0} itens selecionados"
+                [(ngModel)]="filtroLider">
+            </p-multiSelect>
+            <label>Nome</label>
+          </span>
+      </div>
+
+      <div class="ui-g-4 ui-md-4 ui-sm-12 dashboardFiltro">
+        <span class="ui-float-label">
+            <p-multiSelect class="filtro" maxSelectedLabels="4"
+                [options]="listaProjetos" defaultLabel="&nbsp;"
+                selectedItemsLabel="{0} itens selecionados"
+                [(ngModel)]="filtroProjeto">
+            </p-multiSelect>
+            <label>Fabrica</label>
+        </span>
+      </div>
+
+      <div class="ui-g-4 ui-md-4 ui-sm-12 dashboardFiltro">
+        <span class="ui-float-label">
+            <p-multiSelect class="filtro" maxSelectedLabels="4"
+                [options]="listaClientes" defaultLabel="&nbsp;"
+                selectedItemsLabel="{0} itens selecionados"
+                [(ngModel)]="filtroCliente">
+            </p-multiSelect>
+            <label>Projeto</label>
+          </span>
+      </div>
+
+    </div>
+
+    <div class="ui-g">
+      <div class="ui-g-2 ui-md-4 ui-sm-6">
+        <a (click)="preencherFiltros()" pButton label="Filtrar"></a>
+      </div>
+    </div>
+
+  </p-fieldset>
+
   <p-header>
     <div id="botaoNovo" class="ui-lg-2 ui-md-3 ui-sm-6 float-right">
       <button routerLink="novo" pButton icon="pi pi-check" iconPost="left" label="Novo"></button>

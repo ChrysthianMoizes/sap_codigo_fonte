@@ -9,3 +9,13 @@ body .ui-tabview {
     display: flex;
     justify-content: center;
 }
+
+#titleHeader{
+    font-weight: bold;
+    font-size: 18px;
+}
+
+#filtros{
+    display: flex;
+    justify-content: space-around;
+}
