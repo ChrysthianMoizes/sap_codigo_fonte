@@ -23,6 +23,9 @@ export class ProjetoListComponent implements OnInit {
   listaClientes: any = [];
   listaLideres: any = [];
 
+  cliente: any;
+  lider: any;
+
   colunas:any = [
     { header: 'Nome' },
     { header: 'Cliente' },

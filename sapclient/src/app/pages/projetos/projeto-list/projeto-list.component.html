@@ -5,20 +5,60 @@
     </div>
   </p-header>
   <ng-container *ngIf="listaProjetos$ | async as listaProjetos; else loading">
+    <p-table #dt [paginator]="true" [rows]="2" [rowsPerPageOptions]="[2, 4, 8, 10]" [response]="true"
+    [columns]="colunas" [value]="listaProjetos" [filterDelay]="0">
+    
+<!-- >>>Ainda estou mexendo nisso aqui, tentando fazer o cabeçalho<<< -->
 
-    <p-table [paginator]="true" [rows]="2" [rowsPerPageOptions]="[2, 4, 8, 10]" [response]="true" [columns]="colunas" [value]="listaProjetos">
-      <ng-template let-columns pTemplate="header">
+    <ng-template pTemplate="header">
+    <h1>SUA MÃE...</h1>
+      <p-fieldset [toggleable]="true">
+        <tr>
+          <th *ngFor="let coluna of columns">
+            {{ coluna.header }}
+          </th>
+        </tr>
+        <tr>
+          <th>
+            <input pInputText type="text" (input)="dt.filter($event.target.value, 'nome', 'contains')" placeholder="Buscar por Nome" class="p-column-filter">
+            <p-multiSelect *ngSwitchCase="'cliente'" [options]="listaClientes" defaultLabel="Todos os clientes" (onChange)="dt.filter($event.value, coluna.field, 'in')"></p-multiSelect>
+            <p-multiSelect [options]="listaLideres" placeholder="Bu*ngForscar por lideres" (onChange)="onChange($event)" styleClass="p-column-filter" optionLabel="nome">
+              <ng-template let-option pTemplate="item">
+                <div class="p-multiselect-cliente-option">          
+                  <span class="p-ml-1">{{option.label}}</span>
+                </div>
+              </ng-template>
+            </p-multiSelect>
+            <!-- <p-calendar (onSelect)="onDateSelect($event)" (onClearClick)="dt.filter('', 'date', 'equals')" [showButtonBar]="true" styleClass="p-column-filter" placeholder="Registration Date" [readonlyInput]="true" dateFormat="yy-mm-dd"></p-calendar>
+            <p-dropdown [options]="statuses" (onChange)="dt.filter($event.value, 'status', 'equals')" styleClass="p-column-filter" placeholder="Select a Status" [showClear]="true">
+              <ng-template let-option pTemplate="item">
+                <span [class]="'customer-badge status-' + option.value">{{option.label}}</span>
+              </ng-template>
+            </p-dropdown> -->
+          </th>
+          <th>
+            <input pInputText type="text" (input)="onActivityChange($event)" placeholder="Minimum" class="p-column-filter" >
+          </th>
+        </tr>
+      </p-fieldset>
+      <h1>AQUELA PIRANHA!!!</h1>
+    </ng-template>
+
+    <!-- >>>Ainda estou mexendo nisso aqui, tentando fazer o cabeçalho<<< -->
+
+
+      <!-- <ng-template let-columns pTemplate="header">
         <tr>
           <th [class.action]="coluna.header == 'Ações'" *ngFor="let coluna of columns">
             {{ coluna.header }}
           </th>
         </tr>
-      </ng-template>
+      </ng-template> -->
       <ng-template pTemplate="body" let-projeto>
         <tr>
           <td>{{ projeto.nome }}</td>
           <td>{{ filtrarClientePorId(projeto.idCliente) }}</td>
-          <td>{{ filtrarLiderPorId(projeto.idLider) | uppercase }}</td>
+          <td>{{ filtrarLiderPorId(projeto.idLider) }}</td>
           <td>{{ projeto.testador }}</td>
           <td>{{ projeto.revisor }}</td>
           <td>{{ projeto.gerente }}</td>
@@ -47,5 +87,4 @@
       </div>
     </div>
   </ng-template>
-
 </p-card>
