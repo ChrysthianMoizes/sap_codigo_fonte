@@ -1,6 +1,6 @@
 <p-dialog header="Gerenciamento de Sprints" [(visible)]="exibir" [style]="{ 'width': '80vw' }">
 
-  <p-card [header]="titulo">
+  <p-card [header]="titulo" resizable="true">
     <form [formGroup]="form">
       <div class="ui-fluid p-formgrid p-grid">
         <div class="p-field p-col-12 p-md-6">
@@ -22,7 +22,7 @@
       <div class="ui-fluid p-formgrid p-grid">
         <div class="p-field p-col-12 p-md-6">
           <label>Data Termino <span>*</span>:</label>
-          <p-calendar formControlName="dataTermino" showButtonBar="true" [readonlyInput]="true" [locale]="dataBr" dateFormat="dd/mm/yy" [yearNavigator]="true" [monthNavigator]="true" yearRange="1950:2060"></p-calendar>
+          <p-calendar defaultDate="defaultDate" formControlName="dataTermino" showButtonBar="true" [readonlyInput]="true" [locale]="dataBr" dateFormat="dd/mm/yy" [yearNavigator]="true" [monthNavigator]="true" yearRange="1950:2060"></p-calendar>
             <p-message severity="error" text="É necessário uma data de término" *ngIf="form.get('dataTermino').errors && form.get('dataTermino').errors.required && form.get('dataTermino').touched"></p-message>
           </div>
       </div>
@@ -51,7 +51,7 @@
   
           <div class="p-field p-col-3 p-md-3">
             <label>Status <span>*</span>:</label>
-            <p-dropdown [options]="status" placeholder="Indique um Status" formControlName="idStatus"></p-dropdown>
+            <p-dropdown autoDisplayFirst="false" [options]="status" placeholder="Indique um Status" formControlName="idStatus"></p-dropdown>
             <p-message severity="error" text="O campo status é obrigatório" *ngIf="form.get('idStatus').errors && form.get('idStatus').errors.required && form.get('idStatus').invalid && form.get('idStatus').touched"></p-message>
         </div>
 

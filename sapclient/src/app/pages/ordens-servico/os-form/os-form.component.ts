@@ -170,9 +170,11 @@ export class OsFormComponent implements OnInit {
   }
 
   deletar(id: number) {
-      this.sprintService.deletar(id).subscribe(
+    this.blockUI.start();
+    this.sprintService.deletar(id).subscribe(
           () => this.sprints = this.sprints.filter(res => res.id !== id)
-      )
+      ),
+      finalize(() => this.blockUI.stop());
   }
 
   carregarOrdemServico() {
@@ -256,5 +258,8 @@ showDialogSprint(sprint = null) {
   this.sprintDialog.mostrarDialog(sprint);
 }
 
+  defaultDate(){
+    
+  }
 }
 
