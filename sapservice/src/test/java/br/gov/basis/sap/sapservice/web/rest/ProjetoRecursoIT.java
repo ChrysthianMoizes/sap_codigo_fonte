@@ -24,21 +24,21 @@ public class ProjetoRecursoIT extends IntTestComum {
 
     @Test
     public void obterTodosTest() throws Exception {
-        getMockMvc().perform(get(RECURSO))
-            .andExpect(status().isOk());
-    }
-
-    @Test
-    public void obterDetalheTest() throws Exception {
-        getMockMvc().perform(get(RECURSO + "/detalhe")).andExpect(status().isOk());
-
+        getMockMvc().perform(get(RECURSO)).
+            andExpect(status().isOk());
     }
 
     @Test
     public void obterPorIdTest() throws Exception {
         Projeto projeto = projetoBuilder.construir();
-        getMockMvc().perform(get(RECURSO + projeto.getId()))
-            .andExpect(status().isOk());
+        getMockMvc().perform(get(RECURSO + projeto.getId())).
+            andExpect(status().isOk());
+    }
+
+    @Test
+    public void obterPorIdInexistenteTest() throws Exception {
+        getMockMvc().perform(get(RECURSO + "0"))
+            .andExpect(status().isBadRequest());
     }
 
     @Test
@@ -65,5 +65,4 @@ public class ProjetoRecursoIT extends IntTestComum {
             .content(TestUtil.convertObjectToJsonBytes(projeto)))
             .andExpect(status().isOk());
     }
-
 }

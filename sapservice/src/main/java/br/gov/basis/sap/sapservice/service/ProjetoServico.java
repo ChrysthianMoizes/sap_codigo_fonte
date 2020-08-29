@@ -1,9 +1,11 @@
 package br.gov.basis.sap.sapservice.service;
 
+import br.gov.basis.sap.sapservice.domain.Projeto;
 import br.gov.basis.sap.sapservice.repository.ProjetoRepository;
 import br.gov.basis.sap.sapservice.service.dto.ProjetoDTO;
 import br.gov.basis.sap.sapservice.service.dto.ProjetoDetalheDTO;
 import br.gov.basis.sap.sapservice.service.mapper.ProjetoMapper;
+import br.gov.nuvem.comum.microsservico.web.rest.errors.BadRequestAlertException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -23,6 +25,11 @@ public class ProjetoServico {
     }
 
     public ProjetoDTO obterPorId(Integer id) {
+
+       Projeto projeto = projetoRepository.findById(id)
+            .orElseThrow(() -> new BadRequestAlertException
+                ("Não foi possível obter o Projeto. ID não está presente", "id", ""));
+
         return projetoMapper.toDto(projetoRepository.findById(id).get());
     }
 

@@ -1,7 +1,9 @@
 package br.gov.basis.sap.sapservice.web.rest;
 
 import br.gov.basis.sap.sapservice.builder.OrdemServicoBuilder;
+import br.gov.basis.sap.sapservice.builder.ProjetoBuilder;
 import br.gov.basis.sap.sapservice.domain.OrdemServico;
+import br.gov.basis.sap.sapservice.domain.Projeto;
 import br.gov.basis.sap.sapservice.util.IntTestComum;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
@@ -10,35 +12,40 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@RunWith(SpringRunner.class)
+@RunWith(SpringRunner.class )
 @Transactional
 public class OrdemServicoRecursoIT extends IntTestComum {
 
     @Autowired
     private OrdemServicoBuilder ordemServicoBuilder;
 
-    private static  String RECURSO="/ordens-servico/";
+    private static String RECURSO = "/ordens-servico/";
 
     @Test
     public void obterTodosTest() throws Exception {
-        getMockMvc().perform(get(RECURSO))
-            .andExpect(status().isOk());
+        getMockMvc().perform(get(RECURSO)).
+            andExpect(status().isOk());
     }
 
     @Test
     public void obterPorIdTest() throws Exception {
         OrdemServico ordemServico  = ordemServicoBuilder.construir();
-        getMockMvc().perform(get(RECURSO + ordemServico.getId()))
+        getMockMvc().perform(get(RECURSO + ordemServico.getId())).
+            andExpect(status().isOk());
+    }
+
+    @Test
+    public  void obterPorProjeto() throws Exception{
+        OrdemServico ordemServico  = ordemServicoBuilder.construirEntidade();
+        getMockMvc().perform(get(RECURSO + ordemServico.getProjeto().getId()+"/projeto"))
             .andExpect(status().isOk());
     }
 
-
     @Test
     public void removerTest() throws Exception {
-        OrdemServico ordemServico  = ordemServicoBuilder.construir();
+        OrdemServico ordemServico = ordemServicoBuilder.construir();
         getMockMvc().perform(delete(RECURSO + ordemServico.getId()))
             .andExpect(status().isOk());
     }

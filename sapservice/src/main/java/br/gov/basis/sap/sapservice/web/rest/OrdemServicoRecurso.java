@@ -1,5 +1,6 @@
 package br.gov.basis.sap.sapservice.web.rest;
 
+import br.gov.basis.sap.sapservice.domain.OrdemServico;
 import br.gov.basis.sap.sapservice.service.OrdemServicoServico;
 import br.gov.basis.sap.sapservice.service.dto.OrdemServicoDTO;
 import lombok.RequiredArgsConstructor;
@@ -41,7 +42,6 @@ public class OrdemServicoRecurso {
         List<OrdemServicoDTO> ordemServicoDTOS = ordemServicoServico.obterPorProjeto(id);
         return ResponseEntity.ok().body(ordemServicoDTOS);
     }
-
 
     @PostMapping
     public ResponseEntity<OrdemServicoDTO> salvar(@RequestBody OrdemServicoDTO ordemServicoDTO) throws URISyntaxException {

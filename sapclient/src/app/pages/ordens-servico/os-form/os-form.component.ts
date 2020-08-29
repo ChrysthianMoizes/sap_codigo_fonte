@@ -1,3 +1,4 @@
+
 import { SprintService } from './../../../services/sprint.service';
 import { StatusService } from './../../../services/status.service';
 import { Sprint } from './../../../models/sprint.model';
@@ -11,8 +12,9 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Component, ViewChild, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { finalize, switchMap, map, tap } from 'rxjs/operators'
-import { Observable } from 'rxjs';
 
+
+import { Observable } from 'rxjs';
 import { OrdemServico } from './../../../models/ordem-servico.model';
 import { OrdemServicoService } from './../../../services/ordem-servico.service';
 import { SelectItem, MessageService } from 'primeng';

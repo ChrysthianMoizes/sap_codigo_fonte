@@ -3,10 +3,38 @@
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="BRANCH:origin/paulohenrique-front" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </select>
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="8cb862e7-64b8-431b-9a1b-22958a899c91" name="Default Changelist" comment="">
       <change afterPath="$PROJECT_DIR$/sapservice/src/main/resources/config/liquibase/changelog/202008260949_Insert.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sapservice/src/test/java/br/gov/basis/sap/sapservice/web/rest/DominioFixoRecursoIT.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sapclient/src/app/pages/dashboard/dashboard.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/sapclient/src/app/pages/dashboard/dashboard.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sapclient/src/app/pages/dashboard/dashboard.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/sapclient/src/app/pages/dashboard/dashboard.component.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sapclient/src/app/pages/ordens-servico/os-form/os-form.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/sapclient/src/app/pages/ordens-servico/os-form/os-form.component.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sapclient/src/app/pages/ordens-servico/os-form/os-form.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/sapclient/src/app/pages/ordens-servico/os-form/os-form.component.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sapclient/src/app/pages/sprints/sprint-form/sprint-form.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/sapclient/src/app/pages/sprints/sprint-form/sprint-form.component.html" afterDir="false" />
@@ -14,9 +42,7 @@
       <change beforePath="$PROJECT_DIR$/sapclient/src/app/services/sprint.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/sapclient/src/app/services/sprint.service.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sapservice/src/test/java/br/gov/basis/sap/sapservice/builder/OrdemServicoBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/sapservice/src/test/java/br/gov/basis/sap/sapservice/builder/OrdemServicoBuilder.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sapservice/src/test/java/br/gov/basis/sap/sapservice/builder/ProjetoBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/sapservice/src/test/java/br/gov/basis/sap/sapservice/builder/ProjetoBuilder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sapservice/src/test/java/br/gov/basis/sap/sapservice/builder/SprintBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/sapservice/src/test/java/br/gov/basis/sap/sapservice/builder/SprintBuilder.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sapservice/src/test/java/br/gov/basis/sap/sapservice/web/rest/OrdemServicoRecursoIT.java" beforeDir="false" afterPath="$PROJECT_DIR$/sapservice/src/test/java/br/gov/basis/sap/sapservice/web/rest/OrdemServicoRecursoIT.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sapservice/src/test/java/br/gov/basis/sap/sapservice/web/rest/ProjetoRecursoIT.java" beforeDir="false" afterPath="$PROJECT_DIR$/sapservice/src/test/java/br/gov/basis/sap/sapservice/web/rest/ProjetoRecursoIT.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,6 +71,53 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
   </component>
   <component name="RunManager">
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="sapservice" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="WORKING_DIRECTORY" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="sapservice" />
+      <option name="filePath" />
+      <option name="vmParameters" />
+      <option name="alternativeJrePath" />
+      <option name="programParameters" />
+      <option name="passParentEnvs" value="true" />
+      <option name="workingDirectory" />
+      <option name="isAlternativeJrePathEnabled" value="false" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="WORKING_DIRECTORY" />
+      <option name="filePath" />
+      <option name="vmParameters" />
+      <option name="alternativeJrePath" />
+      <option name="programParameters" />
+      <option name="passParentEnvs" value="true" />
+      <option name="workingDirectory" />
+      <option name="isAlternativeJrePathEnabled" value="false" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="WORKING_DIRECTORY" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="SapserviceApp" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="br.gov.basis.sap.sapservice.SapserviceApp" />
       <module name="sapservice" />
@@ -123,54 +196,49 @@
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="origin/paulohenrique-front" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state width="1320" height="196" key="GridCell.Tab.0.bottom" timestamp="1598548270844">
-      <screen x="0" y="27" width="1366" height="690" />
+    <state width="1253" height="281" key="GridCell.Tab.0.bottom" timestamp="1598553284682">
+      <screen x="67" y="27" width="1299" height="741" />
     </state>
-    <state width="1320" height="196" key="GridCell.Tab.0.bottom/0.27.1366.690@0.27.1366.690" timestamp="1598548270844" />
-    <state width="1320" height="196" key="GridCell.Tab.0.center" timestamp="1598548270842">
-      <screen x="0" y="27" width="1366" height="690" />
+    <state width="1320" height="198" key="GridCell.Tab.0.bottom/0.27.1366.690@0.27.1366.690" timestamp="1598462285630" />
+    <state width="1253" height="281" key="GridCell.Tab.0.bottom/67.27.1299.741@67.27.1299.741" timestamp="1598553284682" />
+    <state width="1253" height="281" key="GridCell.Tab.0.center" timestamp="1598553284682">
+      <screen x="67" y="27" width="1299" height="741" />
     </state>
-    <state width="1320" height="196" key="GridCell.Tab.0.center/0.27.1366.690@0.27.1366.690" timestamp="1598548270842" />
-    <state width="1320" height="196" key="GridCell.Tab.0.left" timestamp="1598548270841">
-      <screen x="0" y="27" width="1366" height="690" />
+    <state width="1320" height="198" key="GridCell.Tab.0.center/0.27.1366.690@0.27.1366.690" timestamp="1598462285628" />
+    <state width="1253" height="281" key="GridCell.Tab.0.center/67.27.1299.741@67.27.1299.741" timestamp="1598553284682" />
+    <state width="1253" height="281" key="GridCell.Tab.0.left" timestamp="1598553284681">
+      <screen x="67" y="27" width="1299" height="741" />
     </state>
-    <state width="1320" height="196" key="GridCell.Tab.0.left/0.27.1366.690@0.27.1366.690" timestamp="1598548270841" />
-    <state width="1320" height="196" key="GridCell.Tab.0.right" timestamp="1598548270843">
-      <screen x="0" y="27" width="1366" height="690" />
+    <state width="1320" height="198" key="GridCell.Tab.0.left/0.27.1366.690@0.27.1366.690" timestamp="1598462285628" />
+    <state width="1253" height="281" key="GridCell.Tab.0.left/67.27.1299.741@67.27.1299.741" timestamp="1598553284681" />
+    <state width="1253" height="281" key="GridCell.Tab.0.right" timestamp="1598553284682">
+      <screen x="67" y="27" width="1299" height="741" />
     </state>
-    <state width="1320" height="196" key="GridCell.Tab.0.right/0.27.1366.690@0.27.1366.690" timestamp="1598548270843" />
-    <state width="1320" height="24" key="GridCell.Tab.1.bottom" timestamp="1598547941008">
-      <screen x="0" y="27" width="1366" height="690" />
-    </state>
-    <state width="1320" height="24" key="GridCell.Tab.1.bottom/0.27.1366.690@0.27.1366.690" timestamp="1598547941008" />
-    <state width="1320" height="24" key="GridCell.Tab.1.center" timestamp="1598547941008">
-      <screen x="0" y="27" width="1366" height="690" />
-    </state>
-    <state width="1320" height="24" key="GridCell.Tab.1.center/0.27.1366.690@0.27.1366.690" timestamp="1598547941008" />
-    <state width="1320" height="24" key="GridCell.Tab.1.left" timestamp="1598547941007">
-      <screen x="0" y="27" width="1366" height="690" />
-    </state>
-    <state width="1320" height="24" key="GridCell.Tab.1.left/0.27.1366.690@0.27.1366.690" timestamp="1598547941007" />
-    <state width="1320" height="24" key="GridCell.Tab.1.right" timestamp="1598547941008">
-      <screen x="0" y="27" width="1366" height="690" />
-    </state>
-    <state width="1320" height="24" key="GridCell.Tab.1.right/0.27.1366.690@0.27.1366.690" timestamp="1598547941008" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/sapservice/src/main/java/br/gov/basis/sap/sapservice/web/rest/OrdemServicoRecurso.java</url>
-          <line>32</line>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
-  </component>
-  <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/sap_parent$All_in_sapservice.ic" NAME="All in sapservice Coverage Results" MODIFIED="1598455372365" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <state width="1320" height="198" key="GridCell.Tab.0.right/0.27.1366.690@0.27.1366.690" timestamp="1598462285629" />
+    <state width="1253" height="281" key="GridCell.Tab.0.right/67.27.1299.741@67.27.1299.741" timestamp="1598553284682" />
   </component>
 </project>
