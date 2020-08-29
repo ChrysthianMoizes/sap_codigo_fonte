@@ -61,4 +61,6 @@ public class OrdemServicoBuilder extends ConstrutorDeEntidade<OrdemServico>{
     protected Collection<OrdemServico> obterTodos() {
         return null;
     }
+
+
 }

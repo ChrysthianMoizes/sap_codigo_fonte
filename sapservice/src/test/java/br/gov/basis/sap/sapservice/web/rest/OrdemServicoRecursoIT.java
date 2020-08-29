@@ -67,4 +67,5 @@ public class OrdemServicoRecursoIT extends IntTestComum {
             .content(TestUtil.convertObjectToJsonBytes(ordemServico)))
             .andExpect(status().isOk());
     }
+
 }
