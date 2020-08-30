@@ -193,25 +193,6 @@ export class DashboardComponent implements OnInit {
       ).subscribe(osProjeto => this.listaOsProjeto = osProjeto)
   }
 
-  obterFiltroProjetos(id) {
-    this.blockUI.start();
-    forkJoin(
-      this.ordemServicoService.obterPorIdProjeto(id)
-    ).pipe(
-        finalize(() => this.blockUI.stop()),
-        map(this.mapearOsProjeto)
-    ).subscribe(res => {
-        this.lista = res;
-        this.listaFiltrada = this.lista;
-        this.listaProjetos = res.map(item => {
-          return {
-              label: item.nome,
-              value: item.id
-          }
-      });
-    })
-  }
-
   preencherFiltros() {
     this.listaFiltrada = this.lista.filter(item => {
         if (!this.filtroOs.length && !this.filtroLider.length && !this.filtroProjeto.length) {
