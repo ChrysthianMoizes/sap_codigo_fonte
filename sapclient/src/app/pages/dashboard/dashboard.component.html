@@ -1,32 +1,57 @@
 <h1 style="text-align: center;">Controle de Projetos</h1>
+
 <!-- <pre>{{this.projetos | json }}</pre> -->
+<p-panel [toggleable]="true">
+  <p-header id="titleHeader">Filtros</p-header>
+  
+  <div id="filtros">
+    <div class="dashboardFiltro">
+      <label>Projeto: </label>
+      <input [(ngModel)]="this.projetos" pInputText type="text">
+    </div>
+
+    <div class="dashboardFiltro">
+      <label>Lider: </label>
+      <input [(ngModel)]="filtroLider" pInputText type="text">
+    </div>
+
+    <div class="dashboardFiltro">
+      <label>OS: </label>
+      <input [(ngModel)]="filtroOs" pInputText type="text">
+    </div>
+
+    <div >
+      <a (click)="preencherFiltros()" pButton label="Filtrar"></a>
+    </div>
+
+  </div>
+<!-- 
+  <div class="ui-g">
+    <div class="ui-g-2 ui-md-4 ui-sm-6">
+      <a (click)="preencherFiltros()" pButton label="Filtrar"></a>
+    </div>
+  </div> -->
+
+</p-panel>
 
 <p-fieldset (onBeforeToggle)="obterOsPorProjeto(projeto.id)" *ngFor="let projeto of projetos" [toggleable]="true"
 [collapsed]="true">
 
   <p-header>{{projeto.nome}}</p-header>
   <div>
-    <p-tabView>
-      <p-tabPanel [header]="item.header" *ngFor="let item of items; let i = index" [selected]="i == 0">
-        {{item.content}}
-      </p-tabPanel>
-      <p-tabPanel header="Lider" leftIcon="pi pi-user">
-        {{obterNomeLider(projeto.idLider)}}
-      </p-tabPanel>
-      <p-tabPanel header="Testador" leftIcon="pi pi-inbox">
-        {{obterNomeTestador(projeto.id)}}
-      </p-tabPanel>
-      <p-tabPanel header="Revisor" leftIcon="pi pi-user" rightIcon="pi pi-star">
-        {{obterNomeRevisor(projeto.id)}}
-      </p-tabPanel>
-      <p-tabPanel header="Gerente" leftIcon="pi pi-user" rightIcon="pi pi-star">
-        {{obterNomeGerente(projeto.id)}}
-      </p-tabPanel>
-    </p-tabView>
+    <p-panel>
+      <ul>
+        <li>Lider: <span>{{obterNomeLider(projeto.idLider)}}</span></li>
+        <li>Testador: <span>{{obterNomeTestador(projeto.id)}}</span></li>
+        <li>Revisor: <span>{{obterNomeRevisor(projeto.id)}}</span></li>
+        <li>Gerente: <span>{{obterNomeGerente(projeto.id)}}</span></li>
+      </ul>
+    </p-panel>
+
   </div>
 
 
-  <p-table [value]="listaOsProjeto" [paginator]="true" [rows]="4" [response]="true" [columns]="colunas" dataKey="nome">
+  <p-table #dt [value]="listaOsProjeto" [paginator]="true" [rows]="4" [response]="true" [columns]="colunas" dataKey="nome">
 
     <ng-template let-columns pTemplate="header">
       <tr>
@@ -39,16 +64,10 @@
 
     <ng-template pTemplate="body" let-ordemservico let-expanded="expanded" let-columns="columns">
       <tr>
-        <!-- Quando clicar nessa seta, chamar uma função que carrega as sprints relacionadas com a os em questão -->
         <td>
-
           <a href="#" [pRowToggler]="ordemservico">
-
             <i [ngClass]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"></i>
-
           </a>
-          <!-- <p-radioButton [pRowToggler]="ordemservico" name="groupname" value="val1" ></p-radioButton> -->
-
         </td>
         <td>{{ ordemservico.nome }}</td>
         <td>{{ obterNomeSituacao(ordemservico.idSituacao) }}</td>

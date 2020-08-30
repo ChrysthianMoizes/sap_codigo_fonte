@@ -1,6 +1,5 @@
 package br.gov.basis.sap.sapservice.builder;
 
-import br.gov.basis.sap.sapservice.domain.Cliente;
 import br.gov.basis.sap.sapservice.domain.Sprint;
 import br.gov.basis.sap.sapservice.domain.TipoStatus;
 import br.gov.basis.sap.sapservice.repository.SprintRepository;
@@ -17,49 +16,43 @@ public class SprintBuilder extends ConstrutorDeEntidade<Sprint> {
 
     @Autowired
     private SprintRepository sprintRepository;
-
     @Autowired
     private SprintMapper sprintMapper;
-
     @Autowired
     private OrdemServicoBuilder ordemServicoBuilder;
 
-    @Autowired
-    private TipoStatusBuilder tipoStatusBuilder;
 
     @Override
-    public Sprint construirEntidade() throws ParseException {
-        Sprint sprint = new Sprint();
-        TipoStatus tipoStatus=new TipoStatus();
-tipoStatus.setDescricao("Pausada");
-        Cliente cliente=new Cliente();
-        cliente.setId(1);
+    public Sprint construirEntidade() throws ParseException{
 
+        Sprint sprint = new Sprint();
+        TipoStatus tipoStatus = new TipoStatus();
+        tipoStatus.setDescricao("teste");
+
+        sprint.setNome("TESTE");
         sprint.setDataInicio(LocalDate.now());
-        sprint.setDataTermino(LocalDate.now());
+        sprint.setDataTermino(LocalDate.now().plusDays(10));
+        sprint.setPontosFuncao(40.0);
         sprint.setImpedimento(true);
-        sprint.setOrdemServico(ordemServicoBuilder.construir());
-        sprint.setNome("Nova");
-        sprint.setPontosFuncao(50.8);
         sprint.setPrazo(true);
         sprint.setStatus(tipoStatus);
+        sprint.setOrdemServico(ordemServicoBuilder.construir());
         return sprint;
     }
 
     @Override
-    protected Sprint persistir(Sprint entidade) {
+    protected  Sprint persistir(Sprint entidade){
+
         return sprintRepository.save(entidade);
     }
 
     @Override
-    protected Sprint obterPorId(Long id) {
+    protected  Sprint obterPorId(Long id){
         return null;
     }
 
     @Override
-    protected Collection<Sprint> obterTodos() {
+    protected Collection<Sprint> obterTodos(){
         return null;
     }
-
-
 }

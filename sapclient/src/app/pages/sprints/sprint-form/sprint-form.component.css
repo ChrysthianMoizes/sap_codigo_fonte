@@ -4,6 +4,10 @@ div {
     padding: 5;
 }
 
+p-dialog{
+    height: 200px;
+}
+
 span{
     color: red;
 }

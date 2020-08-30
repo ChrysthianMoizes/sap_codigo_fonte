@@ -1,9 +1,8 @@
 package br.gov.basis.sap.sapservice.builder;
 
-
+import br.gov.basis.sap.sapservice.domain.Lider;
 import br.gov.basis.sap.sapservice.domain.OrdemServico;
 import br.gov.basis.sap.sapservice.domain.Sprint;
-
 import br.gov.basis.sap.sapservice.domain.TipoSituacao;
 import br.gov.basis.sap.sapservice.repository.OrdemServicoRepository;
 import br.gov.basis.sap.sapservice.service.mapper.OrdemServicoMapper;
@@ -12,47 +11,38 @@ import org.springframework.stereotype.Component;
 
 import java.text.ParseException;
 import java.time.LocalDate;
-
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
 @Component
-
-
-public class OrdemServicoBuilder extends ConstrutorDeEntidade<OrdemServico> {
+public class OrdemServicoBuilder extends ConstrutorDeEntidade<OrdemServico>{
 
     @Autowired
     private OrdemServicoRepository ordemServicoRepository;
+
     @Autowired
     private OrdemServicoMapper ordemServicoMapper;
 
     @Autowired
-    private SprintBuilder sprintBuilder;
-
-    @Autowired
-    private TipoSituacaoBuilder tipoSituacaoBuilder;
-    @Autowired
-    private ProjetoBuilder projetoBuilder;
+    private  ProjetoBuilder projetoBuilder;
 
     @Override
     public OrdemServico construirEntidade() throws ParseException {
-        TipoSituacao tipoSituacao=new TipoSituacao();
-        tipoSituacao.setDescricao("PAUSADA");
-        List<Sprint> sprint=null;
-
         OrdemServico ordemServico = new OrdemServico();
-        ordemServico.setDataProximaEntrega(LocalDate.now());
-        ordemServico.setFabrica("São Roque");
-        ordemServico.setNome("GP3");
-        ordemServico.setPontosFuncao(10.0);
-        ordemServico.setPrazo(LocalDate.now());
+        TipoSituacao tipoSituacao = new TipoSituacao();
+        List<Sprint> listaSprints = new ArrayList<>();
+
+        ordemServico.setNome("Lider 1");
         ordemServico.setProjeto(projetoBuilder.construir());
-        ordemServico.setQtdDefeitosCliente(21);
-        ordemServico.setQtdDefeitosInterno(12);
         ordemServico.setSituacao(tipoSituacao);
-        ordemServico.setSprints(sprint);
-
-
+        ordemServico.setQtdDefeitosCliente(0);
+        ordemServico.setQtdDefeitosInterno(0);
+        ordemServico.setDataProximaEntrega(LocalDate.now());
+        ordemServico.setFabrica("SRC");
+        ordemServico.setPrazo(LocalDate.now());
+        ordemServico.setPontosFuncao(45.0);
+        ordemServico.setSprints(listaSprints);
         return ordemServico;
     }
 
@@ -61,9 +51,9 @@ public class OrdemServicoBuilder extends ConstrutorDeEntidade<OrdemServico> {
         return ordemServicoRepository.save(entidade);
     }
 
-
     @Override
     protected OrdemServico obterPorId(Long id) {
+
         return null;
     }
 
@@ -71,4 +61,6 @@ public class OrdemServicoBuilder extends ConstrutorDeEntidade<OrdemServico> {
     protected Collection<OrdemServico> obterTodos() {
         return null;
     }
+
+
 }

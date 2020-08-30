@@ -10,11 +10,12 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-@RunWith(SpringRunner.class)
+
+@RunWith(SpringRunner.class )
 @Transactional
 public class SprintRecursoIT extends IntTestComum {
+
     @Autowired
     private SprintBuilder sprintBuilder;
 
@@ -22,24 +23,27 @@ public class SprintRecursoIT extends IntTestComum {
 
     @Test
     public void obterTodosTest() throws Exception {
-        getMockMvc().perform(get(RECURSO))
-            .andExpect(status().isOk());
+        getMockMvc().perform(get(RECURSO)).
+            andExpect(status().isOk());
     }
+
     @Test
     public void obterPorIdTest() throws Exception {
-        Sprint sprint = sprintBuilder.construir();
-        getMockMvc().perform(get(RECURSO +sprint.getId()))
-            .andExpect(status().isOk());
+       Sprint sprint = sprintBuilder.construir();
+        getMockMvc().perform(get(RECURSO + sprint.getId())).
+            andExpect(status().isOk());
     }
+
     @Test
     public void removerTest() throws Exception {
-        Sprint sprint= sprintBuilder.construir();
+        Sprint sprint = sprintBuilder.construir();
         getMockMvc().perform(delete(RECURSO + sprint.getId()))
             .andExpect(status().isOk());
     }
+
     @Test
     public void salvarTest() throws Exception {
-        Sprint sprint= sprintBuilder.construir();
+        Sprint sprint = sprintBuilder.construir();
         getMockMvc().perform(post(RECURSO)
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(sprint)))
@@ -54,5 +58,4 @@ public class SprintRecursoIT extends IntTestComum {
             .content(TestUtil.convertObjectToJsonBytes(sprint)))
             .andExpect(status().isOk());
     }
-
 }

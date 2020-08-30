@@ -1,5 +1,6 @@
 <p-card header="{{titulo}}">
 
+
   <form [formGroup]="form">
 
     <div class="ui-fluid p-formgrid p-grid">
@@ -72,7 +73,9 @@
     </div>
 
     <p-fieldset legend="Sprints" [toggleable]="true">
-      <p-table [paginator]="true" [rows]="2" [responsive]="true" [rowsPerPageOptions]="[2, 4, 8, 10]" [columns]="colunas" [value]="sprints">
+      <p-table [paginator]="true" [rows]="2" [responsive]="true" 
+      [rowsPerPageOptions]="[2, 4, 8, 10]" [columns]="colunas" [value]="sprints"
+      [value]="sprint" editMode="row">
         <ng-template let-columns pTemplate="header">
           <tr>
             <th [class.action]="coluna.header == 'Ações'" *ngFor="let coluna of columns">
@@ -80,19 +83,38 @@
             </th>
           </tr>
         </ng-template>
-        <ng-template pTemplate="body" let-sprint>
-          <tr>
-            <td>{{ sprint.nome | uppercase }}</td>
-            <td>{{ sprint.dataInicio | date:'dd/MM/yyyy' }}</td>
-            <td>{{ sprint.dataTermino | date:'dd/MM/yyyy' }}</td>
-            <td>{{ sprint.pontosFuncao }}</td>
-            <td>{{ sprint.idStatus }}</td>
-            <td class="action-buttons">
-              <button [routerLink]="[sprint.id]" pButton icon="ui-icon-mode-edit"></button>
-              <button pButton icon="pi pi-times"></button>
+    
+    <ng-template pTemplate="body" let-sprint>
+        <tr >
+      
+            <td >
+              {{ sprint.nome | uppercase }}
             </td>
+
+            <td >
+              {{ sprint.dataInicio | date:'dd/MM/yyyy'}}
+            </td>
+
+            <td>
+              {{ sprint.dataTermino | date:'dd/MM/yyyy' }}
+            </td>
+
+            <td>
+              {{ sprint.pontosFuncao }}
+            </td>
+
+            <td>
+              {{ obterNomeStatus(sprint.idStatus) | uppercase }}
+            </td>
+
+            <td class="action-buttons">
+              <button pButton icon="ui-icon-mode-edit" (click)="showDialogSprint(sprint)" ></button>
+              <button pButton icon="pi pi-times" (click)="deletar(sprint.id)" ></button>
+            </td>   
+
           </tr>
         </ng-template>
+
         <ng-template pTemplate="emptymessage" let-columns>
           <tr>
             <td [attr.colspan]="columns.length">
@@ -105,13 +127,13 @@
       </p-table>
       <div class="ui-g text-right">
         <button pButton icon="ui-icon-check-circle" iconPos="left" label="Nova Sprint" (click)="showDialogSprint()"></button>
+        
       </div>
 
     </p-fieldset>
 
     <div id="containerButton">
       <p-message id="info" severity="info" text="Todos os campos com * são obrigatórios"></p-message>
-
       <div class="ui-g text-right">
         <div class="ui-lg-2 ui-md-3 ui-sm-6">
           <button pButton icon="ui-icon-check-circle" iconPos="left" label="Salvar" (click)="enviarForm()" [disabled]="this.form.invalid">
@@ -119,7 +141,7 @@
         </div>
 
         <div class="ui-lg-2 ui-md-3 ui-sm-6">
-          <button pButton icon="pi pi-times" iconPos="left" label="Cancelar" routerLink="/ordens-servico">
+          <button pButton icon="pi pi-times" iconPos="left" label="Cancelar" routerLink="/ordens-servico/"[2]>
           </button>
         </div>
       </div>
