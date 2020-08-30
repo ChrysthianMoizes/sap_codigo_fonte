@@ -5,7 +5,7 @@
     </div>
   </p-header>
   <ng-container *ngIf="listaLideres$ | async as listaLideres; else loading">
-    <p-table #dt [paginator]="true" [rows]="2" [rowsPerPageOptions]="[2, 4, 8, 10]" [response]="true"
+    <p-table #dt [paginator]="true" [rows]="2" [rowsPerPageOptions]="[2, 4, 8, 10]" [responsive]="true"
     [columns]="colunas" [value]="listaLideres" [filterDelay]="0" [globalFilterFields]="['nome', 'contato']">
       <ng-template pTemplate="caption">
         <div class="table-header">

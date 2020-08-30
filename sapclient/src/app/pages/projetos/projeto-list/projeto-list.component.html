@@ -5,48 +5,26 @@
     </div>
   </p-header>
   <ng-container *ngIf="listaProjetos$ | async as listaProjetos; else loading">
-    <p-table #dt [paginator]="true" [rows]="2" [rowsPerPageOptions]="[2, 4, 8, 10]" [response]="true"
-    [columns]="colunas" [value]="listaProjetos" [filterDelay]="0">
-    
-<!-- >>>Ainda estou mexendo nisso aqui, tentando fazer o cabeçalho<<< -->
-
-    <ng-template pTemplate="header">
-    <h1>Teste início</h1>
-      <p-fieldset [toggleable]="true">
+    <p-table #dt [columns]="colunas" [value]="listaProjetos" [responsive]="true"
+    [paginator]="true" [rows]="5" [rowsPerPageOptions]="[5, 10, 20]">
+      <ng-template pTemplate="header" let-columns>
         <tr>
-          <th *ngFor="let coluna of columns">
+          <th [class.action]="coluna.header == 'Ações'" *ngFor="let coluna of columns">
             {{ coluna.header }}
           </th>
         </tr>
         <tr>
-          <th>
-            <input pInputText type="text" (input)="dt.filter($event.target.value, 'nome', 'contains')" placeholder="Buscar por Nome" class="p-column-filter">
-            <p-multiSelect *ngSwitchCase="'cliente'" [options]="listaClientes" defaultLabel="Todos os clientes" (onChange)="dt.filter($event.value, coluna.field, 'in')"></p-multiSelect>
-            <p-multiSelect [options]="listaLideres" placeholder="Bu*ngForscar por lideres" (onChange)="onChange($event)" styleClass="p-column-filter" optionLabel="nome">
-              <ng-template let-option pTemplate="item">
-                <div class="p-multiselect-cliente-option">          
-                  <span class="p-ml-1">{{option.label}}</span>
-                </div>
-              </ng-template>
-            </p-multiSelect>
-            <!-- <p-calendar (onSelect)="onDateSelect($event)" (onClearClick)="dt.filter('', 'date', 'equals')" [showButtonBar]="true" styleClass="p-column-filter" placeholder="Registration Date" [readonlyInput]="true" dateFormat="yy-mm-dd"></p-calendar>
-            <p-dropdown [options]="statuses" (onChange)="dt.filter($event.value, 'status', 'equals')" styleClass="p-column-filter" placeholder="Select a Status" [showClear]="true">
-              <ng-template let-option pTemplate="item">
-                <span [class]="'customer-badge status-' + option.value">{{option.label}}</span>
-              </ng-template>
-            </p-dropdown> -->
+          <th *ngFor="let coluna of columns" [ngSwitch]="coluna.field">
+            <input *ngSwitchCase="'nome'" pInputText type="text" (input)="dt.filter($event.target.value, coluna.field, 'contains')">
+            <input *ngSwitchCase="'cliente'" pInputText type="text" (input)="dt.filter($event.target.value, coluna.field, 'contains')">
+            <!-- <p-multiSelect *ngSwitchCase="'cliente'" [options]="'listaClientes'" defaultLabel="Filtrar por Cliente" (onChange)="dt.filter($event.value, coluna.field, 'in')"></p-multiSelect> -->
+            <input *ngSwitchCase="'lider'" pInputText type="text" (input)="dt.filter($event.target.value, coluna.field, 'contains')">
+            <input *ngSwitchCase="'testador'" pInputText type="text" (input)="dt.filter($event.target.value, coluna.field, 'contains')">
+            <input *ngSwitchCase="'revisor'" pInputText type="text" (input)="dt.filter($event.target.value, coluna.field, 'contains')">
+            <input *ngSwitchCase="'gerente'" pInputText type="text" (input)="dt.filter($event.target.value, coluna.field, 'contains')">
           </th>
-          <th>
-            <input pInputText type="text" (input)="onActivityChange($event)" placeholder="Minimum" class="p-column-filter" >
-          </th>
-        </tr>
-      </p-fieldset>
-      <h1>Teste fim</h1>
-    </ng-template>
-
-    <!-- >>>Ainda estou mexendo nisso aqui, tentando fazer o cabeçalho<<< -->
-
-
+        </tr> 
+      </ng-template>
       <!-- <ng-template let-columns pTemplate="header">
         <tr>
           <th [class.action]="coluna.header == 'Ações'" *ngFor="let coluna of columns">

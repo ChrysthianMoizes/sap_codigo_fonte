@@ -27,13 +27,13 @@ export class ProjetoListComponent implements OnInit {
   lider: any;
 
   colunas:any = [
-    { header: 'Nome' },
-    { header: 'Cliente' },
-    { header: 'Lider' },
-    { header: 'Testador' },
-    { header: 'Revisor' },
-    { header: 'Gerente' },
-    { header: 'Ações' }
+    { field: 'nome', header: 'Nome' },
+    { field: 'cliente', header: 'Cliente' },
+    { field: 'lider', header: 'Lider' },
+    { field: 'testador', header: 'Testador' },
+    { field: 'revisor', header: 'Revisor' },
+    { field: 'gerente', header: 'Gerente' },
+    { field: 'ações', header: 'Ações' }
   ];
   constructor(
     private projetoService: ProjetoService,
