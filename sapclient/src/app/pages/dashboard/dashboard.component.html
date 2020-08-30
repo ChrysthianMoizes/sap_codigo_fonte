@@ -19,7 +19,7 @@
       <div class="ui-g-4 ui-md-4 ui-sm-12 dashboardFiltro">
         <span class="ui-float-label">
             <p-multiSelect class="filtro" maxSelectedLabels="4"
-                [options]="listaProjetos" defaultLabel="&nbsp;"
+                [options]="listaProjeto" defaultLabel="&nbsp;"
                 selectedItemsLabel="{0} itens selecionados"
                 [(ngModel)]="filtroProjeto">
             </p-multiSelect>
@@ -45,26 +45,6 @@
       </div>
   </div>
 
-    <!-- <div class="dashboardFiltro">
-      <label>Projeto: </label>
-      <input pInputText type="text">
-    </div>
-
-    <div class="dashboardFiltro">
-      <label>Lider: </label>
-      <input [(ngModel)]="filtroLider" pInputText type="text">
-    </div>
-
-    <div class="dashboardFiltro">
-      <label>OS: </label>
-      <input [(ngModel)]="filtroOs" pInputText type="text">
-    </div>
-
-    <div >
-      <a (click)="preencherFiltros()" pButton label="Filtrar"></a>
-    </div>
-
-  </div> -->
 </p-panel>
 
 <p-fieldset (onBeforeToggle)="obterOsPorProjeto(projeto.id)" *ngFor="let projeto of projetos" [toggleable]="true"
