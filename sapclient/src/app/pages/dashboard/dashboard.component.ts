@@ -1,5 +1,4 @@
 import { StatusService } from './../../services/status.service';
-import { Sprint } from './../../models/sprint.model';
 import { ClienteService } from './../../services/cliente.service';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 
@@ -9,14 +8,14 @@ import { SprintService } from './../../services/sprint.service';
 import { ProjetoService } from './../../services/projeto.service';
 import { OrdemServicoService } from './../../services/ordem-servico.service';
 import { SituacaoService } from './../../services/situacao.service';
-import { Observable, forkJoin } from 'rxjs';
+import { Observable, forkJoin, from } from 'rxjs';
 
 import { finalize, map, tap } from 'rxjs/operators';
-import { Component, OnInit } from '@angular/core';
+// import { Component, OnInit } from '@angular/core';
 
 import { BlockUI, NgBlockUI } from 'ng-block-ui';
 import { SelectItem } from 'primeng';
-
+import {Component,OnInit} from '@angular/core';
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -55,8 +54,12 @@ export class DashboardComponent implements OnInit {
   lideres: any = [];
   status: any = [];
   testeExibe: boolean;
-  collapsed : boolean=true;
-  itemi: number=1;
+  listaLideres: SelectItem[]=[];
+  listaFiltrada:SelectItem[]=[];
+  filtroProjeto:SelectItem[]=[];
+  filtroLider:SelectItem[]=[];
+  lista:any[];
+
 
   colunas: any[] = [
     { header: 'OS' },
@@ -104,6 +107,10 @@ export class DashboardComponent implements OnInit {
     this.obterSprint();
     this.obterLideres();
     this.obterStatus();
+    // this.obterProjetosFiltro();
+    this.carregarLideres();
+    this.carregarOrdemServico();
+    this.carregarProjeto();
   }
 
   obterTodos() {
@@ -176,6 +183,7 @@ export class DashboardComponent implements OnInit {
     );
 
   }
+
   obterStatus() {
     this.blockUI.start();
     this.statusService.obterTodos().pipe(
@@ -184,7 +192,64 @@ export class DashboardComponent implements OnInit {
       status => this.status = status
     );
 
+  }
 
+ 
+
+//   obterProjetosFiltro() {
+//     this.blockUI.start();
+//     forkJoin(
+//         this.projetoService.obterTodos(),
+//         this.ordemServicoService.obterTodos()
+//     ).pipe(
+//         finalize(() => this.blockUI.stop()),
+//         map(this.mapearOsProjeto)
+//     ).subscribe(res => {
+//         this.lista = res;
+//         this.listaFiltrada = this.lista;
+//         this.listaProjetos = res.map(item => {
+//           return {
+//               label: item.nome,
+//               value: item.id
+//           }
+//       });
+//     })
+// }
+
+carregarProjeto(){
+  this.blockUI.start();
+  this.projetoService.obterTodos().pipe(
+    finalize(() => this.blockUI.stop()),
+    map(this.converterDropDownProjeto)
+  ).subscribe(projeto => this.listaProjeto = projeto);
+}
+
+carregarOrdemServico() {
+  this.blockUI.start();
+  this.ordemServicoService.obterTodos().pipe(
+      finalize(() => this.blockUI.stop()),
+      map(this.converterDropDownOrdemServico)
+  ).subscribe(ordemServico => this.listaOrdemServico = ordemServico);
+}
+
+carregarLideres() {
+  this.blockUI.start();
+  this.liderService.obterTodos().pipe(
+      finalize(() => this.blockUI.stop()),
+      map(this.converterDropDownLider)
+  ).subscribe(lider => this.listaLideres = lider);
+}
+
+  preencherFiltros() {
+    this.listaFiltrada = this.lista.filter(item => {
+        if (!this.filtroCliente.length && !this.filtroLider.length && !this.filtroProjeto.length) {
+            return true;
+        }
+        return (this.filtroLider && this.filtroLider.some(sel => sel == item.idLider)) ||
+            (this.filtroCliente && this.filtroCliente.some(sel => sel == item.idCliente)) ||
+            (this.filtroProjeto && this.filtroProjeto.some(sel => sel == item.idProjeto));
+    });
+console.log(this.listaFiltrada)
   }
 
   obterNomeStatus(id: number) {
@@ -223,17 +288,6 @@ export class DashboardComponent implements OnInit {
     return this.projetos.find(projeto => projeto.id == id).revisor
   }
 
-  private mapearOsProjeto(array) {
-    return array[0].map(os => {
-      os.nome = array[1].find(projeto => projeto.id === os.idOrdemServico).nome + ' - ' + os.nome;
-    })
-  }
-
-  private mapearLiderProjeto(array) {
-    return array[0].map(lider => {
-      lider.nome = array[1].find(projeto => projeto.id === lider.idLider).nome;
-    })
-  }
   obterCliente(id: number) {
     return this.projetos.find(projeto => projeto.id == id).idCliente
   }
@@ -241,15 +295,54 @@ export class DashboardComponent implements OnInit {
   obterSprints(id: number) {
     this.sprintsFiltradas = this.sprints.find(sprints => sprints.idOrdemServico == id);
   }
+
+  private mapearOsProjeto(array) {
+    return array[0].map(os => {
+      os.nome = array[1].find(projeto => projeto.id === os.idOrdemServico).nome + ' - ' + os.nome;
+    })
+  }
+
+
+  private mapearLiderProjeto(array) {
+    return array[0].map(lider => {
+      lider.nome = array[1].find(projeto => projeto.id === lider.idLider).nome;
+    })
+  }
+
+  private converterDropDownOrdemServico(lista) {
+    return lista.map(item => {
+        return {
+            label: item['nome'].toUpperCase(),
+            value: item['id']
+        }
+    })
+  }
+
+
+  private converterDropDownLider(lista) {
+    return lista.map(item => {
+        return {
+            label: item['nome'].toUpperCase(),
+            value: item['id']
+        }
+    })
+  }
+
   obterBoolean(ar: boolean) {
     if (ar == true) {
       return "Sim"
     } else {
       return "Não"
     }
-  
+  }
 
-
+  private converterDropDownProjeto (lista){
+    return lista.map(item => {
+      return {
+        label: item['nome'].toUpperCase(),
+        value: item['id']
+      }
+    })
   }
 
 

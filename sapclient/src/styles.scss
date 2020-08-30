@@ -44,3 +44,12 @@ body .ui-tabview {
   display: flex;
   justify-content: center;
 }
+
+.dashboardFiltro label {
+  display: block !important;
+}
+
+.dashboardFiltro input,
+.filtro div.ui-multiselect {
+  width: 100% !important;
+}
