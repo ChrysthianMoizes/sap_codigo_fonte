@@ -1,3 +1,4 @@
+import { SelectItem } from 'primeng';
 import { LiderService } from './../../../services/lider.service';
 import { ClienteService } from './../../../services/cliente.service';
 import { Component, OnInit } from '@angular/core';
@@ -20,8 +21,8 @@ export class ProjetoListComponent implements OnInit {
   listaProjetos$: Observable<any>;
   listaProjetos: any = [];
 
-  listaClientes: any = [];
-  listaLideres: any = [];
+  listaClientes: SelectItem[] = [];
+  listaLideres: SelectItem[] = [];
 
   cliente: any;
   lider: any;

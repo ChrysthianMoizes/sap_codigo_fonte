@@ -8,7 +8,7 @@ import { SprintService } from './../../services/sprint.service';
 import { ProjetoService } from './../../services/projeto.service';
 import { OrdemServicoService } from './../../services/ordem-servico.service';
 import { SituacaoService } from './../../services/situacao.service';
-import { Observable } from 'rxjs';
+import { Observable, forkJoin } from 'rxjs';
 
 import { finalize, map, tap } from 'rxjs/operators';
 import { Component, OnInit } from '@angular/core';

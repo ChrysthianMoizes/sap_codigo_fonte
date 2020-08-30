@@ -63,7 +63,7 @@
     </ng-template>
 
     <ng-template pTemplate="body" let-ordemservico let-expanded="expanded" let-columns="columns">
-      <tr>
+      <tr *ngIf="ordemservico.idProjeto == projeto.id">
         <td>
           <a href="#" [pRowToggler]="ordemservico">
             <i [ngClass]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"></i>
@@ -71,8 +71,8 @@
         </td>
         <td>{{ ordemservico.nome }}</td>
         <td>{{ obterNomeSituacao(ordemservico.idSituacao) }}</td>
-        <td>{{ ordemservico.dataProximaEntrega}}</td>
-        <td>{{ ordemservico.prazo }}</td>
+        <td>{{ ordemservico.dataProximaEntrega | date: 'dd/MM/yyyy' }}</td>
+        <td>{{ ordemservico.prazo | date: 'dd/MM/yyyy' }}</td>
         <td>{{ ordemservico.pontosFuncao}}</td>
         <td>{{ ordemservico.fabrica }}</td>
       </tr>
