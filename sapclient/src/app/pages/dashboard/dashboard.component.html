@@ -1,12 +1,53 @@
 <h1 style="text-align: center;">Controle de Projetos</h1>
-<!-- <pre>{{this.projetos | json }}</pre> -->
+<!-- <pre>{{( listaOrdemServico | json }}</pre> -->
 <p-panel [toggleable]="true" >
   <p-header id="titleHeader">Filtros</p-header>
   
   <div id="filtros">
-    <div class="dashboardFiltro">
+
+      <div class="ui-g-4 ui-md-4 ui-sm-12 dashboardFiltro">
+        <span class="ui-float-label">
+            <p-multiSelect class="filtro" maxSelectedLabels="4"
+                [options]="listaOrdemServico" defaultLabel="&nbsp;"
+                selectedItemsLabel="{0} itens selecionados"
+                [(ngModel)]="filtroOs">
+            </p-multiSelect>
+            <label>Ordem Serviço</label>
+        </span>
+      </div>
+
+      <div class="ui-g-4 ui-md-4 ui-sm-12 dashboardFiltro">
+        <span class="ui-float-label">
+            <p-multiSelect class="filtro" maxSelectedLabels="4"
+                [options]="listaProjetos" defaultLabel="&nbsp;"
+                selectedItemsLabel="{0} itens selecionados"
+                [(ngModel)]="filtroProjeto">
+            </p-multiSelect>
+            <label>Projeto</label>
+        </span>
+      </div>
+
+      <div class="ui-g-4 ui-md-4 ui-sm-12 dashboardFiltro">
+        <span class="ui-float-label">
+            <p-multiSelect class="filtro" maxSelectedLabels="4"
+                [options]="listaLideres" defaultLabel="&nbsp;"
+                selectedItemsLabel="{0} itens selecionados"
+                [(ngModel)]="filtroLider">
+            </p-multiSelect>
+            <label>Lider</label>
+          </span>
+      </div>
+
+      <div class="ui-g">
+        <div class="ui-g-2 ui-md-4 ui-sm-6">
+          <a (click)="preencherFiltros()" pButton label="Filtrar"></a>
+        </div>
+      </div>
+  </div>
+
+    <!-- <div class="dashboardFiltro">
       <label>Projeto: </label>
-      <input [(ngModel)]="this.projetos" pInputText type="text">
+      <input pInputText type="text">
     </div>
 
     <div class="dashboardFiltro">
@@ -23,13 +64,13 @@
       <a (click)="preencherFiltros()" pButton label="Filtrar"></a>
     </div>
 
-  </div>
+  </div> -->
 </p-panel>
 
 <p-fieldset (onBeforeToggle)="obterOsPorProjeto(projeto.id)" *ngFor="let projeto of projetos" [toggleable]="true"
   [collapsed]="true">
 
-  <p-header>{{projeto.nome}}</p-header>
+  <p-header>{{projeto.nome | uppercase}}</p-header>
   <div>
     <p-panel >
       <ul id="DescricaoProjeto">
@@ -61,12 +102,12 @@
             <i [ngClass]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"></i>
           </a>
         </td>
-        <td>{{ ordemservico.nome }}</td>
-        <td>{{ obterNomeSituacao(ordemservico.idSituacao) }}</td>
+        <td>{{ ordemservico.nome | titlecase}}</td>
+        <td>{{ obterNomeSituacao(ordemservico.idSituacao) | titlecase}}</td>
         <td>{{ ordemservico.dataProximaEntrega | date: 'dd/MM/yyyy'}}</td>
         <td>{{ ordemservico.prazo | date: 'dd/MM/yyyy'}}</td>
         <td>{{ ordemservico.pontosFuncao}}</td>
-        <td>{{ ordemservico.fabrica }}</td>
+        <td>{{ ordemservico.fabrica | uppercase}}</td>
       </tr>
     </ng-template>
     <ng-template pTemplate="emptymessage" let-columns>
