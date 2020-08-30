@@ -1,50 +1,5 @@
 <p-card header="{{ titulo }}">
 
-  <p-fieldset [collapsed]="true" [toggleable]="true" legend="Filtros" [style]="{ 'margin-bottom': '10px'}">
-    <div class="ui-g">
-      <div class="ui-g-4 ui-md-4 ui-sm-12 dashboardFiltro">
-        <span class="ui-float-label">
-            <p-multiSelect class="filtro" maxSelectedLabels="4"
-                [options]="listaLideres" defaultLabel="&nbsp;"
-                selectedItemsLabel="{0} itens selecionados"
-                [(ngModel)]="filtroLider">
-            </p-multiSelect>
-            <label>Nome</label>
-          </span>
-      </div>
-
-      <div class="ui-g-4 ui-md-4 ui-sm-12 dashboardFiltro">
-        <span class="ui-float-label">
-            <p-multiSelect class="filtro" maxSelectedLabels="4"
-                [options]="listaProjetos" defaultLabel="&nbsp;"
-                selectedItemsLabel="{0} itens selecionados"
-                [(ngModel)]="filtroProjeto">
-            </p-multiSelect>
-            <label>Fabrica</label>
-        </span>
-      </div>
-
-      <div class="ui-g-4 ui-md-4 ui-sm-12 dashboardFiltro">
-        <span class="ui-float-label">
-            <p-multiSelect class="filtro" maxSelectedLabels="4"
-                [options]="listaClientes" defaultLabel="&nbsp;"
-                selectedItemsLabel="{0} itens selecionados"
-                [(ngModel)]="filtroCliente">
-            </p-multiSelect>
-            <label>Projeto</label>
-          </span>
-      </div>
-
-    </div>
-
-    <div class="ui-g">
-      <div class="ui-g-2 ui-md-4 ui-sm-6">
-        <a (click)="preencherFiltros()" pButton label="Filtrar"></a>
-      </div>
-    </div>
-
-  </p-fieldset>
-
   <p-header>
     <div id="botaoNovo" class="ui-lg-2 ui-md-3 ui-sm-6 float-right">
       <button routerLink="novo" pButton icon="pi pi-check" iconPost="left" label="Novo"></button>
@@ -52,7 +7,7 @@
   </p-header>
 
   <ng-container *ngIf="listaOrdemServico$ | async as listaOrdemServico; else loading ">
-    <p-table [paginator]="true" [rows]="2" [responsive]="true" [rowsPerPageOptions]="[2, 4, 8, 10]" [columns]="colunas" [value]="listaOrdemServico">
+    <p-table [paginator]="true" [rows]="4"  [response]="true" [responsive]="true" [rowsPerPageOptions]="[2, 4, 8, 10]" [columns]="colunas" [value]="listaOrdemServico">
       <ng-template let-columns pTemplate="header">
         <tr>
           <th [class.action]="coluna.header == 'Ações'" *ngFor="let coluna of columns">
@@ -62,15 +17,15 @@
       </ng-template>
       <ng-template pTemplate="body" let-ordemservico>
         <tr>
-          <td>{{ ordemservico.nome }}</td>
+          <td>{{ ordemservico.nome  | uppercase}}</td>
           <td>{{ ordemservico.dataProximaEntrega | date:'dd/MM/yyyy' }}</td>
           <td>{{ ordemservico.prazo | date:'dd/MM/yyyy' }}</td>
           <td>{{ ordemservico.qtdDefeitosCliente || 0 }}</td>
           <td>{{ ordemservico.qtdDefeitosInterno || 0 }}</td>
-          <td>{{ ordemservico.pontosFuncao }}</td>
-          <td>{{ ordemservico.fabrica }}</td>
-          <td>{{ obterNomeProjeto(ordemservico.idProjeto) }}</td>
-          <td>{{ obterNomeSituacao(ordemservico.idSituacao) }}</td>
+          <td>{{ ordemservico.pontosFuncao  }}</td>
+          <td>{{ ordemservico.fabrica  | uppercase}}</td>
+          <td>{{ obterNomeProjeto(ordemservico.idProjeto)  | uppercase}}</td>
+          <td>{{ obterNomeSituacao(ordemservico.idSituacao)  | uppercase}}</td>
           <td class="action-buttons">
             <button [routerLink]="[ordemservico.id]" pButton icon="ui-icon-mode-edit"></button>
             <button pButton icon="pi pi-times" (click)="deletar(ordemservico.id)"></button>

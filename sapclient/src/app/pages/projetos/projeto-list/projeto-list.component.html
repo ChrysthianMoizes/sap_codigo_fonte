@@ -31,12 +31,12 @@
       </ng-template>
       <ng-template pTemplate="body" let-projeto>
         <tr>
-          <td>{{ projeto.nome }}</td>
+          <td>{{ projeto.nome  | uppercase }}</td>
           <td>{{ filtrarClientePorId(projeto.idCliente) }}</td>
-          <td>{{ filtrarLiderPorId(projeto.idLider) }}</td>
-          <td>{{ projeto.testador }}</td>
-          <td>{{ projeto.revisor }}</td>
-          <td>{{ projeto.gerente }}</td>
+          <td>{{ filtrarLiderPorId(projeto.idLider) | uppercase }}</td>
+          <td>{{ projeto.testador  | uppercase }}</td>
+          <td>{{ projeto.revisor  | uppercase }}</td>
+          <td>{{ projeto.gerente  | uppercase }}</td>
           <td class="action-buttons">
             <button [routerLink]="[projeto.id]" pButton icon="ui-icon-mode-edit"></button>
             <button pButton icon="pi pi-times" (click)="deletar(projeto.id)"></button>

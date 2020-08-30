@@ -25,8 +25,8 @@
       </ng-template>
       <ng-template pTemplate="body" let-lider>
         <tr>
-          <td>{{ lider.nome }}</td>
-          <td>{{ lider.contato }}</td>
+          <td>{{ lider.nome  | uppercase}}</td>
+          <td>{{ lider.contato  | uppercase}}</td>
           <td class="action-buttons">
             <button [routerLink]="[lider.id]" pButton icon="ui-icon-mode-edit"></button>
             <button pButton icon="pi pi-times" (click)="deletar(lider.id)"></button>

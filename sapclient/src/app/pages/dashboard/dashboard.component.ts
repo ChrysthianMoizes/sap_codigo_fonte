@@ -111,6 +111,10 @@ export class DashboardComponent implements OnInit {
     this.obterSprint();
     this.obterLideres();
     this.obterStatus();
+    // this.obterProjetosFiltro();
+    this.carregarLideres();
+    this.carregarOrdemServico();
+    this.carregarProjeto();
   }
 
   obterTodos() {
@@ -175,6 +179,7 @@ export class DashboardComponent implements OnInit {
     );
 
   }
+
   obterStatus() {
     this.blockUI.start();
     this.statusService.obterTodos().pipe(
@@ -194,24 +199,49 @@ export class DashboardComponent implements OnInit {
       ).subscribe(osProjeto => this.listaOsProjeto = osProjeto)
   }
 
-  obterFiltroProjetos(id) {
-    this.blockUI.start();
-    forkJoin(
-      this.ordemServicoService.obterPorIdProjeto(id)
-    ).pipe(
-        finalize(() => this.blockUI.stop()),
-        map(this.mapearOsProjeto)
-    ).subscribe(res => {
-        this.lista = res;
-        this.listaFiltrada = this.lista;
-        this.listaProjetos = res.map(item => {
-          return {
-              label: item.nome,
-              value: item.id
-          }
-      });
-    })
-  }
+//   obterProjetosFiltro() {
+//     this.blockUI.start();
+//     forkJoin(
+//         this.projetoService.obterTodos(),
+//         this.ordemServicoService.obterTodos()
+//     ).pipe(
+//         finalize(() => this.blockUI.stop()),
+//         map(this.mapearOsProjeto)
+//     ).subscribe(res => {
+//         this.lista = res;
+//         this.listaFiltrada = this.lista;
+//         this.listaProjetos = res.map(item => {
+//           return {
+//               label: item.nome,
+//               value: item.id
+//           }
+//       });
+//     })
+// }
+
+carregarProjeto(){
+  this.blockUI.start();
+  this.projetoService.obterTodos().pipe(
+    finalize(() => this.blockUI.stop()),
+    map(this.converterDropDownProjeto)
+  ).subscribe(projeto => this.listaProjeto = projeto);
+}
+
+carregarOrdemServico() {
+  this.blockUI.start();
+  this.ordemServicoService.obterTodos().pipe(
+      finalize(() => this.blockUI.stop()),
+      map(this.converterDropDownOrdemServico)
+  ).subscribe(ordemServico => this.listaOrdemServico = ordemServico);
+}
+
+carregarLideres() {
+  this.blockUI.start();
+  this.liderService.obterTodos().pipe(
+      finalize(() => this.blockUI.stop()),
+      map(this.converterDropDownLider)
+  ).subscribe(lider => this.listaLideres = lider);
+}
 
   preencherFiltros() {
     this.listaFiltrada = this.lista.filter(item => {
@@ -219,8 +249,8 @@ export class DashboardComponent implements OnInit {
             return true;
         }
         return (this.filtroLider && this.filtroLider.some(sel => sel == item.idLider)) ||
-            (this.filtroOs && this.filtroOs.some(sel => sel == item.idOrdemServico)) ||
-            (this.filtroProjeto && this.filtroProjeto.some(sel => sel == item.id));
+            (this.filtroOs && this.filtroOs.some(sel => sel == item.idOs)) ||
+            (this.filtroProjeto && this.filtroProjeto.some(sel => sel == item.idProjeto));
     });
 
   }
@@ -261,17 +291,6 @@ export class DashboardComponent implements OnInit {
     return this.projetos.find(projeto => projeto.id == id).revisor
   }
 
-  private mapearOsProjeto(array) {
-    return array[0].map(os => {
-      os.nome = array[1].find(projeto => projeto.id === os.idOrdemServico).nome + ' - ' + os.nome;
-    })
-  }
-
-  private mapearLiderProjeto(array) {
-    return array[0].map(lider => {
-      lider.nome = array[1].find(projeto => projeto.id === lider.idLider).nome;
-    })
-  }
   obterCliente(id: number) {
     return this.projetos.find(projeto => projeto.id == id).idCliente
   }
@@ -285,6 +304,45 @@ export class DashboardComponent implements OnInit {
     } else {
       return "Não"
     }
+  }
+
+  private mapearOsProjeto(array) {
+    return array[0].map(os => {
+      os.nome = array[1].find(projeto => projeto.id === os.idOrdemServico).nome + ' - ' + os.nome;
+    })
+  }
+
+  private mapearLiderProjeto(array) {
+    return array[0].map(lider => {
+      lider.nome = array[1].find(projeto => projeto.id === lider.idLider).nome;
+    })
+  }
+
+  private converterDropDownOrdemServico(lista) {
+    return lista.map(item => {
+        return {
+            label: item['nome'].toUpperCase(),
+            value: item['id']
+        }
+    })
+  }
+
+  private converterDropDownLider(lista) {
+    return lista.map(item => {
+        return {
+            label: item['nome'].toUpperCase(),
+            value: item['id']
+        }
+    })
+  }
+
+  private converterDropDownProjeto (lista){
+    return lista.map(item => {
+      return {
+        label: item['nome'].toUpperCase(),
+        value: item['id']
+      }
+    })
   }
 
 }

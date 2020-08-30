@@ -19,3 +19,12 @@ body .ui-tabview {
     display: flex;
     justify-content: space-around;
 }
+
+#DescricaoProjeto{
+    display: flex;
+    justify-content: space-around;
+}
+
+#DescricaoProjeto span{
+    font-weight: bolder;
+}
