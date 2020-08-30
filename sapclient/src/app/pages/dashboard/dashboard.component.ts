@@ -1,6 +1,6 @@
+import { ClienteService } from 'src/app/services/cliente.service';
 import { StatusService } from './../../services/status.service';
 import { Sprint } from './../../models/sprint.model';
-import { ClienteService } from './../../services/cliente.service';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 
 import { LiderService } from './../../services/lider.service';
@@ -57,9 +57,10 @@ export class DashboardComponent implements OnInit {
   testeExibe: boolean;
 
   lista: any = [];
-  listaFiltrada: any = [];
+  // listaFiltrada: any = [];
   listaLideres: SelectItem[] = [];
   listaProjetos: SelectItem[] = [];
+  listaCliente: SelectItem[] = [];
   filtroLider: any = [];
   filtroCliente: any = [];
   filtroProjeto: any = [];
@@ -85,14 +86,12 @@ export class DashboardComponent implements OnInit {
     { header: 'Status' },
   ];
 
-  teste = [
-    { nome: 'site', status: 'Em andamento', proxEntrega: '10-10-20', prazo: 'não', pf: '50', fabrica: 'SRC' },
-    { nome: 'site', status: 'Em andamento', proxEntrega: '10-10-20', prazo: 'não', pf: '50', fabrica: 'SRC' }
-  ];
 
-  testeSprint = [
-    { nome: 'dados', inicio: '10-10-20', termino: '15-10-20', pf: '20', impedimento: 'não', prazo: 'Sim', status: 'em andamento' }
-  ]
+  listaFiltrada = [
+    this.listaLideres,
+    this.listaOrdemServico,
+    this.listaProjeto
+  ];
 
   constructor(
     private ordemServicoService: OrdemServicoService,
@@ -100,8 +99,8 @@ export class DashboardComponent implements OnInit {
     private situacaoService: SituacaoService,
     private liderService: LiderService,
     private sprintService: SprintService,
-    private clienteService: ClienteService,
-    private statusService: StatusService
+    private statusService: StatusService,
+    private clienteService: ClienteService
   ) { }
 
   ngOnInit(): void {
@@ -112,10 +111,12 @@ export class DashboardComponent implements OnInit {
     this.obterSprint();
     this.obterLideres();
     this.obterStatus();
+    this.obterProjetosCliente();
     // this.obterProjetosFiltro();
     this.carregarLideres();
-    this.carregarOrdemServico();
+    this.carregarCliente();
     this.carregarProjeto();
+    // this.obterOsProjetos();
   }
 
   obterTodos() {
@@ -198,6 +199,33 @@ export class DashboardComponent implements OnInit {
       ).subscribe(osProjeto => this.listaOsProjeto = osProjeto)
   }
 
+
+  obterProjetosCliente() {
+    this.blockUI.start();
+    forkJoin(
+        this.projetoService.obterTodos(),
+        this.clienteService.obterTodos()
+    ).pipe(
+        finalize(() => this.blockUI.stop()),
+        map(this.mapearClienteProjeto)
+    ).subscribe(res => {
+        this.lista = res;
+        this.listaFiltrada = this.lista;
+        this.listaProjetos = res.map(item => {
+          return {
+              label: item.nome,
+              value: item.id
+          }
+      });
+    })
+}
+
+private mapearOsProjeto(array) {
+  return array[0].map(os => {
+    os.nome = array[1].find(projeto => projeto.id === os.idOrdemServico).nome + ' - ' + os.nome;
+  })
+}
+
   carregarProjeto(){
     this.blockUI.start();
     this.projetoService.obterTodos().pipe(
@@ -206,12 +234,12 @@ export class DashboardComponent implements OnInit {
     ).subscribe(projeto => this.listaProjeto = projeto);
   }
 
-  carregarOrdemServico() {
+  carregarCliente() {
     this.blockUI.start();
-    this.ordemServicoService.obterTodos().pipe(
+    this.clienteService.obterTodos().pipe(
         finalize(() => this.blockUI.stop()),
-        map(this.converterDropDownOrdemServico)
-    ).subscribe(ordemServico => this.listaOrdemServico = ordemServico);
+        map(this.converterDropDownCliente)
+    ).subscribe(cliente => this.listaCliente = cliente);
   }
 
   carregarLideres() {
@@ -222,17 +250,20 @@ export class DashboardComponent implements OnInit {
     ).subscribe(lider => this.listaLideres = lider);
   }
 
+
+  
   preencherFiltros() {
     this.listaFiltrada = this.lista.filter(item => {
-        if (!this.filtroOs.length && !this.filtroLider.length && !this.filtroProjeto.length) {
+        if (!this.filtroCliente.length && !this.filtroLider.length && !this.filtroProjeto.length) {
             return true;
         }
         return (this.filtroLider && this.filtroLider.some(sel => sel == item.idLider)) ||
-            (this.filtroOs && this.filtroOs.some(sel => sel == item.idOs)) ||
+            (this.filtroCliente && this.filtroCliente.some(sel => sel == item.idCliente)) ||
             (this.filtroProjeto && this.filtroProjeto.some(sel => sel == item.idProjeto));
     });
-
+    console.log(this.listaFiltrada)
   }
+
 
   obterNomeStatus(id: number) {
     return this.status.find(status => status.id == id).descricao
@@ -286,10 +317,10 @@ export class DashboardComponent implements OnInit {
     }
   }
 
-  private converterDropDownOrdemServico(lista) {
+  private converterDropDownCliente(lista) {
     return lista.map(item => {
         return {
-            label: item['nome'].toUpperCase(),
+            label: item['descricao'].toUpperCase(),
             value: item['id']
         }
     })
@@ -312,5 +343,13 @@ export class DashboardComponent implements OnInit {
       }
     })
   }
+  private mapearClienteProjeto(array) {
+    return array[0].map(projeto => {
+      projeto.nome = projeto.descricao;
+      projeto.descricao = array[1].find(cliente => cliente.id === projeto.idCliente).descricao + ' - ' + projeto.descricao;
+      return projeto;
+    });
+}
+
 
 }
