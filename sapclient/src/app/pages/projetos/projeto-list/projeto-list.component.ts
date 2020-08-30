@@ -21,8 +21,8 @@ export class ProjetoListComponent implements OnInit {
   listaProjetos$: Observable<any>;
   listaProjetos: any = [];
 
-  listaClientes: SelectItem[] = [];
-  listaLideres: SelectItem[] = [];
+  listaClientes: any[] = [];
+  listaLideres: any[] = [];
 
   cliente: any;
   lider: any;
