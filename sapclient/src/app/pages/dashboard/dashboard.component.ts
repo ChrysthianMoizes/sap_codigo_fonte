@@ -112,11 +112,9 @@ export class DashboardComponent implements OnInit {
     this.obterLideres();
     this.obterStatus();
     this.obterProjetosCliente();
-    // this.obterProjetosFiltro();
     this.carregarLideres();
     this.carregarCliente();
     this.carregarProjeto();
-    // this.obterOsProjetos();
   }
 
   obterTodos() {
@@ -199,7 +197,6 @@ export class DashboardComponent implements OnInit {
       ).subscribe(osProjeto => this.listaOsProjeto = osProjeto)
   }
 
-
   obterProjetosCliente() {
     this.blockUI.start();
     forkJoin(
@@ -219,12 +216,7 @@ export class DashboardComponent implements OnInit {
       });
     })
 }
-
-private mapearOsProjeto(array) {
-  return array[0].map(os => {
-    os.nome = array[1].find(projeto => projeto.id === os.idOrdemServico).nome + ' - ' + os.nome;
-  })
-}
+// listaFiltrada = listaCompleta.filter(projeto => clientesSelecionados.some(cliente => projeto.idCliente == cliente))
 
   carregarProjeto(){
     this.blockUI.start();
@@ -343,13 +335,24 @@ private mapearOsProjeto(array) {
       }
     })
   }
-  private mapearClienteProjeto(array) {
-    return array[0].map(projeto => {
-      projeto.nome = projeto.descricao;
-      projeto.descricao = array[1].find(cliente => cliente.id === projeto.idCliente).descricao + ' - ' + projeto.descricao;
-      return projeto;
-    });
+
+//   private mapearClienteProjeto(array) {
+//     return array[0].map(projeto => {
+//       console.log(projeto.nome)
+//       projeto.nome = projeto.descricao;
+//       // console.log(projeto.descricao + ' descricao')
+//       projeto.descricao = array[1].find(cliente => cliente.id === projeto.idCliente).descricao + ' - ' + projeto.descricao;
+//       return projeto;
+//     });
+// }
+
+private mapearClienteProjeto(array) {
+  return array[0].map(projeto => {
+    projeto.nome = array[1].find(cliente => cliente.id === projeto.idCliente).descricao + ' - ' + projeto.nome;
+    return projeto;
+  });
 }
+
 
 
 }
