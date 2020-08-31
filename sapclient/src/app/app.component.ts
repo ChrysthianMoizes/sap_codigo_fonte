@@ -59,7 +59,7 @@ export class AppComponent implements AfterViewInit, OnDestroy, OnInit {
             },
             {
                 label: 'Líderes',
-                icon: 'person-pin',
+                icon: 'supervisor_account',
                 routerLink: ['/lideres'] },
           {
                 label: 'Projetos',

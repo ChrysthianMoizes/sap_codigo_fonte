@@ -19,7 +19,7 @@ import { Projeto } from './../models/projeto.model';
     ) { }
 
     obterTodos(): Observable<any> {
-      return this.http.get(`${this.api}`)
+        return this.http.get(`${this.api}`)
     }
 
     salvar(recurso: Projeto): Observable<any> {

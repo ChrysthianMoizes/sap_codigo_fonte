@@ -1,3 +1,4 @@
+import { Lider } from './../../models/lider.model';
 import { StatusService } from './../../services/status.service';
 import { ClienteService } from './../../services/cliente.service';
 import { trigger, state, style, transition, animate } from '@angular/animations';
@@ -113,21 +114,19 @@ export class DashboardComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-
-    this.obterSituacoes();
     this.obterProjetos();
     this.obterTodos();
+    this.obterSituacoes();
     this.obterSprint();
     this.obterLideres();
     this.obterStatus();
-    // this.obterProjetosFiltro();
     this.carregarLideres();
     this.carregarProjetos();
     this.carregarClientes();
   }
 
   obterTodos() {
-    // this.blockUI.start();
+    this.blockUI.start();
     this.listaOrdemServico$ = this.ordemServicoService.obterTodos().pipe(
       map(res => {
         res.forEach(item => {
@@ -141,14 +140,11 @@ export class DashboardComponent implements OnInit {
   }
 
   obterProjetos() {
-    this.blockUI.start();
+    // this.blockUI.start();
     this.projetoService.obterTodos().pipe(
       finalize(() => this.blockUI.stop())
-    ).subscribe(
-      projetos => {
-        this.projetos = projetos;
-        this.projetosFiltrados = projetos;
-      }
+    ).subscribe( 
+      projetos => this.projetos = projetos
     );
   }
 
@@ -205,7 +201,7 @@ export class DashboardComponent implements OnInit {
     this.ordemServicoService.obterPorIdProjeto(projeto.id)
       .pipe(
         finalize(() => this.blockUI.stop()),
-      ).subscribe(osProjeto => projeto.listaOs = osProjeto)
+      ).subscribe(osProjeto => projeto.listaOs = osProjeto);
   }
 
   carregarProjetos(){
@@ -240,56 +236,45 @@ export class DashboardComponent implements OnInit {
     ).subscribe(cliente => this.listaClientes = cliente);
   }
 
-  preencherFiltros() {
-    this.listaFiltrada = this.lista.filter(item => {
-        if (!this.filtroOs.length && !this.filtroLider.length && !this.filtroProjeto.length) {
-            return true;
-        }
-        return (this.filtroLider && this.filtroLider.some(sel => sel == item.idLider)) ||
-            (this.filtroOs && this.filtroOs.some(sel => sel == item.idOs)) ||
-            (this.filtroProjeto && this.filtroProjeto.some(sel => sel == item.idProjeto));
-    });
-
-  }
-
   obterNomeStatus(id: number) {
-    return this.status.find(status => status.id == id).descricao
+    return this.status.find(status => status.id == id).descricao;
   }
 
   obterNomeLider(id: number) {
-    return this.lideres.find(lider => lider.id == id).nome
+    let lider : Lider = this.lideres.find(l => l.id == id);
+    return lider.nome;
   }
 
   obterSituacaoSprint(id: number) {
-    return this.sprints.find(sprint => sprint.idOrdemServico == id).prazo
+    return this.sprints.find(sprint => sprint.idOrdemServico == id).prazo;
   }
 
   obterImpedimentoSprint(id: number) {
-    return this.sprints.find(sprint => sprint.idOrdemServico == id).impedimento
+    return this.sprints.find(sprint => sprint.idOrdemServico == id).impedimento;
   }
 
   obterNomeSituacao(id: number) {
-    return this.situacoes.find(situacao => situacao.id == id).descricao
+    return this.situacoes.find(situacao => situacao.id == id).descricao;
   }
 
   obterNomeProjeto(id: number) {
-    return this.projetos.find(projeto => projeto.id == id).nome
+    return this.projetos.find(projeto => projeto.id == id).nome;
   }
 
   obterNomeGerente(id: number) {
-    return this.projetos.find(projeto => projeto.id == id).gerente
+    return this.projetos.find(projeto => projeto.id == id).gerente;
   }
 
   obterNomeTestador(id: number) {
-    return this.projetos.find(projeto => projeto.id == id).testador
+    return this.projetos.find(projeto => projeto.id == id).testador;
   }
 
   obterNomeRevisor(id: number) {
-    return this.projetos.find(projeto => projeto.id == id).revisor
+    return this.projetos.find(projeto => projeto.id == id).revisor;
   }
 
   obterCliente(id: number) {
-    return this.projetos.find(projeto => projeto.id == id).idCliente
+    return this.projetos.find(projeto => projeto.id == id).idCliente;
   }
 
   obterSprints(id: number) {

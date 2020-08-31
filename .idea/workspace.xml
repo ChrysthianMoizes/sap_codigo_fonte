@@ -25,6 +25,12 @@
   <component name="ChangeListManager">
     <list default="true" id="276d3e17-78be-4335-9b87-601090f9cfff" name="Default Changelist" comment="Merge branch 'develop' of https://github.com/ChrysthianMoizes/sap_codigo_fonte into frontCarlos&#10;&#10;# Conflicts:&#10;#&#9;sapservice/src/test/java/br/gov/basis/sap/sapservice/web/rest/LiderRecursoIT.java">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sapservice/src/test/java/br/gov/basis/sap/sapservice/builder/ClienteBuilder.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sapservice/src/test/java/br/gov/basis/sap/sapservice/builder/TipoSituacaoBuilder.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sapservice/src/test/java/br/gov/basis/sap/sapservice/builder/TipoStatusBuilder.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sapservice/src/test/java/br/gov/basis/sap/sapservice/web/rest/ClienteRecursoIT.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sapservice/src/test/java/br/gov/basis/sap/sapservice/web/rest/TipoSituacaoRecursoIT.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sapservice/src/test/java/br/gov/basis/sap/sapservice/web/rest/TipoStatusRecursoIT.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -260,6 +266,10 @@
       <screen x="67" y="27" width="1299" height="741" />
     </state>
     <state x="264" y="27" width="894" height="741" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/67.27.1299.741@67.27.1299.741" timestamp="1597161880916" />
+    <state x="449" y="145" width="524" height="502" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1598879619114">
+      <screen x="67" y="27" width="1299" height="741" />
+    </state>
+    <state x="449" y="145" width="524" height="502" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/67.27.1299.741@67.27.1299.741" timestamp="1598879619114" />
     <state x="474" y="141" key="#xdebugger.evaluate" timestamp="1597797988827">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
