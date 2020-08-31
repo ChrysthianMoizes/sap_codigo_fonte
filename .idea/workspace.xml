@@ -6,8 +6,15 @@
   <component name="ChangeListManager">
     <list default="true" id="8cb862e7-64b8-431b-9a1b-22958a899c91" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sapclient/src/app/models/tiposituacao.model.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/sapclient/src/app/models/tipostatus.model.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sapclient/src/app/pages/ordens-servico/os-list/os-list.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/sapclient/src/app/pages/ordens-servico/os-list/os-list.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sapservice/src/main/resources/config/liquibase/changelog/202008121210_criacao_sprint.xml" beforeDir="false" afterPath="$PROJECT_DIR$/sapservice/src/main/resources/config/liquibase/changelog/202008121210_criacao_sprint.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sapservice/src/main/resources/config/liquibase/changelog/202008121938_add_column_nome_to_sprint.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sapservice/src/main/resources/config/liquibase/changelog/202008260910_insert_cliente.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sapservice/src/main/resources/config/liquibase/changelog/202008260949_Insert.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sapservice/src/main/resources/config/liquibase/changelog/202008270000_insert_cliente.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sapservice/src/main/resources/config/liquibase/changelog/202008270003_insert_tipo_situacao.xml" beforeDir="false" afterPath="$PROJECT_DIR$/sapservice/src/main/resources/config/liquibase/changelog/202008270003_insert_tipo_situacao.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sapservice/src/main/resources/config/liquibase/changelog/202008270005_insert_tipo_status.xml" beforeDir="false" afterPath="$PROJECT_DIR$/sapservice/src/main/resources/config/liquibase/changelog/202008270005_insert_tipo_status.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sapservice/src/main/resources/config/liquibase/master.xml" beforeDir="false" afterPath="$PROJECT_DIR$/sapservice/src/main/resources/config/liquibase/master.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -116,39 +123,30 @@
   <component name="Vcs.Log.Tabs.Properties">
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+  </component>
   <component name="WindowStateProjectService">
-    <state width="1320" height="194" key="GridCell.Tab.0.bottom" timestamp="1598848112620">
+    <state x="141" y="29" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1598872565521">
       <screen x="0" y="27" width="1366" height="690" />
     </state>
-    <state width="1320" height="194" key="GridCell.Tab.0.bottom/0.27.1366.690@0.27.1366.690" timestamp="1598848112620" />
-    <state width="1320" height="194" key="GridCell.Tab.0.center" timestamp="1598848112619">
+    <state x="141" y="29" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.27.1366.690@0.27.1366.690" timestamp="1598872565521" />
+    <state width="1320" height="159" key="GridCell.Tab.0.bottom" timestamp="1598872671350">
       <screen x="0" y="27" width="1366" height="690" />
     </state>
-    <state width="1320" height="194" key="GridCell.Tab.0.center/0.27.1366.690@0.27.1366.690" timestamp="1598848112619" />
-    <state width="1320" height="194" key="GridCell.Tab.0.left" timestamp="1598848112619">
+    <state width="1320" height="159" key="GridCell.Tab.0.bottom/0.27.1366.690@0.27.1366.690" timestamp="1598872671350" />
+    <state width="1320" height="159" key="GridCell.Tab.0.center" timestamp="1598872671350">
       <screen x="0" y="27" width="1366" height="690" />
     </state>
-    <state width="1320" height="194" key="GridCell.Tab.0.left/0.27.1366.690@0.27.1366.690" timestamp="1598848112619" />
-    <state width="1320" height="194" key="GridCell.Tab.0.right" timestamp="1598848112620">
+    <state width="1320" height="159" key="GridCell.Tab.0.center/0.27.1366.690@0.27.1366.690" timestamp="1598872671350" />
+    <state width="1320" height="159" key="GridCell.Tab.0.left" timestamp="1598872671349">
       <screen x="0" y="27" width="1366" height="690" />
     </state>
-    <state width="1320" height="194" key="GridCell.Tab.0.right/0.27.1366.690@0.27.1366.690" timestamp="1598848112620" />
-    <state width="1320" height="214" key="GridCell.Tab.1.bottom" timestamp="1598846683143">
+    <state width="1320" height="159" key="GridCell.Tab.0.left/0.27.1366.690@0.27.1366.690" timestamp="1598872671349" />
+    <state width="1320" height="159" key="GridCell.Tab.0.right" timestamp="1598872671350">
       <screen x="0" y="27" width="1366" height="690" />
     </state>
-    <state width="1320" height="214" key="GridCell.Tab.1.bottom/0.27.1366.690@0.27.1366.690" timestamp="1598846683143" />
-    <state width="1320" height="214" key="GridCell.Tab.1.center" timestamp="1598846683142">
-      <screen x="0" y="27" width="1366" height="690" />
-    </state>
-    <state width="1320" height="214" key="GridCell.Tab.1.center/0.27.1366.690@0.27.1366.690" timestamp="1598846683142" />
-    <state width="1320" height="214" key="GridCell.Tab.1.left" timestamp="1598846683142">
-      <screen x="0" y="27" width="1366" height="690" />
-    </state>
-    <state width="1320" height="214" key="GridCell.Tab.1.left/0.27.1366.690@0.27.1366.690" timestamp="1598846683142" />
-    <state width="1320" height="214" key="GridCell.Tab.1.right" timestamp="1598846683143">
-      <screen x="0" y="27" width="1366" height="690" />
-    </state>
-    <state width="1320" height="214" key="GridCell.Tab.1.right/0.27.1366.690@0.27.1366.690" timestamp="1598846683143" />
+    <state width="1320" height="159" key="GridCell.Tab.0.right/0.27.1366.690@0.27.1366.690" timestamp="1598872671350" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

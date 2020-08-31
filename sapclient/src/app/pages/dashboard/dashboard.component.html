@@ -1,16 +1,16 @@
 <h1 style="text-align: center;">Controle de Projetos</h1>
-<!-- <pre>{{( listaOrdemServico | json }}</pre> -->
+<!-- <pre>{{( listaClientes | json )}}</pre> -->
+
 <p-panel [toggleable]="true" >
   <p-header id="titleHeader">Filtros</p-header>
-  
-  <div id="filtros">
 
       <div class="ui-g-4 ui-md-4 ui-sm-12 dashboardFiltro">
         <span class="ui-float-label">
             <p-multiSelect class="filtro" maxSelectedLabels="4"
-                [options]="listaOrdemServico" defaultLabel="&nbsp;"
+                [options]="listaClientes" defaultLabel="&nbsp;"
                 selectedItemsLabel="{0} itens selecionados"
-                [(ngModel)]="filtroOs">
+                [(ngModel)]="filtroCliente"
+                (onChange)="prepararFiltroCliente($event)">
             </p-multiSelect>
             <label>Ordem Serviço </label>
         </span>

@@ -54,12 +54,15 @@ export class DashboardComponent implements OnInit {
   lideres: any = [];
   status: any = [];
   testeExibe: boolean;
-  listaLideres: SelectItem[]=[];
-  listaFiltrada:SelectItem[]=[];
-  filtroProjeto:SelectItem[]=[];
-  filtroLider:SelectItem[]=[];
-  filtroCliente:SelectItem[]=[];
-  lista:any[];
+
+  lista: any = [];
+  listaFiltrada: any = [];
+  listaLideres: SelectItem[] = [];
+  listaClientes: SelectItem[] = [];
+  filtroLider: any = [];
+  filtroCliente: any = [];
+  filtroProjeto: any = [];
+  filtroOs: any = [];
 
 
   colunas: any[] = [
@@ -108,10 +111,9 @@ export class DashboardComponent implements OnInit {
     this.obterSprint();
     this.obterLideres();
     this.obterStatus();
-    // this.obterProjetosFiltro();
     this.carregarLideres();
-    this.carregarOrdemServico();
-    this.carregarProjeto();
+    this.carregarProjetos();
+    this.carregarCliente();
   }
 
   obterTodos() {
@@ -197,49 +199,37 @@ export class DashboardComponent implements OnInit {
 
  
 
-//   obterProjetosFiltro() {
-//     this.blockUI.start();
-//     forkJoin(
-//         this.projetoService.obterTodos(),
-//         this.ordemServicoService.obterTodos()
-//     ).pipe(
-//         finalize(() => this.blockUI.stop()),
-//         map(this.mapearOsProjeto)
-//     ).subscribe(res => {
-//         this.lista = res;
-//         this.listaFiltrada = this.lista;
-//         this.listaProjetos = res.map(item => {
-//           return {
-//               label: item.nome,
-//               value: item.id
-//           }
-//       });
-//     })
-// }
+  carregarProjetos(){
+    this.blockUI.start();
+    this.projetoService.obterTodos().pipe(
+        finalize(() => this.blockUI.stop()),
+        map(this.converterDropDownProjeto)
+    ).subscribe(projeto => this.listaProjeto = projeto);
+  }
 
-carregarProjeto(){
-  this.blockUI.start();
-  this.projetoService.obterTodos().pipe(
-    finalize(() => this.blockUI.stop()),
-    map(this.converterDropDownProjeto)
-  ).subscribe(projeto => this.listaProjeto = projeto);
-}
+  carregarCliente() {
+    this.blockUI.start();
+    this.clienteService.obterTodos().pipe(
+        finalize(() => this.blockUI.stop()),
+        map(this.converterDropDownCliente)
+    ).subscribe(cliente => this.listaClientes = cliente);
+  }
 
-carregarOrdemServico() {
-  this.blockUI.start();
-  this.ordemServicoService.obterTodos().pipe(
-      finalize(() => this.blockUI.stop()),
-      map(this.converterDropDownOrdemServico)
-  ).subscribe(ordemServico => this.listaOrdemServico = ordemServico);
-}
-
-carregarLideres() {
-  this.blockUI.start();
-  this.liderService.obterTodos().pipe(
+  carregarLideres() {
+    this.blockUI.start();
+    this.liderService.obterTodos().pipe(
       finalize(() => this.blockUI.stop()),
       map(this.converterDropDownLider)
-  ).subscribe(lider => this.listaLideres = lider);
-}
+    ).subscribe(lider => this.listaLideres = lider);
+  }
+
+  // carregarClientes() {
+  //   this.blockUI.start();
+  //   this.clienteService.obterTodos().pipe(
+  //     finalize(() => this.blockUI.stop()),
+  //     map(this.converterDropDownCliente)
+  //   ).subscribe(cliente => this.listaClientes = cliente);
+  // }
 
   preencherFiltros() {
     this.listaFiltrada = this.lista.filter(item => {
@@ -310,16 +300,6 @@ console.log(this.listaFiltrada)
     })
   }
 
-  private converterDropDownOrdemServico(lista) {
-    return lista.map(item => {
-        return {
-            label: item['nome'].toUpperCase(),
-            value: item['id']
-        }
-    })
-  }
-
-
   private converterDropDownLider(lista) {
     return lista.map(item => {
         return {
@@ -327,14 +307,6 @@ console.log(this.listaFiltrada)
             value: item['id']
         }
     })
-  }
-
-  obterBoolean(ar: boolean) {
-    if (ar == true) {
-      return "Sim"
-    } else {
-      return "Não"
-    }
   }
 
   private converterDropDownProjeto (lista){
@@ -346,5 +318,14 @@ console.log(this.listaFiltrada)
     })
   }
 
+  private converterDropDownCliente (lista){
+    return lista.map(item => {
+      return {
+        label: item['nome'].toUpperCase(),
+        value: item['id']
+      }
+    })
+  }
+  
 
 }
