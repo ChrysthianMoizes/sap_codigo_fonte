@@ -4,9 +4,18 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
     <changeSet  author="carlos.padua"  id="22">
-            <insert  tableName="tipo_status" >
-                <column name="descricao" value="Status teste"/>
-            </insert>
+        <insert  tableName="tipo_status" >
+            <column name="descricao" value="OK"/>
+        </insert>
+        <insert  tableName="tipo_status" >
+            <column name="descricao" value="NÃO INICIADA"/>
+        </insert>
+        <insert  tableName="tipo_status" >
+            <column name="descricao" value="ATRASADA"/>
+        </insert>
+        <insert  tableName="tipo_status" >
+            <column name="descricao" value="AGUARDANDO"/>
+        </insert>
     </changeSet>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->

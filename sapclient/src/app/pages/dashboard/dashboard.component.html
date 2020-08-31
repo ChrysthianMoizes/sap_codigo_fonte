@@ -1,18 +1,18 @@
 <h1 style="text-align: center;">Controle de Projetos</h1>
-<!-- <pre>{{( listaOrdemServico | json }}</pre> -->
+<!-- <pre>{{( listaClientes | json )}}</pre> -->
 <p-panel [toggleable]="true" >
   <p-header id="titleHeader">Filtros</p-header>
-  
   <div id="filtros">
 
       <div class="ui-g-4 ui-md-4 ui-sm-12 dashboardFiltro">
         <span class="ui-float-label">
             <p-multiSelect class="filtro" maxSelectedLabels="4"
-                [options]="listaOrdemServico" defaultLabel="&nbsp;"
+                [options]="listaClientes" defaultLabel="&nbsp;"
                 selectedItemsLabel="{0} itens selecionados"
-                [(ngModel)]="filtroOs">
+                [(ngModel)]="filtroCliente"
+                (onChange)="prepararFiltroCliente($event)">
             </p-multiSelect>
-            <label>Ordem Serviço</label>
+            <label>Cliente</label>
         </span>
       </div>
 
@@ -21,7 +21,8 @@
             <p-multiSelect class="filtro" maxSelectedLabels="4"
                 [options]="listaProjeto" defaultLabel="&nbsp;"
                 selectedItemsLabel="{0} itens selecionados"
-                [(ngModel)]="filtroProjeto">
+                [(ngModel)]="filtroProjeto"
+                (onChange)="prepararFiltroProjeto($event)">
             </p-multiSelect>
             <label>Projeto</label>
         </span>
@@ -32,22 +33,23 @@
             <p-multiSelect class="filtro" maxSelectedLabels="4"
                 [options]="listaLideres" defaultLabel="&nbsp;"
                 selectedItemsLabel="{0} itens selecionados"
-                [(ngModel)]="filtroLider">
+                [(ngModel)]="filtroLider"
+                (onChange)="prepararFiltroLider($event)">
             </p-multiSelect>
             <label>Lider</label>
           </span>
       </div>
 
-      <div class="ui-g">
+      <!-- <div class="ui-g">
         <div class="ui-g-2 ui-md-4 ui-sm-6">
           <a (click)="preencherFiltros()" pButton label="Filtrar"></a>
         </div>
-      </div>
+      </div> -->
   </div>
 
 </p-panel>
 
-<p-fieldset (onBeforeToggle)="obterOsPorProjeto(projeto.id)" *ngFor="let projeto of projetos" [toggleable]="true"
+<p-fieldset (onBeforeToggle)="obterOsPorProjeto(projeto)" *ngFor="let projeto of projetosFiltrados" [toggleable]="true"
 [collapsed]="true">
 
   <p-header>{{projeto.nome | uppercase}}</p-header>
@@ -64,7 +66,7 @@
   </div>
 
 
-  <p-table #dt [value]="listaOsProjeto" [paginator]="true" [rows]="4" [response]="true" [columns]="colunas" dataKey="nome">
+  <p-table #dt [value]="projeto.listaOs" [paginator]="true" [rows]="4" [response]="true" [columns]="colunas" dataKey="nome">
 
     <ng-template let-columns pTemplate="header">
       <tr>

@@ -14,25 +14,25 @@
             {{ coluna.header }}
           </th>
         </tr>
-        <tr>
+        <!-- <tr>
           <th *ngFor="let coluna of columns" [ngSwitch]="coluna.field">
             <p-multiSelect class="filtro" maxSelectedLabels="5"
               [options]="listaLideres"
               selectedItemsLabel="{0} itens selecionados"
               [(ngModel)]="filtroLider">
             </p-multiSelect>
-            <!-- <p-multiSelect *ngSwitchCase="'cliente'" [options]="listaClientes" defaultLabel="Filtrar por Cliente" (onChange)="dt.filter($event.value, coluna.field, 'in')"></p-multiSelect>
+            <p-multiSelect *ngSwitchCase="'cliente'" [options]="listaClientes" defaultLabel="Filtrar por Cliente" (onChange)="dt.filter($event.value, coluna.field, 'in')"></p-multiSelect>
             <input *ngSwitchCase="'nome'" pInputText type="text" (input)="dt.filter($event.target.value, coluna.field, 'contains')">
             <input *ngSwitchCase="'testador'" pInputText type="text" (input)="dt.filter($event.target.value, coluna.field, 'contains')">
             <input *ngSwitchCase="'revisor'" pInputText type="text" (input)="dt.filter($event.target.value, coluna.field, 'contains')">
-            <input *ngSwitchCase="'gerente'" pInputText type="text" (input)="dt.filter($event.target.value, coluna.field, 'contains')"> -->
+            <input *ngSwitchCase="'gerente'" pInputText type="text" (input)="dt.filter($event.target.value, coluna.field, 'contains')">
           </th>
-        </tr> 
+        </tr>  -->
       </ng-template>
       <ng-template pTemplate="body" let-projeto>
         <tr>
           <td>{{ projeto.nome  | uppercase }}</td>
-          <td>{{ filtrarClientePorId(projeto.idCliente) }}</td>
+          <td>{{ filtrarClientePorId(projeto.idCliente) | uppercase }}</td>
           <td>{{ filtrarLiderPorId(projeto.idLider) | uppercase }}</td>
           <td>{{ projeto.testador  | uppercase }}</td>
           <td>{{ projeto.revisor  | uppercase }}</td>

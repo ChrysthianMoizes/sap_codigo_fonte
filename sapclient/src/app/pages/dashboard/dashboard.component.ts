@@ -11,10 +11,11 @@ import { SituacaoService } from './../../services/situacao.service';
 import { Observable, forkJoin } from 'rxjs';
 
 import { finalize, map, tap } from 'rxjs/operators';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 
 import { BlockUI, NgBlockUI } from 'ng-block-ui';
-import { SelectItem } from 'primeng';
+import { SelectItem, Table } from 'primeng';
+import { Projeto } from 'src/app/models/projeto.model';
 
 @Component({
   selector: 'app-dashboard',
@@ -48,7 +49,13 @@ export class DashboardComponent implements OnInit {
   listaProjeto: any = [];
   listaOsProjeto: SelectItem[] = [];
   situacoes: any = [];
-  projetos: any = [];
+
+  projetos: Projeto [] = [];
+  projetosFiltrados: Projeto [] = [];
+  clienteItensFiltro: any [] = [];
+  projetoItensFiltro: any [] = [];
+  liderItensFiltro: any [] = [];
+  
   sprints: any = [];
   sprintsFiltradas: any = [];
   lideres: any = [];
@@ -58,7 +65,7 @@ export class DashboardComponent implements OnInit {
   lista: any = [];
   listaFiltrada: any = [];
   listaLideres: SelectItem[] = [];
-  listaProjetos: SelectItem[] = [];
+  listaClientes: SelectItem[] = [];
   filtroLider: any = [];
   filtroCliente: any = [];
   filtroProjeto: any = [];
@@ -93,6 +100,8 @@ export class DashboardComponent implements OnInit {
     { nome: 'dados', inicio: '10-10-20', termino: '15-10-20', pf: '20', impedimento: 'não', prazo: 'Sim', status: 'em andamento' }
   ]
 
+  @ViewChild('dt') table: Table;
+
   constructor(
     private ordemServicoService: OrdemServicoService,
     private projetoService: ProjetoService,
@@ -113,8 +122,8 @@ export class DashboardComponent implements OnInit {
     this.obterStatus();
     // this.obterProjetosFiltro();
     this.carregarLideres();
-    this.carregarOrdemServico();
-    this.carregarProjeto();
+    this.carregarProjetos();
+    this.carregarClientes();
   }
 
   obterTodos() {
@@ -137,7 +146,8 @@ export class DashboardComponent implements OnInit {
       finalize(() => this.blockUI.stop())
     ).subscribe(
       projetos => {
-        this.projetos = projetos
+        this.projetos = projetos;
+        this.projetosFiltrados = projetos;
       }
     );
   }
@@ -190,16 +200,15 @@ export class DashboardComponent implements OnInit {
 
   }
 
-  obterOsPorProjeto(id) {
+  obterOsPorProjeto(projeto: Projeto) {
     this.blockUI.start();
-    this.ordemServicoService.obterPorIdProjeto(id)
+    this.ordemServicoService.obterPorIdProjeto(projeto.id)
       .pipe(
         finalize(() => this.blockUI.stop()),
-        tap(console.log)
-      ).subscribe(osProjeto => this.listaOsProjeto = osProjeto)
+      ).subscribe(osProjeto => projeto.listaOs = osProjeto)
   }
 
-  carregarProjeto(){
+  carregarProjetos(){
     this.blockUI.start();
     this.projetoService.obterTodos().pipe(
         finalize(() => this.blockUI.stop()),
@@ -221,6 +230,14 @@ export class DashboardComponent implements OnInit {
       finalize(() => this.blockUI.stop()),
       map(this.converterDropDownLider)
     ).subscribe(lider => this.listaLideres = lider);
+  }
+
+  carregarClientes() {
+    this.blockUI.start();
+    this.clienteService.obterTodos().pipe(
+      finalize(() => this.blockUI.stop()),
+      map(this.converterDropDownCliente)
+    ).subscribe(cliente => this.listaClientes = cliente);
   }
 
   preencherFiltros() {
@@ -305,6 +322,15 @@ export class DashboardComponent implements OnInit {
     })
   }
 
+  private converterDropDownCliente(lista) {
+    return lista.map(item => {
+        return {
+            label: item['descricao'].toUpperCase(),
+            value: item['id']
+        }
+    })
+  }
+
   private converterDropDownProjeto (lista){
     return lista.map(item => {
       return {
@@ -312,6 +338,28 @@ export class DashboardComponent implements OnInit {
         value: item['id']
       }
     })
+  }
+
+  prepararFiltroLider(event){
+    this.liderItensFiltro = event["value"];
+    this.filtrar();
+  }
+
+  prepararFiltroProjeto(event){
+    this.projetoItensFiltro = event["value"];
+    this.filtrar();
+  }
+
+  prepararFiltroCliente(event){
+    this.clienteItensFiltro = event["value"];
+    this.filtrar();
+  }
+
+  filtrar(){
+    this.projetosFiltrados = this.projetos.filter(pf => !!(this.liderItensFiltro.length ? this.liderItensFiltro.find(lif => lif === pf.idLider) : true));
+    this.projetosFiltrados = this.projetosFiltrados.filter(pf => !!(this.projetoItensFiltro.length ? this.projetoItensFiltro.find(lif => lif === pf.id) : true));
+    this.projetosFiltrados = this.projetosFiltrados.filter(pf => !!(this.clienteItensFiltro.length ? this.clienteItensFiltro.find(lif => lif === pf.idCliente) : true));
+
   }
 
 }
