@@ -18,7 +18,7 @@
       <ng-template pTemplate="body" let-ordemservico>
         <tr>
           <td>{{ ordemservico.nome  | uppercase}}</td>
-          <td>{{ ordemservico.dataProximaEntrega | date:'dd/MM/yyyy' }}</td>
+          <td>{{ ordemservico.dataProximaEntrega | date:'dd/MM/yyyy'}}</td>
           <td>{{ ordemservico.prazo | date:'dd/MM/yyyy' }}</td>
           <td>{{ ordemservico.qtdDefeitosCliente || 0 }}</td>
           <td>{{ ordemservico.qtdDefeitosInterno || 0 }}</td>
@@ -50,7 +50,7 @@
     <div class="ui-g-12 loading ">
       <div class="ui-g-2 ui-g-offset-5 ">
         <p><i class="pi pi-spin pi-spinner " style="font-size: 3em "></i></p>
-        <p>Preparando Dashboard...</p>
+        <p>Preparando OS's...</p>
       </div>
     </div>
   </ng-template>

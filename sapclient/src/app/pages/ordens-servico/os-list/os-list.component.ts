@@ -27,11 +27,11 @@ export class OsListComponent implements OnInit {
   
   colunas: any = [
     { header: 'Nome' },
-    { header: 'Data Próxima Entrega' },
+    { header: 'Próxima Entrega' },
     { header: 'Prazo' },
-    { header: 'Qtd Defeitos Cliente' },
-    { header: 'Qtd Defeitos Interno' },
-    { header: 'Pontos Função' },
+    { header: 'Defeitos do Cliente' },
+    { header: 'Defeitos Internos' },
+    { header: 'Pontos de Função' },
     { header: 'Fábrica' },
     { header: 'Projeto' },
     { header: 'Situação' },

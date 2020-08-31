@@ -39,6 +39,20 @@ import { Projeto } from './../models/projeto.model';
         return this.http.delete(`${this.api}/${id}`);
     }
 
+    pinto(){
+        return [
+            {
+                id: 1,
+                nome: "Ana",
+                idCliente: 78,
+                idLider: 53,
+                testador: "Hogger",
+                revisor: "Rai",
+                gerente: "Chrys"
+            }
+        ]
+    }
+
     private cadastrar(recurso: Projeto): Observable<Projeto> {
         return this.http.post(`${this.api}`, recurso).pipe(
             map(recurso => Object.assign(new Projeto(), recurso))

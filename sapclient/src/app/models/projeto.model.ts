@@ -1,3 +1,4 @@
+import { OrdemServico } from "./ordem-servico.model";
 
 export class Projeto {
 
@@ -8,7 +9,10 @@ export class Projeto {
         public idLider?: number,
         public testador?: string,
         public revisor?: string,
-        public gerente?: string
-    ) { }
+        public gerente?: string,
+        public listaOs?: OrdemServico[]
+    ) {
+        this.listaOs = [];
+     }
 
 }

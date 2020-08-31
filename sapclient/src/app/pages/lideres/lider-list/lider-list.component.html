@@ -5,7 +5,17 @@
     </div>
   </p-header>
   <ng-container *ngIf="listaLideres$ | async as listaLideres; else loading">
-    <p-table [paginator]="true" [rows]="2" [rowsPerPageOptions]="[2, 4, 8, 10]" [response]="true" [columns]="colunas" [value]="listaLideres">
+    <p-table #dt [paginator]="true" [rows]="2" [rowsPerPageOptions]="[2, 4, 8, 10]" [responsive]="true"
+    [columns]="colunas" [value]="listaLideres" [filterDelay]="0">
+      <!-- <ng-template pTemplate="caption">
+        <div class="table-header">
+          Filtro
+            <span class="p-input-icon-left">
+                <i class="pi pi-search"></i>
+                <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'startsWith')" placeholder="Busca global" />
+            </span>
+        </div>
+      </ng-template> -->
       <ng-template let-columns pTemplate="header">
         <tr>
           <th [class.action]="coluna.header == 'Ações'" *ngFor="let coluna of columns">

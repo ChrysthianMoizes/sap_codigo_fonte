@@ -1,0 +1,370 @@
+Index: sapservice/src/main/java/br/gov/basis/sap/sapservice/repository/LiderRepository.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package br.gov.basis.sap.sapservice.repository;\n\nimport br.gov.basis.sap.sapservice.domain.Lider;\nimport org.springframework.data.jpa.repository.JpaRepository;\nimport org.springframework.data.jpa.repository.Query;\nimport org.springframework.data.repository.query.Param;\nimport org.springframework.stereotype.Repository;\n\n@Repository\npublic interface LiderRepository extends JpaRepository<Lider, Integer> {\n    @Query(\"SELECT l FROM Lider l WHERE l.nome = :nome\")\n    Lider buscarPorNome(@Param(\"nome\") String nome);\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- sapservice/src/main/java/br/gov/basis/sap/sapservice/repository/LiderRepository.java	(revision 75dbb74688be315fe4c9a4c886d7fdd25fbe5b81)
++++ sapservice/src/main/java/br/gov/basis/sap/sapservice/repository/LiderRepository.java	(date 1597328177583)
+@@ -2,12 +2,8 @@
+ 
+ import br.gov.basis.sap.sapservice.domain.Lider;
+ import org.springframework.data.jpa.repository.JpaRepository;
+-import org.springframework.data.jpa.repository.Query;
+-import org.springframework.data.repository.query.Param;
+ import org.springframework.stereotype.Repository;
+ 
+ @Repository
+ public interface LiderRepository extends JpaRepository<Lider, Integer> {
+-    @Query("SELECT l FROM Lider l WHERE l.nome = :nome")
+-    Lider buscarPorNome(@Param("nome") String nome);
+ }
+Index: sapservice/src/main/java/br/gov/basis/sap/sapservice/domain/Projeto.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package br.gov.basis.sap.sapservice.domain;\n\nimport lombok.Getter;\nimport lombok.Setter;\n\nimport javax.persistence.Column;\nimport javax.persistence.Entity;\nimport javax.persistence.GeneratedValue;\nimport javax.persistence.GenerationType;\nimport javax.persistence.Id;\nimport javax.persistence.JoinColumn;\nimport javax.persistence.ManyToOne;\nimport javax.persistence.OneToMany;\nimport javax.persistence.Table;\nimport java.util.List;\n\n@Getter\n@Setter\n@Entity\n@Table(name = \"projeto\")\npublic class Projeto {\n\n    @Id\n    @GeneratedValue(strategy = GenerationType.IDENTITY)\n    @Column(name = \"id\")\n    private Integer id;\n\n    @Column(name = \"nome\")\n    private String nome;\n\n    @ManyToOne()\n    @JoinColumn(name = \"id_lider\")\n    private Lider lider;\n\n    @ManyToOne()\n    @JoinColumn(name = \"id_cliente\")\n    private Cliente cliente;\n\n    @Column(name = \"testador\")\n    private String testador;\n\n    @Column(name = \"revisor\")\n    private String revisor;\n\n    @Column(name = \"gerente\")\n    private String gerente;\n\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- sapservice/src/main/java/br/gov/basis/sap/sapservice/domain/Projeto.java	(revision 75dbb74688be315fe4c9a4c886d7fdd25fbe5b81)
++++ sapservice/src/main/java/br/gov/basis/sap/sapservice/domain/Projeto.java	(date 1597668888879)
+@@ -2,7 +2,6 @@
+ 
+ import lombok.Getter;
+ import lombok.Setter;
+-
+ import javax.persistence.Column;
+ import javax.persistence.Entity;
+ import javax.persistence.GeneratedValue;
+@@ -10,9 +9,7 @@
+ import javax.persistence.Id;
+ import javax.persistence.JoinColumn;
+ import javax.persistence.ManyToOne;
+-import javax.persistence.OneToMany;
+ import javax.persistence.Table;
+-import java.util.List;
+ 
+ @Getter
+ @Setter
+Index: sapservice/src/main/java/br/gov/basis/sap/sapservice/domain/Cliente.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package br.gov.basis.sap.sapservice.domain;\n\nimport lombok.Getter;\nimport lombok.Setter;\n\nimport javax.persistence.Column;\nimport javax.persistence.Entity;\nimport javax.persistence.GeneratedValue;\nimport javax.persistence.GenerationType;\nimport javax.persistence.Id;\nimport javax.persistence.Table;\n\n@Getter\n@Setter\n@Entity\n@Table(name = \"cliente\")\npublic class Cliente {\n\n    @Id\n    @GeneratedValue(strategy = GenerationType.IDENTITY)\n    @Column(name = \"id\")\n    private Integer id;\n\n    @Column(name = \"nome\")\n    private String descricao;\n\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- sapservice/src/main/java/br/gov/basis/sap/sapservice/domain/Cliente.java	(revision 75dbb74688be315fe4c9a4c886d7fdd25fbe5b81)
++++ sapservice/src/main/java/br/gov/basis/sap/sapservice/domain/Cliente.java	(date 1597668923687)
+@@ -2,7 +2,6 @@
+ 
+ import lombok.Getter;
+ import lombok.Setter;
+-
+ import javax.persistence.Column;
+ import javax.persistence.Entity;
+ import javax.persistence.GeneratedValue;
+Index: sapservice/src/main/java/br/gov/basis/sap/sapservice/domain/Sprint.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package br.gov.basis.sap.sapservice.domain;\n\nimport lombok.Getter;\nimport lombok.Setter;\n\nimport javax.persistence.Column;\nimport javax.persistence.Entity;\nimport javax.persistence.GeneratedValue;\nimport javax.persistence.GenerationType;\nimport javax.persistence.Id;\nimport javax.persistence.JoinColumn;\nimport javax.persistence.ManyToOne;\nimport javax.persistence.Table;\nimport java.time.LocalDate;\n\n@Getter\n@Setter\n@Entity\n@Table(name = \"sprint\")\npublic class Sprint {\n\n    @Id\n    @GeneratedValue(strategy = GenerationType.IDENTITY)\n    @Column(name = \"id\")\n    private Integer id;\n\n    @Column(name = \"nome\")\n    private String nome;\n\n    @Column(name = \"data_inicio\")\n    private LocalDate dataInicio;\n\n    @Column(name = \"data_termino\")\n    private LocalDate dataTermino;\n\n    @Column(name = \"qtd_pontos_funcao\")\n    private Double pontosFuncao;\n\n    @Column(name = \"impedimento\")\n    private String impedimento;\n\n    @Column(name = \"no_prazo\")\n    private Integer prazo;\n\n    @ManyToOne()\n    @JoinColumn(name = \"id_status\")\n    private TipoStatus status;\n\n    @ManyToOne()\n    @JoinColumn(name = \"id_ordem_servico\")\n    private OrdemServico ordemServico;\n\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- sapservice/src/main/java/br/gov/basis/sap/sapservice/domain/Sprint.java	(revision 75dbb74688be315fe4c9a4c886d7fdd25fbe5b81)
++++ sapservice/src/main/java/br/gov/basis/sap/sapservice/domain/Sprint.java	(date 1597668888931)
+@@ -2,7 +2,6 @@
+ 
+ import lombok.Getter;
+ import lombok.Setter;
+-
+ import javax.persistence.Column;
+ import javax.persistence.Entity;
+ import javax.persistence.GeneratedValue;
+@@ -37,7 +36,7 @@
+     private Double pontosFuncao;
+ 
+     @Column(name = "impedimento")
+-    private String impedimento;
++    private Integer impedimento;
+ 
+     @Column(name = "no_prazo")
+     private Integer prazo;
+Index: .idea/compiler.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<project version=\"4\">\n  <component name=\"CompilerConfiguration\">\n    <annotationProcessing>\n      <profile name=\"Annotation profile for sap\" enabled=\"true\">\n        <sourceOutputDir name=\"target/generated-sources/annotations\" />\n        <sourceTestOutputDir name=\"target/generated-test-sources/test-annotations\" />\n        <outputRelativeToContentRoot value=\"true\" />\n        <processorPath useClasspath=\"false\">\n          <entry name=\"$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.10/lombok-1.18.10.jar\" />\n          <entry name=\"$MAVEN_REPOSITORY$/org/springframework/boot/spring-boot-configuration-processor/2.1.9.RELEASE/spring-boot-configuration-processor-2.1.9.RELEASE.jar\" />\n          <entry name=\"$MAVEN_REPOSITORY$/org/mapstruct/mapstruct-processor/1.3.1.Final/mapstruct-processor-1.3.1.Final.jar\" />\n          <entry name=\"$MAVEN_REPOSITORY$/com/jolira/hickory/1.0.0/hickory-1.0.0.jar\" />\n          <entry name=\"$MAVEN_REPOSITORY$/org/mapstruct/mapstruct/1.3.1.Final/mapstruct-1.3.1.Final.jar\" />\n          <entry name=\"$MAVEN_REPOSITORY$/junit/junit/4.12/junit-4.12.jar\" />\n          <entry name=\"$MAVEN_REPOSITORY$/org/assertj/assertj-core/3.11.1/assertj-core-3.11.1.jar\" />\n          <entry name=\"$MAVEN_REPOSITORY$/com/google/guava/guava/19.0/guava-19.0.jar\" />\n          <entry name=\"$MAVEN_REPOSITORY$/com/puppycrawl/tools/checkstyle/8.14/checkstyle-8.14.jar\" />\n          <entry name=\"$MAVEN_REPOSITORY$/javax/inject/javax.inject/1/javax.inject-1.jar\" />\n          <entry name=\"$MAVEN_REPOSITORY$/org/codehaus/plexus/plexus-container-default/1.6/plexus-container-default-1.6.jar\" />\n          <entry name=\"$MAVEN_REPOSITORY$/org/springframework/spring-test/4.0.3.RELEASE/spring-test-4.0.3.RELEASE.jar\" />\n          <entry name=\"$MAVEN_REPOSITORY$/org/springframework/spring-beans/4.0.3.RELEASE/spring-beans-4.0.3.RELEASE.jar\" />\n          <entry name=\"$MAVEN_REPOSITORY$/org/springframework/spring-context/4.0.3.RELEASE/spring-context-4.0.3.RELEASE.jar\" />\n          <entry name=\"$MAVEN_REPOSITORY$/joda-time/joda-time/2.9/joda-time-2.9.jar\" />\n          <entry name=\"$MAVEN_REPOSITORY$/org/hibernate/hibernate-jpamodelgen/5.3.12.Final/hibernate-jpamodelgen-5.3.12.Final.jar\" />\n          <entry name=\"$MAVEN_REPOSITORY$/org/jboss/logging/jboss-logging/3.3.2.Final/jboss-logging-3.3.2.Final.jar\" />\n          <entry name=\"$MAVEN_REPOSITORY$/javax/xml/bind/jaxb-api/2.3.1/jaxb-api-2.3.1.jar\" />\n          <entry name=\"$MAVEN_REPOSITORY$/javax/activation/javax.activation-api/1.2.0/javax.activation-api-1.2.0.jar\" />\n          <entry name=\"$MAVEN_REPOSITORY$/org/glassfish/jaxb/jaxb-runtime/2.3.2/jaxb-runtime-2.3.2.jar\" />\n          <entry name=\"$MAVEN_REPOSITORY$/org/glassfish/jaxb/txw2/2.3.2/txw2-2.3.2.jar\" />\n          <entry name=\"$MAVEN_REPOSITORY$/com/sun/istack/istack-commons-runtime/3.0.8/istack-commons-runtime-3.0.8.jar\" />\n          <entry name=\"$MAVEN_REPOSITORY$/org/jvnet/staxex/stax-ex/1.8.1/stax-ex-1.8.1.jar\" />\n          <entry name=\"$MAVEN_REPOSITORY$/com/sun/xml/fastinfoset/FastInfoset/1.2.16/FastInfoset-1.2.16.jar\" />\n          <entry name=\"$MAVEN_REPOSITORY$/jakarta/xml/bind/jakarta.xml.bind-api/2.3.2/jakarta.xml.bind-api-2.3.2.jar\" />\n          <entry name=\"$MAVEN_REPOSITORY$/jakarta/activation/jakarta.activation-api/1.2.1/jakarta.activation-api-1.2.1.jar\" />\n        </processorPath>\n        <module name=\"sapservice\" />\n      </profile>\n    </annotationProcessing>\n    <bytecodeTargetLevel>\n      <module name=\"sap-parent\" target=\"1.8\" />\n      <module name=\"sapservice\" target=\"1.8\" />\n    </bytecodeTargetLevel>\n  </component>\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/compiler.xml	(revision 75dbb74688be315fe4c9a4c886d7fdd25fbe5b81)
++++ .idea/compiler.xml	(date 1597328045796)
+@@ -2,6 +2,7 @@
+ <project version="4">
+   <component name="CompilerConfiguration">
+     <annotationProcessing>
++      <profile default="true" name="Default" enabled="true" />
+       <profile name="Annotation profile for sap" enabled="true">
+         <sourceOutputDir name="target/generated-sources/annotations" />
+         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+Index: sapservice/src/main/java/br/gov/basis/sap/sapservice/web/rest/ProjetoRecurso.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package br.gov.basis.sap.sapservice.web.rest;\n\nimport br.gov.basis.sap.sapservice.service.ProjetoServico;\nimport br.gov.basis.sap.sapservice.service.dto.ProjetoDTO;\nimport lombok.RequiredArgsConstructor;\nimport org.springframework.http.ResponseEntity;\nimport org.springframework.web.bind.annotation.DeleteMapping;\nimport org.springframework.web.bind.annotation.GetMapping;\nimport org.springframework.web.bind.annotation.PathVariable;\nimport org.springframework.web.bind.annotation.PostMapping;\nimport org.springframework.web.bind.annotation.PutMapping;\nimport org.springframework.web.bind.annotation.RequestBody;\nimport org.springframework.web.bind.annotation.RequestMapping;\nimport org.springframework.web.bind.annotation.RestController;\n\nimport java.net.URI;\nimport java.net.URISyntaxException;\nimport java.util.List;\n\n@RestController\n@RequestMapping(\"/projetos\")\n@RequiredArgsConstructor\npublic class ProjetoRecurso {\n\n    private final ProjetoServico projetoServico;\n\n    @GetMapping\n    public ResponseEntity<List<ProjetoDTO>> obterTodos() {\n        List<ProjetoDTO> dto = projetoServico.obterTodos();\n        return ResponseEntity.ok().body(dto);\n    }\n\n    @GetMapping(\"/{id}\")\n    public ResponseEntity<ProjetoDTO> obterPorId(@PathVariable Integer id) {\n        ProjetoDTO dto = projetoServico.obterPorId(id);\n        return ResponseEntity.ok().body(dto);\n    }\n\n    @PostMapping\n    public ResponseEntity<ProjetoDTO> salvar(@RequestBody ProjetoDTO projetoDTO) throws URISyntaxException {\n        ProjetoDTO dto = projetoServico.salvar(projetoDTO);\n        return ResponseEntity.created(new URI(\"/projetos/\")).body(dto);\n    }\n\n    @PutMapping\n    public ResponseEntity<Void> atualizar(@RequestBody ProjetoDTO projetoDTO) {\n        projetoServico.salvar(projetoDTO);\n        return ResponseEntity.ok().build();\n    }\n\n    @DeleteMapping(\"/{id}\")\n    public ResponseEntity<Void> deletarPorId(@PathVariable Integer id) {\n        projetoServico.removerPorId(id);\n        return ResponseEntity.ok().build();\n    }\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- sapservice/src/main/java/br/gov/basis/sap/sapservice/web/rest/ProjetoRecurso.java	(revision 75dbb74688be315fe4c9a4c886d7fdd25fbe5b81)
++++ sapservice/src/main/java/br/gov/basis/sap/sapservice/web/rest/ProjetoRecurso.java	(date 1597669205673)
+@@ -12,7 +12,6 @@
+ import org.springframework.web.bind.annotation.RequestBody;
+ import org.springframework.web.bind.annotation.RequestMapping;
+ import org.springframework.web.bind.annotation.RestController;
+-
+ import java.net.URI;
+ import java.net.URISyntaxException;
+ import java.util.List;
+@@ -53,4 +52,5 @@
+         projetoServico.removerPorId(id);
+         return ResponseEntity.ok().build();
+     }
++
+ }
+Index: sapservice/src/main/java/br/gov/basis/sap/sapservice/web/rest/OrdemServicoRecurso.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package br.gov.basis.sap.sapservice.web.rest;\n\nimport br.gov.basis.sap.sapservice.service.OrdemServicoServico;\nimport br.gov.basis.sap.sapservice.service.dto.OrdemServicoDTO;\nimport lombok.RequiredArgsConstructor;\nimport org.springframework.http.ResponseEntity;\nimport org.springframework.web.bind.annotation.DeleteMapping;\nimport org.springframework.web.bind.annotation.GetMapping;\nimport org.springframework.web.bind.annotation.PathVariable;\nimport org.springframework.web.bind.annotation.PostMapping;\nimport org.springframework.web.bind.annotation.PutMapping;\nimport org.springframework.web.bind.annotation.RequestBody;\nimport org.springframework.web.bind.annotation.RequestMapping;\nimport org.springframework.web.bind.annotation.RestController;\n\nimport java.net.URI;\nimport java.net.URISyntaxException;\nimport java.util.List;\n\n@RestController\n@RequestMapping(\"/ordens-servico\")\n@RequiredArgsConstructor\npublic class OrdemServicoRecurso {\n\n    private final OrdemServicoServico ordemServicoServico;\n\n    @GetMapping\n    public ResponseEntity<List<OrdemServicoDTO>> obterTodos() {\n        List<OrdemServicoDTO> ordemServicoDTOS = ordemServicoServico.obterTodos();\n        return ResponseEntity.ok().body(ordemServicoDTOS);\n    }\n\n    @GetMapping(\"/{id}\")\n    public ResponseEntity<OrdemServicoDTO> obterPorId(@PathVariable Integer id) {\n        OrdemServicoDTO ordemServicoDTO = ordemServicoServico.obterPorId(id);\n        return ResponseEntity.ok().body(ordemServicoDTO);\n    }\n\n    @PostMapping\n    public ResponseEntity<OrdemServicoDTO> salvar(@RequestBody OrdemServicoDTO ordemServicoDTO) throws URISyntaxException {\n        OrdemServicoDTO dto = ordemServicoServico.salvar(ordemServicoDTO);\n        return ResponseEntity.created(new URI(\"/ordens-servico/\")).body(dto);\n    }\n\n    @PutMapping\n    public ResponseEntity<Void> atualizar(@RequestBody OrdemServicoDTO dto) {\n        ordemServicoServico.salvar(dto);\n        return ResponseEntity.ok().build();\n    }\n\n    @DeleteMapping(\"/{id}\")\n    public ResponseEntity<Void> deletarPorId(@PathVariable Integer id) {\n        ordemServicoServico.removerPorId(id);\n        return ResponseEntity.ok().build();\n    }\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- sapservice/src/main/java/br/gov/basis/sap/sapservice/web/rest/OrdemServicoRecurso.java	(revision 75dbb74688be315fe4c9a4c886d7fdd25fbe5b81)
++++ sapservice/src/main/java/br/gov/basis/sap/sapservice/web/rest/OrdemServicoRecurso.java	(date 1597669216833)
+@@ -12,7 +12,6 @@
+ import org.springframework.web.bind.annotation.RequestBody;
+ import org.springframework.web.bind.annotation.RequestMapping;
+ import org.springframework.web.bind.annotation.RestController;
+-
+ import java.net.URI;
+ import java.net.URISyntaxException;
+ import java.util.List;
+@@ -30,6 +29,12 @@
+         return ResponseEntity.ok().body(ordemServicoDTOS);
+     }
+ 
++    @GetMapping("/projeto/{id}")
++    public ResponseEntity<List<OrdemServicoDTO>> obterTodasOrdensServicoPorProjeto(@PathVariable Integer id) {
++        List<OrdemServicoDTO> ordemServicoDTOS = ordemServicoServico.obterTodasOrdensServicoPorProjeto(id);
++        return ResponseEntity.ok().body(ordemServicoDTOS);
++    }
++
+     @GetMapping("/{id}")
+     public ResponseEntity<OrdemServicoDTO> obterPorId(@PathVariable Integer id) {
+         OrdemServicoDTO ordemServicoDTO = ordemServicoServico.obterPorId(id);
+@@ -53,4 +58,5 @@
+         ordemServicoServico.removerPorId(id);
+         return ResponseEntity.ok().build();
+     }
++
+ }
+Index: sapservice/src/main/java/br/gov/basis/sap/sapservice/repository/OrdemServicoRepository.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- sapservice/src/main/java/br/gov/basis/sap/sapservice/repository/OrdemServicoRepository.java	(date 1597345237509)
++++ sapservice/src/main/java/br/gov/basis/sap/sapservice/repository/OrdemServicoRepository.java	(date 1597345237509)
+@@ -0,0 +1,12 @@
++package br.gov.basis.sap.sapservice.repository;
++
++import br.gov.basis.sap.sapservice.domain.OrdemServico;
++import org.springframework.data.jpa.repository.JpaRepository;
++import org.springframework.stereotype.Repository;
++import java.util.List;
++
++@Repository
++public interface OrdemServicoRepository extends JpaRepository<OrdemServico, Integer> {
++    List<OrdemServico> findByProjetoId(Integer id);
++
++}
+Index: sapservice/src/main/java/br/gov/basis/sap/sapservice/repository/SprintRepository.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- sapservice/src/main/java/br/gov/basis/sap/sapservice/repository/SprintRepository.java	(date 1597328737286)
++++ sapservice/src/main/java/br/gov/basis/sap/sapservice/repository/SprintRepository.java	(date 1597328737286)
+@@ -0,0 +1,9 @@
++package br.gov.basis.sap.sapservice.repository;
++
++import br.gov.basis.sap.sapservice.domain.Sprint;
++import org.springframework.data.jpa.repository.JpaRepository;
++import org.springframework.stereotype.Repository;
++
++@Repository
++public interface SprintRepository extends JpaRepository<Sprint, Integer> {
++}
+Index: sapservice/src/main/java/br/gov/basis/sap/sapservice/repository/TipoStatusRepository.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- sapservice/src/main/java/br/gov/basis/sap/sapservice/repository/TipoStatusRepository.java	(date 1597326681440)
++++ sapservice/src/main/java/br/gov/basis/sap/sapservice/repository/TipoStatusRepository.java	(date 1597326681440)
+@@ -0,0 +1,9 @@
++package br.gov.basis.sap.sapservice.repository;
++
++import br.gov.basis.sap.sapservice.domain.TipoStatus;
++import org.springframework.data.jpa.repository.JpaRepository;
++import org.springframework.stereotype.Repository;
++
++@Repository
++public interface TipoStatusRepository extends JpaRepository<TipoStatus,Integer> {
++}
+Index: sapservice/src/main/java/br/gov/basis/sap/sapservice/repository/ProjetoRepository.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- sapservice/src/main/java/br/gov/basis/sap/sapservice/repository/ProjetoRepository.java	(date 1597328045472)
++++ sapservice/src/main/java/br/gov/basis/sap/sapservice/repository/ProjetoRepository.java	(date 1597328045472)
+@@ -0,0 +1,9 @@
++package br.gov.basis.sap.sapservice.repository;
++
++import br.gov.basis.sap.sapservice.domain.Projeto;
++import org.springframework.data.jpa.repository.JpaRepository;
++import org.springframework.stereotype.Repository;
++
++@Repository
++public interface ProjetoRepository extends JpaRepository<Projeto, Integer> {
++}
+Index: sapservice/src/main/java/br/gov/basis/sap/sapservice/repository/TipoSituacaoRepository.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- sapservice/src/main/java/br/gov/basis/sap/sapservice/repository/TipoSituacaoRepository.java	(date 1597326634565)
++++ sapservice/src/main/java/br/gov/basis/sap/sapservice/repository/TipoSituacaoRepository.java	(date 1597326634565)
+@@ -0,0 +1,9 @@
++package br.gov.basis.sap.sapservice.repository;
++
++import br.gov.basis.sap.sapservice.domain.TipoSituacao;
++import org.springframework.data.jpa.repository.JpaRepository;
++import org.springframework.stereotype.Repository;
++
++@Repository
++public interface TipoSituacaoRepository extends JpaRepository<TipoSituacao,Integer> {
++}
+Index: sapservice/src/main/resources/config/liquibase/changelog/202008121120_criacao_projeto.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\n<databaseChangeLog\n    xmlns=\"http://www.liquibase.org/xml/ns/dbchangelog\"\n    xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\n    xsi:schemaLocation=\"http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd\">\n\n    <changeSet  author=\"maxson.zucolotto\"  id=\"5\">\n        <createTable  remarks=\"Tabela de Projetos\"\n                      schemaName=\"public\"\n                      tableName=\"projeto\">\n            <column  name=\"id\"  type=\"number\" remarks=\"Chave primaria tabela projeto\">\n                <constraints primaryKey=\"true\" primaryKeyName=\"pk_projeto\" nullable=\"false\" />\n            </column>\n            <column  name=\"nome\"  type=\"varchar(80)\">\n                <constraints nullable=\"false\" />\n            </column>\n            <column  name=\"testador\"  type=\"varchar(80)\">\n                <constraints nullable=\"true\" />\n            </column>\n            <column  name=\"revisor\"  type=\"varchar(80)\">\n                <constraints nullable=\"true\" />\n            </column>\n            <column  name=\"gerente\"  type=\"varchar(80)\">\n                <constraints nullable=\"true\" />\n            </column>\n            <column  name=\"id_lider\"  type=\"number\" remarks=\"Chave de refência tabela lider\">\n                <constraints nullable=\"false\" />\n            </column>\n            <column  name=\"id_cliente\"  type=\"number\" remarks=\"Chave de refência tabela cliente\">\n                <constraints nullable=\"false\" />\n            </column>\n        </createTable>\n    </changeSet>\n\n\n    <changeSet  author=\"maxson.zucolotto\"  id=\"6\">\n        <addForeignKeyConstraint   baseTableName=\"projeto\"\n                                   baseColumnNames=\"id_lider\"\n                                   constraintName=\"fk_projeto_lider\"\n                                   referencedTableName=\"lider\"\n                                   referencedColumnNames=\"id\"/>\n    </changeSet>\n\n    <changeSet  author=\"maxson.zucolotto\"  id=\"7\">\n        <addForeignKeyConstraint   baseTableName=\"projeto\"\n                                   baseColumnNames=\"id_cliente \"\n                                   constraintName=\"fk_projeto_cliente\"\n                                   referencedTableName=\"cliente\"\n                                   referencedColumnNames=\"id\"/>\n    </changeSet>\n\n    <changeSet author=\"maxson.zucolotto\" id=\"8\">\n        <addAutoIncrement columnDataType=\"number\"\n                          columnName=\"id\"\n                          incrementBy=\"1\"\n                          schemaName=\"public\"\n                          startWith=\"1\"\n                          tableName=\"projeto\"/>\n    </changeSet>\n    <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->\n    <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->\n</databaseChangeLog>\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- sapservice/src/main/resources/config/liquibase/changelog/202008121120_criacao_projeto.xml	(revision 75dbb74688be315fe4c9a4c886d7fdd25fbe5b81)
++++ sapservice/src/main/resources/config/liquibase/changelog/202008121120_criacao_projeto.xml	(date 1597335702033)
+@@ -3,12 +3,11 @@
+     xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+-
+-    <changeSet  author="maxson.zucolotto"  id="5">
++    <changeSet  author="carlo.padua"  id="5">
+         <createTable  remarks="Tabela de Projetos"
+                       schemaName="public"
+                       tableName="projeto">
+-            <column  name="id"  type="number" remarks="Chave primaria tabela projeto">
++            <column  name="id"  type="number" remarks="Chave primária tabela projeto">
+                 <constraints primaryKey="true" primaryKeyName="pk_projeto" nullable="false" />
+             </column>
+             <column  name="nome"  type="varchar(80)">
+@@ -31,32 +30,28 @@
+             </column>
+         </createTable>
+     </changeSet>
+-
+-
+-    <changeSet  author="maxson.zucolotto"  id="6">
++    <changeSet author="carlos.padua" id="6">
++        <addAutoIncrement columnDataType="number"
++                          columnName="id"
++                          incrementBy="1"
++                          schemaName="public"
++                          startWith="1"
++                          tableName="projeto"/>
++    </changeSet>
++    <changeSet  author="carlos.padua"  id="7">
+         <addForeignKeyConstraint   baseTableName="projeto"
+                                    baseColumnNames="id_lider"
+                                    constraintName="fk_projeto_lider"
+                                    referencedTableName="lider"
+                                    referencedColumnNames="id"/>
+     </changeSet>
+-
+-    <changeSet  author="maxson.zucolotto"  id="7">
++    <changeSet  author="carlos.padua"  id="8">
+         <addForeignKeyConstraint   baseTableName="projeto"
+                                    baseColumnNames="id_cliente "
+                                    constraintName="fk_projeto_cliente"
+                                    referencedTableName="cliente"
+                                    referencedColumnNames="id"/>
+     </changeSet>
+-
+-    <changeSet author="maxson.zucolotto" id="8">
+-        <addAutoIncrement columnDataType="number"
+-                          columnName="id"
+-                          incrementBy="1"
+-                          schemaName="public"
+-                          startWith="1"
+-                          tableName="projeto"/>
+-    </changeSet>
+     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
+     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
+ </databaseChangeLog>
+Index: sapservice/src/main/resources/config/liquibase/changelog/202008121530_criacao_tipo_situacao.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\n<databaseChangeLog\n    xmlns=\"http://www.liquibase.org/xml/ns/dbchangelog\"\n    xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\n    xsi:schemaLocation=\"http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd\">\n\n    <changeSet  author=\"maxson.zucolotto\"  id=\"15\">\n        <createTable  remarks=\"Tabela de tipo_situacao\"\n                      schemaName=\"public\"\n                      tableName=\"tipo_situacao\">\n            <column  name=\"id\"  type=\"number\">\n                <constraints primaryKey=\"true\" primaryKeyName=\"pk_tipo_situacao\" nullable=\"false\" />\n            </column>\n            <column  name=\"descricao\"  type=\"varchar(80)\">\n                <constraints nullable=\"false\" />\n            </column>\n        </createTable>\n    </changeSet>\n\n    <changeSet author=\"maxson.zucolotto\" id=\"16\">\n        <addAutoIncrement columnDataType=\"number\"\n                          columnName=\"id\"\n                          incrementBy=\"1\"\n                          schemaName=\"public\"\n                          startWith=\"1\"\n                          tableName=\"tipo_situacao\"/>\n    </changeSet>\n    <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->\n    <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->\n</databaseChangeLog>\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- sapservice/src/main/resources/config/liquibase/changelog/202008121530_criacao_tipo_situacao.xml	(revision 75dbb74688be315fe4c9a4c886d7fdd25fbe5b81)
++++ sapservice/src/main/resources/config/liquibase/changelog/202008121530_criacao_tipo_situacao.xml	(date 1597336700009)
+@@ -3,9 +3,8 @@
+     xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+-
+-    <changeSet  author="maxson.zucolotto"  id="15">
+-        <createTable  remarks="Tabela de tipo_situacao"
++    <changeSet  author="carlos.padua"  id="17">
++        <createTable  remarks="Tabela de situações"
+                       schemaName="public"
+                       tableName="tipo_situacao">
+             <column  name="id"  type="number">
+@@ -16,8 +15,7 @@
+             </column>
+         </createTable>
+     </changeSet>
+-
+-    <changeSet author="maxson.zucolotto" id="16">
++    <changeSet author="carlos.padua" id="18">
+         <addAutoIncrement columnDataType="number"
+                           columnName="id"
+                           incrementBy="1"
+Index: sapservice/src/main/java/br/gov/basis/sap/sapservice/service/mapper/LiderMapper.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package br.gov.basis.sap.sapservice.service.mapper;\n\n\nimport br.gov.basis.sap.sapservice.domain.Lider;\nimport br.gov.basis.sap.sapservice.service.dto.LiderDTO;\nimport org.mapstruct.Mapper;\n\n@Mapper(componentModel = \"spring\",uses = {})\npublic interface LiderMapper extends EntityMapper<LiderDTO, Lider> {\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- sapservice/src/main/java/br/gov/basis/sap/sapservice/service/mapper/LiderMapper.java	(revision 75dbb74688be315fe4c9a4c886d7fdd25fbe5b81)
++++ sapservice/src/main/java/br/gov/basis/sap/sapservice/service/mapper/LiderMapper.java	(date 1597328177687)
+@@ -1,6 +1,5 @@
+ package br.gov.basis.sap.sapservice.service.mapper;
+ 
+-
+ import br.gov.basis.sap.sapservice.domain.Lider;
+ import br.gov.basis.sap.sapservice.service.dto.LiderDTO;
+ import org.mapstruct.Mapper;

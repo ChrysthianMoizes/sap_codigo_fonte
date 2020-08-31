@@ -10,9 +10,9 @@
     <include file="config/liquibase/changelog/202008121210_criacao_sprint.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/202008121530_criacao_tipo_situacao.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/202008121535_criacao_tipo_status.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/202008121938_add_column_nome_to_sprint.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/202008260910_insert_cliente.xml" relativeToChangelogFile="false"/>
-
+    <include file="config/liquibase/changelog/202008270003_insert_tipo_situacao.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/202008270005_insert_tipo_status.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/202008292151_insert_cliente.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
 </databaseChangeLog>
