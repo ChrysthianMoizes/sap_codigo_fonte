@@ -58,6 +58,7 @@ export class DashboardComponent implements OnInit {
   listaFiltrada:SelectItem[]=[];
   filtroProjeto:SelectItem[]=[];
   filtroLider:SelectItem[]=[];
+  filtroCliente:SelectItem[]=[];
   lista:any[];
 
 
