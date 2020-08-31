@@ -169,13 +169,14 @@ export class OsFormComponent implements OnInit {
     )
   }
 
+  // Colocar um blockUI aqui
   deletar(id: number) {
-    this.blockUI.start();
     this.sprintService.deletar(id).subscribe(
           () => this.sprints = this.sprints.filter(res => res.id !== id)
       ),
       finalize(() => this.blockUI.stop());
   }
+
 
   carregarOrdemServico() {
     if (this.route.snapshot.url[0].path != "novo") {

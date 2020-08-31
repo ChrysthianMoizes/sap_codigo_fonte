@@ -1204,10 +1204,11 @@ body a {
   display: inline-block;
   vertical-align: middle;
   width: 200px;
-  height: 30px;
-  background: url("../images/logo2x.png") top left no-repeat;
-  background-size: 200px 30px;
+  height: 50px;
+  background: url("../images/basis.jpg") top left no-repeat;
+  background-size: 200px 50px;
 }
+
 .layout-container .topbar .topbar-left {
   box-sizing: border-box;
   padding: 20px;

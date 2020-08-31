@@ -1,6 +1,5 @@
+import { ClienteService } from 'src/app/services/cliente.service';
 import { StatusService } from './../../services/status.service';
-import { Sprint } from './../../models/sprint.model';
-import { ClienteService } from './../../services/cliente.service';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 
 import { LiderService } from './../../services/lider.service';
@@ -12,10 +11,11 @@ import { SituacaoService } from './../../services/situacao.service';
 import { Observable, forkJoin } from 'rxjs';
 
 import { finalize, map, tap } from 'rxjs/operators';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 
 import { BlockUI, NgBlockUI } from 'ng-block-ui';
-import { SelectItem } from 'primeng';
+import { SelectItem, Table } from 'primeng';
+import { Projeto } from 'src/app/models/projeto.model';
 
 @Component({
   selector: 'app-dashboard',
@@ -49,12 +49,27 @@ export class DashboardComponent implements OnInit {
   listaProjeto: any = [];
   listaOsProjeto: SelectItem[] = [];
   situacoes: any = [];
-  projetos: any = [];
+
+  projetos: Projeto [] = [];
+  projetosFiltrados: Projeto [] = [];
+  clienteItensFiltro: any [] = [];
+  projetoItensFiltro: any [] = [];
+  liderItensFiltro: any [] = [];
+  
   sprints: any = [];
   sprintsFiltradas: any = [];
   lideres: any = [];
   status: any = [];
   testeExibe: boolean;
+
+  lista: any = [];
+  // listaFiltrada: any = [];
+  listaLideres: SelectItem[] = [];
+  listaClientes: SelectItem[] = [];
+  filtroLider: any = [];
+  filtroCliente: any = [];
+  filtroProjeto: any = [];
+  filtroOs: any = [];
 
 
   colunas: any[] = [
@@ -76,14 +91,14 @@ export class DashboardComponent implements OnInit {
     { header: 'Status' },
   ];
 
-  teste = [
-    { nome: 'site', status: 'Em andamento', proxEntrega: '10-10-20', prazo: 'não', pf: '50', fabrica: 'SRC' },
-    { nome: 'site', status: 'Em andamento', proxEntrega: '10-10-20', prazo: 'não', pf: '50', fabrica: 'SRC' }
+
+  listaFiltrada = [
+    this.listaLideres,
+    this.listaOrdemServico,
+    this.listaProjeto
   ];
 
-  testeSprint = [
-    { nome: 'dados', inicio: '10-10-20', termino: '15-10-20', pf: '20', impedimento: 'não', prazo: 'Sim', status: 'em andamento' }
-  ]
+  @ViewChild('dt') table: Table;
 
   constructor(
     private ordemServicoService: OrdemServicoService,
@@ -91,8 +106,8 @@ export class DashboardComponent implements OnInit {
     private situacaoService: SituacaoService,
     private liderService: LiderService,
     private sprintService: SprintService,
-    private clienteService: ClienteService,
-    private statusService: StatusService
+    private statusService: StatusService,
+    private clienteService: ClienteService
   ) { }
 
   ngOnInit(): void {
@@ -103,6 +118,9 @@ export class DashboardComponent implements OnInit {
     this.obterSprint();
     this.obterLideres();
     this.obterStatus();
+    this.carregarLideres();
+    this.carregarProjetos();
+    this.carregarCliente();
   }
 
   obterTodos() {
@@ -124,10 +142,14 @@ export class DashboardComponent implements OnInit {
     this.projetoService.obterTodos().pipe(
       finalize(() => this.blockUI.stop())
     ).subscribe(
-      projetos => this.projetos = projetos
+      projetos => {
+        this.projetos = projetos;
+        this.projetosFiltrados = projetos;
+      }
     );
   }
 
+  
   obterOrdemServico() {
     this.blockUI.start();
     this.ordemServicoService.obterTodos().pipe(
@@ -137,7 +159,6 @@ export class DashboardComponent implements OnInit {
     );
   }
 
-
   obterSprint() {
     this.blockUI.start();
     this.sprintService.obterTodos().pipe(
@@ -146,16 +167,6 @@ export class DashboardComponent implements OnInit {
       sprints => this.sprints = sprints
     );
   }
-
-  obterOsPorProjeto(id) {
-    this.blockUI.start();
-    this.ordemServicoService.obterPorIdProjeto(id)
-      .pipe(
-        finalize(() => this.blockUI.stop()),
-        tap(console.log)
-      ).subscribe(osProjeto => this.listaOsProjeto = osProjeto)
-  }
-
 
   obterLideres() {
     this.blockUI.start();
@@ -175,6 +186,7 @@ export class DashboardComponent implements OnInit {
     );
 
   }
+
   obterStatus() {
     this.blockUI.start();
     this.statusService.obterTodos().pipe(
@@ -183,8 +195,60 @@ export class DashboardComponent implements OnInit {
       status => this.status = status
     );
 
-
   }
+
+  obterOsPorProjeto(projeto: Projeto) {
+    this.blockUI.start();
+    this.ordemServicoService.obterPorIdProjeto(projeto.id)
+      .pipe(
+        finalize(() => this.blockUI.stop()),
+      ).subscribe(osProjeto => projeto.listaOs = osProjeto)
+  }
+
+  carregarProjetos(){
+    this.blockUI.start();
+    this.projetoService.obterTodos().pipe(
+        finalize(() => this.blockUI.stop()),
+        map(this.converterDropDownProjeto)
+    ).subscribe(projeto => this.listaProjeto = projeto);
+  }
+
+  carregarCliente() {
+    this.blockUI.start();
+    this.clienteService.obterTodos().pipe(
+        finalize(() => this.blockUI.stop()),
+        map(this.converterDropDownCliente)
+    ).subscribe(cliente => this.listaClientes = cliente);
+  }
+
+  carregarLideres() {
+    this.blockUI.start();
+    this.liderService.obterTodos().pipe(
+      finalize(() => this.blockUI.stop()),
+      map(this.converterDropDownLider)
+    ).subscribe(lider => this.listaLideres = lider);
+  }
+
+  // carregarClientes() {
+  //   this.blockUI.start();
+  //   this.clienteService.obterTodos().pipe(
+  //     finalize(() => this.blockUI.stop()),
+  //     map(this.converterDropDownCliente)
+  //   ).subscribe(cliente => this.listaClientes = cliente);
+  // }
+
+  preencherFiltros() {
+    this.listaFiltrada = this.lista.filter(item => {
+        if (!this.filtroCliente.length && !this.filtroLider.length && !this.filtroProjeto.length) {
+            return true;
+        }
+        return (this.filtroLider && this.filtroLider.some(sel => sel == item.idLider)) ||
+            (this.filtroCliente && this.filtroCliente.some(sel => sel == item.idCliente)) ||
+            (this.filtroProjeto && this.filtroProjeto.some(sel => sel == item.idProjeto));
+    });
+    console.log(this.listaFiltrada)
+  }
+
 
   obterNomeStatus(id: number) {
     return this.status.find(status => status.id == id).descricao
@@ -222,17 +286,6 @@ export class DashboardComponent implements OnInit {
     return this.projetos.find(projeto => projeto.id == id).revisor
   }
 
-  private mapearOsProjeto(array) {
-    return array[0].map(os => {
-      os.nome = array[1].find(projeto => projeto.id === os.idOrdemServico).nome + ' - ' + os.nome;
-    })
-  }
-
-  private mapearLiderProjeto(array) {
-    return array[0].map(lider => {
-      lider.nome = array[1].find(projeto => projeto.id === lider.idLider).nome;
-    })
-  }
   obterCliente(id: number) {
     return this.projetos.find(projeto => projeto.id == id).idCliente
   }
@@ -240,12 +293,62 @@ export class DashboardComponent implements OnInit {
   obterSprints(id: number) {
     this.sprintsFiltradas = this.sprints.find(sprints => sprints.idOrdemServico == id);
   }
+
   obterBoolean(ar: boolean) {
     if (ar == true) {
       return "Sim"
     } else {
       return "Não"
     }
+  }
+
+  private converterDropDownCliente(lista) {
+    return lista.map(item => {
+        return {
+            label: item['descricao'].toUpperCase(),
+            value: item['id']
+        }
+    })
+  }
+
+  private converterDropDownLider(lista) {
+    return lista.map(item => {
+        return {
+            label: item['nome'].toUpperCase(),
+            value: item['id']
+        }
+    })
+  }
+
+  private converterDropDownProjeto (lista){
+    return lista.map(item => {
+      return {
+        label: item['nome'].toUpperCase(),
+        value: item['id']
+      }
+    })
+  }
+
+  prepararFiltroLider(event){
+    this.liderItensFiltro = event["value"];
+    this.filtrar();
+  }
+
+  prepararFiltroProjeto(event){
+    this.projetoItensFiltro = event["value"];
+    this.filtrar();
+  }
+
+  prepararFiltroCliente(event){
+    this.clienteItensFiltro = event["value"];
+    this.filtrar();
+  }
+
+  filtrar(){
+    this.projetosFiltrados = this.projetos.filter(pf => !!(this.liderItensFiltro.length ? this.liderItensFiltro.find(lif => lif === pf.idLider) : true));
+    this.projetosFiltrados = this.projetosFiltrados.filter(pf => !!(this.projetoItensFiltro.length ? this.projetoItensFiltro.find(lif => lif === pf.id) : true));
+    this.projetosFiltrados = this.projetosFiltrados.filter(pf => !!(this.clienteItensFiltro.length ? this.clienteItensFiltro.find(lif => lif === pf.idCliente) : true));
+
   }
 
 }

@@ -7,8 +7,11 @@
         <createTable  remarks="Tabela de sprint"
                       schemaName="public"
                       tableName="sprint">
-            <column  name="id"  type="number" remarks="Chave primaria tabela sprint">
+            <column  name="id"  type="number" remarks="Chave primária da tabela sprint">
                 <constraints primaryKey="true" primaryKeyName="pk_sprint" nullable="false" />
+            </column>
+            <column  name="nome"  type="varchar(80)" remarks="Nome da sprint">
+                <constraints nullable="false" />
             </column>
             <column  name="impedimento" defaultValueBoolean="false" type="boolean" remarks="Indica se ha impedimento na sprint">
                 <constraints nullable="false" />

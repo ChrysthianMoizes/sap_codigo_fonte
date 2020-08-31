@@ -60,7 +60,6 @@ export class SprintFormComponent implements OnInit {
   }
 
   mostrarDialog(sprint = null) {
-    console.log(sprint);
     this.iniciarForm();
     if (sprint) {
       sprint.dataInicio = new Date(sprint.dataInicio);
