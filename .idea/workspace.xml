@@ -33,6 +33,7 @@
       <change beforePath="$PROJECT_DIR$/sapservice/src/main/resources/config/liquibase/changelog/202008270000_insert_cliente.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/sapservice/src/main/resources/config/liquibase/changelog/202008270003_insert_tipo_situacao.xml" beforeDir="false" afterPath="$PROJECT_DIR$/sapservice/src/main/resources/config/liquibase/changelog/202008270003_insert_tipo_situacao.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sapservice/src/main/resources/config/liquibase/changelog/202008270005_insert_tipo_status.xml" beforeDir="false" afterPath="$PROJECT_DIR$/sapservice/src/main/resources/config/liquibase/changelog/202008270005_insert_tipo_status.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sapservice/src/main/resources/config/liquibase/master.xml" beforeDir="false" afterPath="$PROJECT_DIR$/sapservice/src/main/resources/config/liquibase/master.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -280,22 +281,22 @@
       <screen x="67" y="27" width="1299" height="741" />
     </state>
     <state x="461" y="140" width="501" height="513" key="FileChooserDialogImpl/67.27.1299.741@67.27.1299.741" timestamp="1597668923547" />
-    <state width="1253" height="196" key="GridCell.Tab.0.bottom" timestamp="1598838234701">
+    <state width="1253" height="196" key="GridCell.Tab.0.bottom" timestamp="1598839129760">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
-    <state width="1253" height="196" key="GridCell.Tab.0.bottom/67.27.1299.741@67.27.1299.741" timestamp="1598838234701" />
-    <state width="1253" height="196" key="GridCell.Tab.0.center" timestamp="1598838234701">
+    <state width="1253" height="196" key="GridCell.Tab.0.bottom/67.27.1299.741@67.27.1299.741" timestamp="1598839129760" />
+    <state width="1253" height="196" key="GridCell.Tab.0.center" timestamp="1598839129759">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
-    <state width="1253" height="196" key="GridCell.Tab.0.center/67.27.1299.741@67.27.1299.741" timestamp="1598838234701" />
-    <state width="1253" height="196" key="GridCell.Tab.0.left" timestamp="1598838234700">
+    <state width="1253" height="196" key="GridCell.Tab.0.center/67.27.1299.741@67.27.1299.741" timestamp="1598839129759" />
+    <state width="1253" height="196" key="GridCell.Tab.0.left" timestamp="1598839129758">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
-    <state width="1253" height="196" key="GridCell.Tab.0.left/67.27.1299.741@67.27.1299.741" timestamp="1598838234700" />
-    <state width="1253" height="196" key="GridCell.Tab.0.right" timestamp="1598838234701">
+    <state width="1253" height="196" key="GridCell.Tab.0.left/67.27.1299.741@67.27.1299.741" timestamp="1598839129758" />
+    <state width="1253" height="196" key="GridCell.Tab.0.right" timestamp="1598839129759">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
-    <state width="1253" height="196" key="GridCell.Tab.0.right/67.27.1299.741@67.27.1299.741" timestamp="1598838234701" />
+    <state width="1253" height="196" key="GridCell.Tab.0.right/67.27.1299.741@67.27.1299.741" timestamp="1598839129759" />
     <state width="1253" height="346" key="GridCell.Tab.1.bottom" timestamp="1597838198411">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
