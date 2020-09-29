@@ -3,7 +3,8 @@ import { BlockUI, NgBlockUI } from 'ng-block-ui';
 
 import { Observable } from 'rxjs';
 import { finalize } from 'rxjs/operators';
-
+import {ConfirmationService} from 'primeng/api';
+import {Message} from 'primeng/api';
 import { LiderService } from './../../../services/lider.service';
 
 @Component({
@@ -17,6 +18,7 @@ export class LiderListComponent implements OnInit {
     @BlockUI() blockUI: NgBlockUI;
     listaLideres$: Observable<any>;
     listaLideres: any = [];
+    msgs: Message[] = [];
     colunas: any = [
         { header: 'Nome' },
         { header: 'Contato(s)' },
@@ -24,7 +26,8 @@ export class LiderListComponent implements OnInit {
     ];
 
   constructor(
-      private liderService: LiderService
+      private liderService: LiderService,
+      private confirmationService: ConfirmationService
   ) { }
   ngOnInit(): void {
       this.obterTodos();
@@ -45,5 +48,19 @@ export class LiderListComponent implements OnInit {
         () => this.obterTodos()
     );
   }
+  confirm2(id) {
+    this.confirmationService.confirm({
+        message: 'Você deseja excluir o Lider?',
+        header: 'Confirmação de exclusão',
+        icon: 'pi pi-info-circle',
+        accept: () => {
+            this.msgs = [{severity:'info', summary:'Confirmed', detail:'Lider excluído'}];
+            this.deletar(id);
+        },
+        reject: () => {
 
+        },
+        key:"confirm"
+    });
+}
 }

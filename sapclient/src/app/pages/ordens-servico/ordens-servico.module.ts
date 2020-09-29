@@ -8,6 +8,7 @@ import { OsFormComponent } from './os-form/os-form.component';
 
 import { DropdownModule } from 'primeng/dropdown';
 import { DialogModule } from 'primeng/dialog';
+import { ConfirmDialogModule } from 'primeng';
 
 
 
@@ -18,7 +19,8 @@ import { DialogModule } from 'primeng/dialog';
     SprintsModule,
     OrdensServicoRoutingModule,
     DropdownModule,
-    DialogModule
+    DialogModule,
+    ConfirmDialogModule
   ]
 })
 export class OrdensServicoModule { }

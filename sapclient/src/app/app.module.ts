@@ -17,6 +17,7 @@ import { BlockUIModule } from 'ng-block-ui';
 import {PaginatorModule} from 'primeng/paginator';
 import {TableModule} from 'primeng/table';
 import { from } from 'rxjs';
+import { ConfirmationService } from 'primeng';
 
 @NgModule({
     declarations: [
@@ -43,9 +44,10 @@ import { from } from 'rxjs';
         MenuModule,
         PaginatorModule,
         TableModule,
+
     ],
     providers: [
-        { provide: LocationStrategy, useClass: HashLocationStrategy }
+        { provide: LocationStrategy, useClass: HashLocationStrategy }, ConfirmationService
     ],
     bootstrap: [AppComponent]
 })

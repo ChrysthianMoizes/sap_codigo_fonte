@@ -2,7 +2,8 @@ import { SelectItem } from 'primeng';
 import { LiderService } from './../../../services/lider.service';
 import { ClienteService } from './../../../services/cliente.service';
 import { Component, OnInit } from '@angular/core';
-
+import {ConfirmationService} from 'primeng/api';
+import {Message} from 'primeng/api';
 import { BlockUI, NgBlockUI } from 'ng-block-ui';
 import { Observable } from 'rxjs';
 import { finalize } from 'rxjs/operators';
@@ -20,7 +21,7 @@ export class ProjetoListComponent implements OnInit {
   @BlockUI() blockUI: NgBlockUI;
   listaProjetos$: Observable<any>;
   listaProjetos: any = [];
-
+  msgs: Message[] = [];
   listaClientes: any[] = [];
   listaLideres: any[] = [];
 
@@ -36,7 +37,8 @@ export class ProjetoListComponent implements OnInit {
   constructor(
     private projetoService: ProjetoService,
     private clienteService: ClienteService,
-    private liderService: LiderService
+    private liderService: LiderService,
+    private confirmationService: ConfirmationService
   ) { }
 
   ngOnInit(): void {
@@ -60,6 +62,21 @@ export class ProjetoListComponent implements OnInit {
       () => this.obterTodos()
     );
   }
+  confirm2(id) {
+    this.confirmationService.confirm({
+        message: 'Você deseja excluir o Projeto?',
+        header: 'Confirmação de exclusão',
+        icon: 'pi pi-info-circle',
+        accept: () => {
+            this.msgs = [{severity:'info', summary:'Confirmed', detail:'Projeto excluído'}];
+            this.deletar(id);
+        },
+        reject: () => {
+
+        },
+        key:"confirm"
+    });
+}
 
   listarLideres() {
       this.blockUI.start();
