@@ -9,6 +9,8 @@
     [columns]="colunas" [value]="listaLideres" [filterDelay]="0">
       <ng-template let-columns pTemplate="header">
         <tr>
+
+          
           <th [class.action]="coluna.header == 'Ações'" *ngFor="let coluna of columns" [pSortableColumn]="coluna.field">
             <span [ngClass]="{'alinhaCampoAcao': coluna.header == 'Ações'}">{{ coluna.header }}</span>
             <p-sortIcon *ngIf="coluna.header != 'Ações'" [field]="coluna.field" ></p-sortIcon>
