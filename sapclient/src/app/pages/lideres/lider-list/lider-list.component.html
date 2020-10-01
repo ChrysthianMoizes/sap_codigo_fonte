@@ -5,28 +5,21 @@
     </div>
   </p-header>
   <ng-container *ngIf="listaLideres$ | async as listaLideres; else loading">
-    <p-table #dt [paginator]="true" [rows]="2" [rowsPerPageOptions]="[2, 4, 8, 10]" [responsive]="true"
+    <p-table #dt id='dt' [paginator]="true" [rows]="2" [rowsPerPageOptions]="[2, 4, 8, 10]" [responsive]="true"
     [columns]="colunas" [value]="listaLideres" [filterDelay]="0">
-      <!-- <ng-template pTemplate="caption">
-        <div class="table-header">
-          Filtro
-            <span class="p-input-icon-left">
-                <i class="pi pi-search"></i>
-                <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'startsWith')" placeholder="Busca global" />
-            </span>
-        </div>
-      </ng-template> -->
       <ng-template let-columns pTemplate="header">
         <tr>
-          <th [class.action]="coluna.header == 'Ações'" *ngFor="let coluna of columns">
-            {{ coluna.header }}
+          <th [class.action]="coluna.header == 'Ações'" *ngFor="let coluna of columns" [pSortableColumn]="coluna.field">
+            <span [ngClass]="{'alinhaCampoAcao': coluna.header == 'Ações'}">{{ coluna.header }}</span>
+            <p-sortIcon *ngIf="coluna.header != 'Ações'" [field]="coluna.field" ></p-sortIcon>
+            <input *ngIf="coluna.header != 'Ações'" pInputText type="text" (input)="dt.filter($event.target.value, coluna.field, 'contains')">
           </th>
         </tr>
       </ng-template>
-      <ng-template pTemplate="body" let-lider>
-        <tr>
-          <td>{{ lider.nome  | uppercase}}</td>
-          <td>{{ lider.contato  | uppercase}}</td>
+      <ng-template pTemplate="body" let-lider let-columns="colunas">
+        <tr style="text-transform: uppercase;">
+          <td>{{ lider.nome  }}</td>
+          <td>{{ lider.contato  }}</td>
           <td class="action-buttons">
             <button [routerLink]="[lider.id]" pButton icon="ui-icon-mode-edit"></button>
             <button pButton icon="pi pi-times" (click)="confirm2(lider.id)"></button>

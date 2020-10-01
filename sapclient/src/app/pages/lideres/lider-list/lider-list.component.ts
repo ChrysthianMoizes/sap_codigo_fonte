@@ -20,8 +20,8 @@ export class LiderListComponent implements OnInit {
     listaLideres: any = [];
     msgs: Message[] = [];
     colunas: any = [
-        { header: 'Nome' },
-        { header: 'Contato(s)' },
+        { header: 'Nome', field:'nome', sort:'nome' },
+        { header: 'Contato(s)', field:'contato', sort:'contato' },
         { header: 'Ações' },
     ];
 
