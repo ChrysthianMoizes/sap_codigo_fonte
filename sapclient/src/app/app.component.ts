@@ -36,6 +36,8 @@ export class AppComponent implements AfterViewInit, OnDestroy, OnInit {
 
     viewMinWidth = 640;
 
+    paginaAtual = 1;
+
     @ViewChild('layoutContainer', { static: true }) layourContainerViewChild: ElementRef;
 
     @ViewChild('scrollPanel', { static: true }) layoutMenuScrollerViewChild: ScrollPanel;
@@ -50,7 +52,25 @@ export class AppComponent implements AfterViewInit, OnDestroy, OnInit {
         this.zone.runOutsideAngular(() => { this.bindRipple(); });
 
         this.menuService.itens = [
-            { label: 'Dashboard', icon: 'dashboard', routerLink: ['/'] }
+            {
+                label: 'Dashboard',
+                icon: 'dashboard',
+                routerLink: ['/dashboard']
+            },
+            {
+                label: 'Líderes',
+                icon: 'person-pin',
+                routerLink: ['/lideres'] },
+          {
+                label: 'Projetos',
+                icon: 'create_new_folder',
+                routerLink: ['/projetos']
+            },
+            {
+                label: 'Ordens de Serviço (OS)',
+                icon: 'polymer',
+                routerLink: ['/ordens-servico']
+            },
         ];
     }
 

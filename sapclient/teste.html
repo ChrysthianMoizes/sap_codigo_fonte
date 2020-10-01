@@ -1,0 +1,46 @@
+<!-- <h1 style="text-align:center;">Painel de controle de projetos</h1> -->
+
+<ng-container *ngIf="listaOrdemServico$ | async as listaOrdemServico; else loading ">
+  <p-fieldset *ngFor="let cliente of clientes" [legend]="cliente.descricao" [toggleable]="true">
+    <p-table [paginator]="true" [rows]="5" [responsive]="true" [rowsPerPageOptions]="[2, 4, 8, 10]" [columns]="colunas"
+      [value]="listaOrdemServico"  [resizableColumns]="true">
+      <ng-template let-columns pTemplate="header">
+        <tr>
+          <th [class.action]="coluna.header == 'Ações'" *ngFor="let coluna of columns">
+            {{ coluna.header }}
+          </th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-ordemservico>
+        <tr *ngIf="cliente.id == obterCliente(ordemservico.idProjeto)">
+          <td>{{ ordemservico.nome }}</td>
+          <td>{{ obterNomeSituacao(ordemservico.idSituacao)}}</td>
+          <td>{{ ordemservico.pontosFuncao }}</td>
+          <td>{{ ordemservico.dataProximaEntrega | date:'dd/MM/yyyy'  }}</td>
+          <td>{{ obterSituacaoSprint(ordemservico.id) }}</td>
+          <td>{{ ordemservico.qtdDefeitosInterno || 0 }}</td>
+          <td>{{ ordemservico.qtdDefeitosCliente || 0}}</td>
+          <td>{{ obterImpedimentoSprint(ordemservico.id) }}</td>
+          <td>{{ obterNomeRevisor(ordemservico.idProjeto) }}</td>
+          <td>{{ obterNomeGerente(ordemservico.idProjeto) }}</td>
+          <td>{{ obterNomeTestador(ordemservico.idProjeto) }}</td>
+          <td class="action-buttons">
+            <button [routerLink]="[ordemservico.id]" pButton icon="ui-icon-mode-edit"></button>
+            <button pButton icon="pi pi-times" (click)="deletar(ordemservico.id)"></button>
+          </td>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="emptymessage" let-columns>
+        <tr>
+          <td [attr.colspan]="columns.length">
+            <div class="text-center">
+              <h3>Nenhum Registro cadastrado!</h3>
+            </div>
+          </td>
+        </tr>
+      </ng-template>
+
+    </p-table>
+  </p-fieldset>
+</ng-container>
+

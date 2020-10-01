@@ -1,0 +1,7 @@
+body .ui-inputtext{
+    margin: 0;
+    outline: medium none;
+    padding: .25em;
+    font-weight: normal;
+    color :rgb(0, 0, 0);
+  }

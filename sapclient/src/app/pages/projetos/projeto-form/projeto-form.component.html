@@ -1,0 +1,99 @@
+<p-card header="{{titulo}}">
+
+  <form [formGroup]="form">
+
+    <div class="ui-fluid p-formgrid p-grid">
+      <div class="p-field p-col-12 p-md-6">
+        <label id="labelNome">Nome <span>*</span> :</label>
+        <input type="text" pInputText formControlName="nome">
+        <p-message severity="error" text="O nome é obrigatório"
+          *ngIf="form.get('nome').errors && form.get('nome').errors.required && form.get('nome').invalid && form.get('nome').touched">
+        </p-message>
+        <p-message severity="error" text="Quantidade mínima de 3 caracteres"
+          *ngIf="form.get('nome').errors && form.get('nome').errors.minlength && form.get('nome').invalid && form.get('nome').touched">
+        </p-message>
+      </div>
+    </div>
+
+    <div class="ui-fluid p-formgrid p-grid">
+      <div class="p-field p-col-12 p-md-6">
+        <label for="testador">Testador <span>*</span> :</label>
+        <input id="testador" type="text" pInputText formControlName="testador">
+        <p-message severity="error" text="O testador é obrigatório"
+          *ngIf="form.get('testador').errors && form.get('testador').errors.required && form.get('testador').invalid && form.get('testador').touched">
+        </p-message>
+        <p-message severity="error" text="Quantidade mínima de 3 caracteres"
+          *ngIf="form.get('testador').errors && form.get('testador').errors.minlength && form.get('testador').invalid && form.get('testador').touched">
+        </p-message>
+      </div>
+    </div>
+
+    <div class="ui-fluid p-formgrid p-grid">
+      <div class="p-field p-col-12 p-md-6">
+        <label for="revisor">Revisor <span>*</span> :</label>
+        <input for="revisor" type="text" pInputText formControlName="revisor">
+        <p-message severity="error" text="O revisor é obrigatório"
+          *ngIf="form.get('revisor').errors && form.get('revisor').errors.required && form.get('revisor').invalid && form.get('revisor').touched">
+        </p-message>
+        <p-message severity="error" text="Quantidade mínima de 3 caracteres"
+          *ngIf="form.get('revisor').errors && form.get('revisor').errors.minlength && form.get('revisor').invalid && form.get('revisor').touched">
+        </p-message>
+      </div>
+    </div>
+
+
+    <div class="ui-fluid p-formgrid p-grid">
+      <div class="p-field p-col-12 p-md-6">
+        <label>Gerente <span>*</span> :</label>
+        <input type="text" pInputText formControlName="gerente">
+        <p-message severity="error" text="O gerente é obrigatório"
+          *ngIf="form.get('gerente').errors && form.get('gerente').errors.required && form.get('gerente').invalid && form.get('gerente').touched">
+        </p-message>
+        <p-message severity="error" text="Quantidade mínima de 3 caracteres"
+          *ngIf="form.get('gerente').errors && form.get('gerente').errors.minlength && form.get('gerente').invalid && form.get('gerente').touched">
+        </p-message>
+      </div>
+    </div>
+
+    <div id="containerDropdowns" class="p-fluid p-formgrid p-grid">
+      <div class="p-field p-col-6">
+        <label>Lider <span>*</span> :</label>
+        <p-dropdown [options]="lideres" placeholder="Selecione um líder de projeto" formControlName="idLider">
+        </p-dropdown>
+        <p-message severity="error" text="O lider é obrigatório"
+          *ngIf="form.get('idLider').errors && form.get('idLider').errors.required && form.get('idLider').invalid && form.get('idLider').touched">
+        </p-message>
+        <p-message severity="error" text="Quantidade mínima de 3 caracteres"
+          *ngIf="form.get('idLider').errors && form.get('idLider').errors.minlength && form.get('idLider').invalid && form.get('idLider').touched">
+        </p-message>
+      </div>
+
+      <div class="p-field p-col-6">
+        <label>Cliente <span>*</span>:</label>
+        <p-dropdown [options]="clientes" placeholder="Selecione um cliente" formControlName="idCliente"></p-dropdown>
+        <p-message severity="error" text="O cliente é obrigatório"
+          *ngIf="form.get('idCliente').errors && form.get('idCliente').errors.required && form.get('idCliente').invalid && form.get('idCliente').touched">
+        </p-message>
+        <p-message severity="error" text="Quantidade mínima de 3 caracteres"
+          *ngIf="form.get('idCliente').errors && form.get('idCliente').errors.minlength && form.get('idCliente').invalid && form.get('idCliente').touched">
+        </p-message>
+      </div>
+    </div>
+
+    <div id="containerButton" class="ui-g text-right">
+      <p-message id="info" severity="info" text="Todos os campos com * são obrigatórios">
+      </p-message>
+
+      <div class="ui-lg-2 ui-md-3 ui-sm-6">
+        <button pButton icon="ui-icon-check-circle" iconPos="left" label="Salvar" (click)="enviarForm()"
+          [disabled]="this.form.invalid">
+        </button>
+      </div>
+
+      <div id="buttonCancelar" class="ui-lg-2 ui-md-3 ui-sm-6">
+        <button pButton icon="pi pi-times" iconPos="left" label="Cancelar" routerLink="/projetos">
+        </button>
+      </div>
+    </div>
+  </form>
+</p-card>

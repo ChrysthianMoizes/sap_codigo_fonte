@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="7dd9a0cf-7e5b-4cf4-b853-72629388a471" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sapclient/src/app/pages/dashboard/dashboard.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/sapclient/src/app/pages/dashboard/dashboard.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sapclient/src/app/pages/dashboard/dashboard.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/sapclient/src/app/pages/dashboard/dashboard.component.ts" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHome" value="$APPLICATION_HOME_DIR$/plugins/maven/lib/maven3" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="1gK35iBE5ca8JVcrilytlSXt0Vr" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/pom.xml" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+  </component>
+  <component name="RunManager" selected="Application.SapserviceApp">
+    <configuration name="SapserviceApp (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="br.gov.basis.sap.sapservice.SapserviceApp" />
+      <module name="sap-parent" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="br.gov.basis.sap.sapservice.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SapserviceApp" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="br.gov.basis.sap.sapservice.SapserviceApp" />
+      <module name="sapservice" />
+      <option name="VM_PARAMETERS" value="-Xmx256m" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="br.gov.basis.sap.sapservice.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.SapserviceApp" />
+        <item itemvalue="Application.SapserviceApp (1)" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="7dd9a0cf-7e5b-4cf4-b853-72629388a471" name="Default Changelist" comment="" />
+      <created>1597849277745</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1597849277745</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="141" y="32" width="1084" height="736" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1597882870551">
+      <screen x="0" y="27" width="1366" height="741" />
+    </state>
+    <state x="141" y="32" width="1084" height="736" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.27.1366.741@0.27.1366.741" timestamp="1597882870551" />
+    <state x="519" y="161" key="#xdebugger.evaluate" timestamp="1598367686486">
+      <screen x="0" y="27" width="1280" height="693" />
+    </state>
+    <state x="519" y="161" key="#xdebugger.evaluate/0.27.1280.693@0.27.1280.693" timestamp="1598367686486" />
+    <state width="1320" height="376" key="GridCell.Tab.0.bottom" timestamp="1598842184880">
+      <screen x="0" y="27" width="1366" height="741" />
+    </state>
+    <state width="1234" height="200" key="GridCell.Tab.0.bottom/0.27.1280.693@0.27.1280.693" timestamp="1598367509136" />
+    <state width="1320" height="376" key="GridCell.Tab.0.bottom/0.27.1366.741/1366.0.1024.768@0.27.1366.741" timestamp="1598842184880" />
+    <state width="1320" height="149" key="GridCell.Tab.0.bottom/0.27.1366.741/1366.0.1024.768@1366.0.1024.768" timestamp="1598102749572" />
+    <state width="1320" height="377" key="GridCell.Tab.0.bottom/0.27.1366.741@0.27.1366.741" timestamp="1598712524413" />
+    <state width="1320" height="376" key="GridCell.Tab.0.bottom/0.27.2390.741@0.27.2390.741" timestamp="1598756015861" />
+    <state width="1320" height="237" key="GridCell.Tab.0.bottom/0.27.3286.1053@0.27.3286.1053" timestamp="1598360488819" />
+    <state width="1320" height="376" key="GridCell.Tab.0.center" timestamp="1598842184880">
+      <screen x="0" y="27" width="1366" height="741" />
+    </state>
+    <state width="1234" height="200" key="GridCell.Tab.0.center/0.27.1280.693@0.27.1280.693" timestamp="1598367509132" />
+    <state width="1320" height="376" key="GridCell.Tab.0.center/0.27.1366.741/1366.0.1024.768@0.27.1366.741" timestamp="1598842184880" />
+    <state width="1320" height="149" key="GridCell.Tab.0.center/0.27.1366.741/1366.0.1024.768@1366.0.1024.768" timestamp="1598102749572" />
+    <state width="1320" height="377" key="GridCell.Tab.0.center/0.27.1366.741@0.27.1366.741" timestamp="1598712524412" />
+    <state width="1320" height="376" key="GridCell.Tab.0.center/0.27.2390.741@0.27.2390.741" timestamp="1598756015861" />
+    <state width="1320" height="237" key="GridCell.Tab.0.center/0.27.3286.1053@0.27.3286.1053" timestamp="1598360488819" />
+    <state width="1320" height="376" key="GridCell.Tab.0.left" timestamp="1598842184880">
+      <screen x="0" y="27" width="1366" height="741" />
+    </state>
+    <state width="1234" height="200" key="GridCell.Tab.0.left/0.27.1280.693@0.27.1280.693" timestamp="1598367509131" />
+    <state width="1320" height="376" key="GridCell.Tab.0.left/0.27.1366.741/1366.0.1024.768@0.27.1366.741" timestamp="1598842184880" />
+    <state width="1320" height="149" key="GridCell.Tab.0.left/0.27.1366.741/1366.0.1024.768@1366.0.1024.768" timestamp="1598102749571" />
+    <state width="1320" height="377" key="GridCell.Tab.0.left/0.27.1366.741@0.27.1366.741" timestamp="1598712524412" />
+    <state width="1320" height="376" key="GridCell.Tab.0.left/0.27.2390.741@0.27.2390.741" timestamp="1598756015860" />
+    <state width="1320" height="237" key="GridCell.Tab.0.left/0.27.3286.1053@0.27.3286.1053" timestamp="1598360488818" />
+    <state width="1320" height="376" key="GridCell.Tab.0.right" timestamp="1598842184880">
+      <screen x="0" y="27" width="1366" height="741" />
+    </state>
+    <state width="1234" height="200" key="GridCell.Tab.0.right/0.27.1280.693@0.27.1280.693" timestamp="1598367509132" />
+    <state width="1320" height="376" key="GridCell.Tab.0.right/0.27.1366.741/1366.0.1024.768@0.27.1366.741" timestamp="1598842184880" />
+    <state width="1320" height="149" key="GridCell.Tab.0.right/0.27.1366.741/1366.0.1024.768@1366.0.1024.768" timestamp="1598102749572" />
+    <state width="1320" height="377" key="GridCell.Tab.0.right/0.27.1366.741@0.27.1366.741" timestamp="1598712524412" />
+    <state width="1320" height="376" key="GridCell.Tab.0.right/0.27.2390.741@0.27.2390.741" timestamp="1598756015861" />
+    <state width="1320" height="237" key="GridCell.Tab.0.right/0.27.3286.1053@0.27.3286.1053" timestamp="1598360488819" />
+    <state width="1234" height="200" key="GridCell.Tab.1.bottom" timestamp="1598367575853">
+      <screen x="0" y="27" width="1280" height="693" />
+    </state>
+    <state width="1234" height="200" key="GridCell.Tab.1.bottom/0.27.1280.693@0.27.1280.693" timestamp="1598367575853" />
+    <state width="1234" height="200" key="GridCell.Tab.1.center" timestamp="1598367575851">
+      <screen x="0" y="27" width="1280" height="693" />
+    </state>
+    <state width="1234" height="200" key="GridCell.Tab.1.center/0.27.1280.693@0.27.1280.693" timestamp="1598367575851" />
+    <state width="1234" height="200" key="GridCell.Tab.1.left" timestamp="1598367575850">
+      <screen x="0" y="27" width="1280" height="693" />
+    </state>
+    <state width="1234" height="200" key="GridCell.Tab.1.left/0.27.1280.693@0.27.1280.693" timestamp="1598367575850" />
+    <state width="1234" height="200" key="GridCell.Tab.1.right" timestamp="1598367575852">
+      <screen x="0" y="27" width="1280" height="693" />
+    </state>
+    <state width="1234" height="200" key="GridCell.Tab.1.right/0.27.1280.693@0.27.1280.693" timestamp="1598367575852" />
+    <state x="64" y="27" width="1024" height="741" key="SettingsEditor" timestamp="1597853620600">
+      <screen x="0" y="27" width="1366" height="741" />
+    </state>
+    <state x="64" y="27" width="1024" height="741" key="SettingsEditor/0.27.1366.741@0.27.1366.741" timestamp="1597853620600" />
+    <state x="303" y="41" width="672" height="678" key="search.everywhere.popup" timestamp="1598365661611">
+      <screen x="0" y="27" width="1280" height="693" />
+    </state>
+    <state x="303" y="41" width="672" height="678" key="search.everywhere.popup/0.27.1280.693@0.27.1280.693" timestamp="1598365661611" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/sapservice/src/main/java/br/gov/basis/sap/sapservice/service/OrdemServicoServico.java</url>
+          <line>33</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>

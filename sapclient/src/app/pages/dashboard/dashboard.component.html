@@ -1,0 +1,144 @@
+<h1 style="text-align: center;">Controle de Projetos</h1>
+<!-- <pre>{{( listaClientes | json )}}</pre> -->
+
+<p-panel [toggleable]="true" >
+  <p-header id="titleHeader">Filtros</p-header>
+
+  <div id="filtros">
+      <div class="ui-g-4 ui-md-4 ui-sm-12 dashboardFiltro">
+        <span class="ui-float-label">
+            <p-multiSelect class="filtro" maxSelectedLabels="4"
+                [options]="listaClientes" defaultLabel="&nbsp;"
+                selectedItemsLabel="{0} itens selecionados"
+                [(ngModel)]="filtroCliente"
+                (onChange)="prepararFiltroCliente($event)">
+            </p-multiSelect>
+            <label>Cliente</label>
+        </span>
+      </div>
+
+      <div class="ui-g-4 ui-md-4 ui-sm-12 dashboardFiltro">
+        <span class="ui-float-label">
+            <p-multiSelect class="filtro" maxSelectedLabels="4"
+                [options]="listaProjeto" defaultLabel="&nbsp;"
+                selectedItemsLabel="{0} itens selecionados"
+                [(ngModel)]="filtroProjeto"
+                (onChange)="prepararFiltroProjeto($event)">
+            </p-multiSelect>
+            <label>Projeto</label>
+        </span>
+      </div>
+
+      <div class="ui-g-4 ui-md-4 ui-sm-12 dashboardFiltro">
+        <span class="ui-float-label">
+            <p-multiSelect class="filtro" maxSelectedLabels="4"
+                [options]="listaLideres" defaultLabel="&nbsp;"
+                selectedItemsLabel="{0} itens selecionados"
+                [(ngModel)]="filtroLider"
+                (onChange)="prepararFiltroLider($event)">
+            </p-multiSelect>
+            <label>Lider</label>
+          </span>
+      </div>
+  </div>
+
+</p-panel>
+
+<p-fieldset (onBeforeToggle)="obterOsPorProjeto(projeto)" *ngFor="let projeto of projetosFiltrados" [toggleable]="true"
+[collapsed]="true">
+
+  <p-header>{{projeto.nome | uppercase}}</p-header>
+  <div>
+    <p-panel >
+      <ul id="DescricaoProjeto">
+        <li><span>Lider:</span> {{obterNomeLider(projeto.idLider)}}</li>
+        <li><span>Testador:</span> {{obterNomeTestador(projeto.id)}}</li>
+        <li><span>Revisor:</span> {{obterNomeRevisor(projeto.id)}}</li>
+        <li><span>Gerente:</span> {{obterNomeGerente(projeto.id)}}</li>
+      </ul>
+    </p-panel>
+
+  </div>
+
+
+  <p-table #dt [value]="projeto.listaOs" [paginator]="true" [rows]="4" [response]="true" [columns]="colunas" dataKey="nome">
+
+    <ng-template let-columns pTemplate="header">
+      <tr>
+        <th style="width: 3em"></th>
+        <th [class.action]="coluna.header == 'Ações'" *ngFor="let coluna of columns" pResizableColumn>
+          {{coluna.header}}
+        </th>
+      </tr>
+    </ng-template>
+
+    <ng-template pTemplate="body" let-ordemservico let-expanded="expanded" let-columns="columns">
+      <tr *ngIf="ordemservico.idProjeto == projeto.id">
+        <td>
+          <a href="#" [pRowToggler]="ordemservico">
+            <i [ngClass]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"></i>
+          </a>
+        </td>
+        <td>{{ ordemservico.nome | titlecase}}</td>
+        <td>{{ obterNomeSituacao(ordemservico.idSituacao) | titlecase}}</td>
+        <td>{{ ordemservico.dataProximaEntrega | date: 'dd/MM/yyyy'}}</td>
+        <td>{{ ordemservico.prazo | date: 'dd/MM/yyyy'}}</td>
+        <td>{{ ordemservico.pontosFuncao}}</td>
+        <td>{{ ordemservico.fabrica | uppercase}}</td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="emptymessage" let-columns>
+      <tr>
+        <td [attr.colspan]="columns.length">
+          <div class="text-center">
+            <h3>Nenhuma ordem de serviço cadastrada!</h3>
+          </div>
+        </td>
+      </tr>
+    </ng-template>
+
+    <!-- SPRINT -->
+    <ng-template pTemplate="rowexpansion" let-ordemservico let-columns="columns">
+      <tr>
+        <td [attr.colspan]="columns.length + 1">
+          <div class="p-grid -fluid" style="font-size:16px;padding:5px 5px 20px 5px;">
+            <p-table paginator="true" [rows]="10" [columns]="coluna" [value]="sprints" dataKey="nome">
+              <ng-template pTemplate="header" let-subcolumns>
+      <tr>
+        <th [class.action]="coluna.header == 'Ações'" *ngFor="let coluna of colunaSprint" pResizableColumn>
+          {{coluna.header}}
+        </th>
+      </tr>
+    </ng-template>
+
+    <ng-template pTemplate="body" let-sprints let-expanded="expanded">
+      <tr *ngIf="sprints.idOrdemServico == ordemservico.id">
+        <td>{{ sprints.nome }}</td>
+        <td>{{ sprints.dataInicio }}</td>
+        <td>{{ sprints.dataTermino }}</td>
+        <td>{{ sprints.pontosFuncao }}</td>
+        <td>{{ obterBoolean(sprints.impedimento)}}</td>
+        <td>{{ obterBoolean(sprints.prazo) }}</td>
+        <td>{{ obterNomeStatus(sprints.idStatus)}}</td>
+      </tr>
+    </ng-template>
+
+    <ng-template pTemplate="emptymessage" let-subcolumns>
+      <tr>
+        <td [attr.colspan]="columns.length">
+          <div class="text-center">
+            <h3>Nenhuma OS cadastrada!</h3>
+          </div>
+        </td>
+      </tr>
+    </ng-template>
+
+  </p-table>
+  </div>
+  </td>
+  </tr>
+  </ng-template>
+
+  </p-table>
+
+</p-fieldset>

@@ -1,0 +1,153 @@
+<p-card header="{{titulo}}">
+
+
+  <form [formGroup]="form">
+
+    <div class="ui-fluid p-formgrid p-grid">
+      <div class="p-field p-col-12 p-md-6">
+        <label>Nome <span>*</span>:</label>
+        <input type="text" pInputText formControlName="nome">
+        <p-message severity="error" text="O nome é obrigatório" *ngIf="form.get('nome').errors && form.get('nome').errors.required && form.get('nome').invalid && form.get('nome').touched"></p-message>
+        <p-message severity="error" text="Quantidade mínima de 3 caracteres" *ngIf="form.get('nome').errors && form.get('nome').errors.minlength && form.get('nome').invalid && form.get('nome').touched"></p-message>
+      </div>
+    </div>
+
+    <div class="ui-fluid p-formgrid p-grid">
+      <div class="p-field p-col-12 p-md-6">
+        <label>Data Proxima Entrega <span>*</span>:</label>
+        <p-calendar formControlName="dataProximaEntrega" [showIcon]="true" showButtonBar="true" [readonlyInput]="true" [locale]="dataBr" dateFormat="dd/mm/yy" [yearNavigator]="true" [monthNavigator]="true" yearRange="1950:2060"></p-calendar>
+        <p-message severity="error" text="É necessário uma data para a próxima entrega" *ngIf="form.get('dataProximaEntrega').errors && form.get('dataProximaEntrega').errors.required && form.get('dataProximaEntrega').touched"></p-message>
+      </div>
+    </div>
+
+    <div id="formQtdDefeitos" class="p-fluid p-formgrid p-grid">
+      <div id="formQtdDefeitosCliente" class="p-field p-col-6">
+        <label>Quantidades de Defeitos do Cliente:</label>
+        <p-inputMask pInputText slotChar="" unmask="true" mask="9?99999999999" formControlName="qtdDefeitosCliente"></p-inputMask>
+      </div>
+
+      <div class="p-field p-col-6">
+        <label>Quantidades de Defeitos Internos:</label>
+        <p-inputMask pInputText slotChar="" unmask="true" mask="9?99999999999" formControlName="qtdDefeitosInterno"></p-inputMask>
+      </div>
+    </div>
+
+
+    <div class="ui-fluid p-formgrid p-grid">
+      <div class="p-field p-col-12 p-md-6">
+        <label>Pontos Função <span>*</span>:</label>
+        <input type="text" pInputText formControlName="pontosFuncao">
+        <p-message severity="error" text="É necessário colocar a quantidade de pontos de função" *ngIf="form.get('pontosFuncao').errors && form.get('pontosFuncao').errors.required && form.get('pontosFuncao').touched"></p-message>
+      </div>
+    </div>
+
+    <div class="ui-fluid p-formgrid p-grid">
+      <div class="p-field p-col-12 p-md-6">
+        <label>Fabricas <span>*</span>:</label>
+        <input type="text" pInputText formControlName="fabrica">
+        <p-message severity="error" text="É necessário indicar a fábrica" *ngIf="form.get('fabrica').errors && form.get('fabrica').errors.required && form.get('fabrica').touched"></p-message>
+        <p-message severity="error" text="Quantidade mínima de 2 caracteres" *ngIf="form.get('fabrica').errors && form.get('fabrica').errors.minlength && form.get('fabrica').invalid && form.get('fabrica').touched"></p-message>
+      </div>
+    </div>
+
+
+    <div id="dropdown" class="p-fluid p-formgrid p-grid">
+      <div class="p-field p-col-3 p-md-3">
+        <label>Projetos <span>*</span>:</label>
+        <p-dropdown [options]="listaProjetos" placeholder="Selecione um projeto" formControlName="idProjeto"></p-dropdown>
+        <p-message severity="error" text="É necessário selecionar um projeto" *ngIf="form.get('idProjeto').errors && form.get('idProjeto').errors.required && form.get('idProjeto').touched"></p-message>
+      </div>
+
+      <div id="dropdownSituacao" class="p-field p-col-3 p-md-3">
+        <label>Situação <span>*</span>:</label>
+        <p-dropdown [options]="situacoes" placeholder="Selecione uma situação" formControlName="idSituacao"></p-dropdown>
+        <p-message severity="error" text="É necessário selecionar uma situação" *ngIf="form.get('idSituacao').errors && form.get('idSituacao').errors.required && form.get('idSituacao').touched"></p-message>
+      </div>
+
+      <div class="p-field p-col-12 p-md-6">
+        <label>Prazo <span>*</span>:</label>
+        <p-calendar formControlName="prazo" showButtonBar="true" [readonlyInput]="true" [showIcon]="true" [locale]="dataBr" dateFormat="dd/mm/yy" [yearNavigator]="true" [monthNavigator]="true" yearRange="1950:2060"></p-calendar>
+        <p-message severity="error" text="É necessário uma data de prazo" *ngIf="form.get('prazo').errors && form.get('prazo').errors.required && form.get('prazo').touched"></p-message>
+      </div>
+
+    </div>
+
+    <p-fieldset legend="Sprints" [toggleable]="true">
+      <p-table [paginator]="true" [rows]="2" [responsive]="true" 
+      [rowsPerPageOptions]="[2, 4, 8, 10]" [columns]="colunas" [value]="sprints"
+      [value]="sprint" editMode="row">
+        <ng-template let-columns pTemplate="header">
+          <tr>
+            <th [class.action]="coluna.header == 'Ações'" *ngFor="let coluna of columns">
+              {{ coluna.header }}
+            </th>
+          </tr>
+        </ng-template>
+    
+    <ng-template pTemplate="body" let-sprint>
+        <tr >
+      
+            <td >
+              {{ sprint.nome | uppercase }}
+            </td>
+
+            <td >
+              {{ sprint.dataInicio | date:'dd/MM/yyyy'}}
+            </td>
+
+            <td>
+              {{ sprint.dataTermino | date:'dd/MM/yyyy' }}
+            </td>
+
+            <td>
+              {{ sprint.pontosFuncao }}
+            </td>
+
+            <td>
+              {{ obterNomeStatus(sprint.idStatus) | uppercase }}
+            </td>
+
+            <td class="action-buttons">
+              <button pButton icon="ui-icon-mode-edit" (click)="showDialogSprint(sprint)" ></button>
+              <button pButton icon="pi pi-times" (click)="deletar(sprint.id)" ></button>
+            </td>   
+
+          </tr>
+        </ng-template>
+
+        <ng-template pTemplate="emptymessage" let-columns>
+          <tr>
+            <td [attr.colspan]="columns.length">
+              <div class="text-center">
+                <h3>Nenhuma Sprint cadastrada!</h3>
+              </div>
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+      <div class="ui-g text-right">
+        <button pButton icon="ui-icon-check-circle" iconPos="left" label="Nova Sprint" (click)="showDialogSprint()"></button>
+        
+      </div>
+
+    </p-fieldset>
+
+    <div id="containerButton">
+      <p-message id="info" severity="info" text="Todos os campos com * são obrigatórios"></p-message>
+      <div class="ui-g text-right">
+        <div class="ui-lg-2 ui-md-3 ui-sm-6">
+          <button pButton icon="ui-icon-check-circle" iconPos="left" label="Salvar" (click)="enviarForm()" [disabled]="this.form.invalid">
+        </button>
+        </div>
+
+        <div class="ui-lg-2 ui-md-3 ui-sm-6">
+          <button pButton icon="pi pi-times" iconPos="left" label="Cancelar" routerLink="/ordens-servico/"[2]>
+          </button>
+        </div>
+      </div>
+    </div>
+
+  </form>
+</p-card>
+
+<app-sprint-form #sprintDialog (salvarSprint)="adicionarEditarSprint($event)"></app-sprint-form>

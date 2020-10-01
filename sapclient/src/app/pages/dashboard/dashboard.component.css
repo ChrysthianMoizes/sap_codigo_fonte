@@ -1,0 +1,30 @@
+.botao {
+    float: right;
+}
+
+body .ui-tabview {
+    padding: 0;
+    margin-bottom: 5px;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+#titleHeader{
+    font-weight: bold;
+    font-size: 18px;
+}
+
+#filtros{
+    display: flex;
+    justify-content: space-around;
+}
+
+#DescricaoProjeto{
+    display: flex;
+    justify-content: space-around;
+}
+
+#DescricaoProjeto span{
+    font-weight: bolder;
+}

@@ -1,0 +1,38 @@
+<p-card header="{{titulo}}">
+
+  <form [formGroup]="form">
+
+    <div class="ui-fluid p-formgrid p-grid">
+      <div class="p-field p-col-12 p-md-6">
+        <label>Nome <span>*</span>:</label>
+        <input type="text" pInputText formControlName="nome">
+        <p-message severity="error" text="O nome é obrigatório"
+          *ngIf="form.get('nome').errors && form.get('nome').errors.required && form.get('nome').invalid && form.get('nome').touched">
+        </p-message>
+        <p-message severity="error" text="Quantidade mínima de 3 caracteres"
+          *ngIf="form.get('nome').errors && form.get('nome').errors.minlength && form.get('nome').invalid && form.get('nome').touched">
+        </p-message>
+      </div>
+    </div>
+
+    <div class="ui-fluid p-formgrid p-grid">
+      <div class="p-field p-col-12 p-md-6">
+        <label>Contato:</label>
+        <input type="text" pInputText formControlName="contato">
+      </div>
+    </div>
+
+    <div class="ui-g text-right">
+      <div class="ui-lg-2 ui-md-3 ui-sm-6">
+        <button pButton icon="ui-icon-check-circle" iconPos="left" label="Salvar" (click)="enviarForm()"
+          [disabled]="this.form.invalid"></button>
+      </div>
+      <div class="ui-lg-2 ui-md-3 ui-sm-6">
+        <button pButton icon="pi pi-times" iconPos="left" label="Cancelar" routerLink="/lideres"></button>
+      </div>
+
+      <p-message id="info" severity="info" text="Todos os campos com * são obrigatórios"></p-message>
+    </div>
+
+  </form>
+</p-card>

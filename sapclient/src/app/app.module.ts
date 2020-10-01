@@ -13,6 +13,11 @@ import { PageNotificationModule, BreadcrumbModule, MenuModule, ErrorStackModule 
 import { SecurityModule, VersionTagModule } from '@nuvem/angular-base';
 import { DiarioErrosComponent } from './components/diario-erros/diario-erros.component';
 import { PaginaInicialComponent } from './view/pagina-inicial/pagina-inicial.component';
+import { BlockUIModule } from 'ng-block-ui';
+import {PaginatorModule} from 'primeng/paginator';
+import {TableModule} from 'primeng/table';
+import { from } from 'rxjs';
+import { ConfirmationService } from 'primeng';
 
 @NgModule({
     declarations: [
@@ -20,9 +25,12 @@ import { PaginaInicialComponent } from './view/pagina-inicial/pagina-inicial.com
         AppTopbarComponent,
         AppFooterComponent,
         DiarioErrosComponent,
-        PaginaInicialComponent
+        PaginaInicialComponent,
     ],
     imports: [
+        BlockUIModule.forRoot({
+            message: 'Carregando...'
+        }),
         BrowserModule,
         BrowserAnimationsModule,
         AppRoutingModule,
@@ -33,10 +41,13 @@ import { PaginaInicialComponent } from './view/pagina-inicial/pagina-inicial.com
         ErrorStackModule,
         VersionTagModule,
         SecurityModule.forRoot(environment.auth),
-        MenuModule
+        MenuModule,
+        PaginatorModule,
+        TableModule,
+
     ],
     providers: [
-        { provide: LocationStrategy, useClass: HashLocationStrategy }
+        { provide: LocationStrategy, useClass: HashLocationStrategy }, ConfirmationService
     ],
     bootstrap: [AppComponent]
 })

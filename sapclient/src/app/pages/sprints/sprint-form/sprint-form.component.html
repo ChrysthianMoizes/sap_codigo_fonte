@@ -1,0 +1,75 @@
+<p-dialog header="Gerenciamento de Sprints" [(visible)]="exibir" [style]="{ 'width': '80vw' }">
+
+  <p-card [header]="titulo" resizable="true">
+    <form [formGroup]="form">
+      <div class="ui-fluid p-formgrid p-grid">
+        <div class="p-field p-col-12 p-md-6">
+          <label>Nome <span>*</span>:</label>
+          <input type="text" pInputText formControlName="nome">
+          <p-message severity="error" text="O nome é obrigatório" *ngIf="form.get('nome').errors && form.get('nome').errors.required && form.get('nome').invalid && form.get('nome').touched"></p-message>
+          <p-message severity="error" text="Quantidade mínima de 3 caracteres" *ngIf="form.get('nome').errors && form.get('nome').errors.minlength && form.get('nome').invalid && form.get('nome').touched"></p-message>
+        </div>
+      </div>
+
+      <div class="ui-fluid p-formgrid p-grid">
+        <div class="p-field p-col-12 p-md-6">
+          <label>Data Inicio <span>*</span>:</label>
+          <p-calendar formControlName="dataInicio" showButtonBar="true" [readonlyInput]="true" [locale]="dataBr" dateFormat="dd/mm/yy" [yearNavigator]="true" [monthNavigator]="true" yearRange="1950:2060"></p-calendar>
+            <p-message severity="error" text="É necessário uma data de início" *ngIf="form.get('dataInicio').errors && form.get('dataInicio').errors.required && form.get('dataInicio').touched"></p-message>
+          </div>
+      </div>
+
+      <div class="ui-fluid p-formgrid p-grid">
+        <div class="p-field p-col-12 p-md-6">
+          <label>Data Termino <span>*</span>:</label>
+          <p-calendar formControlName="dataTermino" showButtonBar="true" [readonlyInput]="true" [locale]="dataBr" dateFormat="dd/mm/yy" [yearNavigator]="true" [monthNavigator]="true" yearRange="1950:2060"></p-calendar>
+            <p-message severity="error" text="É necessário uma data de término" *ngIf="form.get('dataTermino').errors && form.get('dataTermino').errors.required && form.get('dataTermino').touched"></p-message>
+          </div>
+      </div>
+
+
+      <div class="ui-fluid p-formgrid p-grid">
+        <div class="p-field p-col-12 p-md-6">
+          <label>Pontos Função <span>*</span>:</label>
+          <input type="text" pInputText formControlName="pontosFuncao">
+          <p-message severity="error" text="É necessário colocar a quantidade de pontos de função" *ngIf="form.get('pontosFuncao').errors && form.get('pontosFuncao').errors.required && form.get('pontosFuncao').touched"></p-message>
+        </div>
+      </div>
+
+      <div id="selection" class="p-fluid p-formgrid p-grid">
+          <div class="p-field p-col-3 p-md-3">
+            <label>Impedimentos <span>*</span>:</label>
+            <p-radioButton class="espacamento" name="impedimento" [value]="true" [(ngModel)]="sprint.impedimento" formControlName="impedimento" label="Sim"></p-radioButton>
+            <p-radioButton name="impedimento" [value]="false" formControlName="impedimento" [(ngModel)]="sprint.impedimento" label="Não"></p-radioButton>
+        </div>
+
+          <div class="p-field p-col-3 p-md-3">
+            <label>Dentro Do Prazo <span>*</span>:</label>
+            <p-radioButton  class="espacamento" name="prazo" [value]="true" formControlName="prazo" label="Sim"></p-radioButton>
+            <p-radioButton name="prazo" [value]="false" formControlName="prazo" label="Não"></p-radioButton>
+        </div>
+  
+          <div class="p-field p-col-3 p-md-3">
+            <label>Status <span>*</span>:</label>
+            <p-dropdown autoDisplayFirst="false" [options]="status" placeholder="Indique um Status" formControlName="idStatus"></p-dropdown>
+            <p-message severity="error" text="O campo status é obrigatório" *ngIf="form.get('idStatus').errors && form.get('idStatus').errors.required && form.get('idStatus').invalid && form.get('idStatus').touched"></p-message>
+        </div>
+
+      </div>
+
+      <div class="ui-g text-right">
+        <div class="ui-lg-2 ui-md-3 ui-sm-6">
+          <button pButton icon="ui-icon-check-circle" iconPos="left" label="Salvar" (click)="enviarForm()" [disabled]="this.form.invalid"></button>
+        </div>
+
+        <div class="ui-lg-2 ui-md-3 ui-sm-6">
+          <button pButton icon="pi pi-times" iconPos="left" label="Cancelar" (click)="fecharModal()"></button>
+        </div>
+        <div id="container">
+          <p-message id="info" severity="info" text="Todos os campos com * são obrigatórios"></p-message>
+
+        </div>
+      </div>
+    </form>
+  </p-card>
+</p-dialog>
